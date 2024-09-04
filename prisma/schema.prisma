@@ -1,0 +1,196 @@
+// Define the generator and datasource for MongoDB
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Organization {
+  id           String         @id @default(auto()) @map("_id") @db.ObjectId
+  name         String
+  email        String         @unique
+  isActive     Boolean        @default(true)
+  users        User[]
+  businesses   Business[] // One-to-many relation with businesses
+  offers       Offer[] // One-to-many relation with offers
+  subscription Subscription[] // Subscription details inside organization
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+}
+
+model User {
+  id             String         @id @default(auto()) @map("_id") @db.ObjectId
+  clerkUserId    String         @unique // Clerk's user ID for authentication
+  role           Role           @default(CUSTOMER)
+  isActive       Boolean        @default(true)
+  organizationId String         @db.ObjectId
+  organization   Organization   @relation(fields: [organizationId], references: [id])
+  profileId      String?        @db.ObjectId
+  profile        UserProfile?   @relation(fields: [profileId], references: [id])
+  notifications  Notification[]
+  offersRedeemed OfferRedeem[]
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+}
+
+model UserProfile {
+  id            String       @id @default(auto()) @map("_id") @db.ObjectId
+  name          String
+  address       String?
+  phone         String?
+  location      Location?    @relation(fields: [locationId], references: [id])
+  preferencesId String?      @db.ObjectId
+  preferences   Preferences? @relation(fields: [preferencesId], references: [id])
+  User          User[]
+  isActive      Boolean      @default(true)
+  locationId    String?      @db.ObjectId
+}
+
+model Business {
+  id             String              @id @default(auto()) @map("_id") @db.ObjectId
+  name           String
+  description    String?
+  ownerId        String              @db.ObjectId
+  location       Location            @relation(fields: [locationId], references: [id])
+  organizationId String              @db.ObjectId
+  organization   Organization        @relation(fields: [organizationId], references: [id])
+  categories     BusinessCategory[] // Many-to-many relation with categories through join table
+  offers         Offer[] // One-to-many relation with offers
+  preferredBy    PreferredBusiness[] // Join table for many-to-many relation with users
+  createdAt      DateTime            @default(now())
+  updatedAt      DateTime            @updatedAt
+  isActive       Boolean             @default(true)
+  locationId     String              @db.ObjectId
+}
+
+model Offer {
+  id              String           @id @default(auto()) @map("_id") @db.ObjectId
+  title           String
+  description     String
+  businessId      String           @db.ObjectId
+  business        Business         @relation(fields: [businessId], references: [id])
+  discountId      String           @db.ObjectId
+  discount        Discount         @relation(fields: [discountId], references: [id])
+  startAt         DateTime
+  endAt           DateTime
+  isActive        Boolean          @default(true)
+  qrCode          String?
+  organizationId  String           @db.ObjectId // Link to organization
+  organization    Organization     @relation(fields: [organizationId], references: [id])
+  participants    OfferRedeem[] // One-to-many relation with OfferRedeem
+  interactiveType InteractiveType?
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+}
+
+model OfferRedeem {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  offerId    String   @db.ObjectId
+  offer      Offer    @relation(fields: [offerId], references: [id])
+  userId     String   @db.ObjectId
+  user       User     @relation(fields: [userId], references: [id])
+  redeemedAt DateTime @default(now())
+}
+
+model Category {
+  id          String              @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  description String?
+  businesses  BusinessCategory[] // Many-to-many relation with businesses through join table
+  preferredBy PreferredCategory[] // Join table for many-to-many relation with users
+  isActive    Boolean             @default(true)
+}
+
+model Notification {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId    String   @db.ObjectId
+  content   String
+  createdAt DateTime @default(now())
+  User      User     @relation(fields: [userId], references: [id])
+}
+
+model Preferences {
+  id                  String              @id @default(auto()) @map("_id") @db.ObjectId
+  preferredLanguage   String              @default("en")
+  preferredBusinesses PreferredBusiness[] // Join table for many-to-many with businesses
+  preferredCategories PreferredCategory[] // Join table for many-to-many with categories
+  UserProfile         UserProfile[]
+}
+
+model BusinessCategory {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  businessId String   @db.ObjectId
+  categoryId String   @db.ObjectId
+  business   Business @relation(fields: [businessId], references: [id])
+  category   Category @relation(fields: [categoryId], references: [id])
+}
+
+model PreferredBusiness {
+  id            String      @id @default(auto()) @map("_id") @db.ObjectId
+  preferencesId String      @db.ObjectId
+  businessId    String      @db.ObjectId
+  preferences   Preferences @relation(fields: [preferencesId], references: [id])
+  business      Business    @relation(fields: [businessId], references: [id])
+}
+
+model PreferredCategory {
+  id            String      @id @default(auto()) @map("_id") @db.ObjectId
+  preferencesId String      @db.ObjectId
+  categoryId    String      @db.ObjectId
+  preferences   Preferences @relation(fields: [preferencesId], references: [id])
+  category      Category    @relation(fields: [categoryId], references: [id])
+}
+
+model Discount {
+  id       String       @id @default(auto()) @map("_id") @db.ObjectId
+  type     DiscountType
+  value    Float
+  offers   Offer[] // One-to-many relation with offers
+  isActive Boolean      @default(true)
+}
+
+model Subscription {
+  id             String           @id @default(auto()) @map("_id") @db.ObjectId
+  tier           SubscriptionTier
+  isActive       Boolean          @default(true)
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+  organizationId String?          @db.ObjectId
+  organization   Organization?    @relation(fields: [organizationId], references: [id])
+}
+
+model Location {
+  id          String        @id @default(auto()) @map("_id") @db.ObjectId
+  latitude    Float
+  longitude   Float
+  address     String
+  UserProfile UserProfile[]
+  Business    Business[]
+  isActive    Boolean       @default(true)
+}
+
+enum Role {
+  CUSTOMER
+  BUSINESS_OWNER
+  ADMIN
+}
+
+enum DiscountType {
+  PERCENTAGE
+  FLAT
+}
+
+enum InteractiveType {
+  SCRATCH_COUPON
+  SPIN_WHEEL
+  PLAY_TO_EARN
+}
+
+enum SubscriptionTier {
+  FREE
+  PREMIUM
+  ENTERPRISE
+}
