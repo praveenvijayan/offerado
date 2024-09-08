@@ -3,6 +3,7 @@ import Link from "next/link";
 import {
   Bell,
   CircleUser,
+  CopyIcon,
   Dessert,
   Home,
   LineChart,
@@ -11,6 +12,7 @@ import {
   Package,
   Plus,
   Search,
+  Share,
   ShoppingCart,
   TabletSmartphone,
   Users,
@@ -57,6 +59,13 @@ import { useState } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import Image from "next/image";
 import { ScrollArea } from "@radix-ui/react-scroll-area";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 export default function CreateOffer() {
   const {
@@ -153,6 +162,8 @@ export default function CreateOffer() {
     isActive: true,
     selectedProducts: 5,
     selectedTemplate: "Template 2",
+    image: "/share-image.jpg",
+    link: "offerado.in/43534523523",
   });
 
   return (
@@ -492,12 +503,159 @@ export default function CreateOffer() {
             <CardHeader>
               <CardTitle>Share Offers</CardTitle>
               <CardDescription>
-                Share your offer with customers.
+                Select where you'd like to share your offer.
               </CardDescription>
             </CardHeader>
             <CardContent>
-              {/* Template selection functionality */}
-              <p>Share selection functionality to be implemented..</p>
+              <div className="grid grid-cols-3 gap-4">
+                {/* Twitter Preview */}
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex justify-between">
+                      Twitter <Share />
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <Image
+                      src={offer.image}
+                      alt="Offer Image"
+                      className="w-full h-32 object-cover rounded-md mb-[1rem]"
+                      width={120}
+                      height={100}
+                    />
+                    <p>{offer.title}</p>
+                    <p>{offer.description}</p>
+                  </CardContent>
+                </Card>
+
+                {/* Facebook Preview */}
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex justify-between">
+                      Facebook <Share />
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <Image
+                      src={offer.image}
+                      alt="Offer Image"
+                      className="w-full h-32 object-cover rounded-md mb-[1rem]"
+                      width={120}
+                      height={100}
+                    />
+                    <p>{offer.title}</p>
+                    <p>{offer.description}</p>
+                  </CardContent>
+                </Card>
+
+                {/* Slack Preview */}
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex justify-between">
+                      WhatsApp
+                      <Share />
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <Image
+                      src={offer.image}
+                      alt="Offer Image"
+                      className="w-full h-32 object-cover rounded-md mb-[1rem]"
+                      width={120}
+                      height={100}
+                    />
+                    <p>{offer.title}</p>
+                    <p>{offer.description}</p>
+                  </CardContent>
+                </Card>
+
+                {/* LinkedIn Preview */}
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex justify-between">
+                      LinkedIn <Share />
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <Image
+                      src={offer.image}
+                      alt="Offer Image"
+                      className="w-full h-32 object-cover rounded-md mb-[1rem]"
+                      width={120}
+                      height={100}
+                    />
+                    <p>{offer.title}</p>
+                    <p>{offer.description}</p>
+                  </CardContent>
+                </Card>
+
+                {/* Instagram Preview */}
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex justify-between">
+                      Instagram <Share />
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <Carousel>
+                      <CarouselContent>
+                        <CarouselItem>
+                          {" "}
+                          <Image
+                            src={offer.image}
+                            alt="Offer Image"
+                            className="w-full h-32 object-cover rounded-md mb-[1rem]"
+                            width={120}
+                            height={100}
+                          />
+                        </CarouselItem>
+                        <CarouselItem>
+                          {" "}
+                          <Image
+                            src={offer.image}
+                            alt="Offer Image"
+                            className="w-full h-32 object-cover rounded-md mb-[1rem]"
+                            width={120}
+                            height={100}
+                          />
+                        </CarouselItem>
+                        <CarouselItem>
+                          <Image
+                            src={offer.image}
+                            alt="Offer Image"
+                            className="w-full h-32 object-cover rounded-md mb-[1rem]"
+                            width={120}
+                            height={100}
+                          />
+                        </CarouselItem>
+                      </CarouselContent>
+                      <CarouselPrevious />
+                      <CarouselNext />
+                    </Carousel>
+                  </CardContent>
+                </Card>
+
+                {/* Raw Tags Preview */}
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex justify-between">
+                      Raw Tags <CopyIcon />
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <pre>
+                      {`
+<script>
+  test
+</script>
+`}
+                    </pre>
+                  </CardContent>
+                </Card>
+              </div>
+              {/* <div className="py-[1rem]">
+                <Button className="share-button p-[1rem]">Share Offer</Button>
+              </div> */}
             </CardContent>
           </Card>
         </TabsContent>
