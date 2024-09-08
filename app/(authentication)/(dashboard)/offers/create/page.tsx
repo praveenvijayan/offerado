@@ -56,6 +56,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { useState } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import Image from "next/image";
+import { ScrollArea } from "@radix-ui/react-scroll-area";
 
 export default function CreateOffer() {
   const {
@@ -155,7 +156,7 @@ export default function CreateOffer() {
   });
 
   return (
-    <div className="flex flex-col h-screen">
+    <div className="flex flex-col">
       {/* Offer Summary Card */}
       <Card className="w-full p-6 shadow-lg rounded-lg border mb-[1rem]">
         <CardHeader>
@@ -223,7 +224,9 @@ export default function CreateOffer() {
                     <Input
                       id="title"
                       placeholder="Enter offer title"
-                      {...register("title", { required: "Title is required" })}
+                      {...register("title", {
+                        required: "Title is required",
+                      })}
                     />
                     {errors.title && (
                       <span className="text-red-500">
@@ -474,7 +477,10 @@ export default function CreateOffer() {
                 <iframe
                   src="https://www.offerado.in/66d35228e5762fda53f84d9b"
                   className="w-full ml-auto mr-auto rounded-md"
-                  style={{ width: iframeSize.width, height: iframeSize.height }}
+                  style={{
+                    width: iframeSize.width,
+                    height: iframeSize.height,
+                  }}
                 ></iframe>
               </div>
             </CardContent>

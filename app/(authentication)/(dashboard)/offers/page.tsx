@@ -50,7 +50,7 @@ const offers = [
 
 export default function Offers() {
   return (
-    <div className="flex flex-col h-screen p-6">
+    <div className="flex flex-col p-6">
       {/* Tools */}
       <div className="shadow-md p-4 flex justify-between items-center">
         <div className="flex items-center space-x-2">

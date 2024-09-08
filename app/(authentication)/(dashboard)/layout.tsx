@@ -54,6 +54,7 @@ import {
 import Image from "next/image";
 import { ModeToggle } from "@/components/global/theme-comp";
 import { MagicWandIcon } from "@radix-ui/react-icons";
+import { ScrollArea } from "@radix-ui/react-scroll-area";
 
 export default function LoginLayout({
   children, // will be a page or nested layout
@@ -359,7 +360,9 @@ export default function LoginLayout({
           </header>
 
           {/* Main Content */}
-          <main className="flex flex-1 flex-col p-4 lg:p-6">{children}</main>
+          <main className="flex flex-1 flex-col p-4 lg:p-6">
+            <ScrollArea>{children}</ScrollArea>
+          </main>
         </div>
       </div>
     </section>
