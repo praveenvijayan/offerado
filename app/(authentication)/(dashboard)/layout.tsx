@@ -166,9 +166,9 @@ export default function LoginLayout({
                       href="/loyalty-programs"
                       className="flex items-center gap-3 px-3 py-2 text-muted-foreground rounded-lg text-xs"
                     >
-                      <DollarSign className="h-4 w-4" /> Loyalty Programs
+                      <DollarSign className="h-4 w-4" /> Coupon management
                     </Link>
-                    <Link
+                    {/* <Link
                       href="/offer-heatmaps"
                       className="flex items-center gap-3 px-3 py-2 text-muted-foreground rounded-lg text-xs"
                     >
@@ -181,7 +181,7 @@ export default function LoginLayout({
                     >
                       <ShoppingCart className="h-4 w-4" /> Cross-Selling &
                       Upselling Tools
-                    </Link>
+                    </Link> */}
                   </AccordionContent>
                 </AccordionItem>
 
