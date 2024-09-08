@@ -296,6 +296,80 @@ export default function LoginLayout({
                     </Link>
                   </AccordionContent>
                 </AccordionItem>
+
+                {/* Product management*/}
+                <AccordionItem value="data-management">
+                  <AccordionTrigger className="text-xs">
+                    <FileText className="h-4 w-4 mr-2" />{" "}
+                    <div className="text-left w-full">Products Management</div>
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    <Link
+                      href="/master-data-upload"
+                      className="flex items-center gap-3 px-3 py-2 text-muted-foreground rounded-lg text-xs"
+                    >
+                      <ClipboardList className="h-4 w-4" /> Products
+                    </Link>
+                    <Link
+                      href="/master-data-upload"
+                      className="flex items-center gap-3 px-3 py-2 text-muted-foreground rounded-lg text-xs"
+                    >
+                      <ClipboardList className="h-4 w-4" /> Add Products
+                    </Link>
+                    <Link
+                      href="/custom-platform-integrations"
+                      className="flex items-center gap-3 px-3 py-2 text-muted-foreground rounded-lg text-xs"
+                    >
+                      <Layers className="h-4 w-4" /> Import Products
+                    </Link>
+                  </AccordionContent>
+                </AccordionItem>
+
+                {/* Customer management*/}
+                <AccordionItem value="data-management">
+                  <AccordionTrigger className="text-xs">
+                    <FileText className="h-4 w-4 mr-2" />{" "}
+                    <div className="text-left w-full">Contacts</div>
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    <Link
+                      href="/master-data-upload"
+                      className="flex items-center gap-3 px-3 py-2 text-muted-foreground rounded-lg text-xs"
+                    >
+                      <ClipboardList className="h-4 w-4" /> Contact management
+                    </Link>
+                    <Link
+                      href="/custom-platform-integrations"
+                      className="flex items-center gap-3 px-3 py-2 text-muted-foreground rounded-lg text-xs"
+                    >
+                      <Layers className="h-4 w-4" /> Import
+                    </Link>
+                  </AccordionContent>
+                </AccordionItem>
+
+                {/* Suoer Admin */}
+                <AccordionItem value="data-management">
+                  <AccordionTrigger className="text-xs">
+                    <FileText className="h-4 w-4 mr-2" />{" "}
+                    <div className="text-left w-full">
+                      Super Admin management
+                    </div>
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    <Link
+                      href="/master-data-upload"
+                      className="flex items-center gap-3 px-3 py-2 text-muted-foreground rounded-lg text-xs"
+                    >
+                      <ClipboardList className="h-4 w-4" /> Domain Linking
+                    </Link>
+                    <Link
+                      href="/custom-platform-integrations"
+                      className="flex items-center gap-3 px-3 py-2 text-muted-foreground rounded-lg text-xs"
+                    >
+                      <Layers className="h-4 w-4" /> User Management
+                    </Link>
+                  </AccordionContent>
+                </AccordionItem>
               </Accordion>
             </nav>
           </div>
