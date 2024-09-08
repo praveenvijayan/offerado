@@ -298,7 +298,7 @@ export default function LoginLayout({
                 </AccordionItem>
 
                 {/* Product management*/}
-                <AccordionItem value="data-management">
+                <AccordionItem value="product-management">
                   <AccordionTrigger className="text-xs">
                     <FileText className="h-4 w-4 mr-2" />{" "}
                     <div className="text-left w-full">Products Management</div>
@@ -326,7 +326,7 @@ export default function LoginLayout({
                 </AccordionItem>
 
                 {/* Customer management*/}
-                <AccordionItem value="data-management">
+                <AccordionItem value="customer-management">
                   <AccordionTrigger className="text-xs">
                     <FileText className="h-4 w-4 mr-2" />{" "}
                     <div className="text-left w-full">Contacts</div>
@@ -348,7 +348,7 @@ export default function LoginLayout({
                 </AccordionItem>
 
                 {/* Suoer Admin */}
-                <AccordionItem value="data-management">
+                <AccordionItem value="super-admin-management">
                   <AccordionTrigger className="text-xs">
                     <FileText className="h-4 w-4 mr-2" />{" "}
                     <div className="text-left w-full">
