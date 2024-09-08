@@ -172,19 +172,17 @@ export default function CreateOffer() {
       <Card className="w-full p-6 shadow-lg rounded-lg border mb-[1rem]">
         <CardHeader>
           <CardTitle className="text-xl font-bold ">{offer.title}</CardTitle>
-          <CardDescription className="">
-            {offer.description}
-            <div className="py-[1rem]">
-              <Badge
-                variant={
-                  offer.isActive ? ("success" as any) : ("destructive" as any)
-                }
-                className="ml-auto"
-              >
-                {offer.isActive ? "Active" : "Inactive"}
-              </Badge>
-            </div>
-          </CardDescription>
+          <CardDescription className="">{offer.description}</CardDescription>
+          <div>
+            <Badge
+              variant={
+                offer.isActive ? ("success" as any) : ("destructive" as any)
+              }
+              className="ml-auto"
+            >
+              {offer.isActive ? "Active" : "Inactive"}
+            </Badge>
+          </div>
         </CardHeader>
         <CardContent className="space-y-6">
           {/* Date Section */}
@@ -503,7 +501,7 @@ export default function CreateOffer() {
             <CardHeader>
               <CardTitle>Share Offers</CardTitle>
               <CardDescription>
-                Select where you'd like to share your offer.
+                Select where you&apos;d like to share your offer.
               </CardDescription>
             </CardHeader>
             <CardContent>

@@ -7,6 +7,7 @@ import {
   Menu,
   Package,
   Package2,
+  Plus,
   Search,
   ShoppingCart,
   Users,
@@ -34,8 +35,23 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 export default function Dashboard() {
   return (
-    <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
-      Dashboard
+    <div className="grid w-full md:grid-cols-5">
+      <Card className="bg-slate-900 text-white">
+        <CardHeader>
+          <CardTitle>Offer Creation</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="flex flex-col space-y-2">
+            <Link href="/organizations/create">
+              <div className="flex align-middle border border-dashed border-white p-4 rounded-lg text-center">
+                <Plus height={16} width={16} />
+
+                <span className="text-sm">Create an Offer</span>
+              </div>
+            </Link>
+          </div>
+        </CardContent>
+      </Card>
     </div>
   );
 }

@@ -106,12 +106,12 @@ export default function LoginLayout({
                     >
                       <Package className="h-4 w-4" /> Create New Offer
                     </Link>
-                    <Link
+                    {/* <Link
                       href="/bulk-edit-offers"
                       className="flex items-center gap-3 px-3 py-2 text-muted-foreground rounded-lg text-xs"
                     >
                       <ClipboardList className="h-4 w-4" /> Bulk Edit Offers
-                    </Link>
+                    </Link> */}
                     <Link
                       href="/scheduled-offers"
                       className="flex items-center gap-3 px-3 py-2 text-muted-foreground rounded-lg text-xs"
