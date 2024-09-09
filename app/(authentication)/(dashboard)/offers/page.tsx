@@ -8,7 +8,8 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Menu } from "lucide-react";
+import { Menu, PlusCircle } from "lucide-react";
+import Link from "next/link";
 
 const offers = [
   {
@@ -52,10 +53,15 @@ export default function Offers() {
   return (
     <div className="flex flex-col p-6">
       {/* Tools */}
-      <div className="shadow-md py-4 flex justify-between items-center">
+      <div className="py-4 flex justify-between items-center gap-y-4">
         <div className="flex items-center space-x-2">
           {/* <Menu className="w-6 h-6" /> */}
           <span className="font-bold text-xl">Offers List</span>
+        </div>
+        <div className="">
+          <Link href="/offers/create" className="flex hover:text-slate-500">
+            <PlusCircle className="h-6 w-6 mr-[.5rem]" /> New Campaign
+          </Link>
         </div>
       </div>
       {/* Offers Table */}

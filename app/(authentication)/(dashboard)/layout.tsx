@@ -4,29 +4,43 @@ import { useRouter } from "next/router";
 import {
   BarChart2,
   Bell,
+  Blocks,
+  BookA,
+  BookDown,
   Brain,
   Calendar,
+  ChartColumn,
   CircleUser,
   Clipboard,
   ClipboardList,
+  ClipboardType,
   Clock,
+  CloudDownload,
   DollarSign,
+  FileSliders,
   FileText,
+  Globe,
   Home,
   Layers,
   LineChart,
+  LoaderPinwheel,
   MapPin,
   Megaphone,
   Menu,
   Monitor,
   Package,
   Package2,
+  PackageSearch,
+  Plug2,
   QrCode,
   Search,
   Settings2,
   ShoppingCart,
+  SquareUser,
   Target,
+  TicketPercent,
   TrendingUp,
+  UserCog,
   Users,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
@@ -53,7 +67,7 @@ import {
 } from "@/components/ui/accordion";
 import Image from "next/image";
 import { ModeToggle } from "@/components/global/theme-comp";
-import { MagicWandIcon } from "@radix-ui/react-icons";
+import { MagicWandIcon, QuestionMarkIcon } from "@radix-ui/react-icons";
 import { ScrollArea } from "@radix-ui/react-scroll-area";
 
 export default function LoginLayout({
@@ -86,7 +100,7 @@ export default function LoginLayout({
                 className="w-full px-[1rem] text-left"
               >
                 {/* Offer Creation and Management */}
-                <AccordionItem value="offer-management">
+                {/* <AccordionItem value="offer-management">
                   <AccordionTrigger className="text-xs">
                     <Package className="h-4 w-4 mr-2" />{" "}
                     <div className="text-left w-full">
@@ -95,41 +109,19 @@ export default function LoginLayout({
                   </AccordionTrigger>
                   <AccordionContent>
                     <Link
-                      href="/offers"
-                      className="flex items-center gap-3 px-3 py-2 text-muted-foreground rounded-lg text-xs"
-                    >
-                      <Package2 className="h-4 w-4" /> All Offer
-                    </Link>
-                    <Link
-                      href="/offers/create"
-                      className="flex items-center gap-3 px-3 py-2 text-muted-foreground rounded-lg text-xs"
-                    >
-                      <Package className="h-4 w-4" /> Create New Offer
-                    </Link>
-                    {/* <Link
                       href="/bulk-edit-offers"
                       className="flex items-center gap-3 px-3 py-2 text-muted-foreground rounded-lg text-xs"
                     >
                       <ClipboardList className="h-4 w-4" /> Bulk Edit Offers
-                    </Link> */}
-                    <Link
-                      href="/scheduled-offers"
-                      className="flex items-center gap-3 px-3 py-2 text-muted-foreground rounded-lg text-xs"
-                    >
-                      <Calendar className="h-4 w-4" /> Scheduled Offers
                     </Link>
+
                     <Link
                       href="/real-time-offer-management"
                       className="flex items-center gap-3 px-3 py-2 text-muted-foreground rounded-lg text-xs"
                     >
                       <Monitor className="h-4 w-4" /> Real-Time Offer Management
                     </Link>
-                    <Link
-                      href="/ai-powered-suggestions"
-                      className="flex items-center gap-3 px-3 py-2 text-muted-foreground rounded-lg text-xs"
-                    >
-                      <Brain className="h-4 w-4" /> AI-Powered Suggestions
-                    </Link>
+
                     <Link
                       href="/inventory-sync"
                       className="flex items-center gap-3 px-3 py-2 text-muted-foreground rounded-lg text-xs"
@@ -137,7 +129,7 @@ export default function LoginLayout({
                       <TrendingUp className="h-4 w-4" /> Inventory Sync
                     </Link>
                   </AccordionContent>
-                </AccordionItem>
+                </AccordionItem> */}
 
                 {/* Campaign and Promotion Management */}
                 <AccordionItem value="campaign-management">
@@ -149,6 +141,44 @@ export default function LoginLayout({
                     </div>
                   </AccordionTrigger>
                   <AccordionContent>
+                    <Link
+                      href="/offers"
+                      className="flex items-center gap-3 px-3 py-2 text-muted-foreground rounded-lg text-xs"
+                    >
+                      <Package2 className="h-4 w-4" /> All Campaign
+                    </Link>
+                    <div className="pl-[2rem]">
+                      <Link
+                        href="/offers/create"
+                        className="flex items-center gap-3 px-3 py-2 text-muted-foreground rounded-lg text-xs"
+                      >
+                        <ChartColumn className="h-4 w-4" /> Poll
+                      </Link>
+                      <Link
+                        href="/offers/create"
+                        className="flex items-center gap-3 px-3 py-2 text-muted-foreground rounded-lg text-xs"
+                      >
+                        <QuestionMarkIcon className="h-4 w-4" /> Quiz
+                      </Link>
+                      <Link
+                        href="/offers/create"
+                        className="flex items-center gap-3 px-3 py-2 text-muted-foreground rounded-lg text-xs"
+                      >
+                        <LoaderPinwheel className="h-4 w-4" /> Contest
+                      </Link>
+                      <Link
+                        href="/offers/create"
+                        className="flex items-center gap-3 px-3 py-2 text-muted-foreground rounded-lg text-xs"
+                      >
+                        <ClipboardType className="h-4 w-4" /> Feedback
+                      </Link>
+                    </div>
+                    <Link
+                      href="/scheduled-offers"
+                      className="flex items-center gap-3 px-3 py-2 text-muted-foreground rounded-lg text-xs"
+                    >
+                      <Calendar className="h-4 w-4" /> Scheduled Campaign
+                    </Link>
                     <Link
                       href="/target-audience-distribution"
                       className="flex items-center gap-3 px-3 py-2 text-muted-foreground rounded-lg text-xs"
@@ -166,7 +196,7 @@ export default function LoginLayout({
                       href="/loyalty-programs"
                       className="flex items-center gap-3 px-3 py-2 text-muted-foreground rounded-lg text-xs"
                     >
-                      <DollarSign className="h-4 w-4" /> Coupon management
+                      <TicketPercent className="h-4 w-4" /> Coupon management
                     </Link>
                     {/* <Link
                       href="/offer-heatmaps"
@@ -237,7 +267,7 @@ export default function LoginLayout({
                       href="/qr-code-generator"
                       className="flex items-center gap-3 px-3 py-2 text-muted-foreground rounded-lg text-xs"
                     >
-                      <QrCode className="h-4 w-4" /> QR Code Generator
+                      <QrCode className="h-4 w-4" /> PDF & QR Code Generator
                     </Link>
                     <Link
                       href="/push-notifications-sms"
@@ -255,44 +285,19 @@ export default function LoginLayout({
                     <div className="text-left w-full">Billing and Payments</div>
                   </AccordionTrigger>
                   <AccordionContent>
-                    <Link
+                    {/* <Link
                       href="/client-billing-integration"
                       className="flex items-center gap-3 px-3 py-2 text-muted-foreground rounded-lg text-xs"
                     >
                       <DollarSign className="h-4 w-4" /> Client Billing Platform
                       Integration
-                    </Link>
+                    </Link> */}
                     <Link
                       href="/subscription-billing-management"
                       className="flex items-center gap-3 px-3 py-2 text-muted-foreground rounded-lg text-xs"
                     >
                       <ClipboardList className="h-4 w-4" /> Subscription &
                       Billing Management
-                    </Link>
-                  </AccordionContent>
-                </AccordionItem>
-
-                {/* Data Management */}
-                <AccordionItem value="data-management">
-                  <AccordionTrigger className="text-xs">
-                    <FileText className="h-4 w-4 mr-2" />{" "}
-                    <div className="text-left w-full">
-                      Data Management and Integrations
-                    </div>
-                  </AccordionTrigger>
-                  <AccordionContent>
-                    <Link
-                      href="/master-data-upload"
-                      className="flex items-center gap-3 px-3 py-2 text-muted-foreground rounded-lg text-xs"
-                    >
-                      <ClipboardList className="h-4 w-4" /> Master Data Upload
-                    </Link>
-                    <Link
-                      href="/custom-platform-integrations"
-                      className="flex items-center gap-3 px-3 py-2 text-muted-foreground rounded-lg text-xs"
-                    >
-                      <Layers className="h-4 w-4" /> Custom Platform
-                      Integrations
                     </Link>
                   </AccordionContent>
                 </AccordionItem>
@@ -308,19 +313,25 @@ export default function LoginLayout({
                       href="/master-data-upload"
                       className="flex items-center gap-3 px-3 py-2 text-muted-foreground rounded-lg text-xs"
                     >
-                      <ClipboardList className="h-4 w-4" /> Products
+                      <ShoppingCart className="h-4 w-4" /> Products
                     </Link>
                     <Link
                       href="/master-data-upload"
                       className="flex items-center gap-3 px-3 py-2 text-muted-foreground rounded-lg text-xs"
                     >
-                      <ClipboardList className="h-4 w-4" /> Add Products
+                      <PackageSearch className="h-4 w-4" /> Add Products
                     </Link>
                     <Link
                       href="/custom-platform-integrations"
                       className="flex items-center gap-3 px-3 py-2 text-muted-foreground rounded-lg text-xs"
                     >
-                      <Layers className="h-4 w-4" /> Import Products
+                      <CloudDownload className="h-4 w-4" /> Import Products
+                    </Link>
+                    <Link
+                      href="/ai-powered-suggestions"
+                      className="flex items-center gap-3 px-3 py-2 text-muted-foreground rounded-lg text-xs"
+                    >
+                      <Brain className="h-4 w-4" /> AI-Powered Suggestions
                     </Link>
                   </AccordionContent>
                 </AccordionItem>
@@ -328,7 +339,7 @@ export default function LoginLayout({
                 {/* Customer management*/}
                 <AccordionItem value="customer-management">
                   <AccordionTrigger className="text-xs">
-                    <FileText className="h-4 w-4 mr-2" />{" "}
+                    <SquareUser className="h-4 w-4 mr-2" />{" "}
                     <div className="text-left w-full">Contacts</div>
                   </AccordionTrigger>
                   <AccordionContent>
@@ -336,37 +347,71 @@ export default function LoginLayout({
                       href="/master-data-upload"
                       className="flex items-center gap-3 px-3 py-2 text-muted-foreground rounded-lg text-xs"
                     >
-                      <ClipboardList className="h-4 w-4" /> Contact management
+                      <BookA className="h-4 w-4" /> Contact management
                     </Link>
                     <Link
                       href="/custom-platform-integrations"
                       className="flex items-center gap-3 px-3 py-2 text-muted-foreground rounded-lg text-xs"
                     >
-                      <Layers className="h-4 w-4" /> Import
+                      <BookDown className="h-4 w-4" /> Import
                     </Link>
+                  </AccordionContent>
+                </AccordionItem>
+
+                {/* Data Management */}
+                <AccordionItem value="data-management">
+                  <AccordionTrigger className="text-xs">
+                    <Blocks className="h-4 w-4 mr-2" />{" "}
+                    <div className="text-left w-full">Integrations</div>
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    <Link
+                      href="/social-media"
+                      className="flex items-center gap-3 px-3 py-2 text-muted-foreground rounded-lg text-xs"
+                    >
+                      <Plug2 className="h-4 w-4" /> Platform Integrations
+                    </Link>
+                    {/* <Link
+                      href="/custom-platform-integrations"
+                      className="flex items-center gap-3 px-3 py-2 text-muted-foreground rounded-lg text-xs"
+                    >
+                      <Layers className="h-4 w-4" /> Custom Platform
+                      Integrations
+                    </Link>
+                    <Link
+                      href="/custom-platform-integrations"
+                      className="flex items-center gap-3 px-3 py-2 text-muted-foreground rounded-lg text-xs"
+                    >
+                      <Layers className="h-4 w-4" /> Product Platform
+                      Integrations
+                    </Link> */}
                   </AccordionContent>
                 </AccordionItem>
 
                 {/* Suoer Admin */}
                 <AccordionItem value="super-admin-management">
                   <AccordionTrigger className="text-xs">
-                    <FileText className="h-4 w-4 mr-2" />{" "}
-                    <div className="text-left w-full">
-                      Super Admin management
-                    </div>
+                    <FileSliders className="h-4 w-4 mr-2" />{" "}
+                    <div className="text-left w-full">Admin Management</div>
                   </AccordionTrigger>
                   <AccordionContent>
                     <Link
                       href="/master-data-upload"
                       className="flex items-center gap-3 px-3 py-2 text-muted-foreground rounded-lg text-xs"
                     >
-                      <ClipboardList className="h-4 w-4" /> Domain Linking
+                      <Globe className="h-4 w-4" /> Domain Linking
                     </Link>
                     <Link
                       href="/custom-platform-integrations"
                       className="flex items-center gap-3 px-3 py-2 text-muted-foreground rounded-lg text-xs"
                     >
-                      <Layers className="h-4 w-4" /> User Management
+                      <UserCog className="h-4 w-4" /> User Management
+                    </Link>
+                    <Link
+                      href="/custom-platform-integrations"
+                      className="flex items-center gap-3 px-3 py-2 text-muted-foreground rounded-lg text-xs"
+                    >
+                      <Users className="h-4 w-4" /> Role Management
                     </Link>
                   </AccordionContent>
                 </AccordionItem>

@@ -45,7 +45,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import {
@@ -66,7 +65,16 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 export default function CreateOffer() {
   const {
     register,
@@ -209,27 +217,27 @@ export default function CreateOffer() {
       {/* Tabs Component */}
       <Tabs defaultValue="createOffer" className="w-full">
         <TabsList className="mb-4">
-          <TabsTrigger value="createOffer">1. Create Offer</TabsTrigger>
-          <TabsTrigger value="products">2. Products</TabsTrigger>
+          <TabsTrigger value="createOffer">1. Create Campaign</TabsTrigger>
+          <TabsTrigger value="components">2. Components</TabsTrigger>
           <TabsTrigger value="selectTemplate">3. Select Template</TabsTrigger>
-          <TabsTrigger value="shareOffers">4. Share Offers</TabsTrigger>
+          <TabsTrigger value="shareOffers">4. Share Campaign</TabsTrigger>
         </TabsList>
 
         {/* Tab Content for Create Offer */}
         <TabsContent value="createOffer">
           <Card className="w-full">
             <CardHeader>
-              <CardTitle>Create a New Offer</CardTitle>
+              <CardTitle>Add a New Campaign</CardTitle>
               <CardDescription>
-                Fill out the form to create an offer.
+                Fill out the form to create an campaign.
               </CardDescription>
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSubmit((data) => console.log(data))}>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-4 align-middle">
                   {/* Offer Title */}
                   <div className="col-span-2">
-                    <Label htmlFor="title">Offer Title</Label>
+                    <Label htmlFor="title">Campaign Name</Label>
                     <Input
                       id="title"
                       placeholder="Enter offer title"
@@ -246,7 +254,7 @@ export default function CreateOffer() {
 
                   {/* Offer Description */}
                   <div className="col-span-2">
-                    <Label htmlFor="description">Offer Description</Label>
+                    <Label htmlFor="description">Description</Label>
                     <Textarea
                       id="description"
                       placeholder="Enter offer description"
@@ -262,7 +270,7 @@ export default function CreateOffer() {
                   </div>
 
                   {/* Offer Dates */}
-                  <div className="col-span-2 flex w-full space-x-4">
+                  <div className="col-span-2 flex flex-wrap w-full space-x-4">
                     <div>
                       <Label htmlFor="start">Start Date</Label>
                       <Input type="date" id="start" {...register("start")} />
@@ -271,33 +279,35 @@ export default function CreateOffer() {
                       <Label htmlFor="expiry">Expiry Date</Label>
                       <Input type="date" id="expiry" {...register("expiry")} />
                     </div>
-                  </div>
-
-                  {/* Offer Type */}
-                  <div className="col-span-1">
-                    <Label htmlFor="offerType">Offer Type</Label>
-                    <Select {...register("offerType")}>
-                      <SelectTrigger>
-                        <span>Select offer type</span>
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="discount">Discount</SelectItem>
-                        <SelectItem value="bogo">Buy One Get One</SelectItem>
-                        <SelectItem value="bundle">Bundle Offer</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-
-                  {/* Is Offer Active */}
-                  <div className="col-span-1 flex items-center space-x-2">
-                    <Checkbox
-                      id="isActive"
-                      checked={isActive}
-                      onCheckedChange={(checked) =>
-                        setIsActive(checked === true)
-                      }
-                    />
-                    <Label htmlFor="isActive">Is Active</Label>
+                    {/* Campaign Type */}
+                    {/* <div className="col-span-1">
+                      <Label htmlFor="offerType">Campaign Type</Label>
+                      <Select {...register("offerType")}>
+                        <SelectTrigger>
+                          <span>Select Campaign type</span>
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="bogo">Quizzes</SelectItem>
+                          <SelectItem value="bundle">Polls</SelectItem>
+                          <SelectItem value="bundle">Contest</SelectItem>
+                          <SelectItem value="bundle">Offers</SelectItem>
+                          <SelectItem value="bundle">Feedbacks</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div> */}
+                    {/* Is Offer Active */}
+                    <div className="pt-3 md:pt-8">
+                      <Checkbox
+                        id="isActive"
+                        checked={isActive}
+                        onCheckedChange={(checked) =>
+                          setIsActive(checked === true)
+                        }
+                      />
+                      <Label htmlFor="isActive" className="ml-[.5rem]">
+                        Is Active
+                      </Label>
+                    </div>
                   </div>
                 </div>
 
@@ -309,126 +319,170 @@ export default function CreateOffer() {
             </CardContent>
           </Card>
         </TabsContent>
+        {/* Components */}
+        <TabsContent value="components">
+          <div className="grid gap-4 grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 p-4">
+            {/* Poll Card */}
+            <Card className="">
+              <CardHeader>
+                <CardTitle>Poll</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="flex flex-col space-y-2">
+                  <Link href="/organizations/create">
+                    <div className="flex align-middle border border-dashed border-white p-4 rounded-lg text-center">
+                      <Plus height={16} width={16} />
 
-        <TabsContent value="products">
-          <Card className="w-full">
-            <CardHeader>
-              <CardTitle>Products</CardTitle>
-              <CardDescription>
-                Select and edit products to be included in this offer.
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              {/* Editable Products Table */}
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead>Select</TableHead>
-                    <TableHead>Product Name</TableHead>
-                    <TableHead>Category</TableHead>
-                    <TableHead>MRP</TableHead>
-                    <TableHead>Offer Price</TableHead>
-                    <TableHead>Image</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {products.map((product) => (
-                    <TableRow
-                      key={product.id}
-                      className={
-                        selectedProducts.includes(product.id)
-                          ? "bg-green-900 hover:bg-green-900"
-                          : ""
-                      }
-                    >
-                      {/* Select Product */}
-                      <TableCell>
-                        <Checkbox
-                          checked={selectedProducts.includes(product.id)}
-                          onCheckedChange={() =>
-                            handleProductSelection(product.id)
-                          }
-                        />
-                      </TableCell>
+                      <span className="text-sm">Add a Poll</span>
+                    </div>
+                  </Link>
+                </div>
+              </CardContent>
+            </Card>
+            <Card className="">
+              <CardHeader>
+                <CardTitle>Quiz</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="flex flex-col space-y-2">
+                  <Link href="/organizations/create">
+                    <div className="flex align-middle border border-dashed border-white p-4 rounded-lg text-center">
+                      <Plus height={16} width={16} />
 
-                      {/* Product Name */}
-                      <TableCell>
-                        <Input
-                          value={product.name}
-                          onChange={(e) =>
-                            handleInputChange(
-                              product.id,
-                              "name",
-                              e.target.value
-                            )
-                          }
-                        />
-                      </TableCell>
+                      <span className="text-sm">Add a Quiz</span>
+                    </div>
+                  </Link>
+                </div>
+              </CardContent>
+            </Card>
+            <Card className="">
+              <CardHeader>
+                <CardTitle>Offer</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="flex flex-col space-y-2">
+                  <Sheet>
+                    <SheetTrigger asChild>
+                      <Link href="#">
+                        <div className="flex align-middle border border-dashed border-white p-4 rounded-lg text-center">
+                          <Plus height={16} width={16} />
+                          <span className="text-sm">Add an Offer</span>
+                        </div>
+                      </Link>
+                    </SheetTrigger>
+                    <SheetContent>
+                      <SheetHeader>
+                        <SheetTitle>Products</SheetTitle>
+                        <SheetDescription>
+                          Select products to Add a campaign
+                        </SheetDescription>
+                      </SheetHeader>
+                      <Table>
+                        <TableHeader>
+                          <TableRow>
+                            <TableHead>Select</TableHead>
+                            <TableHead>Product Name</TableHead>
+                            <TableHead>Category</TableHead>
+                            <TableHead>MRP</TableHead>
+                            <TableHead>Offer Price</TableHead>
+                            <TableHead>Offer Type</TableHead>
+                            <TableHead>Image</TableHead>
+                          </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                          {products.map((product) => (
+                            <TableRow
+                              key={product.id}
+                              className={
+                                selectedProducts.includes(product.id)
+                                  ? "bg-green-900 hover:bg-green-900"
+                                  : ""
+                              }
+                            >
+                              {/* Select Product */}
+                              <TableCell>
+                                <Checkbox
+                                  checked={selectedProducts.includes(
+                                    product.id
+                                  )}
+                                  onCheckedChange={() =>
+                                    handleProductSelection(product.id)
+                                  }
+                                />
+                              </TableCell>
 
-                      {/* Category */}
-                      <TableCell>
-                        <Select
-                          value={product.category}
-                          onValueChange={(value) =>
-                            handleInputChange(product.id, "category", value)
-                          }
-                        >
-                          <SelectTrigger>{product.category}</SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="Electronics">
-                              Electronics
-                            </SelectItem>
-                            <SelectItem value="Clothing">Clothing</SelectItem>
-                            <SelectItem value="Books">Books</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </TableCell>
+                              {/* Product Name */}
+                              <TableCell>{product.name}</TableCell>
 
-                      {/* MRP */}
-                      <TableCell>
-                        <Input
-                          type="number"
-                          value={product.mrp}
-                          onChange={(e) =>
-                            handleInputChange(product.id, "mrp", e.target.value)
-                          }
-                        />
-                      </TableCell>
+                              {/* Category */}
+                              <TableCell>{product.category}</TableCell>
 
-                      {/* Offer Price */}
-                      <TableCell>
-                        <Input
-                          type="number"
-                          value={product.offerPrice}
-                          onChange={(e) =>
-                            handleInputChange(
-                              product.id,
-                              "offerPrice",
-                              e.target.value
-                            )
-                          }
-                        />
-                      </TableCell>
+                              {/* MRP */}
+                              <TableCell>{product.mrp}</TableCell>
 
-                      {/* Image */}
-                      <TableCell>
-                        <Image
-                          src={product.image}
-                          alt={product.name}
-                          width={64}
-                          height={64}
-                        />
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-              {/* Submit Button */}
-              <Button type="submit" className="mt-4">
-                Next
-              </Button>
-            </CardContent>
-          </Card>
+                              {/* Offer Price */}
+                              <TableCell>{product.offerPrice}</TableCell>
+
+                              <TableCell>Discount</TableCell>
+
+                              {/* Image */}
+                              <TableCell>
+                                <Image
+                                  src={product.image}
+                                  alt={product.name}
+                                  width={64}
+                                  height={64}
+                                />
+                              </TableCell>
+                            </TableRow>
+                          ))}
+                        </TableBody>
+                      </Table>
+                      <SheetFooter>
+                        <SheetClose asChild>
+                          <Button type="submit" className="mt-[1rem]">
+                            Save changes
+                          </Button>
+                        </SheetClose>
+                      </SheetFooter>
+                    </SheetContent>
+                  </Sheet>
+                </div>
+              </CardContent>
+            </Card>
+            <Card className="">
+              <CardHeader>
+                <CardTitle>Contest</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="flex flex-col space-y-2">
+                  <Link href="/organizations/create">
+                    <div className="flex align-middle border border-dashed border-white p-4 rounded-lg text-center">
+                      <Plus height={16} width={16} />
+
+                      <span className="text-sm">Add a Contest</span>
+                    </div>
+                  </Link>
+                </div>
+              </CardContent>
+            </Card>
+            <Card className="">
+              <CardHeader>
+                <CardTitle>Feedback</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="flex flex-col space-y-2">
+                  <Link href="/organizations/create">
+                    <div className="flex align-middle border border-dashed border-white p-4 rounded-lg text-center">
+                      <Plus height={16} width={16} />
+
+                      <span className="text-sm">Add a Feedback</span>
+                    </div>
+                  </Link>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
         </TabsContent>
 
         {/* Tab Content for Select Template */}
@@ -441,7 +495,7 @@ export default function CreateOffer() {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-8 gap-4">
+              <div className="grid grid-cols-2 md:grid-cols-8 gap-4">
                 {templates.map((template) => (
                   <Card
                     key={template.id}
@@ -499,13 +553,13 @@ export default function CreateOffer() {
         <TabsContent value="shareOffers">
           <Card className="w-full">
             <CardHeader>
-              <CardTitle>Share Offers</CardTitle>
+              <CardTitle>Share Campaign</CardTitle>
               <CardDescription>
                 Select where you&apos;d like to share your offer.
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-3 gap-4">
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                 {/* Twitter Preview */}
                 <Card>
                   <CardHeader>
