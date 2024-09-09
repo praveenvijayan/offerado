@@ -25,7 +25,9 @@ const CreateCampaignForm = () => {
             {...register("title", { required: "Title is required" })}
           />
           {errors.title && (
-            <span className="text-red-500">{errors.title.message}</span>
+            <span className="text-red-500">
+              {errors.title.message as string}
+            </span>
           )}
         </div>
         <div className="col-span-2">
@@ -38,7 +40,9 @@ const CreateCampaignForm = () => {
             })}
           />
           {errors.description && (
-            <span className="text-red-500">{errors.description.message}</span>
+            <span className="text-red-500">
+              {errors.description.message as string}
+            </span>
           )}
         </div>
         <div className="col-span-2 flex flex-wrap w-full space-x-4">

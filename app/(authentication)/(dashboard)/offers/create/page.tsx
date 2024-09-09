@@ -1,26 +1,20 @@
 "use client";
-import { useState } from "react";
 import OfferSummaryCard from "@/components/offers/offer-summary-card";
 import CreateCampaignForm from "@/components/offers/campaign-form";
 import TemplateSelection from "@/components/offers/template-selection";
 import ShareCampaign from "@/components/offers/share-campaign";
-import ProductSelectionSheet from "@/components/offers/component-selection";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ComponentSelection from "@/components/offers/component-selection";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useOfferStore } from "@/stores/store";
 
 const CreateOffer = () => {
-  const [offer, setOffer] = useState({
-    title: "Summer Sale Offer",
-    description:
-      "Enjoy up to 50% off on selected items during our summer sale.",
-    startDate: "2024-09-01",
-    endDate: "2024-09-30",
-    isActive: true,
-    selectedProducts: 5,
-    selectedTemplate: "Template 2",
-    image: "/share-image.jpg",
-    link: "offerado.in/43534523523",
-  });
+  const {
+    offer,
+    selectedProducts,
+    setOffer,
+    handleProductSelection,
+    setSelectedTemplate,
+  } = useOfferStore();
 
   const products = [
     {
@@ -69,17 +63,6 @@ const CreateOffer = () => {
       image: "https://via.placeholder.com/64x64?text=Template+3",
     },
   ];
-
-  const [selectedProducts, setSelectedProducts] = useState<number[]>([]);
-  const [selectedTemplate, setSelectedTemplate] = useState<string | null>(null);
-
-  const handleProductSelection = (productId: number) => {
-    setSelectedProducts((prev) =>
-      prev.includes(productId)
-        ? prev.filter((id) => id !== productId)
-        : [...prev, productId]
-    );
-  };
 
   return (
     <div className="flex flex-col">
