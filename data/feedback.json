@@ -1,0 +1,9 @@
+[
+  { "id": 1, "title": "Star Rating", "component": "StarRating" },
+  { "id": 2, "title": "Text Feedback Form", "component": "TextFeedback" },
+  {
+    "id": 3,
+    "title": "Multiple Choice Feedback",
+    "component": "MultipleChoiceFeedback"
+  }
+]

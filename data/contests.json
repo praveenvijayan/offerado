@@ -1,0 +1,5 @@
+[
+  { "id": 1, "title": "Spin the Wheel", "component": "SpinWheel" },
+  { "id": 2, "title": "Trivia Game", "component": "TriviaGame" },
+  { "id": 3, "title": "Puzzle Challenge", "component": "PuzzleChallenge" }
+]

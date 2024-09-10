@@ -1,4 +1,4 @@
-import { useState } from "react";
+"use client";
 import {
   Sheet,
   SheetTrigger,
@@ -13,32 +13,23 @@ import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-
+import { useComponentStore } from "@/stores/use-component-store";
+import contests from "@/data/contests.json";
 // Sample contest React components
 const SpinWheel = () => <div>Spin the Wheel Contest</div>;
 const TriviaGame = () => <div>Trivia Game Contest</div>;
 const PuzzleChallenge = () => <div>Puzzle Challenge Contest</div>;
 
-const contests = [
-  { id: 1, title: "Spin the Wheel", component: SpinWheel },
-  { id: 2, title: "Trivia Game", component: TriviaGame },
-  { id: 3, title: "Puzzle Challenge", component: PuzzleChallenge },
-];
-
 const Contests = () => {
-  const [selectedContent, setSelectedContent] = useState<string | null>(null);
-  const [selectedContests, setSelectedContests] = useState<number[]>([]);
+  const { selectedItems, addSelectedItem, removeSelectedItem } =
+    useComponentStore();
 
-  const handleSheetContent = (type: string) => {
-    setSelectedContent(type);
-  };
-
-  const handleContestSelect = (id: number) => {
-    setSelectedContests((prev) =>
-      prev.includes(id)
-        ? prev.filter((contestId) => contestId !== id)
-        : [...prev, id]
-    );
+  const handleQuizSelect = (id: number) => {
+    if (selectedItems.contests.includes(id)) {
+      removeSelectedItem("contests", id);
+    } else {
+      addSelectedItem("contests", id);
+    }
   };
 
   return (
@@ -50,10 +41,7 @@ const Contests = () => {
         <div className="flex flex-col space-y-2">
           <Sheet>
             <SheetTrigger asChild>
-              <div
-                className="flex align-middle border border-dashed border-white p-4 rounded-lg text-center cursor-pointer"
-                onClick={() => handleSheetContent("Contest")}
-              >
+              <div className="flex align-middle border border-dashed border-white p-4 rounded-lg text-center cursor-pointer">
                 <Plus height={16} width={16} />
                 <span className="text-sm">Add a Contest</span>
               </div>
@@ -66,27 +54,23 @@ const Contests = () => {
                 </SheetDescription>
               </SheetHeader>
               <div className="py-4">
-                {selectedContent === "Contest" && (
-                  <div className="space-y-4">
-                    {contests.map((contest) => (
-                      <div
-                        key={contest.id}
-                        className="flex items-center space-x-2"
-                      >
-                        <Checkbox
-                          checked={selectedContests.includes(contest.id)}
-                          onCheckedChange={() =>
-                            handleContestSelect(contest.id)
-                          }
-                        />
-                        <span>{contest.title}</span>
-                      </div>
-                    ))}
-                  </div>
-                )}
+                <div className="space-y-4">
+                  {contests.map((contest) => (
+                    <div
+                      key={contest.id}
+                      className="flex items-center space-x-2"
+                    >
+                      <Checkbox
+                        checked={selectedItems.contests.includes(contest.id)}
+                        onCheckedChange={() => handleQuizSelect(contest.id)}
+                      />
+                      <span>{contest.title}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
               <SheetFooter>
-                <Button
+                {/* <Button
                   onClick={() =>
                     console.log(
                       "Selected Contests:",
@@ -97,7 +81,7 @@ const Contests = () => {
                   }
                 >
                   Add Selected Contests
-                </Button>
+                </Button> */}
               </SheetFooter>
             </SheetContent>
           </Sheet>

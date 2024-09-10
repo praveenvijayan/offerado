@@ -1,4 +1,4 @@
-import { useState } from "react";
+"use client";
 import {
   Sheet,
   SheetTrigger,
@@ -7,34 +7,24 @@ import {
   SheetTitle,
   SheetDescription,
   SheetFooter,
-  SheetClose,
 } from "@/components/ui/sheet";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-
-// List of available quizzes
-const quizzes = [
-  { id: 1, title: "Quiz 1: Basic Math Quiz" },
-  { id: 2, title: "Quiz 2: General Knowledge Quiz" },
-  { id: 3, title: "Quiz 3: JavaScript Fundamentals" },
-  { id: 4, title: "Quiz 4: Science Quiz" },
-  { id: 5, title: "Quiz 5: History Quiz" },
-];
+import { useComponentStore } from "@/stores/use-component-store";
+import quizzes from "@/data/quiz.json";
 
 const Quiz = () => {
-  const [selectedContent, setSelectedContent] = useState<string | null>(null);
-  const [selectedQuizzes, setSelectedQuizzes] = useState<number[]>([]);
-
-  const handleSheetContent = (type: string) => {
-    setSelectedContent(type);
-  };
+  const { selectedItems, addSelectedItem, removeSelectedItem } =
+    useComponentStore();
 
   const handleQuizSelect = (id: number) => {
-    setSelectedQuizzes((prev) =>
-      prev.includes(id) ? prev.filter((quizId) => quizId !== id) : [...prev, id]
-    );
+    if (selectedItems.quizzes.includes(id)) {
+      removeSelectedItem("quizzes", id);
+    } else {
+      addSelectedItem("quizzes", id);
+    }
   };
 
   return (
@@ -47,10 +37,7 @@ const Quiz = () => {
           <div className="flex flex-col space-y-2">
             <Sheet>
               <SheetTrigger asChild>
-                <div
-                  className="flex align-middle border border-dashed border-white p-4 rounded-lg text-center cursor-pointer"
-                  onClick={() => handleSheetContent("Quiz")}
-                >
+                <div className="flex align-middle border border-dashed border-white p-4 rounded-lg text-center cursor-pointer">
                   <Plus height={16} width={16} />
                   <span className="text-sm">Add a Quiz</span>
                 </div>
@@ -63,31 +50,29 @@ const Quiz = () => {
                   </SheetDescription>
                 </SheetHeader>
                 <div className="py-4">
-                  {selectedContent === "Quiz" && (
-                    <div className="space-y-4">
-                      {quizzes.map((quiz) => (
-                        <div
-                          key={quiz.id}
-                          className="flex items-center space-x-2"
-                        >
-                          <Checkbox
-                            checked={selectedQuizzes.includes(quiz.id)}
-                            onCheckedChange={() => handleQuizSelect(quiz.id)}
-                          />
-                          <span>{quiz.title}</span>
-                        </div>
-                      ))}
-                    </div>
-                  )}
+                  <div className="space-y-4">
+                    {quizzes.map((quiz) => (
+                      <div
+                        key={quiz.id}
+                        className="flex items-center space-x-2"
+                      >
+                        <Checkbox
+                          checked={selectedItems.quizzes.includes(quiz.id)}
+                          onCheckedChange={() => handleQuizSelect(quiz.id)}
+                        />
+                        <span>{quiz.title}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
                 <SheetFooter>
-                  <Button
+                  {/* <Button
                     onClick={() =>
-                      console.log("Selected Quizzes:", selectedQuizzes)
+                      console.log("Selected Quizzes:", selectedItems.quizzes)
                     }
                   >
                     Add Selected Quizzes
-                  </Button>
+                  </Button> */}
                 </SheetFooter>
               </SheetContent>
             </Sheet>

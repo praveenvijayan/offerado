@@ -14,7 +14,7 @@ const OfferSummaryCard = ({ offer }: { offer: any }) => (
       <CardDescription>{offer.description}</CardDescription>
       <div>
         <Badge
-          variant={offer.isActive ? "success" : "destructive"}
+          variant={offer.isActive ? "success" : ("destructive" as any)}
           className="ml-auto"
         >
           {offer.isActive ? "Active" : "Inactive"}

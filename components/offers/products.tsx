@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   Table,
   TableBody,
@@ -22,31 +21,31 @@ import {
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { Plus } from "lucide-react";
+import { useComponentStore } from "@/stores/use-component-store";
+import products from "@/data/products.json";
 
-const ProductSelection = ({ products }: { products: any[] }) => {
-  const [selectedProducts, setSelectedProducts] = useState<number[]>([]);
+const ProductSelection = () => {
+  const { selectedItems, addSelectedItem, removeSelectedItem } =
+    useComponentStore();
 
-  const handleProductSelection = (productId: number) => {
-    setSelectedProducts((prevSelected) =>
-      prevSelected.includes(productId)
-        ? prevSelected.filter((id) => id !== productId)
-        : [...prevSelected, productId]
-    );
+  const handleProductSelect = (id: number) => {
+    if (selectedItems.products.includes(id)) {
+      removeSelectedItem("products", id);
+    } else {
+      addSelectedItem("products", id);
+    }
   };
 
   return (
     <div>
-      <Card className="">
+      <Card>
         <CardHeader>
           <CardTitle>Products</CardTitle>
         </CardHeader>
         <CardContent>
           <Sheet>
             <SheetTrigger asChild>
-              <div
-                className="flex align-middle border border-dashed border-white p-4 rounded-lg text-center cursor-pointer"
-                onClick={() => handleProductSelection(123)}
-              >
+              <div className="flex align-middle border border-dashed border-white p-4 rounded-lg text-center cursor-pointer">
                 <Plus height={16} width={16} />
                 <span className="text-sm">Add Products</span>
               </div>
@@ -64,20 +63,20 @@ const ProductSelection = ({ products }: { products: any[] }) => {
                   <TableHeader>
                     <TableRow>
                       <TableHead>Select</TableHead>
+                      <TableHead>Image</TableHead>
                       <TableHead>Product Name</TableHead>
                       <TableHead>Category</TableHead>
                       <TableHead>MRP</TableHead>
                       <TableHead>Offer Price</TableHead>
                       <TableHead>Offer Type</TableHead>
-                      <TableHead>Image</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    {products.map((product) => (
+                    {products.map((product: any) => (
                       <TableRow
                         key={product.id}
                         className={
-                          selectedProducts.includes(product.id)
+                          selectedItems.products.includes(product.id)
                             ? "bg-green-900 hover:bg-green-900"
                             : ""
                         }
@@ -85,13 +84,23 @@ const ProductSelection = ({ products }: { products: any[] }) => {
                         {/* Select Product */}
                         <TableCell>
                           <Checkbox
-                            checked={selectedProducts.includes(product.id)}
+                            checked={selectedItems.products.includes(
+                              product.id
+                            )}
                             onCheckedChange={() =>
-                              handleProductSelection(product.id)
+                              handleProductSelect(product.id)
                             }
                           />
                         </TableCell>
-
+                        {/* Image */}
+                        <TableCell>
+                          <Image
+                            src={product.image}
+                            alt={product.name}
+                            width={64}
+                            height={64}
+                          />
+                        </TableCell>
                         {/* Product Name */}
                         <TableCell>{product.name}</TableCell>
 
@@ -106,29 +115,22 @@ const ProductSelection = ({ products }: { products: any[] }) => {
 
                         {/* Offer Type */}
                         <TableCell>Discount</TableCell>
-
-                        {/* Image */}
-                        <TableCell>
-                          <Image
-                            src={product.image}
-                            alt={product.name}
-                            width={64}
-                            height={64}
-                          />
-                        </TableCell>
                       </TableRow>
                     ))}
                   </TableBody>
                 </Table>
               </div>
               <SheetFooter>
-                <Button
+                {/* <Button
                   onClick={() =>
-                    console.log("Selected Products:", setSelectedProducts)
+                    console.log("Selected Products:", selectedProducts)
                   }
                 >
                   Add Selected Products
                 </Button>
+                <Button variant="destructive" onClick={clearSelectedProducts}>
+                  Clear
+                </Button> */}
               </SheetFooter>
             </SheetContent>
           </Sheet>

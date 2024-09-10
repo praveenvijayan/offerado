@@ -1,0 +1,7 @@
+[
+  { "id": 1, "title": "Quiz 1: Basic Math Quiz" },
+  { "id": 2, "title": "Quiz 2: General Knowledge Quiz" },
+  { "id": 3, "title": "Quiz 3: JavaScript Fundamentals" },
+  { "id": 4, "title": "Quiz 4: Science Quiz" },
+  { "id": 5, "title": "Quiz 5: History Quiz" }
+]

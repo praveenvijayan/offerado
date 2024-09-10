@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Bell, CircleUser, Search, Menu } from "lucide-react";
+import { Bell, CircleUser, Search, Menu, Sidebar } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import {
@@ -11,6 +11,7 @@ import {
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 import { ModeToggle } from "@/components/global/theme-comp";
+import SidebarNavigation from "./navigation";
 
 export const Header = () => (
   <header className="flex h-14 items-center gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6">
@@ -73,7 +74,7 @@ const MobileMenu = () => (
     </SheetTrigger>
     <SheetContent side="left">
       <nav className="flex flex-col gap-2">
-        {/* Similar to the sidebar nav links */}
+        <SidebarNavigation />
       </nav>
     </SheetContent>
   </Sheet>

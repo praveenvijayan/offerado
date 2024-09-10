@@ -15,7 +15,7 @@ export default function Organizations() {
       </div>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 p-4">
         {/* Organization Card */}
-        <Card className="bg-slate-900 text-white">
+        <Card className="">
           <CardHeader>
             <CardTitle>Organizations</CardTitle>
           </CardHeader>
@@ -31,14 +31,14 @@ export default function Organizations() {
             </div>
           </CardContent>
         </Card>
-        <Card className="bg-slate-900 text-white">
+        <Card className="">
           <CardHeader>
             <CardTitle>Offerado</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="flex flex-col space-y-2">
               <Link href="/dashboard">
-                <div className="border border-solid border-slate-700 p-4 rounded-lg">
+                <div className="border border-solid p-4 rounded-lg">
                   <div className="text-lg font-semibold">Offerado</div>
                   <div className="text-sm text-slate-400">offer-studio</div>
                 </div>

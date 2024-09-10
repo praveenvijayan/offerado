@@ -1,0 +1,179 @@
+[
+  {
+    "title": "Campaign and Promotion Management",
+    "icon": "Megaphone",
+    "links": [
+      {
+        "label": "All Campaign",
+        "href": "/offers",
+        "icon": "Package2"
+      },
+      {
+        "label": "Poll",
+        "href": "/offers/create",
+        "icon": "ChartColumn",
+        "indent": true
+      },
+      {
+        "label": "Quiz",
+        "href": "/offers/create",
+        "icon": "BookMarked",
+        "indent": true
+      },
+      {
+        "label": "Contest",
+        "href": "/offers/create",
+        "icon": "LoaderPinwheel",
+        "indent": true
+      },
+      {
+        "label": "Feedback",
+        "href": "/offers/create",
+        "icon": "ClipboardType",
+        "indent": true
+      },
+      {
+        "label": "Scheduled Campaign",
+        "href": "/scheduled-offers",
+        "icon": "Calendar"
+      },
+      {
+        "label": "Target Audience Distribution",
+        "href": "/target-audience-distribution",
+        "icon": "Target"
+      },
+      {
+        "label": "Sponsored Promotions",
+        "href": "/sponsored-promotions",
+        "icon": "Megaphone"
+      },
+      {
+        "label": "Coupon management",
+        "href": "/loyalty-programs",
+        "icon": "TicketPercent"
+      }
+    ]
+  },
+  {
+    "title": "Analytics and Reporting",
+    "icon": "BarChart2",
+    "links": [
+      {
+        "label": "Performance Tracking",
+        "href": "/performance-tracking",
+        "icon": "BarChart2"
+      },
+      {
+        "label": "Predictive Sales Analysis",
+        "href": "/predictive-sales-analysis",
+        "icon": "TrendingUp"
+      },
+      {
+        "label": "Comprehensive Reporting",
+        "href": "/comprehensive-reports",
+        "icon": "ClipboardList"
+      }
+    ]
+  },
+  {
+    "title": "Marketing and Distribution Tools",
+    "icon": "MessageCircleWarning",
+    "links": [
+      {
+        "label": "Omni-Channel Distribution",
+        "href": "/omni-channel-distribution",
+        "icon": "Monitor"
+      },
+      {
+        "label": "PDF & QR Code Generator",
+        "href": "/qr-code-generator",
+        "icon": "QrCode"
+      },
+      {
+        "label": "Push Notifications & SMS",
+        "href": "/push-notifications-sms",
+        "icon": "Clock"
+      }
+    ]
+  },
+  {
+    "title": "Billing and Payments",
+    "icon": "DollarSign",
+    "links": [
+      {
+        "label": "Subscription & Billing Management",
+        "href": "/subscription-billing-management",
+        "icon": "ClipboardList"
+      }
+    ]
+  },
+  {
+    "title": "Products Management",
+    "icon": "Box",
+    "links": [
+      {
+        "label": "Products",
+        "href": "/products",
+        "icon": "ShoppingCart"
+      },
+      {
+        "label": "Import Products",
+        "href": "/custom-platform-integrations",
+        "icon": "CloudDownload"
+      },
+      {
+        "label": "AI-Powered Suggestions",
+        "href": "/ai-powered-suggestions",
+        "icon": "Brain"
+      }
+    ]
+  },
+  {
+    "title": "Contacts",
+    "icon": "SquareUser",
+    "links": [
+      {
+        "label": "Contact management",
+        "href": "/master-data-upload",
+        "icon": "BookA"
+      },
+      {
+        "label": "Import",
+        "href": "/custom-platform-integrations",
+        "icon": "BookDown"
+      }
+    ]
+  },
+  {
+    "title": "Integrations",
+    "icon": "Blocks",
+    "links": [
+      {
+        "label": "Platform Integrations",
+        "href": "/social-media",
+        "icon": "Plug2"
+      }
+    ]
+  },
+  {
+    "title": "Admin Management",
+    "icon": "FileSliders",
+    "links": [
+      {
+        "label": "Domain Linking",
+        "href": "/master-data-upload",
+        "icon": "Globe"
+      },
+      {
+        "label": "User Management",
+        "href": "/custom-platform-integrations",
+        "icon": "UserCog"
+      },
+      {
+        "label": "Role Management",
+        "href": "/custom-platform-integrations",
+        "icon": "Users"
+      }
+    ]
+  }
+]

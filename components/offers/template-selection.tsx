@@ -1,34 +1,21 @@
+"use client";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
 import { MonitorDot, TabletSmartphoneIcon } from "lucide-react";
+import { useTemplateStore } from "@/stores/store"; // Import Zustand store
 
-const TemplateSelection = ({
-  templates,
-  onSelect,
-}: {
-  templates: any[];
-  onSelect: (id: string) => void;
-}) => {
-  const [selectedTemplate, setSelectedTemplate] = useState<string | null>(null);
+const TemplateSelection = () => {
+  const {
+    templates,
+    selectedTemplate,
+    iframeSize,
+    setSelectedTemplate,
+    setIframeSize,
+  } = useTemplateStore();
 
   const handleTemplateSelect = (id: string) => {
     setSelectedTemplate(id);
-    onSelect(id);
-  };
-
-  const [iframeSize, setIframeSize] = useState({
-    width: "100%",
-    height: "1024px",
-  });
-
-  const handleResize = (size: "desktop" | "mobile") => {
-    if (size === "desktop") {
-      setIframeSize({ width: "100%", height: "1024px" }); // Desktop size
-    } else if (size === "mobile") {
-      setIframeSize({ width: "375px", height: "667px" }); // Mobile size (common smartphone size)
-    }
   };
 
   return (
@@ -39,7 +26,7 @@ const TemplateSelection = ({
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-2 md:grid-cols-8 gap-4">
-            {templates.map((template) => (
+            {templates.map((template: any) => (
               <Card
                 key={template.id}
                 className={`cursor-pointer ${
@@ -73,11 +60,11 @@ const TemplateSelection = ({
         <div className="flex justify-center align-middle p-[1rem] gap-x-4">
           <MonitorDot
             className="cursor-pointer"
-            onClick={() => handleResize("desktop")}
+            onClick={() => setIframeSize("desktop")} // Use Zustand to handle iframe resize
           />
           <TabletSmartphoneIcon
             className="cursor-pointer"
-            onClick={() => handleResize("mobile")}
+            onClick={() => setIframeSize("mobile")} // Use Zustand to handle iframe resize
           />
         </div>
 
