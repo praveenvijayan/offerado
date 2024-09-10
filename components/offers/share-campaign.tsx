@@ -1,8 +1,9 @@
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Share } from "lucide-react";
 import Image from "next/image";
+import { useOfferStore } from "@/stores/offer-store";
 
-const ShareCampaign = ({ offer }: { offer: any }) => {
+const ShareCampaign = () => {
   const platforms = [
     "Twitter",
     "Facebook",
@@ -10,6 +11,7 @@ const ShareCampaign = ({ offer }: { offer: any }) => {
     "LinkedIn",
     "Instagram",
   ];
+  const { offer } = useOfferStore();
   return (
     <Card className="w-full">
       <CardHeader>

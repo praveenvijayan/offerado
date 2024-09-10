@@ -3,7 +3,7 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { MonitorDot, TabletSmartphoneIcon } from "lucide-react";
-import { useTemplateStore } from "@/stores/store"; // Import Zustand store
+import { useTemplateStore } from "@/stores/template-store";
 
 const TemplateSelection = () => {
   const {

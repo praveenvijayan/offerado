@@ -5,21 +5,12 @@ import TemplateSelection from "@/components/offers/template-selection";
 import ShareCampaign from "@/components/offers/share-campaign";
 import ComponentSelection from "@/components/offers/component-selection";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useOfferStore } from "@/stores/store";
 import SelectedComponents from "@/components/offers/selected-components";
 
 const CreateOffer = () => {
-  const {
-    offer,
-    selectedProducts,
-    setOffer,
-    handleProductSelection,
-    setSelectedTemplate,
-  } = useOfferStore();
-
   return (
     <div className="flex flex-col">
-      <OfferSummaryCard offer={offer} />
+      <OfferSummaryCard />
       <Tabs defaultValue="createOffer" className="w-full">
         <TabsList className="mb-4">
           <TabsTrigger value="createOffer">1. Create Campaign</TabsTrigger>
@@ -44,7 +35,7 @@ const CreateOffer = () => {
         </TabsContent>
 
         <TabsContent value="shareOffers">
-          <ShareCampaign offer={offer} />
+          <ShareCampaign />
         </TabsContent>
       </Tabs>
     </div>
