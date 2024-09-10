@@ -4,12 +4,13 @@ import Contests from "./contest";
 import Feedback from "./feedback";
 import ProductSelection from "./products";
 import ComponentDropdown from "./component-dropdown";
+import PollSheet from "./poll";
 
 const ComponentSelection = () => {
   return (
     <>
       <ComponentDropdown />
-      <Poll />
+      <PollSheet />
       <Quiz />
       <Contests />
       <Feedback />
