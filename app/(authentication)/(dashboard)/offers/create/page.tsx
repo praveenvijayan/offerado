@@ -6,11 +6,25 @@ import ShareCampaign from "@/components/offers/share-campaign";
 import ComponentSelection from "@/components/offers/component-selection";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import SelectedComponents from "@/components/offers/selected-components";
+import { ScrollArea } from "@radix-ui/react-scroll-area";
+import ComponentAccordion from "@/components/offers/components-accordion";
+import ComponentCollection from "@/components/offers/component-collection";
 
 const CreateOffer = () => {
   return (
     <div className="flex flex-col">
-      <OfferSummaryCard />
+      <h2 className="text-xl font-semibold py-4">Create Campaign</h2>
+      <div className="grid grid-cols-1 md:grid-cols-12 md:border-t-2">
+        <div className="col-span-8 h-full md:border-r-2 md:p-4 order-2 md:order-1">
+          <CreateCampaignForm />
+          <ComponentAccordion />
+        </div>
+        <div className="col-span-4 h-full order-1 md:order-2 p-4">
+          <OfferSummaryCard />
+          <ComponentCollection />
+        </div>
+      </div>
+      {/* <OfferSummaryCard />
       <Tabs defaultValue="createOffer" className="w-full">
         <TabsList className="mb-4">
           <TabsTrigger value="createOffer">1. Create Campaign</TabsTrigger>
@@ -37,7 +51,7 @@ const CreateOffer = () => {
         <TabsContent value="shareOffers">
           <ShareCampaign />
         </TabsContent>
-      </Tabs>
+      </Tabs> */}
     </div>
   );
 };

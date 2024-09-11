@@ -4,25 +4,47 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-import { useState } from "react";
-
+import useCampaignStore from "@/stores/create-campaign-form";
 const CreateCampaignForm = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const [isActive, setIsActive] = useState(false);
+
+  const {
+    title,
+    description,
+    start,
+    expiry,
+    isActive,
+    setTitle,
+    setDescription,
+    setStart,
+    setExpiry,
+    setIsActive,
+  } = useCampaignStore();
 
   return (
-    <form onSubmit={handleSubmit((data) => console.log(data))}>
+    <form
+      onSubmit={handleSubmit((data) => {
+        setTitle(data.title);
+        setDescription(data.description);
+        setStart(data.start);
+        setExpiry(data.expiry);
+        console.log(data);
+      })}
+    >
       <div className="grid grid-cols-2 gap-4 align-middle">
+        <h3>1. Enter campaign information</h3>
         <div className="col-span-2">
-          <Label htmlFor="title">Campaign Name</Label>
+          {/* <Label htmlFor="title">Campaign Name</Label> */}
           <Input
             id="title"
-            placeholder="Enter offer title"
+            placeholder="Enter campaign title"
             {...register("title", { required: "Title is required" })}
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
           />
           {errors.title && (
             <span className="text-red-500">
@@ -31,13 +53,15 @@ const CreateCampaignForm = () => {
           )}
         </div>
         <div className="col-span-2">
-          <Label htmlFor="description">Description</Label>
+          {/* <Label htmlFor="description">Description</Label> */}
           <Textarea
             id="description"
             placeholder="Enter offer description"
             {...register("description", {
               required: "Description is required",
             })}
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
           />
           {errors.description && (
             <span className="text-red-500">
@@ -45,16 +69,29 @@ const CreateCampaignForm = () => {
             </span>
           )}
         </div>
-        <div className="col-span-2 flex flex-wrap w-full space-x-4">
+        <div className="flex items-center gap-2">
           <div>
             <Label htmlFor="start">Start Date</Label>
-            <Input type="date" id="start" {...register("start")} />
+            <Input
+              type="date"
+              id="start"
+              {...register("start")}
+              value={start as string}
+              onChange={(e) => setStart(e.target.value)}
+            />
           </div>
           <div>
             <Label htmlFor="expiry">Expiry Date</Label>
-            <Input type="date" id="expiry" {...register("expiry")} />
+            <Input
+              type="date"
+              id="expiry"
+              {...register("expiry")}
+              value={expiry as string}
+              onChange={(e) => setExpiry(e.target.value)}
+            />
           </div>
-          <div className="pt-3 md:pt-8">
+          {/* Uncomment if needed */}
+          {/* <div className="pt-3 md:pt-8">
             <Checkbox
               id="isActive"
               checked={isActive}
@@ -63,12 +100,13 @@ const CreateCampaignForm = () => {
             <Label htmlFor="isActive" className="ml-[.5rem]">
               Is Active
             </Label>
-          </div>
+          </div> */}
         </div>
       </div>
-      <Button type="submit" className="mt-4">
+      {/* Uncomment if needed */}
+      {/* <Button type="submit" className="mt-4">
         Next
-      </Button>
+      </Button> */}
     </form>
   );
 };

@@ -33,7 +33,7 @@ const PollPlace = () => {
   return (
     <Card className="w-full max-w-lg mx-auto mt-8">
       <CardHeader>
-        <CardTitle>Vote for your favorite Place</CardTitle>
+        <CardTitle>Vote for your favorite destination</CardTitle>
         <CardDescription>
           Select an option and submit your vote.
         </CardDescription>

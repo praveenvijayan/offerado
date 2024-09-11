@@ -13,7 +13,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { useComponentStore } from "@/stores/use-component-store";
 import { usePollSheetStore } from "@/stores/offer-creation-component-selection";
 import polls from "@/data/poll.json";
-import { cn } from "@/lib/utils"; // Utility for conditional classNames
+import { cn } from "@/lib/utils";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
 const PollSheet = () => {

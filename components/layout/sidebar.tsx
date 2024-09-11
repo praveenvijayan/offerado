@@ -11,7 +11,7 @@ export const Sidebar = () => {
 
   return (
     <div
-      className={`border-r bg-muted/40  ${
+      className={`border-r bg-muted/40 hidden md:block  ${
         isCollapsed ? "w-20" : "w-70"
       } transition-[width] duration-300`}
     >

@@ -73,9 +73,7 @@ const MobileMenu = () => (
       </Button>
     </SheetTrigger>
     <SheetContent side="left">
-      <nav className="flex flex-col gap-2">
-        <SidebarNavigation />
-      </nav>
+      <nav className="flex flex-col gap-2">{/* <SidebarNavigation /> */}</nav>
     </SheetContent>
   </Sheet>
 );

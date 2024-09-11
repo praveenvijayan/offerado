@@ -43,8 +43,7 @@ const SelectedComponents = () => {
   ];
 
   return (
-    <div className="">
-      <h2 className="text-xl font-semibold py-6">Selected Components</h2>
+    <div>
       <ul className="grid grid-cols-2 md:grid-cols-6 gap-3">
         {allSelectedItems.map((item, index) => (
           <li
