@@ -14,7 +14,7 @@ export default function PreLoginLayout({
             alt="Image"
             width="1920"
             height="1080"
-            className="h-full w-full object-contain dark:brightness-[0.2] dark:grayscale"
+            className="h-full w-full object-contain dark:brightness-[0.5]"
           />
         </div>
         <div className="flex items-center justify-center py-12">{children}</div>
