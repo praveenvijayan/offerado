@@ -8,7 +8,7 @@ import { SignIn } from "@clerk/nextjs";
 
 export default function Login() {
   return (
-    <SignIn />
+    <SignIn fallbackRedirectUrl="/organizations" />
     // <div className="flex items-center justify-center py-12">
     //   <div className="mx-auto grid w-[350px] gap-6">
     //     <div className="grid gap-2 text-center">

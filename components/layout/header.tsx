@@ -12,6 +12,13 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { ModeToggle } from "@/components/global/theme-comp";
 import SidebarNavigation from "./navigation";
+import {
+  ClerkProvider,
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  UserButton,
+} from "@clerk/nextjs";
 
 export const Header = () => (
   <header className="flex h-14 items-center gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6">
@@ -19,7 +26,16 @@ export const Header = () => (
     <SearchBar />
     <ModeToggle />
     <NotificationButton />
-    <UserMenu />
+    {/* <UserMenu />
+     */}
+    <SignedIn>
+      {/* Mount the UserButton component */}
+      <UserButton />
+    </SignedIn>
+    <SignedOut>
+      {/* Signed out users get sign in button */}
+      <SignInButton />
+    </SignedOut>
   </header>
 );
 

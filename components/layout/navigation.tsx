@@ -46,6 +46,8 @@ import {
   Users,
   MessageCircleWarning,
   BookMarked,
+  Settings,
+  Store,
 } from "lucide-react";
 
 import { usePathname } from "next/navigation";
@@ -86,6 +88,8 @@ const iconMap = {
   MessageCircleWarning,
   BookMarked,
   Box,
+  Settings,
+  Store,
 } as any;
 
 const SidebarNavigation = () => {

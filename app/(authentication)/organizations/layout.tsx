@@ -53,7 +53,13 @@ import {
 import { ModeToggle } from "@/components/global/theme-comp";
 import { MagicWandIcon } from "@radix-ui/react-icons";
 import Logo from "@/components/global/logo";
-
+import {
+  ClerkProvider,
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  UserButton,
+} from "@clerk/nextjs";
 export default function SingleLayout({
   children, // will be a page or nested layout
 }: {
@@ -91,7 +97,7 @@ export default function SingleLayout({
               <span className="sr-only">Toggle notifications</span>
             </Button>
             {/* User Menu */}
-            <DropdownMenu>
+            {/* <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button
                   variant="secondary"
@@ -107,7 +113,15 @@ export default function SingleLayout({
                 <DropdownMenuItem>Settings</DropdownMenuItem>
                 <DropdownMenuItem>Logout</DropdownMenuItem>
               </DropdownMenuContent>
-            </DropdownMenu>
+            </DropdownMenu> */}
+            <SignedIn>
+              {/* Mount the UserButton component */}
+              <UserButton />
+            </SignedIn>
+            <SignedOut>
+              {/* Signed out users get sign in button */}
+              <SignInButton />
+            </SignedOut>
           </header>
           {/* Main Content */}
           <main className="flex flex-1 flex-col p-4 lg:p-6">{children}</main>

@@ -175,5 +175,16 @@
         "icon": "Users"
       }
     ]
+  },
+  {
+    "title": "Settings",
+    "icon": "Settings",
+    "links": [
+      {
+        "label": "User Profile",
+        "href": "/user-profile",
+        "icon": "Users"
+      }
+    ]
   }
 ]

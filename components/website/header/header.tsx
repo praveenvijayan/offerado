@@ -76,7 +76,7 @@ export default function Header() {
             Pricing
           </Link>
           <Link
-            href="/admin/login"
+            href="/login"
             className="text-md font-medium leading-6 hover:text-blue-400"
           >
             Login
