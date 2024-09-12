@@ -19,7 +19,7 @@ const Features: React.FC = () => {
               Effortlessly showcase your product deals with our intuitive
               platform.
             </h3>
-            <p className="text-xl text-black">
+            <p className="text-xl text-black  dark:text-slate-300">
               Our tools help you connect with a larger, more engaged audience,
               driving more traffic and sales. Maximize your business potential
               and watch your customer base grow!.
@@ -39,7 +39,7 @@ const Features: React.FC = () => {
             <h3 className="text-4xl font-semibold mb-[2rem]">
               Expand your reach to a wide audience of potential customers.
             </h3>
-            <p className="text-xl text-black">
+            <p className="text-xl text-black  dark:text-slate-300">
               Our tools help you connect with a larger, more engaged audience,
               driving more traffic and sales. Maximize your business potential
               and watch your customer base grow!
@@ -62,7 +62,7 @@ const Features: React.FC = () => {
             <h3 className="text-4xl font-semibold mb-[2rem]">
               Easily track and understand how your offers are doing
             </h3>
-            <p className="text-xl text-black">
+            <p className="text-xl text-black dark:text-slate-300">
               Quickly and easily create your product offers with our
               user-friendly platform. Reach your customers in no time and boost
               your sales effortlessly. Experience seamless product promotion

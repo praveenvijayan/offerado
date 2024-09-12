@@ -59,25 +59,25 @@ export default function Header() {
         >
           <Link
             href="/#features"
-            className="text-md font-medium leading-6 hover:text-blue-800"
+            className="text-md font-medium leading-6 hover:text-blue-400"
           >
             Features
           </Link>
           <Link
             href="/#faq"
-            className="text-md font-medium leading-6 hover:text-blue-800"
+            className="text-md font-medium leading-6 hover:text-blue-400"
           >
             FAQ
           </Link>
           <Link
             href="/#pricing"
-            className="text-md font-medium leading-6 hover:text-blue-800"
+            className="text-md font-medium leading-6 hover:text-blue-400"
           >
             Pricing
           </Link>
           <Link
             href="/admin/login"
-            className="text-md font-medium leading-6 hover:text-blue-800"
+            className="text-md font-medium leading-6 hover:text-blue-400"
           >
             Login
           </Link>

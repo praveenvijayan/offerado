@@ -2,15 +2,16 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ModeToggle } from "@/components/global/theme-comp";
+import Logo from "@/components/global/logo";
 
 const Footer: React.FC = () => {
   return (
-    <footer className="py-[4rem] p-[1rem] bg-[#F2F2F2] mt-[4em]">
+    <footer className="py-[4rem] p-[1rem] bg-[#F2F2F2] dark:bg-black mt-[4em]">
       <div
         className="mx-auto max-w-screen-xl bg-contain bg-no-repeat"
         // style={{ backgroundImage: 'url("/footer-offerado.png")' }}
       >
-        <div className="md:flex md:justify-between text-black">
+        <div className="md:flex md:justify-between text-black dark:text-white">
           <div className="grid grid-cols-2 gap-y-8 md:gap-[12rem] md:grid-cols-3">
             <div>
               <h2 className="mb-6 text-sm font-semibold  uppercase">
@@ -87,13 +88,16 @@ const Footer: React.FC = () => {
             </div>
           </div>
           <div className="flex align-middle gap-4 justify-center items-start mt-[2rem] lg:mt-0">
-            <Image
+            {/* <Image
               src={"/logo.svg"}
               width={100}
               height={100}
               alt="Offerado"
               className="mt-2"
-            />
+            /> */}
+            <div className="mt-2">
+              <Logo />
+            </div>
             <ModeToggle />
           </div>
         </div>

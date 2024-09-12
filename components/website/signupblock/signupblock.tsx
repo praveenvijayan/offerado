@@ -9,7 +9,7 @@ const SignUpBlock: React.FC = () => {
       data-aos="fade-up"
       className="relative overflow-hidden max-w-[90%] lg:max-w-[56%] bg-[#f8f8f8f8] rounded-2xl flex  md:justify-between shadow-xl md:px-[2rem] my-[6rem] m-[auto]"
     >
-      <div className="space-y-6 p-[2rem] md:py-[12rem] md:px-[1rem] w-[50%] lg:static absolute bg-white lg:bg-transparent right-0 top-0 rounded-b-2xl h-[310px] md:h-auto">
+      <div className="space-y-6 p-[2rem] md:py-[12rem] md:px-[1rem] w-[50%] lg:static absolute bg-white lg:bg-transparent right-0 top-0 rounded-b-2xl h-[310px] md:h-auto  dark:text-slate-700">
         <h2 className="text-3xl font-semibold">
           Get for free and start today!
         </h2>

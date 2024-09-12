@@ -20,10 +20,10 @@ function CustomHero() {
         data-aos-duration="900"
         className="lg:absolute lg:bg-white rounded-2xl pt-[2rem] md:p-[2rem] md:h-[50%] md:w-1/3 flex flex-col justify-center items-start space-y-[1rem] lg:space-y-[2rem]"
       >
-        <h1 className="text-3xl md:text-5xl font-semibold">
+        <h1 className="text-3xl md:text-5xl font-semibold dark:text-slate-800">
           Create and Share Your Offers with Ease
         </h1>
-        <p className="text-md md:text-2xl">
+        <p className="text-md md:text-2xl dark:text-slate-800">
           Reach a wider audience, boost sales, and grow your business with
           Offerado
         </p>

@@ -58,7 +58,7 @@ const FAQ = () => {
                 <h6 className="text-lg text-center font-medium text-indigo-600 mb-2 lg:text-left">
                   faqs
                 </h6>
-                <h2 className="text-4xl text-center font-semibold text-gray-900 leading-[3.25rem] mb-5 lg:text-left">
+                <h2 className="text-4xl text-center font-semibold text-gray-900  dark:text-slate-100 leading-[3.25rem] mb-5 lg:text-left">
                   Looking for answers?
                 </h2>
               </div>
@@ -69,19 +69,19 @@ const FAQ = () => {
                   data-accordion="default-accordion"
                 >
                   <div
-                    className={`accordion pb-8 border-b border-solid border-gray-200 ${
+                    className={`accordion pb-8 border-b border-solid border-gray-200 dark:border-gray-600${
                       activeIndex === index ? "active" : ""
                     }`}
                     id={`basic-heading-${index}-with-arrow-always-open`}
                   >
                     <button
-                      className="accordion-toggle group inline-flex justify-between text-xl font-normal leading-8 text-gray-600 w-full transition duration-500 hover:text-indigo-600 accordion-active:text-indigo-600 accordion-active:font-medium always-open"
+                      className="accordion-toggle group inline-flex justify-between text-xl font-normal leading-8 text-gray-600 dark:text-gray-100 w-full transition duration-500 hover:text-indigo-600 accordion-active:text-indigo-600 accordion-active:font-medium always-open"
                       aria-controls={`basic-collapse-${index}-with-arrow-always-open`}
                       onClick={() => handleToggle(index)}
                     >
                       <h5 className="text-left mb-[.5rem]">{item.question}</h5>
                       <svg
-                        className={`text-gray-900 transition duration-500 group-hover:text-indigo-600 accordion-active:text-indigo-600 ${
+                        className={`text-gray-900 dark:text-gray-300 transition duration-500 group-hover:text-indigo-600 accordion-active:text-indigo-600 ${
                           activeIndex === index ? "rotate-180" : ""
                         }`}
                         width="22"
@@ -105,7 +105,7 @@ const FAQ = () => {
                         className="accordion-content w-full px-0 overflow-hidden pr-4 active"
                         aria-labelledby={`basic-heading-${index}-with-arrow-always-open`}
                       >
-                        <p className="text-base font-normal text-gray-600">
+                        <p className="text-base font-normal text-gray-600 dark:text-gray-200">
                           {item.answer}
                         </p>
                       </div>
