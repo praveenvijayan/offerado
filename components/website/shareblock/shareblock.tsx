@@ -11,10 +11,10 @@ export const ShareBlock: React.FC = () => {
         Easily share your offers
       </h3>
       <div className="flex flex-wrap items-center justify-center gap-[2rem] lg:gap-[8rem]">
-        <Image src="/whatsapp.png" alt="App Store" width={180} height={50} />
-        <Image src="/facebook.png" alt="App Store" width={150} height={50} />
-        <Image src="/linkedin.png" alt="App Store" width={150} height={50} />
-        <Image src="/instagram.png" alt="App Store" width={150} height={50} />
+        <Image src="/whatsapp.svg" alt="App Store" width={180} height={50} />
+        <Image src="/facebook.svg" alt="App Store" width={180} height={50} />
+        <Image src="/linkedin.svg" alt="App Store" width={150} height={50} />
+        <Image src="/instagram.svg" alt="App Store" width={150} height={50} />
       </div>
     </div>
   );

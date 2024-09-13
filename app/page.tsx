@@ -12,7 +12,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export default function Home() {
   return (
-    <main className="min-h-screen w-full">
+    <main className="min-h-screen w-full dark:bg-slate-800">
       <div
         className=" bg-no-repeat bg-bottom overflow-auto pt-[3rem]"
         style={{ backgroundImage: 'url("/bg-home-desktop.png")' }}
