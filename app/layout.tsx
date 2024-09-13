@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import {
@@ -16,6 +15,9 @@ import "aos/dist/aos.css";
 import Script from "next/script";
 import AOSInitializer from "@/components/website/AOS/AOSInitializer";
 import { cn } from "@/lib/utils";
+import React from "react";
+import ClientProviders from "@/components/client-providers";
+
 const fontSans = FontSans({
   subsets: ["latin"],
   variable: "--font-sans",
@@ -56,7 +58,7 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            {children}
+            <ClientProviders>{children}</ClientProviders>
           </ThemeProvider>
           <AOSInitializer />
         </body>

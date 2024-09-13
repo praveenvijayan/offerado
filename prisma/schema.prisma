@@ -12,11 +12,12 @@ model Organization {
   id           String         @id @default(auto()) @map("_id") @db.ObjectId
   name         String
   email        String         @unique
+  image        String
   isActive     Boolean        @default(false)
   users        User[]
-  businesses   Business[] // One-to-many relation with businesses
-  offers       Offer[] // One-to-many relation with offers
-  subscription Subscription[] // Subscription details inside organization
+  businesses   Business[]  
+  offers       Offer[]
+  subscription Subscription[]
   createdAt    DateTime       @default(now())
   updatedAt    DateTime       @updatedAt
 }

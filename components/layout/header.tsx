@@ -29,11 +29,9 @@ export const Header = () => (
     {/* <UserMenu />
      */}
     <SignedIn>
-      {/* Mount the UserButton component */}
       <UserButton />
     </SignedIn>
     <SignedOut>
-      {/* Signed out users get sign in button */}
       <SignInButton />
     </SignedOut>
   </header>

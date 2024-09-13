@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { Plus, PlusCircle } from "lucide-react";
+import { Building2, Plus, PlusCircle } from "lucide-react";
 import Link from "next/link";
 
 export default function Organizations() {
@@ -20,7 +20,9 @@ export default function Organizations() {
         </Button>
       </div>
       <div className="p-4">
-        <h3 className="text-xl font-semibold mb-4">Your Organizations</h3>
+        <h3 className="text-xl font-semibold mb-4 flex gap-3">
+          <Building2 /> Your Organizations
+        </h3>
         <p>No organizations found</p>
       </div>
     </>
