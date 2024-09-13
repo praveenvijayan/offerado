@@ -13,7 +13,6 @@ export default function AfterLogin() {
   useEffect(() => {
     if (isLoaded && user) {
       const role = user.publicMetadata?.role;
-
       if (role === "User") {
         router.push("/landing");
       } else if (role === "Admin") {

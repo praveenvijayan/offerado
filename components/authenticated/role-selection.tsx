@@ -9,6 +9,8 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Building, User2 } from "lucide-react";
+import Logo from "../global/logo";
+import Link from "next/link";
 
 export default function RoleSelection() {
   const { role, setRole, nextStep } = useUserRoleStore();
@@ -27,7 +29,10 @@ export default function RoleSelection() {
 
   return (
     <>
-      <h3 className="text-xl font-semibold p-4 md:text-left text-center md:px-0">
+      <h3 className="flex flex-col justify-center align-middle items-center text-xl gap-2 font-semibold p-4 text-center md:px-0">
+        <Link href="/">
+          <Logo />
+        </Link>
         Select type of account
       </h3>
       <div className="flex justify-center items-center gap-4 flex-wrap">
@@ -55,7 +60,7 @@ export default function RoleSelection() {
               variant={role === "Business" ? "default" : "outline"}
               className="w-full"
             >
-              Select Business
+              Sign up as Business
             </Button>
           </CardFooter>
         </Card>
@@ -87,20 +92,21 @@ export default function RoleSelection() {
               variant={role === "User" ? "default" : "outline"}
               className="w-full"
             >
-              Select User
+              Sign up as a User
             </Button>
           </CardFooter>
         </Card>
 
         {/* Next Button */}
-        <div className="fixed bottom-10 w-full flex justify-center">
+        <div className="w-full flex flex-col justify-center align-middle items-center gap-4">
           <Button
             onClick={handleNextClick}
             disabled={!role}
-            className="w-1/2 max-w-sm"
+            className="w-1/2 max-w-sm mt-4"
           >
             Next
           </Button>
+          <Link href="/login">or Login</Link>
         </div>
       </div>
     </>

@@ -10,12 +10,16 @@ import userAnimation from "@/animation/login-setup.json";
 
 export default function Login() {
   return (
-    <>
-      {" "}
+    <div className="flex flex-col items-center justify-center">
       <ClerkLoading>Loading...</ClerkLoading>{" "}
       <ClerkLoaded>
+        <div className="mb-4">
+          <Link href="/">
+            <Logo />
+          </Link>
+        </div>
         <SignIn fallbackRedirectUrl="/afterlogin" />
       </ClerkLoaded>
-    </>
+    </div>
   );
 }
