@@ -74,7 +74,7 @@ export default function SingleLayout({
           </Link>
         </div>
         {/* Main Content Area */}
-        <div className="flex flex-col">
+        <main className="flex flex-col bg-gray-50 dark:bg-slate-900">
           {/* Header */}
           <header className="flex h-14 items-center gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6">
             {/* Mobile Menu */}
@@ -125,7 +125,7 @@ export default function SingleLayout({
           </header>
           {/* Main Content */}
           <main className="flex flex-1 flex-col p-4 lg:p-6">{children}</main>
-        </div>
+        </main>
       </div>
     </section>
   );

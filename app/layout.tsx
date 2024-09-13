@@ -45,7 +45,7 @@ export default function RootLayout({
         </Head>
         <body
           className={cn(
-            "min-h-screen bg-background font-poppins antialiased",
+            "min-h-screen font-poppins antialiased",
             // fontSans.variable,
             poppins.variable
           )}
