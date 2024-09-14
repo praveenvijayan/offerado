@@ -13,9 +13,10 @@ model Organization {
   name         String
   email        String         @unique
   image        String
+  ownerId      String
   isActive     Boolean        @default(false)
   users        User[]
-  businesses   Business[]  
+  businesses   Business[]
   offers       Offer[]
   subscription Subscription[]
   createdAt    DateTime       @default(now())

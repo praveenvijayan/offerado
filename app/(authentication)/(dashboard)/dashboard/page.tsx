@@ -36,7 +36,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 export default function Dashboard() {
   return (
     <div className="grid w-full md:grid-cols-5">
-      <Card className="bg-slate-900 text-white">
+      {/* <Card className="bg-slate-900 text-white">
         <CardHeader>
           <CardTitle>Offer Creation</CardTitle>
         </CardHeader>
@@ -51,7 +51,7 @@ export default function Dashboard() {
             </Link>
           </div>
         </CardContent>
-      </Card>
+      </Card> */}
     </div>
   );
 }

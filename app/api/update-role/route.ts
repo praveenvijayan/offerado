@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   try {
-    const { role, userId } = await req.json(); // Get data from the request body
+    const { role, userId } = await req.json();
 
     // Update the user's public metadata with the role
     await clerkClient.users.updateUser(userId, {

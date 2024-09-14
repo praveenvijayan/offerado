@@ -19,6 +19,7 @@ import {
   SignInButton,
   UserButton,
 } from "@clerk/nextjs";
+import Help from "../global/help";
 
 export const Header = () => (
   <header className="flex h-14 items-center gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6">
@@ -26,6 +27,7 @@ export const Header = () => (
     <SearchBar />
     <ModeToggle />
     <NotificationButton />
+    <Help />
     {/* <UserMenu />
      */}
     <SignedIn>
