@@ -55,13 +55,18 @@ model Business {
   id             String              @id @default(auto()) @map("_id") @db.ObjectId
   name           String
   description    String?
+  logo           String
+  email          String
+  address        String
+  country        String
+  currency       String
   ownerId        String              @db.ObjectId
   location       Location            @relation(fields: [locationId], references: [id])
   organizationId String              @db.ObjectId
   organization   Organization        @relation(fields: [organizationId], references: [id])
-  categories     BusinessCategory[] // Many-to-many relation with categories through join table
-  offers         Offer[] // One-to-many relation with offers
-  preferredBy    PreferredBusiness[] // Join table for many-to-many relation with users
+  categories     BusinessCategory[]
+  offers         Offer[]
+  preferredBy    PreferredBusiness[] 
   createdAt      DateTime            @default(now())
   updatedAt      DateTime            @updatedAt
   isActive       Boolean             @default(true)

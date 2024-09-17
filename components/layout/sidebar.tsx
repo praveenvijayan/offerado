@@ -5,6 +5,7 @@ import SidebarNavigation from "./navigation";
 
 import useSidebarStore from "@/stores/store";
 import { LogoOrganization } from "./logo-organization";
+import { BusinessSelection } from "../authenticated/org-selection";
 
 export const Sidebar = () => {
   const { isCollapsed, toggleSidebar } = useSidebarStore();
@@ -16,7 +17,7 @@ export const Sidebar = () => {
       } transition-[width] duration-300`}
     >
       <div className="flex h-full max-h-screen flex-col gap-2">
-        <LogoOrganization />
+        <BusinessSelection />
         <SidebarNavigation />
         <button
           onClick={toggleSidebar}

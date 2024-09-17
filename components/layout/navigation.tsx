@@ -48,6 +48,7 @@ import {
   BookMarked,
   Settings,
   Store,
+  BriefcaseBusiness,
 } from "lucide-react";
 
 import { usePathname } from "next/navigation";
@@ -90,6 +91,7 @@ const iconMap = {
   Box,
   Settings,
   Store,
+  BriefcaseBusiness,
 } as any;
 
 const SidebarNavigation = () => {

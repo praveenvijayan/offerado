@@ -18,7 +18,7 @@ export default function AfterLogin() {
       } else if (role === "Admin") {
         router.push("/dashboard");
       } else if (role === "Business") {
-        router.push("/organizations");
+        router.push("/dashboard");
       } else {
         router.push("/default-page");
       }

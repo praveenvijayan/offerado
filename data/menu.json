@@ -184,6 +184,11 @@
         "label": "User Profile",
         "href": "/user-profile",
         "icon": "Users"
+      },
+      {
+        "label": "Business",
+        "href": "/business",
+        "icon": "BriefcaseBusiness"
       }
     ]
   }
