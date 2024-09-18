@@ -11,7 +11,7 @@ import { updateUserRole } from "@/services/user-role-service";
 import { createOrganization } from "@/services/organization-service"; // Import organization service
 
 export default function OnboardingPage() {
-  const { isSignedIn, isLoaded, user } = useUser(); // Clerk's useUser() hook
+  const { isSignedIn, isLoaded, user } = useUser();
   const { role, resetRole } = useUserRoleStore();
   const router = useRouter();
 

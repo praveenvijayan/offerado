@@ -78,6 +78,7 @@ const LocationPicker = ({ setLocation }: LocationPickerProps) => {
       center={[51.505, -0.09]} // Default center (London)
       zoom={13}
       style={{ height: "200px", width: "100%" }}
+      className="rounded-md"
     >
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

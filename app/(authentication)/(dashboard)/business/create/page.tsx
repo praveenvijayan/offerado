@@ -1,5 +1,7 @@
 "use client";
 import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -11,30 +13,101 @@ import {
   SelectContent,
   SelectItem,
 } from "@/components/ui/select";
-import { useState } from "react";
-import { ScrollArea } from "@radix-ui/react-scroll-area";
 import LocationPicker from "@/components/global/location-picker";
+import { useBusinessFormStore } from "@/stores/use-business-form-store";
+import { createBusiness } from "@/services/business-services";
+import { useUser } from "@clerk/nextjs";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { getOrganizationByEmail } from "@/services/organization-service";
+import { toast } from "sonner";
+import Message from "../../../../../components/feedback/message";
 
-type BusinessFormValues = {
-  name: string;
-  description?: string;
-  logo: string;
-  email: string;
-  address: string;
-  country: string;
-  currency: string;
-  location: string; // Assuming location is a string; adjust based on actual implementation
-  isActive: boolean;
-};
+// Zod schema for validation
+const businessFormSchema = z.object({
+  name: z.string().min(1, "Business name is required"),
+  logo: z.string().optional(),
+  email: z
+    .string()
+    .optional()
+    .refine((value) => !value || value.includes("@"), {
+      message: "Invalid email format",
+    }),
+  phone: z
+    .string()
+    .optional()
+    .refine((value) => !value || /^\+?[1-9]\d{1,14}$/.test(value), {
+      message: "Invalid phone number format",
+    }),
+  address: z.string().optional(),
+  country: z.string().optional(),
+  currency: z.string().optional(),
+  location: z
+    .object({
+      lat: z.number(),
+      lng: z.number(),
+    })
+    .optional(),
+  isActive: z.boolean().optional(),
+});
 
 export default function BusinessCreateForm() {
-  const { register, handleSubmit } = useForm<BusinessFormValues>();
-  const [isActive, setIsActive] = useState(true);
-  const [location, setLocation] = useState({ lat: 0, lng: 0 });
+  const { businessForm, setBusinessForm } = useBusinessFormStore();
+  const { isSignedIn, isLoaded, user } = useUser();
+  // Use React Query to fetch the organization based on user's email
+  const {
+    data: organization,
+    isLoading: isOrgLoading,
+    isError: isOrgError,
+  } = useQuery({
+    queryKey: ["organization"],
+    queryFn: () =>
+      getOrganizationByEmail(user?.primaryEmailAddress?.emailAddress ?? ""),
+    enabled: !!user?.primaryEmailAddress?.emailAddress,
+    retry: false,
+  });
 
-  const onSubmit = (data: BusinessFormValues) => {
-    console.log(data);
-    // Handle form submission, e.g., send to API
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(businessFormSchema),
+    defaultValues: businessForm,
+  });
+
+  const mutation = useMutation({
+    mutationFn: async (businessData: any) => {
+      return await createBusiness(businessData);
+    },
+    onSuccess: () => {
+      console.log("Business created successfully!");
+      // Optionally refetch queries or perform any additional actions
+      toast.success("Business created successfully!");
+    },
+    onError: (error) => {
+      console.error("Error creating business:", error);
+      toast.error(
+        error?.message || "An error occurred while creating the business."
+      );
+    },
+  });
+
+  const onSubmit = (data: any) => {
+    // If the organization query is still loading or errored out, don't submit
+    if (isOrgLoading || isOrgError) {
+      console.error(isOrgError, "Organization data is not ready");
+      return;
+    }
+    console.log("Org ID data:", organization);
+    const businessData = {
+      name: data.name,
+      organizationId: organization?.id,
+      ownerId: user?.id,
+      ...data,
+    };
+
+    // Trigger the mutation to create the business
+    mutation.mutate(businessData);
   };
 
   return (
@@ -49,8 +122,10 @@ export default function BusinessCreateForm() {
                 id="name"
                 placeholder="Enter business name"
                 {...register("name")}
-                required
               />
+              {errors.name && (
+                <p className="text-red-500 text-sm">{errors.name.message}</p>
+              )}
             </div>
 
             {/* Description */}
@@ -70,9 +145,10 @@ export default function BusinessCreateForm() {
                 id="logo"
                 placeholder="Enter logo URL"
                 {...register("logo")}
-                required
-                type="file"
               />
+              {errors.logo && (
+                <p className="text-red-500 text-sm">{errors.logo.message}</p>
+              )}
             </div>
 
             {/* Email */}
@@ -83,8 +159,24 @@ export default function BusinessCreateForm() {
                 type="email"
                 placeholder="Enter business email"
                 {...register("email")}
-                required
               />
+              {errors.email && (
+                <p className="text-red-500 text-sm">{errors.email.message}</p>
+              )}
+            </div>
+
+            {/* Phone */}
+            <div>
+              <Label htmlFor="phone">Phone</Label>
+              <Input
+                id="phone"
+                type="text"
+                placeholder="Enter business phone"
+                {...register("phone")}
+              />
+              {errors.phone && (
+                <p className="text-red-500 text-sm">{errors.phone.message}</p>
+              )}
             </div>
 
             {/* Address */}
@@ -95,76 +187,95 @@ export default function BusinessCreateForm() {
                 placeholder="Enter business address"
                 {...register("address")}
               />
+              {errors.address && (
+                <p className="text-red-500 text-sm">{errors.address.message}</p>
+              )}
             </div>
           </div>
+
           <div className="max-w-2xl w-full flex flex-col gap-4">
             <div>
               <Label htmlFor="country">Country</Label>
               <Select
-                onValueChange={(value) => console.log(value)}
-                {...register("country")}
-                required
+                onValueChange={(value) => {
+                  setBusinessForm({ country: value });
+                }}
+                value={businessForm.country || "India"} // Default value is "India"
               >
                 <SelectTrigger>
                   <Input
                     placeholder="Select country"
                     className="border-0 p-0"
+                    {...register("country")}
                   />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="USA">USA</SelectItem>
                   <SelectItem value="Canada">Canada</SelectItem>
                   <SelectItem value="UK">UK</SelectItem>
+                  <SelectItem value="India">India</SelectItem>
                 </SelectContent>
               </Select>
             </div>
 
             {/* Currency */}
-            <div>
+            <div className="relative z-20">
               <Label htmlFor="currency">Currency</Label>
               <Select
-                onValueChange={(value) => console.log(value)}
-                {...register("currency")}
-                required
+                onValueChange={(value) => setBusinessForm({ currency: value })}
+                value={businessForm.currency || "INR"}
               >
                 <SelectTrigger>
                   <Input
                     placeholder="Select currency"
                     className="border-0 p-0"
+                    {...register("currency")}
                   />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="USD">USD</SelectItem>
                   <SelectItem value="CAD">CAD</SelectItem>
                   <SelectItem value="GBP">GBP</SelectItem>
+                  <SelectItem value="INR">INR</SelectItem>
                 </SelectContent>
               </Select>
             </div>
 
             {/* Location */}
-            <div>
-              <Label htmlFor="location">Location</Label>
-              <LocationPicker setLocation={setLocation} />
-              <p>
-                Selected Location: Latitude {location.lat}, Longitude{" "}
-                {location.lng}
+            <div className="relative z-10">
+              <Label htmlFor="location" className="py-2">
+                Location
+              </Label>
+              <LocationPicker
+                setLocation={(loc) => setBusinessForm({ location: loc })}
+              />
+              <p className="text-sm py-2">
+                Selected Location: Latitude {businessForm.location?.lat || ""},
+                Longitude {businessForm.location?.lng || ""}
               </p>
             </div>
 
             {/* Active Switch */}
             <div className="flex items-center space-x-2">
-              <Label htmlFor="isActive">Is Active</Label>
               <Switch
                 id="isActive"
-                checked={isActive}
-                onCheckedChange={setIsActive}
-                {...register("isActive")}
+                checked={businessForm.isActive}
+                onCheckedChange={(checked) =>
+                  setBusinessForm({ isActive: checked })
+                }
               />
+              <Label htmlFor="isActive">Accept terms and conditions</Label>
             </div>
           </div>
         </div>
-        <Button type="submit" className="p-6 m-6 mt-0">
-          Save Business
+
+        {/* Disable the button while loading */}
+        <Button
+          type="submit"
+          className="p-6 m-6 mt-0"
+          disabled={mutation.isPending}
+        >
+          {mutation.isPending ? "Saving..." : "Save Business"}
         </Button>
       </form>
     </>

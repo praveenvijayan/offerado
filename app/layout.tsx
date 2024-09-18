@@ -17,6 +17,8 @@ import AOSInitializer from "@/components/website/AOS/AOSInitializer";
 import { cn } from "@/lib/utils";
 import React from "react";
 import ClientProviders from "@/components/client-providers";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { Toaster } from "@/components/ui/sonner";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -58,7 +60,11 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <ClientProviders>{children}</ClientProviders>
+            <ClientProviders>
+              {children}
+              <ReactQueryDevtools initialIsOpen={false} />
+              <Toaster position="top-center" richColors />
+            </ClientProviders>
           </ThemeProvider>
           <AOSInitializer />
         </body>

@@ -26,3 +26,21 @@ export async function createOrganization({
 
   return response.json();
 }
+
+export async function getOrganizationByEmail(email: string) {
+  const response = await fetch("/api/organization-by-email", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      email,
+    }),
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch organization");
+  }
+
+  return response.json();
+}

@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Building2, ChevronDown, ChevronUp, PlusCircle } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import Link from "next/link";
 
 export function BusinessSelection() {
   return (
@@ -46,10 +47,12 @@ export function BusinessSelection() {
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuGroup>
-          <DropdownMenuItem className="flex items-center space-x-2 py-4">
-            <PlusCircle />
-            <span>Create a business</span>
-          </DropdownMenuItem>
+          <Link href={"/business/create"}>
+            <DropdownMenuItem className="flex items-center space-x-2 py-4">
+              <PlusCircle className="mr-2" />
+              Create a business
+            </DropdownMenuItem>
+          </Link>
         </DropdownMenuGroup>
       </DropdownMenuContent>
     </DropdownMenu>
