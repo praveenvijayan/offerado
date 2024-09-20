@@ -36,12 +36,12 @@ const CreateCampaignForm = () => {
       })}
     >
       <div className="grid grid-cols-2 gap-4 align-middle">
-        <h3>1. Enter campaign information</h3>
+        <h3>Campaign name</h3>
         <div className="col-span-2">
           {/* <Label htmlFor="title">Campaign Name</Label> */}
           <Input
             id="title"
-            placeholder="Enter campaign title"
+            placeholder="Campaign name"
             {...register("title", { required: "Title is required" })}
             value={title}
             onChange={(e) => setTitle(e.target.value)}
@@ -56,7 +56,7 @@ const CreateCampaignForm = () => {
           {/* <Label htmlFor="description">Description</Label> */}
           <Textarea
             id="description"
-            placeholder="Enter offer description"
+            placeholder="Campaign description"
             {...register("description", {
               required: "Description is required",
             })}
@@ -104,9 +104,9 @@ const CreateCampaignForm = () => {
         </div>
       </div>
       {/* Uncomment if needed */}
-      {/* <Button type="submit" className="mt-4">
-        Next
-      </Button> */}
+      <Button type="submit" className="mt-4">
+        Continue
+      </Button>
     </form>
   );
 };
