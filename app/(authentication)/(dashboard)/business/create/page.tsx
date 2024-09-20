@@ -246,9 +246,9 @@ export default function BusinessCreateForm() {
               <Label htmlFor="location" className="py-2">
                 Location
               </Label>
-              <LocationPicker
+              {/* <LocationPicker
                 setLocation={(loc) => setBusinessForm({ location: loc })}
-              />
+              /> */}
               <p className="text-sm py-2">
                 Selected Location: Latitude {businessForm.location?.lat || ""},
                 Longitude {businessForm.location?.lng || ""}
