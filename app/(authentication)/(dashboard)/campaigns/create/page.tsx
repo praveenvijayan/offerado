@@ -9,16 +9,21 @@ import SelectedComponents from "@/components/offers/selected-components";
 import { ScrollArea } from "@radix-ui/react-scroll-area";
 import ComponentAccordion from "@/components/offers/components-accordion";
 import ComponentCollection from "@/components/offers/component-collection";
-import { Circle } from "lucide-react";
+import { Circle, Import } from "lucide-react";
+import useCampaignStore from "@/stores/create-campaign-form";
+import Campaigns from "../page";
+import { Button } from "@/components/ui/button";
+import ProductsList from "@/components/offers/products-list";
 
 const CreateOffer = () => {
+  const Campaigns = useCampaignStore();
   return (
-    <div className="flex h-[85vh]">
+    <div className="flex h-[85vh] w-full">
       {/* Left Sidebar */}
       <Tabs
         defaultValue="details"
         orientation="vertical"
-        className="flex bg-transparent"
+        className="flex bg-transparent w-full"
       >
         {/* Tabs List (Vertical Menu) */}
         <TabsList className="flex flex-col justify-start items-start gap-4 p-4 border-0 bg-transparent">
@@ -53,22 +58,34 @@ const CreateOffer = () => {
         </TabsList>
 
         {/* Tabs Content (Right Side) */}
-        <div className="flex-1 px-6 border-l-2">
+        <div className=" w-full px-6 border-l-2">
           <ScrollArea className="max-h-[85vh] overflow-y-auto rounded-md">
-            <TabsContent value="details" className="mt-4">
+            <TabsContent value="details">
+              <h3 className="mb-4">
+                Create a new {Campaigns.campaignType} campaign
+              </h3>
               <CreateCampaignForm />
             </TabsContent>
 
-            <TabsContent value="components" className="mt-4">
-              <ComponentAccordion />
-              <ComponentCollection />
+            <TabsContent value="components" className="w-full">
+              <div className="flex justify-between items-center w-full mb-6">
+                <h3 className="font-semibold text-xl">Select Products</h3>
+                <div className="">
+                  <Button variant={"ghost"} className="flex gap-2">
+                    <Import /> Import products
+                  </Button>
+                </div>
+              </div>
+              <ProductsList />
+              {/* <ComponentAccordion /> */}
+              {/* <ComponentCollection /> */}
             </TabsContent>
 
-            <TabsContent value="theme" className="mt-4">
+            <TabsContent value="theme">
               <TemplateSelection />
             </TabsContent>
 
-            <TabsContent value="preview" className="mt-4">
+            <TabsContent value="preview">
               <OfferSummaryCard />
               <SelectedComponents />
               <ShareCampaign />

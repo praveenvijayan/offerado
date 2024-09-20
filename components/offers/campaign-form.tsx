@@ -36,7 +36,6 @@ const CreateCampaignForm = () => {
       })}
     >
       <div className="grid grid-cols-2 gap-4 align-middle">
-        <h3>Campaign name</h3>
         <div className="col-span-2">
           {/* <Label htmlFor="title">Campaign Name</Label> */}
           <Input
