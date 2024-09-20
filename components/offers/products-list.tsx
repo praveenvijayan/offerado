@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from "react";
 import {
   Table,
@@ -20,58 +21,74 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
+import useProductsStore from "@/stores/use-product-store";
 
-type SortOrder = "asc" | "desc"; // Define the sorting order
+type SortOrder = "asc" | "desc";
 
 const ProductsList: React.FC = () => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [searchQuery, setSearchQuery] = useState(""); // State to track search query
-  const [sortColumn, setSortColumn] = useState<string>("name"); // State to track the column being sorted
-  const [sortOrder, setSortOrder] = useState<SortOrder>("asc"); // State to track sorting order
+  const [viewSelected, setViewSelected] = useState(false); // Toggle between selected/all products
+  const {
+    currentPage,
+    searchQuery,
+    sortColumn,
+    sortOrder,
+    selectedProducts,
+    setCurrentPage,
+    setSearchQuery,
+    setSortColumn,
+    setSortOrder,
+    toggleProductSelection,
+  } = useProductsStore();
 
-  const itemsPerPage = 8; // Number of items per page
+  const itemsPerPage = 8;
 
   // Handle the search input change
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
-    setCurrentPage(1); // Reset to the first page when search query changes
+    setCurrentPage(1);
   };
 
   // Handle sorting column and order
   const handleSort = (column: string) => {
     if (sortColumn === column) {
-      // Toggle sorting order if the column is already selected
       setSortOrder(sortOrder === "asc" ? "desc" : "asc");
     } else {
-      // Set new sort column and default to ascending order
       setSortColumn(column);
       setSortOrder("asc");
     }
   };
 
-  // Sort and filter products based on the search query and sort column
+  // Filter and sort the products based on search and sort options
   const filteredProducts = products
     .filter((product: any) =>
       product.name.toLowerCase().includes(searchQuery.toLowerCase())
     )
     .sort((a: any, b: any) => {
       if (sortColumn === "name" || sortColumn === "category") {
-        // Sort strings
         return sortOrder === "asc"
           ? a[sortColumn].localeCompare(b[sortColumn])
           : b[sortColumn].localeCompare(a[sortColumn]);
       } else {
-        // Sort numbers (for MRP, offerPrice, etc.)
         return sortOrder === "asc"
           ? a[sortColumn] - b[sortColumn]
           : b[sortColumn] - a[sortColumn];
       }
     });
 
-  const totalPages = Math.ceil(filteredProducts.length / itemsPerPage); // Total number of pages
+  // Get only the selected products
+  const selectedProductList = products.filter((product: any) =>
+    selectedProducts.includes(product.id)
+  );
+
+  // Determine which products to display: all or selected
+  const productsToDisplay = viewSelected
+    ? selectedProductList
+    : filteredProducts;
+
+  const totalPages = Math.ceil(productsToDisplay.length / itemsPerPage);
 
   // Get the current page's products
-  const paginatedProducts = filteredProducts.slice(
+  const paginatedProducts = productsToDisplay.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
@@ -82,14 +99,31 @@ const ProductsList: React.FC = () => {
   };
 
   return (
-    <div className="products-list ">
+    <div className="products-list">
       <h2 className="flex justify-between items-center bg-muted py-2 px-4 rounded-lg mb-4">
         Products List{" "}
+        {viewSelected ? (
+          <Button
+            variant={"ghost"}
+            className="text-xs underline"
+            onClick={() => setViewSelected(false)}
+          >
+            Clear selection and view all products
+          </Button>
+        ) : (
+          <Button
+            variant={"ghost"}
+            className="text-xs underline"
+            onClick={() => setViewSelected(true)}
+          >
+            You have selected {selectedProducts.length} products
+          </Button>
+        )}
         <input
           type="text"
           placeholder="Search products"
-          value={searchQuery} // Bind searchQuery to the input field
-          onChange={handleSearchChange} // Update searchQuery when the input changes
+          value={searchQuery}
+          onChange={handleSearchChange}
           className="p-1 px-4 text-sm rounded-md"
         />
       </h2>
@@ -104,27 +138,27 @@ const ProductsList: React.FC = () => {
               className="cursor-pointer"
             >
               Product Name{" "}
-              {sortColumn === "name" && (sortOrder === "asc" ? "▲" : "▼")}
+              {sortColumn === "name" && (sortOrder === "asc" ? "⬆" : "⬇")}
             </TableHead>
             <TableHead
               onClick={() => handleSort("category")}
               className="cursor-pointer"
             >
               Category{" "}
-              {sortColumn === "category" && (sortOrder === "asc" ? "▲" : "▼")}
+              {sortColumn === "category" && (sortOrder === "asc" ? "⬆" : "⬇")}
             </TableHead>
             <TableHead
               onClick={() => handleSort("mrp")}
               className="cursor-pointer"
             >
-              MRP {sortColumn === "mrp" && (sortOrder === "asc" ? "▲" : "▼")}
+              MRP {sortColumn === "mrp" && (sortOrder === "asc" ? "⬆" : "⬇")}
             </TableHead>
             <TableHead
               onClick={() => handleSort("offerPrice")}
               className="cursor-pointer"
             >
               Offer Price{" "}
-              {sortColumn === "offerPrice" && (sortOrder === "asc" ? "▲" : "▼")}
+              {sortColumn === "offerPrice" && (sortOrder === "asc" ? "⬆" : "⬇")}
             </TableHead>
             <TableHead>Offer Type</TableHead>
           </TableRow>
@@ -134,7 +168,10 @@ const ProductsList: React.FC = () => {
             paginatedProducts.map((product: any) => (
               <TableRow key={product.id} className="max-h-16">
                 <TableCell>
-                  <Checkbox />
+                  <Checkbox
+                    checked={selectedProducts.includes(product.id)}
+                    onCheckedChange={() => toggleProductSelection(product.id)}
+                  />
                 </TableCell>
                 <TableCell>
                   <Image
@@ -154,7 +191,7 @@ const ProductsList: React.FC = () => {
           ) : (
             <TableRow>
               <TableCell colSpan={7} className="text-center">
-                No products found
+                {viewSelected ? "No selected products" : "No products found"}
               </TableCell>
             </TableRow>
           )}
@@ -185,14 +222,12 @@ const ProductsList: React.FC = () => {
                 </PaginationLink>
               </PaginationItem>
 
-              {/* Show ellipsis if there are more than 3 pages and currentPage > 3 */}
               {currentPage > 3 && totalPages > 3 && (
                 <PaginationItem>
                   <PaginationEllipsis />
                 </PaginationItem>
               )}
 
-              {/* Show middle pages if they are within a certain range */}
               {Array.from({ length: totalPages }, (_, index) => index + 1)
                 .filter(
                   (page) =>
@@ -213,14 +248,12 @@ const ProductsList: React.FC = () => {
                   </PaginationItem>
                 ))}
 
-              {/* Show ellipsis if currentPage is far from the last page */}
               {currentPage < totalPages - 2 && totalPages > 3 && (
                 <PaginationItem>
                   <PaginationEllipsis />
                 </PaginationItem>
               )}
 
-              {/* Always show the last page */}
               {totalPages > 1 && (
                 <PaginationItem>
                   <PaginationLink
