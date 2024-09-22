@@ -19,7 +19,7 @@ const CreateOffer = () => {
   const Campaigns = useCampaignStore();
 
   return (
-    <div className="flex h-[85vh] w-full">
+    <div className="flex h-[88vh] w-full">
       {/* Left Sidebar */}
       <Tabs
         value={activeTab}

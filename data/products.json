@@ -5,7 +5,7 @@
     "category": "Pasta, Rice & Cereal",
     "mrp": 614.37,
     "offerPrice": 45,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 2,
@@ -13,7 +13,7 @@
     "category": "Pet Care",
     "mrp": 916.32,
     "offerPrice": 216,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 3,
@@ -21,7 +21,7 @@
     "category": "Deli",
     "mrp": 531.89,
     "offerPrice": 404,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 4,
@@ -29,7 +29,7 @@
     "category": "Frozen Foods",
     "mrp": 548.26,
     "offerPrice": 146,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 5,
@@ -37,7 +37,7 @@
     "category": "Snacks",
     "mrp": 572.07,
     "offerPrice": 13,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 6,
@@ -45,7 +45,7 @@
     "category": "Personal Care",
     "mrp": 576.56,
     "offerPrice": 206,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 7,
@@ -53,7 +53,7 @@
     "category": "Fruits",
     "mrp": 615.78,
     "offerPrice": 287,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 8,
@@ -61,7 +61,7 @@
     "category": "Fruits",
     "mrp": 556.38,
     "offerPrice": 17,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 9,
@@ -69,7 +69,7 @@
     "category": "Personal Care",
     "mrp": 950.44,
     "offerPrice": 287,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 10,
@@ -77,7 +77,7 @@
     "category": "Personal Care",
     "mrp": 590.49,
     "offerPrice": 283,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 11,
@@ -85,7 +85,7 @@
     "category": "Baby Items",
     "mrp": 903.57,
     "offerPrice": 194,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 12,
@@ -93,7 +93,7 @@
     "category": "Snacks",
     "mrp": 609.77,
     "offerPrice": 205,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 13,
@@ -101,7 +101,7 @@
     "category": "Household & Cleaning Supplies",
     "mrp": 508.7,
     "offerPrice": 450,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 14,
@@ -109,7 +109,7 @@
     "category": "Snacks",
     "mrp": 793.67,
     "offerPrice": 207,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 15,
@@ -117,7 +117,7 @@
     "category": "Bread & Bakery",
     "mrp": 615.49,
     "offerPrice": 135,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 16,
@@ -125,7 +125,7 @@
     "category": "Personal Care",
     "mrp": 976.43,
     "offerPrice": 243,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 17,
@@ -133,7 +133,7 @@
     "category": "Household & Cleaning Supplies",
     "mrp": 889.06,
     "offerPrice": 96,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 18,
@@ -141,7 +141,7 @@
     "category": "Frozen Foods",
     "mrp": 530.16,
     "offerPrice": 59,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 19,
@@ -149,7 +149,7 @@
     "category": "Frozen Foods",
     "mrp": 948.95,
     "offerPrice": 360,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 20,
@@ -157,7 +157,7 @@
     "category": "Baby Items",
     "mrp": 751.9,
     "offerPrice": 197,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 21,
@@ -165,7 +165,7 @@
     "category": "Vegetables",
     "mrp": 542.35,
     "offerPrice": 391,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 22,
@@ -173,7 +173,7 @@
     "category": "Pasta, Rice & Cereal",
     "mrp": 918.07,
     "offerPrice": 15,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 23,
@@ -181,7 +181,7 @@
     "category": "Baby Items",
     "mrp": 855.72,
     "offerPrice": 415,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 24,
@@ -189,7 +189,7 @@
     "category": "Household & Cleaning Supplies",
     "mrp": 918.9,
     "offerPrice": 359,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 25,
@@ -197,7 +197,7 @@
     "category": "Fish & Seafood",
     "mrp": 767.83,
     "offerPrice": 417,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 26,
@@ -205,7 +205,7 @@
     "category": "Dairy",
     "mrp": 752.82,
     "offerPrice": 281,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 27,
@@ -213,7 +213,7 @@
     "category": "Beverages",
     "mrp": 539.82,
     "offerPrice": 189,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 28,
@@ -221,7 +221,7 @@
     "category": "Household & Cleaning Supplies",
     "mrp": 777.82,
     "offerPrice": 137,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 29,
@@ -229,7 +229,7 @@
     "category": "Condiments & Spices",
     "mrp": 506.59,
     "offerPrice": 255,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 30,
@@ -237,7 +237,7 @@
     "category": "Condiments & Spices",
     "mrp": 769.25,
     "offerPrice": 417,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 31,
@@ -245,7 +245,7 @@
     "category": "Health Care",
     "mrp": 987.43,
     "offerPrice": 464,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 32,
@@ -253,7 +253,7 @@
     "category": "Meat",
     "mrp": 506.13,
     "offerPrice": 435,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 33,
@@ -261,7 +261,7 @@
     "category": "Household & Cleaning Supplies",
     "mrp": 504.5,
     "offerPrice": 500,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 34,
@@ -269,7 +269,7 @@
     "category": "Baking",
     "mrp": 852.92,
     "offerPrice": 128,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 35,
@@ -277,7 +277,7 @@
     "category": "Vegetables",
     "mrp": 703.25,
     "offerPrice": 348,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 36,
@@ -285,7 +285,7 @@
     "category": "Baby Items",
     "mrp": 658.64,
     "offerPrice": 328,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 37,
@@ -293,7 +293,7 @@
     "category": "Fish & Seafood",
     "mrp": 526.72,
     "offerPrice": 275,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 38,
@@ -301,7 +301,7 @@
     "category": "Meat",
     "mrp": 522.34,
     "offerPrice": 130,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 39,
@@ -309,7 +309,7 @@
     "category": "Deli",
     "mrp": 824.52,
     "offerPrice": 111,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 40,
@@ -317,7 +317,7 @@
     "category": "Bread & Bakery",
     "mrp": 818.69,
     "offerPrice": 20,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 41,
@@ -325,7 +325,7 @@
     "category": "Pet Care",
     "mrp": 768.17,
     "offerPrice": 25,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 42,
@@ -333,7 +333,7 @@
     "category": "Fruits",
     "mrp": 856.41,
     "offerPrice": 387,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 43,
@@ -341,7 +341,7 @@
     "category": "Condiments & Spices",
     "mrp": 522.53,
     "offerPrice": 436,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 44,
@@ -349,7 +349,7 @@
     "category": "Household & Cleaning Supplies",
     "mrp": 937.47,
     "offerPrice": 4,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 45,
@@ -357,7 +357,7 @@
     "category": "Baby Items",
     "mrp": 622.1,
     "offerPrice": 404,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 46,
@@ -365,7 +365,7 @@
     "category": "Meat",
     "mrp": 961.4,
     "offerPrice": 137,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 47,
@@ -373,7 +373,7 @@
     "category": "Condiments & Spices",
     "mrp": 503.76,
     "offerPrice": 227,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 48,
@@ -381,7 +381,7 @@
     "category": "Dairy",
     "mrp": 916.81,
     "offerPrice": 76,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 49,
@@ -389,7 +389,7 @@
     "category": "Meat",
     "mrp": 810.07,
     "offerPrice": 422,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 50,
@@ -397,7 +397,7 @@
     "category": "Snacks",
     "mrp": 743.64,
     "offerPrice": 468,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 51,
@@ -405,7 +405,7 @@
     "category": "Pasta, Rice & Cereal",
     "mrp": 542.55,
     "offerPrice": 406,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 52,
@@ -413,7 +413,7 @@
     "category": "Deli",
     "mrp": 508.35,
     "offerPrice": 132,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 53,
@@ -421,7 +421,7 @@
     "category": "Baby Items",
     "mrp": 859.27,
     "offerPrice": 145,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 54,
@@ -429,7 +429,7 @@
     "category": "Fruits",
     "mrp": 800.24,
     "offerPrice": 207,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 55,
@@ -437,7 +437,7 @@
     "category": "Fish & Seafood",
     "mrp": 585.46,
     "offerPrice": 468,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 56,
@@ -445,7 +445,7 @@
     "category": "Fruits",
     "mrp": 506.27,
     "offerPrice": 227,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 57,
@@ -453,7 +453,7 @@
     "category": "Fish & Seafood",
     "mrp": 994.13,
     "offerPrice": 168,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 58,
@@ -461,7 +461,7 @@
     "category": "Pasta, Rice & Cereal",
     "mrp": 933.92,
     "offerPrice": 412,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 59,
@@ -469,7 +469,7 @@
     "category": "Baby Items",
     "mrp": 647.35,
     "offerPrice": 153,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 60,
@@ -477,7 +477,7 @@
     "category": "Deli",
     "mrp": 909.37,
     "offerPrice": 183,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 61,
@@ -485,7 +485,7 @@
     "category": "Household & Cleaning Supplies",
     "mrp": 943.13,
     "offerPrice": 429,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 62,
@@ -493,7 +493,7 @@
     "category": "Meat",
     "mrp": 961.76,
     "offerPrice": 79,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 63,
@@ -501,7 +501,7 @@
     "category": "Health Care",
     "mrp": 699.05,
     "offerPrice": 286,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 64,
@@ -509,7 +509,7 @@
     "category": "Dairy",
     "mrp": 595.43,
     "offerPrice": 187,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 65,
@@ -517,7 +517,7 @@
     "category": "Personal Care",
     "mrp": 556.32,
     "offerPrice": 438,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 66,
@@ -525,7 +525,7 @@
     "category": "Condiments & Spices",
     "mrp": 687.16,
     "offerPrice": 296,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 67,
@@ -533,7 +533,7 @@
     "category": "Dairy",
     "mrp": 944.46,
     "offerPrice": 102,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 68,
@@ -541,7 +541,7 @@
     "category": "Bread & Bakery",
     "mrp": 798.43,
     "offerPrice": 488,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 69,
@@ -549,7 +549,7 @@
     "category": "Deli",
     "mrp": 702.18,
     "offerPrice": 118,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 70,
@@ -557,7 +557,7 @@
     "category": "Dairy",
     "mrp": 636.57,
     "offerPrice": 401,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 71,
@@ -565,7 +565,7 @@
     "category": "Fish & Seafood",
     "mrp": 537.11,
     "offerPrice": 451,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 72,
@@ -573,7 +573,7 @@
     "category": "Pasta, Rice & Cereal",
     "mrp": 893.31,
     "offerPrice": 302,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 73,
@@ -581,7 +581,7 @@
     "category": "Household & Cleaning Supplies",
     "mrp": 520.04,
     "offerPrice": 146,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 74,
@@ -589,7 +589,7 @@
     "category": "Canned Goods",
     "mrp": 657.47,
     "offerPrice": 60,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 75,
@@ -597,7 +597,7 @@
     "category": "Deli",
     "mrp": 678.56,
     "offerPrice": 89,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 76,
@@ -605,7 +605,7 @@
     "category": "Meat",
     "mrp": 828.59,
     "offerPrice": 155,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 77,
@@ -613,7 +613,7 @@
     "category": "Meat",
     "mrp": 863.93,
     "offerPrice": 3,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 78,
@@ -621,7 +621,7 @@
     "category": "Canned Goods",
     "mrp": 967.43,
     "offerPrice": 193,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 79,
@@ -629,7 +629,7 @@
     "category": "Fruits",
     "mrp": 800.63,
     "offerPrice": 80,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 80,
@@ -637,7 +637,7 @@
     "category": "Fish & Seafood",
     "mrp": 763.56,
     "offerPrice": 387,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 81,
@@ -645,7 +645,7 @@
     "category": "Meat",
     "mrp": 710.77,
     "offerPrice": 374,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 82,
@@ -653,7 +653,7 @@
     "category": "Baby Items",
     "mrp": 577.93,
     "offerPrice": 100,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 83,
@@ -661,7 +661,7 @@
     "category": "Meat",
     "mrp": 804.49,
     "offerPrice": 179,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 84,
@@ -669,7 +669,7 @@
     "category": "Dairy",
     "mrp": 535.68,
     "offerPrice": 188,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 85,
@@ -677,7 +677,7 @@
     "category": "Personal Care",
     "mrp": 689.35,
     "offerPrice": 340,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 86,
@@ -685,7 +685,7 @@
     "category": "Frozen Foods",
     "mrp": 642.02,
     "offerPrice": 128,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 87,
@@ -693,7 +693,7 @@
     "category": "Snacks",
     "mrp": 620.75,
     "offerPrice": 325,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 88,
@@ -701,7 +701,7 @@
     "category": "Fish & Seafood",
     "mrp": 705.06,
     "offerPrice": 217,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 89,
@@ -709,7 +709,7 @@
     "category": "Household & Cleaning Supplies",
     "mrp": 910.13,
     "offerPrice": 31,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 90,
@@ -717,7 +717,7 @@
     "category": "Dairy",
     "mrp": 814.25,
     "offerPrice": 265,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 91,
@@ -725,7 +725,7 @@
     "category": "Condiments & Spices",
     "mrp": 549.98,
     "offerPrice": 24,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 92,
@@ -733,7 +733,7 @@
     "category": "Baking",
     "mrp": 836.91,
     "offerPrice": 270,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 93,
@@ -741,7 +741,7 @@
     "category": "Pet Care",
     "mrp": 711.35,
     "offerPrice": 283,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 94,
@@ -749,7 +749,7 @@
     "category": "Dairy",
     "mrp": 765.16,
     "offerPrice": 186,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 95,
@@ -757,7 +757,7 @@
     "category": "Beverages",
     "mrp": 694.57,
     "offerPrice": 337,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 96,
@@ -765,7 +765,7 @@
     "category": "Health Care",
     "mrp": 725.37,
     "offerPrice": 389,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 97,
@@ -773,7 +773,7 @@
     "category": "Bread & Bakery",
     "mrp": 769.8,
     "offerPrice": 36,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 98,
@@ -781,7 +781,7 @@
     "category": "Baking",
     "mrp": 594.61,
     "offerPrice": 176,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 99,
@@ -789,7 +789,7 @@
     "category": "Deli",
     "mrp": 908.73,
     "offerPrice": 214,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 100,
@@ -797,7 +797,7 @@
     "category": "Frozen Foods",
     "mrp": 514.06,
     "offerPrice": 122,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 101,
@@ -805,7 +805,7 @@
     "category": "Frozen Foods",
     "mrp": 773.83,
     "offerPrice": 399,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 102,
@@ -813,7 +813,7 @@
     "category": "Baby Items",
     "mrp": 690.34,
     "offerPrice": 330,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 103,
@@ -821,7 +821,7 @@
     "category": "Personal Care",
     "mrp": 976.61,
     "offerPrice": 69,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 104,
@@ -829,7 +829,7 @@
     "category": "Beverages",
     "mrp": 950.88,
     "offerPrice": 7,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 105,
@@ -837,7 +837,7 @@
     "category": "Fruits",
     "mrp": 986.16,
     "offerPrice": 286,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 106,
@@ -845,7 +845,7 @@
     "category": "Canned Goods",
     "mrp": 789.52,
     "offerPrice": 236,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 107,
@@ -853,7 +853,7 @@
     "category": "Health Care",
     "mrp": 536.71,
     "offerPrice": 331,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 108,
@@ -861,7 +861,7 @@
     "category": "Health Care",
     "mrp": 758.88,
     "offerPrice": 448,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 109,
@@ -869,7 +869,7 @@
     "category": "Household & Cleaning Supplies",
     "mrp": 999.51,
     "offerPrice": 42,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 110,
@@ -877,7 +877,7 @@
     "category": "Condiments & Spices",
     "mrp": 542.14,
     "offerPrice": 31,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 111,
@@ -885,7 +885,7 @@
     "category": "Fruits",
     "mrp": 628.92,
     "offerPrice": 223,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 112,
@@ -893,7 +893,7 @@
     "category": "Baby Items",
     "mrp": 650.06,
     "offerPrice": 91,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 113,
@@ -901,7 +901,7 @@
     "category": "Deli",
     "mrp": 639.05,
     "offerPrice": 268,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 114,
@@ -909,7 +909,7 @@
     "category": "Household & Cleaning Supplies",
     "mrp": 937.59,
     "offerPrice": 130,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 115,
@@ -917,7 +917,7 @@
     "category": "Pet Care",
     "mrp": 932.98,
     "offerPrice": 362,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 116,
@@ -925,7 +925,7 @@
     "category": "Pasta, Rice & Cereal",
     "mrp": 828.17,
     "offerPrice": 304,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 117,
@@ -933,7 +933,7 @@
     "category": "Canned Goods",
     "mrp": 611.98,
     "offerPrice": 160,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 118,
@@ -941,7 +941,7 @@
     "category": "Dairy",
     "mrp": 659.72,
     "offerPrice": 107,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 119,
@@ -949,7 +949,7 @@
     "category": "Pasta, Rice & Cereal",
     "mrp": 819.08,
     "offerPrice": 116,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 120,
@@ -957,7 +957,7 @@
     "category": "Deli",
     "mrp": 830.21,
     "offerPrice": 429,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 121,
@@ -965,7 +965,7 @@
     "category": "Personal Care",
     "mrp": 963.26,
     "offerPrice": 72,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 122,
@@ -973,7 +973,7 @@
     "category": "Fish & Seafood",
     "mrp": 511.38,
     "offerPrice": 463,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 123,
@@ -981,7 +981,7 @@
     "category": "Personal Care",
     "mrp": 516.41,
     "offerPrice": 350,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 124,
@@ -989,7 +989,7 @@
     "category": "Baking",
     "mrp": 854.9,
     "offerPrice": 175,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 125,
@@ -997,7 +997,7 @@
     "category": "Bread & Bakery",
     "mrp": 992.01,
     "offerPrice": 19,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 126,
@@ -1005,7 +1005,7 @@
     "category": "Pasta, Rice & Cereal",
     "mrp": 591.49,
     "offerPrice": 436,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 127,
@@ -1013,7 +1013,7 @@
     "category": "Pasta, Rice & Cereal",
     "mrp": 530.85,
     "offerPrice": 49,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 128,
@@ -1021,7 +1021,7 @@
     "category": "Baby Items",
     "mrp": 762.34,
     "offerPrice": 253,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 129,
@@ -1029,7 +1029,7 @@
     "category": "Fruits",
     "mrp": 780.72,
     "offerPrice": 146,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 130,
@@ -1037,7 +1037,7 @@
     "category": "Condiments & Spices",
     "mrp": 615.14,
     "offerPrice": 356,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 131,
@@ -1045,7 +1045,7 @@
     "category": "Beverages",
     "mrp": 732.85,
     "offerPrice": 399,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 132,
@@ -1053,7 +1053,7 @@
     "category": "Baking",
     "mrp": 752.35,
     "offerPrice": 335,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 133,
@@ -1061,7 +1061,7 @@
     "category": "Meat",
     "mrp": 688.9,
     "offerPrice": 336,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 134,
@@ -1069,7 +1069,7 @@
     "category": "Snacks",
     "mrp": 886.99,
     "offerPrice": 167,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 135,
@@ -1077,7 +1077,7 @@
     "category": "Meat",
     "mrp": 919.16,
     "offerPrice": 31,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 136,
@@ -1085,7 +1085,7 @@
     "category": "Vegetables",
     "mrp": 774.58,
     "offerPrice": 105,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 137,
@@ -1093,7 +1093,7 @@
     "category": "Health Care",
     "mrp": 598.21,
     "offerPrice": 107,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 138,
@@ -1101,7 +1101,7 @@
     "category": "Deli",
     "mrp": 984.8,
     "offerPrice": 380,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 139,
@@ -1109,7 +1109,7 @@
     "category": "Canned Goods",
     "mrp": 942.61,
     "offerPrice": 154,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 140,
@@ -1117,7 +1117,7 @@
     "category": "Household & Cleaning Supplies",
     "mrp": 864.31,
     "offerPrice": 355,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 141,
@@ -1125,7 +1125,7 @@
     "category": "Household & Cleaning Supplies",
     "mrp": 688.07,
     "offerPrice": 390,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 142,
@@ -1133,7 +1133,7 @@
     "category": "Canned Goods",
     "mrp": 887.9,
     "offerPrice": 497,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 143,
@@ -1141,7 +1141,7 @@
     "category": "Baking",
     "mrp": 962.2,
     "offerPrice": 304,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 144,
@@ -1149,7 +1149,7 @@
     "category": "Fruits",
     "mrp": 977.18,
     "offerPrice": 233,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 145,
@@ -1157,7 +1157,7 @@
     "category": "Pet Care",
     "mrp": 850.59,
     "offerPrice": 73,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 146,
@@ -1165,7 +1165,7 @@
     "category": "Canned Goods",
     "mrp": 853.45,
     "offerPrice": 414,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 147,
@@ -1173,7 +1173,7 @@
     "category": "Health Care",
     "mrp": 912.45,
     "offerPrice": 222,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 148,
@@ -1181,7 +1181,7 @@
     "category": "Deli",
     "mrp": 593.16,
     "offerPrice": 48,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 149,
@@ -1189,7 +1189,7 @@
     "category": "Deli",
     "mrp": 872.99,
     "offerPrice": 60,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 150,
@@ -1197,7 +1197,7 @@
     "category": "Pasta, Rice & Cereal",
     "mrp": 916.22,
     "offerPrice": 388,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 151,
@@ -1205,7 +1205,7 @@
     "category": "Health Care",
     "mrp": 738.13,
     "offerPrice": 316,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 152,
@@ -1213,7 +1213,7 @@
     "category": "Canned Goods",
     "mrp": 890.07,
     "offerPrice": 77,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 153,
@@ -1221,7 +1221,7 @@
     "category": "Condiments & Spices",
     "mrp": 696.54,
     "offerPrice": 328,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 154,
@@ -1229,7 +1229,7 @@
     "category": "Deli",
     "mrp": 518.32,
     "offerPrice": 436,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 155,
@@ -1237,7 +1237,7 @@
     "category": "Deli",
     "mrp": 581.56,
     "offerPrice": 489,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 156,
@@ -1245,7 +1245,7 @@
     "category": "Canned Goods",
     "mrp": 884.25,
     "offerPrice": 132,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 157,
@@ -1253,7 +1253,7 @@
     "category": "Fruits",
     "mrp": 742.01,
     "offerPrice": 440,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 158,
@@ -1261,7 +1261,7 @@
     "category": "Fish & Seafood",
     "mrp": 961.45,
     "offerPrice": 405,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 159,
@@ -1269,7 +1269,7 @@
     "category": "Deli",
     "mrp": 783.88,
     "offerPrice": 331,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 160,
@@ -1277,7 +1277,7 @@
     "category": "Bread & Bakery",
     "mrp": 911.96,
     "offerPrice": 392,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 161,
@@ -1285,7 +1285,7 @@
     "category": "Bread & Bakery",
     "mrp": 679.87,
     "offerPrice": 397,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 162,
@@ -1293,7 +1293,7 @@
     "category": "Canned Goods",
     "mrp": 948.55,
     "offerPrice": 493,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 163,
@@ -1301,7 +1301,7 @@
     "category": "Baking",
     "mrp": 741.68,
     "offerPrice": 424,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 164,
@@ -1309,7 +1309,7 @@
     "category": "Fish & Seafood",
     "mrp": 968.37,
     "offerPrice": 391,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 165,
@@ -1317,7 +1317,7 @@
     "category": "Household & Cleaning Supplies",
     "mrp": 815.97,
     "offerPrice": 224,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 166,
@@ -1325,7 +1325,7 @@
     "category": "Fruits",
     "mrp": 723.16,
     "offerPrice": 307,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 167,
@@ -1333,7 +1333,7 @@
     "category": "Baby Items",
     "mrp": 863.02,
     "offerPrice": 221,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 168,
@@ -1341,7 +1341,7 @@
     "category": "Fruits",
     "mrp": 504.02,
     "offerPrice": 319,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 169,
@@ -1349,7 +1349,7 @@
     "category": "Baking",
     "mrp": 671.96,
     "offerPrice": 443,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 170,
@@ -1357,7 +1357,7 @@
     "category": "Pasta, Rice & Cereal",
     "mrp": 802.26,
     "offerPrice": 161,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 171,
@@ -1365,7 +1365,7 @@
     "category": "Frozen Foods",
     "mrp": 538.39,
     "offerPrice": 283,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 172,
@@ -1373,7 +1373,7 @@
     "category": "Pasta, Rice & Cereal",
     "mrp": 900.43,
     "offerPrice": 430,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 173,
@@ -1381,7 +1381,7 @@
     "category": "Fruits",
     "mrp": 629.53,
     "offerPrice": 176,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 174,
@@ -1389,7 +1389,7 @@
     "category": "Vegetables",
     "mrp": 998.77,
     "offerPrice": 236,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 175,
@@ -1397,7 +1397,7 @@
     "category": "Household & Cleaning Supplies",
     "mrp": 545.81,
     "offerPrice": 120,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 176,
@@ -1405,7 +1405,7 @@
     "category": "Dairy",
     "mrp": 885.12,
     "offerPrice": 460,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 177,
@@ -1413,7 +1413,7 @@
     "category": "Condiments & Spices",
     "mrp": 936.22,
     "offerPrice": 428,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 178,
@@ -1421,7 +1421,7 @@
     "category": "Deli",
     "mrp": 727.0,
     "offerPrice": 342,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 179,
@@ -1429,7 +1429,7 @@
     "category": "Snacks",
     "mrp": 537.06,
     "offerPrice": 369,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 180,
@@ -1437,7 +1437,7 @@
     "category": "Household & Cleaning Supplies",
     "mrp": 780.33,
     "offerPrice": 346,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 181,
@@ -1445,7 +1445,7 @@
     "category": "Condiments & Spices",
     "mrp": 908.53,
     "offerPrice": 304,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 182,
@@ -1453,7 +1453,7 @@
     "category": "Vegetables",
     "mrp": 687.04,
     "offerPrice": 476,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 183,
@@ -1461,7 +1461,7 @@
     "category": "Frozen Foods",
     "mrp": 924.41,
     "offerPrice": 247,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 184,
@@ -1469,7 +1469,7 @@
     "category": "Vegetables",
     "mrp": 634.93,
     "offerPrice": 49,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 185,
@@ -1477,7 +1477,7 @@
     "category": "Pasta, Rice & Cereal",
     "mrp": 611.54,
     "offerPrice": 292,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 186,
@@ -1485,7 +1485,7 @@
     "category": "Fish & Seafood",
     "mrp": 667.54,
     "offerPrice": 273,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 187,
@@ -1493,7 +1493,7 @@
     "category": "Frozen Foods",
     "mrp": 736.55,
     "offerPrice": 77,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 188,
@@ -1501,7 +1501,7 @@
     "category": "Condiments & Spices",
     "mrp": 854.39,
     "offerPrice": 486,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 189,
@@ -1509,7 +1509,7 @@
     "category": "Baby Items",
     "mrp": 650.4,
     "offerPrice": 384,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 190,
@@ -1517,7 +1517,7 @@
     "category": "Vegetables",
     "mrp": 625.88,
     "offerPrice": 401,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 191,
@@ -1525,7 +1525,7 @@
     "category": "Pasta, Rice & Cereal",
     "mrp": 955.83,
     "offerPrice": 162,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 192,
@@ -1533,7 +1533,7 @@
     "category": "Dairy",
     "mrp": 958.74,
     "offerPrice": 58,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 193,
@@ -1541,7 +1541,7 @@
     "category": "Vegetables",
     "mrp": 850.5,
     "offerPrice": 35,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 194,
@@ -1549,7 +1549,7 @@
     "category": "Baby Items",
     "mrp": 666.21,
     "offerPrice": 447,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 195,
@@ -1557,7 +1557,7 @@
     "category": "Personal Care",
     "mrp": 864.88,
     "offerPrice": 297,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 196,
@@ -1565,7 +1565,7 @@
     "category": "Baby Items",
     "mrp": 971.92,
     "offerPrice": 143,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 197,
@@ -1573,7 +1573,7 @@
     "category": "Condiments & Spices",
     "mrp": 680.6,
     "offerPrice": 203,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 198,
@@ -1581,7 +1581,7 @@
     "category": "Fish & Seafood",
     "mrp": 908.99,
     "offerPrice": 343,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 199,
@@ -1589,7 +1589,7 @@
     "category": "Fish & Seafood",
     "mrp": 773.09,
     "offerPrice": 421,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 200,
@@ -1597,7 +1597,7 @@
     "category": "Pet Care",
     "mrp": 717.4,
     "offerPrice": 230,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 201,
@@ -1605,7 +1605,7 @@
     "category": "Vegetables",
     "mrp": 551.73,
     "offerPrice": 104,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 202,
@@ -1613,7 +1613,7 @@
     "category": "Vegetables",
     "mrp": 963.28,
     "offerPrice": 324,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 203,
@@ -1621,7 +1621,7 @@
     "category": "Meat",
     "mrp": 969.6,
     "offerPrice": 125,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 204,
@@ -1629,7 +1629,7 @@
     "category": "Pet Care",
     "mrp": 535.62,
     "offerPrice": 67,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 205,
@@ -1637,7 +1637,7 @@
     "category": "Health Care",
     "mrp": 808.34,
     "offerPrice": 335,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 206,
@@ -1645,7 +1645,7 @@
     "category": "Condiments & Spices",
     "mrp": 890.39,
     "offerPrice": 34,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 207,
@@ -1653,7 +1653,7 @@
     "category": "Baking",
     "mrp": 505.42,
     "offerPrice": 43,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 208,
@@ -1661,7 +1661,7 @@
     "category": "Beverages",
     "mrp": 855.34,
     "offerPrice": 55,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 209,
@@ -1669,7 +1669,7 @@
     "category": "Fruits",
     "mrp": 507.02,
     "offerPrice": 192,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 210,
@@ -1677,7 +1677,7 @@
     "category": "Health Care",
     "mrp": 905.94,
     "offerPrice": 275,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 211,
@@ -1685,7 +1685,7 @@
     "category": "Household & Cleaning Supplies",
     "mrp": 683.96,
     "offerPrice": 387,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 212,
@@ -1693,7 +1693,7 @@
     "category": "Personal Care",
     "mrp": 830.45,
     "offerPrice": 381,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 213,
@@ -1701,7 +1701,7 @@
     "category": "Health Care",
     "mrp": 786.34,
     "offerPrice": 299,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 214,
@@ -1709,7 +1709,7 @@
     "category": "Condiments & Spices",
     "mrp": 824.57,
     "offerPrice": 345,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 215,
@@ -1717,7 +1717,7 @@
     "category": "Deli",
     "mrp": 698.19,
     "offerPrice": 334,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 216,
@@ -1725,7 +1725,7 @@
     "category": "Health Care",
     "mrp": 735.82,
     "offerPrice": 274,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 217,
@@ -1733,7 +1733,7 @@
     "category": "Condiments & Spices",
     "mrp": 535.12,
     "offerPrice": 354,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 218,
@@ -1741,7 +1741,7 @@
     "category": "Dairy",
     "mrp": 538.85,
     "offerPrice": 94,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 219,
@@ -1749,7 +1749,7 @@
     "category": "Dairy",
     "mrp": 560.51,
     "offerPrice": 110,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 220,
@@ -1757,7 +1757,7 @@
     "category": "Bread & Bakery",
     "mrp": 830.41,
     "offerPrice": 204,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 221,
@@ -1765,7 +1765,7 @@
     "category": "Deli",
     "mrp": 654.37,
     "offerPrice": 28,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 222,
@@ -1773,7 +1773,7 @@
     "category": "Dairy",
     "mrp": 986.47,
     "offerPrice": 330,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 223,
@@ -1781,7 +1781,7 @@
     "category": "Canned Goods",
     "mrp": 644.25,
     "offerPrice": 18,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 224,
@@ -1789,7 +1789,7 @@
     "category": "Household & Cleaning Supplies",
     "mrp": 903.28,
     "offerPrice": 477,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 225,
@@ -1797,7 +1797,7 @@
     "category": "Personal Care",
     "mrp": 820.7,
     "offerPrice": 39,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 226,
@@ -1805,7 +1805,7 @@
     "category": "Fruits",
     "mrp": 814.56,
     "offerPrice": 120,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 227,
@@ -1813,7 +1813,7 @@
     "category": "Meat",
     "mrp": 683.24,
     "offerPrice": 452,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 228,
@@ -1821,7 +1821,7 @@
     "category": "Fish & Seafood",
     "mrp": 569.18,
     "offerPrice": 376,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 229,
@@ -1829,7 +1829,7 @@
     "category": "Bread & Bakery",
     "mrp": 916.92,
     "offerPrice": 437,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 230,
@@ -1837,7 +1837,7 @@
     "category": "Snacks",
     "mrp": 842.95,
     "offerPrice": 149,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 231,
@@ -1845,7 +1845,7 @@
     "category": "Frozen Foods",
     "mrp": 792.99,
     "offerPrice": 129,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 232,
@@ -1853,7 +1853,7 @@
     "category": "Bread & Bakery",
     "mrp": 624.38,
     "offerPrice": 90,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 233,
@@ -1861,7 +1861,7 @@
     "category": "Baking",
     "mrp": 875.82,
     "offerPrice": 437,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 234,
@@ -1869,7 +1869,7 @@
     "category": "Vegetables",
     "mrp": 989.76,
     "offerPrice": 224,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 235,
@@ -1877,7 +1877,7 @@
     "category": "Baking",
     "mrp": 689.17,
     "offerPrice": 301,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 236,
@@ -1885,7 +1885,7 @@
     "category": "Health Care",
     "mrp": 706.2,
     "offerPrice": 125,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 237,
@@ -1893,7 +1893,7 @@
     "category": "Fruits",
     "mrp": 551.23,
     "offerPrice": 390,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 238,
@@ -1901,7 +1901,7 @@
     "category": "Baking",
     "mrp": 684.35,
     "offerPrice": 215,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 239,
@@ -1909,7 +1909,7 @@
     "category": "Personal Care",
     "mrp": 531.88,
     "offerPrice": 67,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 240,
@@ -1917,7 +1917,7 @@
     "category": "Deli",
     "mrp": 870.87,
     "offerPrice": 55,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 241,
@@ -1925,7 +1925,7 @@
     "category": "Snacks",
     "mrp": 743.58,
     "offerPrice": 197,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 242,
@@ -1933,7 +1933,7 @@
     "category": "Beverages",
     "mrp": 836.52,
     "offerPrice": 277,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 243,
@@ -1941,7 +1941,7 @@
     "category": "Pet Care",
     "mrp": 780.19,
     "offerPrice": 92,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 244,
@@ -1949,7 +1949,7 @@
     "category": "Canned Goods",
     "mrp": 558.31,
     "offerPrice": 327,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 245,
@@ -1957,7 +1957,7 @@
     "category": "Snacks",
     "mrp": 851.49,
     "offerPrice": 333,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 246,
@@ -1965,7 +1965,7 @@
     "category": "Vegetables",
     "mrp": 740.86,
     "offerPrice": 379,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 247,
@@ -1973,7 +1973,7 @@
     "category": "Dairy",
     "mrp": 993.51,
     "offerPrice": 464,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 248,
@@ -1981,7 +1981,7 @@
     "category": "Bread & Bakery",
     "mrp": 684.57,
     "offerPrice": 189,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 249,
@@ -1989,7 +1989,7 @@
     "category": "Fish & Seafood",
     "mrp": 803.81,
     "offerPrice": 421,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 250,
@@ -1997,7 +1997,7 @@
     "category": "Condiments & Spices",
     "mrp": 604.45,
     "offerPrice": 126,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 251,
@@ -2005,7 +2005,7 @@
     "category": "Vegetables",
     "mrp": 708.18,
     "offerPrice": 355,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 252,
@@ -2013,7 +2013,7 @@
     "category": "Condiments & Spices",
     "mrp": 795.4,
     "offerPrice": 179,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 253,
@@ -2021,7 +2021,7 @@
     "category": "Fish & Seafood",
     "mrp": 962.93,
     "offerPrice": 426,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 254,
@@ -2029,7 +2029,7 @@
     "category": "Baking",
     "mrp": 898.99,
     "offerPrice": 36,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 255,
@@ -2037,7 +2037,7 @@
     "category": "Beverages",
     "mrp": 760.18,
     "offerPrice": 179,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 256,
@@ -2045,7 +2045,7 @@
     "category": "Pet Care",
     "mrp": 612.25,
     "offerPrice": 455,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 257,
@@ -2053,7 +2053,7 @@
     "category": "Dairy",
     "mrp": 842.34,
     "offerPrice": 460,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 258,
@@ -2061,7 +2061,7 @@
     "category": "Pet Care",
     "mrp": 791.25,
     "offerPrice": 410,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 259,
@@ -2069,7 +2069,7 @@
     "category": "Personal Care",
     "mrp": 951.4,
     "offerPrice": 243,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 260,
@@ -2077,7 +2077,7 @@
     "category": "Fruits",
     "mrp": 520.82,
     "offerPrice": 437,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 261,
@@ -2085,7 +2085,7 @@
     "category": "Frozen Foods",
     "mrp": 665.67,
     "offerPrice": 274,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 262,
@@ -2093,7 +2093,7 @@
     "category": "Snacks",
     "mrp": 802.0,
     "offerPrice": 101,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 263,
@@ -2101,7 +2101,7 @@
     "category": "Bread & Bakery",
     "mrp": 577.14,
     "offerPrice": 16,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 264,
@@ -2109,7 +2109,7 @@
     "category": "Bread & Bakery",
     "mrp": 758.9,
     "offerPrice": 50,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 265,
@@ -2117,7 +2117,7 @@
     "category": "Baby Items",
     "mrp": 943.22,
     "offerPrice": 396,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 266,
@@ -2125,7 +2125,7 @@
     "category": "Condiments & Spices",
     "mrp": 957.4,
     "offerPrice": 231,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 267,
@@ -2133,7 +2133,7 @@
     "category": "Beverages",
     "mrp": 655.56,
     "offerPrice": 385,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 268,
@@ -2141,7 +2141,7 @@
     "category": "Baby Items",
     "mrp": 750.94,
     "offerPrice": 304,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 269,
@@ -2149,7 +2149,7 @@
     "category": "Baby Items",
     "mrp": 560.46,
     "offerPrice": 371,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 270,
@@ -2157,7 +2157,7 @@
     "category": "Canned Goods",
     "mrp": 757.29,
     "offerPrice": 54,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 271,
@@ -2165,7 +2165,7 @@
     "category": "Baking",
     "mrp": 902.32,
     "offerPrice": 17,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 272,
@@ -2173,7 +2173,7 @@
     "category": "Bread & Bakery",
     "mrp": 897.87,
     "offerPrice": 367,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 273,
@@ -2181,7 +2181,7 @@
     "category": "Baking",
     "mrp": 937.82,
     "offerPrice": 67,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 274,
@@ -2189,7 +2189,7 @@
     "category": "Pasta, Rice & Cereal",
     "mrp": 681.62,
     "offerPrice": 275,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 275,
@@ -2197,7 +2197,7 @@
     "category": "Snacks",
     "mrp": 941.59,
     "offerPrice": 261,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 276,
@@ -2205,7 +2205,7 @@
     "category": "Fruits",
     "mrp": 762.97,
     "offerPrice": 466,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 277,
@@ -2213,7 +2213,7 @@
     "category": "Fruits",
     "mrp": 800.45,
     "offerPrice": 492,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 278,
@@ -2221,7 +2221,7 @@
     "category": "Baking",
     "mrp": 658.53,
     "offerPrice": 195,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 279,
@@ -2229,7 +2229,7 @@
     "category": "Canned Goods",
     "mrp": 646.33,
     "offerPrice": 66,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 280,
@@ -2237,7 +2237,7 @@
     "category": "Personal Care",
     "mrp": 921.61,
     "offerPrice": 96,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 281,
@@ -2245,7 +2245,7 @@
     "category": "Canned Goods",
     "mrp": 991.28,
     "offerPrice": 139,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 282,
@@ -2253,7 +2253,7 @@
     "category": "Canned Goods",
     "mrp": 953.3,
     "offerPrice": 157,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 283,
@@ -2261,7 +2261,7 @@
     "category": "Deli",
     "mrp": 690.86,
     "offerPrice": 301,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 284,
@@ -2269,7 +2269,7 @@
     "category": "Fruits",
     "mrp": 788.68,
     "offerPrice": 199,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 285,
@@ -2277,7 +2277,7 @@
     "category": "Dairy",
     "mrp": 786.77,
     "offerPrice": 237,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 286,
@@ -2285,7 +2285,7 @@
     "category": "Frozen Foods",
     "mrp": 730.54,
     "offerPrice": 311,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 287,
@@ -2293,7 +2293,7 @@
     "category": "Bread & Bakery",
     "mrp": 686.06,
     "offerPrice": 239,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 288,
@@ -2301,7 +2301,7 @@
     "category": "Deli",
     "mrp": 891.13,
     "offerPrice": 167,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 289,
@@ -2309,7 +2309,7 @@
     "category": "Pet Care",
     "mrp": 947.7,
     "offerPrice": 406,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 290,
@@ -2317,7 +2317,7 @@
     "category": "Meat",
     "mrp": 578.01,
     "offerPrice": 466,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 291,
@@ -2325,7 +2325,7 @@
     "category": "Snacks",
     "mrp": 768.9,
     "offerPrice": 365,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 292,
@@ -2333,7 +2333,7 @@
     "category": "Personal Care",
     "mrp": 923.19,
     "offerPrice": 57,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 293,
@@ -2341,7 +2341,7 @@
     "category": "Household & Cleaning Supplies",
     "mrp": 884.5,
     "offerPrice": 223,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 294,
@@ -2349,7 +2349,7 @@
     "category": "Household & Cleaning Supplies",
     "mrp": 785.76,
     "offerPrice": 322,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 295,
@@ -2357,7 +2357,7 @@
     "category": "Household & Cleaning Supplies",
     "mrp": 769.92,
     "offerPrice": 88,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 296,
@@ -2365,7 +2365,7 @@
     "category": "Pasta, Rice & Cereal",
     "mrp": 912.97,
     "offerPrice": 177,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 297,
@@ -2373,7 +2373,7 @@
     "category": "Fish & Seafood",
     "mrp": 714.69,
     "offerPrice": 468,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 298,
@@ -2381,7 +2381,7 @@
     "category": "Dairy",
     "mrp": 728.15,
     "offerPrice": 84,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 299,
@@ -2389,7 +2389,7 @@
     "category": "Pasta, Rice & Cereal",
     "mrp": 895.08,
     "offerPrice": 90,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 300,
@@ -2397,7 +2397,7 @@
     "category": "Pet Care",
     "mrp": 550.73,
     "offerPrice": 461,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 301,
@@ -2405,7 +2405,7 @@
     "category": "Baby Items",
     "mrp": 587.48,
     "offerPrice": 244,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 302,
@@ -2413,7 +2413,7 @@
     "category": "Fruits",
     "mrp": 819.08,
     "offerPrice": 361,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 303,
@@ -2421,7 +2421,7 @@
     "category": "Meat",
     "mrp": 807.78,
     "offerPrice": 1,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 304,
@@ -2429,7 +2429,7 @@
     "category": "Dairy",
     "mrp": 805.27,
     "offerPrice": 145,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 305,
@@ -2437,7 +2437,7 @@
     "category": "Beverages",
     "mrp": 979.56,
     "offerPrice": 233,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 306,
@@ -2445,7 +2445,7 @@
     "category": "Fruits",
     "mrp": 629.17,
     "offerPrice": 379,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 307,
@@ -2453,7 +2453,7 @@
     "category": "Pet Care",
     "mrp": 675.41,
     "offerPrice": 404,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 308,
@@ -2461,7 +2461,7 @@
     "category": "Snacks",
     "mrp": 918.46,
     "offerPrice": 131,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 309,
@@ -2469,7 +2469,7 @@
     "category": "Fruits",
     "mrp": 646.5,
     "offerPrice": 405,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 310,
@@ -2477,7 +2477,7 @@
     "category": "Pasta, Rice & Cereal",
     "mrp": 869.39,
     "offerPrice": 435,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 311,
@@ -2485,7 +2485,7 @@
     "category": "Deli",
     "mrp": 608.96,
     "offerPrice": 292,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 312,
@@ -2493,7 +2493,7 @@
     "category": "Bread & Bakery",
     "mrp": 972.67,
     "offerPrice": 197,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 313,
@@ -2501,7 +2501,7 @@
     "category": "Baby Items",
     "mrp": 814.31,
     "offerPrice": 449,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 314,
@@ -2509,7 +2509,7 @@
     "category": "Pasta, Rice & Cereal",
     "mrp": 697.98,
     "offerPrice": 194,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 315,
@@ -2517,7 +2517,7 @@
     "category": "Canned Goods",
     "mrp": 613.83,
     "offerPrice": 472,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 316,
@@ -2525,7 +2525,7 @@
     "category": "Pasta, Rice & Cereal",
     "mrp": 831.91,
     "offerPrice": 211,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 317,
@@ -2533,7 +2533,7 @@
     "category": "Baking",
     "mrp": 741.55,
     "offerPrice": 285,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 318,
@@ -2541,7 +2541,7 @@
     "category": "Baby Items",
     "mrp": 735.14,
     "offerPrice": 224,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 319,
@@ -2549,7 +2549,7 @@
     "category": "Meat",
     "mrp": 798.34,
     "offerPrice": 218,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 320,
@@ -2557,7 +2557,7 @@
     "category": "Personal Care",
     "mrp": 662.52,
     "offerPrice": 89,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 321,
@@ -2565,7 +2565,7 @@
     "category": "Meat",
     "mrp": 709.45,
     "offerPrice": 449,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 322,
@@ -2573,7 +2573,7 @@
     "category": "Meat",
     "mrp": 758.8,
     "offerPrice": 488,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 323,
@@ -2581,7 +2581,7 @@
     "category": "Personal Care",
     "mrp": 936.96,
     "offerPrice": 39,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 324,
@@ -2589,7 +2589,7 @@
     "category": "Household & Cleaning Supplies",
     "mrp": 817.89,
     "offerPrice": 271,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 325,
@@ -2597,7 +2597,7 @@
     "category": "Condiments & Spices",
     "mrp": 511.52,
     "offerPrice": 96,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 326,
@@ -2605,7 +2605,7 @@
     "category": "Fruits",
     "mrp": 770.0,
     "offerPrice": 38,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 327,
@@ -2613,7 +2613,7 @@
     "category": "Snacks",
     "mrp": 963.08,
     "offerPrice": 492,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 328,
@@ -2621,7 +2621,7 @@
     "category": "Health Care",
     "mrp": 500.16,
     "offerPrice": 376,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 329,
@@ -2629,7 +2629,7 @@
     "category": "Deli",
     "mrp": 919.49,
     "offerPrice": 14,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 330,
@@ -2637,7 +2637,7 @@
     "category": "Pasta, Rice & Cereal",
     "mrp": 663.57,
     "offerPrice": 337,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 331,
@@ -2645,7 +2645,7 @@
     "category": "Pet Care",
     "mrp": 710.8,
     "offerPrice": 14,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 332,
@@ -2653,7 +2653,7 @@
     "category": "Dairy",
     "mrp": 768.59,
     "offerPrice": 239,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 333,
@@ -2661,7 +2661,7 @@
     "category": "Pasta, Rice & Cereal",
     "mrp": 989.66,
     "offerPrice": 328,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 334,
@@ -2669,7 +2669,7 @@
     "category": "Health Care",
     "mrp": 563.93,
     "offerPrice": 257,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 335,
@@ -2677,7 +2677,7 @@
     "category": "Baby Items",
     "mrp": 988.4,
     "offerPrice": 124,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 336,
@@ -2685,7 +2685,7 @@
     "category": "Baby Items",
     "mrp": 718.53,
     "offerPrice": 177,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 337,
@@ -2693,7 +2693,7 @@
     "category": "Dairy",
     "mrp": 614.13,
     "offerPrice": 215,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 338,
@@ -2701,7 +2701,7 @@
     "category": "Pasta, Rice & Cereal",
     "mrp": 592.05,
     "offerPrice": 361,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 339,
@@ -2709,7 +2709,7 @@
     "category": "Fruits",
     "mrp": 563.89,
     "offerPrice": 305,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 340,
@@ -2717,7 +2717,7 @@
     "category": "Health Care",
     "mrp": 882.22,
     "offerPrice": 47,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 341,
@@ -2725,7 +2725,7 @@
     "category": "Household & Cleaning Supplies",
     "mrp": 584.75,
     "offerPrice": 244,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 342,
@@ -2733,7 +2733,7 @@
     "category": "Health Care",
     "mrp": 993.19,
     "offerPrice": 168,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 343,
@@ -2741,7 +2741,7 @@
     "category": "Beverages",
     "mrp": 548.97,
     "offerPrice": 291,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 344,
@@ -2749,7 +2749,7 @@
     "category": "Pasta, Rice & Cereal",
     "mrp": 743.62,
     "offerPrice": 448,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 345,
@@ -2757,7 +2757,7 @@
     "category": "Health Care",
     "mrp": 964.8,
     "offerPrice": 2,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 346,
@@ -2765,7 +2765,7 @@
     "category": "Fish & Seafood",
     "mrp": 791.0,
     "offerPrice": 272,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 347,
@@ -2773,7 +2773,7 @@
     "category": "Personal Care",
     "mrp": 948.99,
     "offerPrice": 488,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 348,
@@ -2781,7 +2781,7 @@
     "category": "Dairy",
     "mrp": 985.17,
     "offerPrice": 292,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 349,
@@ -2789,7 +2789,7 @@
     "category": "Household & Cleaning Supplies",
     "mrp": 707.97,
     "offerPrice": 93,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 350,
@@ -2797,7 +2797,7 @@
     "category": "Household & Cleaning Supplies",
     "mrp": 617.65,
     "offerPrice": 412,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 351,
@@ -2805,7 +2805,7 @@
     "category": "Pasta, Rice & Cereal",
     "mrp": 814.83,
     "offerPrice": 346,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 352,
@@ -2813,7 +2813,7 @@
     "category": "Health Care",
     "mrp": 941.23,
     "offerPrice": 9,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 353,
@@ -2821,7 +2821,7 @@
     "category": "Beverages",
     "mrp": 944.14,
     "offerPrice": 496,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 354,
@@ -2829,7 +2829,7 @@
     "category": "Health Care",
     "mrp": 728.46,
     "offerPrice": 312,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 355,
@@ -2837,7 +2837,7 @@
     "category": "Bread & Bakery",
     "mrp": 766.43,
     "offerPrice": 389,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 356,
@@ -2845,7 +2845,7 @@
     "category": "Pet Care",
     "mrp": 706.29,
     "offerPrice": 242,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 357,
@@ -2853,7 +2853,7 @@
     "category": "Pet Care",
     "mrp": 916.39,
     "offerPrice": 162,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 358,
@@ -2861,7 +2861,7 @@
     "category": "Canned Goods",
     "mrp": 751.13,
     "offerPrice": 369,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 359,
@@ -2869,7 +2869,7 @@
     "category": "Deli",
     "mrp": 837.14,
     "offerPrice": 444,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 360,
@@ -2877,7 +2877,7 @@
     "category": "Dairy",
     "mrp": 798.91,
     "offerPrice": 303,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 361,
@@ -2885,7 +2885,7 @@
     "category": "Baby Items",
     "mrp": 794.27,
     "offerPrice": 259,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 362,
@@ -2893,7 +2893,7 @@
     "category": "Pasta, Rice & Cereal",
     "mrp": 782.87,
     "offerPrice": 49,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 363,
@@ -2901,7 +2901,7 @@
     "category": "Vegetables",
     "mrp": 536.87,
     "offerPrice": 51,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 364,
@@ -2909,7 +2909,7 @@
     "category": "Household & Cleaning Supplies",
     "mrp": 755.17,
     "offerPrice": 449,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 365,
@@ -2917,7 +2917,7 @@
     "category": "Health Care",
     "mrp": 619.1,
     "offerPrice": 350,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 366,
@@ -2925,7 +2925,7 @@
     "category": "Beverages",
     "mrp": 756.38,
     "offerPrice": 453,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 367,
@@ -2933,7 +2933,7 @@
     "category": "Baby Items",
     "mrp": 615.72,
     "offerPrice": 128,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 368,
@@ -2941,7 +2941,7 @@
     "category": "Household & Cleaning Supplies",
     "mrp": 753.05,
     "offerPrice": 486,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 369,
@@ -2949,7 +2949,7 @@
     "category": "Deli",
     "mrp": 646.27,
     "offerPrice": 249,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 370,
@@ -2957,7 +2957,7 @@
     "category": "Meat",
     "mrp": 681.0,
     "offerPrice": 251,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 371,
@@ -2965,7 +2965,7 @@
     "category": "Baking",
     "mrp": 692.06,
     "offerPrice": 52,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 372,
@@ -2973,7 +2973,7 @@
     "category": "Fish & Seafood",
     "mrp": 793.48,
     "offerPrice": 493,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 373,
@@ -2981,7 +2981,7 @@
     "category": "Frozen Foods",
     "mrp": 527.33,
     "offerPrice": 362,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 374,
@@ -2989,7 +2989,7 @@
     "category": "Canned Goods",
     "mrp": 582.28,
     "offerPrice": 367,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 375,
@@ -2997,7 +2997,7 @@
     "category": "Deli",
     "mrp": 995.83,
     "offerPrice": 378,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 376,
@@ -3005,7 +3005,7 @@
     "category": "Condiments & Spices",
     "mrp": 504.85,
     "offerPrice": 13,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 377,
@@ -3013,7 +3013,7 @@
     "category": "Personal Care",
     "mrp": 641.69,
     "offerPrice": 430,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 378,
@@ -3021,7 +3021,7 @@
     "category": "Deli",
     "mrp": 958.64,
     "offerPrice": 313,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 379,
@@ -3029,7 +3029,7 @@
     "category": "Deli",
     "mrp": 833.67,
     "offerPrice": 171,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 380,
@@ -3037,7 +3037,7 @@
     "category": "Baby Items",
     "mrp": 662.83,
     "offerPrice": 30,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 381,
@@ -3045,7 +3045,7 @@
     "category": "Beverages",
     "mrp": 939.69,
     "offerPrice": 362,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 382,
@@ -3053,7 +3053,7 @@
     "category": "Snacks",
     "mrp": 649.67,
     "offerPrice": 62,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 383,
@@ -3061,7 +3061,7 @@
     "category": "Pasta, Rice & Cereal",
     "mrp": 637.18,
     "offerPrice": 397,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 384,
@@ -3069,7 +3069,7 @@
     "category": "Fruits",
     "mrp": 848.26,
     "offerPrice": 210,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 385,
@@ -3077,7 +3077,7 @@
     "category": "Fruits",
     "mrp": 841.73,
     "offerPrice": 394,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 386,
@@ -3085,7 +3085,7 @@
     "category": "Household & Cleaning Supplies",
     "mrp": 952.66,
     "offerPrice": 349,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 387,
@@ -3093,7 +3093,7 @@
     "category": "Condiments & Spices",
     "mrp": 787.96,
     "offerPrice": 500,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 388,
@@ -3101,7 +3101,7 @@
     "category": "Bread & Bakery",
     "mrp": 603.3,
     "offerPrice": 225,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 389,
@@ -3109,7 +3109,7 @@
     "category": "Pasta, Rice & Cereal",
     "mrp": 542.59,
     "offerPrice": 286,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 390,
@@ -3117,7 +3117,7 @@
     "category": "Meat",
     "mrp": 705.12,
     "offerPrice": 358,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 391,
@@ -3125,7 +3125,7 @@
     "category": "Household & Cleaning Supplies",
     "mrp": 782.39,
     "offerPrice": 450,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 392,
@@ -3133,7 +3133,7 @@
     "category": "Fish & Seafood",
     "mrp": 966.54,
     "offerPrice": 79,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 393,
@@ -3141,7 +3141,7 @@
     "category": "Canned Goods",
     "mrp": 922.91,
     "offerPrice": 495,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 394,
@@ -3149,7 +3149,7 @@
     "category": "Dairy",
     "mrp": 561.62,
     "offerPrice": 462,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 395,
@@ -3157,7 +3157,7 @@
     "category": "Deli",
     "mrp": 540.52,
     "offerPrice": 314,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 396,
@@ -3165,7 +3165,7 @@
     "category": "Pasta, Rice & Cereal",
     "mrp": 665.76,
     "offerPrice": 467,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 397,
@@ -3173,7 +3173,7 @@
     "category": "Health Care",
     "mrp": 771.33,
     "offerPrice": 406,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 398,
@@ -3181,7 +3181,7 @@
     "category": "Condiments & Spices",
     "mrp": 974.28,
     "offerPrice": 200,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 399,
@@ -3189,7 +3189,7 @@
     "category": "Condiments & Spices",
     "mrp": 616.02,
     "offerPrice": 247,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 400,
@@ -3197,7 +3197,7 @@
     "category": "Baking",
     "mrp": 989.27,
     "offerPrice": 401,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 401,
@@ -3205,7 +3205,7 @@
     "category": "Deli",
     "mrp": 640.19,
     "offerPrice": 351,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 402,
@@ -3213,7 +3213,7 @@
     "category": "Pasta, Rice & Cereal",
     "mrp": 936.71,
     "offerPrice": 76,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 403,
@@ -3221,7 +3221,7 @@
     "category": "Personal Care",
     "mrp": 809.0,
     "offerPrice": 157,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 404,
@@ -3229,7 +3229,7 @@
     "category": "Condiments & Spices",
     "mrp": 971.82,
     "offerPrice": 197,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 405,
@@ -3237,7 +3237,7 @@
     "category": "Condiments & Spices",
     "mrp": 511.65,
     "offerPrice": 444,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 406,
@@ -3245,7 +3245,7 @@
     "category": "Household & Cleaning Supplies",
     "mrp": 650.93,
     "offerPrice": 99,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 407,
@@ -3253,7 +3253,7 @@
     "category": "Baking",
     "mrp": 761.55,
     "offerPrice": 244,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 408,
@@ -3261,7 +3261,7 @@
     "category": "Health Care",
     "mrp": 650.91,
     "offerPrice": 207,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 409,
@@ -3269,7 +3269,7 @@
     "category": "Fish & Seafood",
     "mrp": 580.15,
     "offerPrice": 108,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 410,
@@ -3277,7 +3277,7 @@
     "category": "Bread & Bakery",
     "mrp": 912.37,
     "offerPrice": 122,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 411,
@@ -3285,7 +3285,7 @@
     "category": "Fish & Seafood",
     "mrp": 535.3,
     "offerPrice": 96,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 412,
@@ -3293,7 +3293,7 @@
     "category": "Snacks",
     "mrp": 792.56,
     "offerPrice": 186,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 413,
@@ -3301,7 +3301,7 @@
     "category": "Frozen Foods",
     "mrp": 746.02,
     "offerPrice": 57,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 414,
@@ -3309,7 +3309,7 @@
     "category": "Meat",
     "mrp": 913.49,
     "offerPrice": 150,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 415,
@@ -3317,7 +3317,7 @@
     "category": "Pasta, Rice & Cereal",
     "mrp": 901.88,
     "offerPrice": 318,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 416,
@@ -3325,7 +3325,7 @@
     "category": "Personal Care",
     "mrp": 772.99,
     "offerPrice": 481,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 417,
@@ -3333,7 +3333,7 @@
     "category": "Vegetables",
     "mrp": 520.96,
     "offerPrice": 51,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 418,
@@ -3341,7 +3341,7 @@
     "category": "Fruits",
     "mrp": 857.75,
     "offerPrice": 360,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 419,
@@ -3349,7 +3349,7 @@
     "category": "Vegetables",
     "mrp": 891.35,
     "offerPrice": 487,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 420,
@@ -3357,7 +3357,7 @@
     "category": "Personal Care",
     "mrp": 815.94,
     "offerPrice": 364,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 421,
@@ -3365,7 +3365,7 @@
     "category": "Beverages",
     "mrp": 971.05,
     "offerPrice": 182,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 422,
@@ -3373,7 +3373,7 @@
     "category": "Condiments & Spices",
     "mrp": 551.57,
     "offerPrice": 218,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 423,
@@ -3381,7 +3381,7 @@
     "category": "Bread & Bakery",
     "mrp": 643.62,
     "offerPrice": 279,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 424,
@@ -3389,7 +3389,7 @@
     "category": "Pasta, Rice & Cereal",
     "mrp": 907.3,
     "offerPrice": 287,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 425,
@@ -3397,7 +3397,7 @@
     "category": "Pet Care",
     "mrp": 587.16,
     "offerPrice": 204,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 426,
@@ -3405,7 +3405,7 @@
     "category": "Household & Cleaning Supplies",
     "mrp": 734.41,
     "offerPrice": 306,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 427,
@@ -3413,7 +3413,7 @@
     "category": "Deli",
     "mrp": 933.92,
     "offerPrice": 350,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 428,
@@ -3421,7 +3421,7 @@
     "category": "Dairy",
     "mrp": 682.09,
     "offerPrice": 97,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 429,
@@ -3429,7 +3429,7 @@
     "category": "Pasta, Rice & Cereal",
     "mrp": 585.62,
     "offerPrice": 480,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 430,
@@ -3437,7 +3437,7 @@
     "category": "Baking",
     "mrp": 721.61,
     "offerPrice": 429,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 431,
@@ -3445,7 +3445,7 @@
     "category": "Household & Cleaning Supplies",
     "mrp": 802.56,
     "offerPrice": 214,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 432,
@@ -3453,7 +3453,7 @@
     "category": "Condiments & Spices",
     "mrp": 545.52,
     "offerPrice": 445,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 433,
@@ -3461,7 +3461,7 @@
     "category": "Baking",
     "mrp": 606.39,
     "offerPrice": 461,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 434,
@@ -3469,7 +3469,7 @@
     "category": "Household & Cleaning Supplies",
     "mrp": 694.09,
     "offerPrice": 305,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 435,
@@ -3477,7 +3477,7 @@
     "category": "Fish & Seafood",
     "mrp": 671.04,
     "offerPrice": 297,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 436,
@@ -3485,7 +3485,7 @@
     "category": "Vegetables",
     "mrp": 666.68,
     "offerPrice": 156,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 437,
@@ -3493,7 +3493,7 @@
     "category": "Deli",
     "mrp": 932.7,
     "offerPrice": 336,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 438,
@@ -3501,7 +3501,7 @@
     "category": "Dairy",
     "mrp": 751.52,
     "offerPrice": 31,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 439,
@@ -3509,7 +3509,7 @@
     "category": "Deli",
     "mrp": 873.51,
     "offerPrice": 327,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 440,
@@ -3517,7 +3517,7 @@
     "category": "Bread & Bakery",
     "mrp": 944.22,
     "offerPrice": 9,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 441,
@@ -3525,7 +3525,7 @@
     "category": "Condiments & Spices",
     "mrp": 998.6,
     "offerPrice": 208,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 442,
@@ -3533,7 +3533,7 @@
     "category": "Personal Care",
     "mrp": 826.45,
     "offerPrice": 190,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 443,
@@ -3541,7 +3541,7 @@
     "category": "Baby Items",
     "mrp": 790.25,
     "offerPrice": 81,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 444,
@@ -3549,7 +3549,7 @@
     "category": "Bread & Bakery",
     "mrp": 632.46,
     "offerPrice": 196,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 445,
@@ -3557,7 +3557,7 @@
     "category": "Vegetables",
     "mrp": 966.13,
     "offerPrice": 15,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 446,
@@ -3565,7 +3565,7 @@
     "category": "Personal Care",
     "mrp": 910.37,
     "offerPrice": 420,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 447,
@@ -3573,7 +3573,7 @@
     "category": "Canned Goods",
     "mrp": 623.14,
     "offerPrice": 151,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 448,
@@ -3581,7 +3581,7 @@
     "category": "Condiments & Spices",
     "mrp": 770.33,
     "offerPrice": 143,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 449,
@@ -3589,7 +3589,7 @@
     "category": "Health Care",
     "mrp": 891.0,
     "offerPrice": 351,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 450,
@@ -3597,7 +3597,7 @@
     "category": "Baking",
     "mrp": 631.62,
     "offerPrice": 215,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 451,
@@ -3605,7 +3605,7 @@
     "category": "Meat",
     "mrp": 624.3,
     "offerPrice": 85,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 452,
@@ -3613,7 +3613,7 @@
     "category": "Pet Care",
     "mrp": 925.45,
     "offerPrice": 67,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 453,
@@ -3621,7 +3621,7 @@
     "category": "Health Care",
     "mrp": 928.02,
     "offerPrice": 313,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 454,
@@ -3629,7 +3629,7 @@
     "category": "Health Care",
     "mrp": 601.58,
     "offerPrice": 224,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 455,
@@ -3637,7 +3637,7 @@
     "category": "Pet Care",
     "mrp": 502.64,
     "offerPrice": 242,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 456,
@@ -3645,7 +3645,7 @@
     "category": "Dairy",
     "mrp": 598.59,
     "offerPrice": 45,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 457,
@@ -3653,7 +3653,7 @@
     "category": "Vegetables",
     "mrp": 678.46,
     "offerPrice": 387,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 458,
@@ -3661,7 +3661,7 @@
     "category": "Fruits",
     "mrp": 670.91,
     "offerPrice": 160,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 459,
@@ -3669,7 +3669,7 @@
     "category": "Fish & Seafood",
     "mrp": 707.29,
     "offerPrice": 381,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 460,
@@ -3677,7 +3677,7 @@
     "category": "Household & Cleaning Supplies",
     "mrp": 538.7,
     "offerPrice": 226,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 461,
@@ -3685,7 +3685,7 @@
     "category": "Health Care",
     "mrp": 543.06,
     "offerPrice": 121,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 462,
@@ -3693,7 +3693,7 @@
     "category": "Frozen Foods",
     "mrp": 668.71,
     "offerPrice": 165,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 463,
@@ -3701,7 +3701,7 @@
     "category": "Meat",
     "mrp": 951.08,
     "offerPrice": 332,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 464,
@@ -3709,7 +3709,7 @@
     "category": "Household & Cleaning Supplies",
     "mrp": 663.75,
     "offerPrice": 270,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 465,
@@ -3717,7 +3717,7 @@
     "category": "Deli",
     "mrp": 881.15,
     "offerPrice": 64,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 466,
@@ -3725,7 +3725,7 @@
     "category": "Frozen Foods",
     "mrp": 722.45,
     "offerPrice": 120,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 467,
@@ -3733,7 +3733,7 @@
     "category": "Beverages",
     "mrp": 900.54,
     "offerPrice": 474,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 468,
@@ -3741,7 +3741,7 @@
     "category": "Meat",
     "mrp": 565.05,
     "offerPrice": 230,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 469,
@@ -3749,7 +3749,7 @@
     "category": "Snacks",
     "mrp": 619.61,
     "offerPrice": 65,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 470,
@@ -3757,7 +3757,7 @@
     "category": "Household & Cleaning Supplies",
     "mrp": 925.44,
     "offerPrice": 334,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 471,
@@ -3765,7 +3765,7 @@
     "category": "Beverages",
     "mrp": 998.22,
     "offerPrice": 54,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 472,
@@ -3773,7 +3773,7 @@
     "category": "Baby Items",
     "mrp": 734.14,
     "offerPrice": 421,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 473,
@@ -3781,7 +3781,7 @@
     "category": "Deli",
     "mrp": 511.6,
     "offerPrice": 439,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 474,
@@ -3789,7 +3789,7 @@
     "category": "Personal Care",
     "mrp": 720.36,
     "offerPrice": 200,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 475,
@@ -3797,7 +3797,7 @@
     "category": "Pasta, Rice & Cereal",
     "mrp": 910.94,
     "offerPrice": 215,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 476,
@@ -3805,7 +3805,7 @@
     "category": "Beverages",
     "mrp": 594.45,
     "offerPrice": 264,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 477,
@@ -3813,7 +3813,7 @@
     "category": "Condiments & Spices",
     "mrp": 657.21,
     "offerPrice": 463,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 478,
@@ -3821,7 +3821,7 @@
     "category": "Dairy",
     "mrp": 718.31,
     "offerPrice": 77,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 479,
@@ -3829,7 +3829,7 @@
     "category": "Fish & Seafood",
     "mrp": 968.42,
     "offerPrice": 210,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 480,
@@ -3837,7 +3837,7 @@
     "category": "Baby Items",
     "mrp": 501.44,
     "offerPrice": 288,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 481,
@@ -3845,7 +3845,7 @@
     "category": "Pet Care",
     "mrp": 640.1,
     "offerPrice": 464,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 482,
@@ -3853,7 +3853,7 @@
     "category": "Frozen Foods",
     "mrp": 725.71,
     "offerPrice": 237,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 483,
@@ -3861,7 +3861,7 @@
     "category": "Bread & Bakery",
     "mrp": 946.32,
     "offerPrice": 249,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 484,
@@ -3869,7 +3869,7 @@
     "category": "Dairy",
     "mrp": 558.71,
     "offerPrice": 115,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 485,
@@ -3877,7 +3877,7 @@
     "category": "Canned Goods",
     "mrp": 914.5,
     "offerPrice": 105,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 486,
@@ -3885,7 +3885,7 @@
     "category": "Health Care",
     "mrp": 683.71,
     "offerPrice": 449,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 487,
@@ -3893,7 +3893,7 @@
     "category": "Dairy",
     "mrp": 548.63,
     "offerPrice": 243,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 488,
@@ -3901,7 +3901,7 @@
     "category": "Fruits",
     "mrp": 554.55,
     "offerPrice": 489,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 489,
@@ -3909,7 +3909,7 @@
     "category": "Personal Care",
     "mrp": 837.21,
     "offerPrice": 175,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 490,
@@ -3917,7 +3917,7 @@
     "category": "Personal Care",
     "mrp": 993.95,
     "offerPrice": 404,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 491,
@@ -3925,7 +3925,7 @@
     "category": "Baby Items",
     "mrp": 860.64,
     "offerPrice": 343,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 492,
@@ -3933,7 +3933,7 @@
     "category": "Pasta, Rice & Cereal",
     "mrp": 754.56,
     "offerPrice": 51,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 493,
@@ -3941,7 +3941,7 @@
     "category": "Health Care",
     "mrp": 501.67,
     "offerPrice": 302,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 494,
@@ -3949,7 +3949,7 @@
     "category": "Meat",
     "mrp": 965.86,
     "offerPrice": 178,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 495,
@@ -3957,7 +3957,7 @@
     "category": "Baking",
     "mrp": 873.59,
     "offerPrice": 172,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   },
   {
     "id": 496,
@@ -3965,7 +3965,7 @@
     "category": "Bread & Bakery",
     "mrp": 529.72,
     "offerPrice": 490,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 497,
@@ -3973,7 +3973,7 @@
     "category": "Beverages",
     "mrp": 938.57,
     "offerPrice": 242,
-    "image": "http://dummyimage.com/64x64.png/5fa2dd/ffffff"
+    "image": "http://dummyimage.com/48x48.png/5fa2dd/ffffff"
   },
   {
     "id": 498,
@@ -3981,7 +3981,7 @@
     "category": "Meat",
     "mrp": 911.28,
     "offerPrice": 410,
-    "image": "http://dummyimage.com/64x64.png/ff4444/ffffff"
+    "image": "http://dummyimage.com/48x48.png/ff4444/ffffff"
   },
   {
     "id": 499,
@@ -3989,7 +3989,7 @@
     "category": "Vegetables",
     "mrp": 919.94,
     "offerPrice": 415,
-    "image": "http://dummyimage.com/64x64.png/dddddd/000000"
+    "image": "http://dummyimage.com/48x48.png/dddddd/000000"
   },
   {
     "id": 500,
@@ -3997,6 +3997,6 @@
     "category": "Personal Care",
     "mrp": 978.8,
     "offerPrice": 15,
-    "image": "http://dummyimage.com/64x64.png/cc0000/ffffff"
+    "image": "http://dummyimage.com/48x48.png/cc0000/ffffff"
   }
 ]

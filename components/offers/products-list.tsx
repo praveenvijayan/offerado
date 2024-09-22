@@ -35,6 +35,7 @@ import {
   X,
 } from "lucide-react";
 import useTabsStore from "@/stores/campaign-tabs";
+import { clsx } from "clsx";
 
 type SortOrder = "asc" | "desc";
 
@@ -129,7 +130,7 @@ const ProductsList: React.FC = () => {
           </Button>
         </div>
       </div>
-      <div className="w-full flex rounded-md bg-white text-sm items-center text-slate-800 relative">
+      <div className="w-full flex rounded-md bg-muted text-sm items-center text-slate-800 relative">
         <Search className="stroke-gray-600 mx-2 absolute" />
         <input
           type="text"
@@ -174,38 +175,40 @@ const ProductsList: React.FC = () => {
         )}
       </h2>
       <Table>
-        <TableHeader>
+        <TableHeader className="bg-muted/10">
           <TableRow>
-            <TableHead>Select</TableHead>
-            <TableHead>Image</TableHead>
+            <TableHead className="text-xs font-semibold">SELECT</TableHead>
+            <TableHead className="text-center text-xs font-semibold">
+              IMAGE
+            </TableHead>
             <TableHead
               onClick={() => handleSort("name")}
-              className="cursor-pointer"
+              className="cursor-pointer text-xs font-semibold"
             >
-              Product Name{" "}
+              PRODUCT NAME{" "}
               {sortColumn === "name" && (sortOrder === "asc" ? "⬆" : "⬇")}
             </TableHead>
             <TableHead
               onClick={() => handleSort("category")}
-              className="cursor-pointer"
+              className="cursor-pointer text-xs font-semibold"
             >
-              Category{" "}
+              CATEGORY{" "}
               {sortColumn === "category" && (sortOrder === "asc" ? "⬆" : "⬇")}
             </TableHead>
             <TableHead
               onClick={() => handleSort("mrp")}
-              className="cursor-pointer"
+              className="cursor-pointer text-center text-xs font-semibold"
             >
               MRP {sortColumn === "mrp" && (sortOrder === "asc" ? "⬆" : "⬇")}
             </TableHead>
             <TableHead
               onClick={() => handleSort("offerPrice")}
-              className="cursor-pointer"
+              className="cursor-pointer text-center text-xs font-semibold"
             >
-              Offer Price{" "}
+              OFFER PRICE{" "}
               {sortColumn === "offerPrice" && (sortOrder === "asc" ? "⬆" : "⬇")}
             </TableHead>
-            <TableHead>Offer Type</TableHead>
+            {/* <TableHead>OFFER TYPE</TableHead> */}
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -222,16 +225,20 @@ const ProductsList: React.FC = () => {
                   <Image
                     src={product.image}
                     alt={product.name}
-                    width={64}
-                    height={64}
+                    width={48}
+                    height={48}
                     className="rounded-md"
                   />
                 </TableCell>
                 <TableCell className="text-sm">{product.name}</TableCell>
                 <TableCell className="text-sm">{product.category}</TableCell>
-                <TableCell className="text-sm">{product.mrp}</TableCell>
-                <TableCell className="text-sm">{product.offerPrice}</TableCell>
-                <TableCell className="text-sm">Discount</TableCell>
+                <TableCell className="text-sm text-center">
+                  {product.mrp}
+                </TableCell>
+                <TableCell className="text-sm text-center">
+                  {product.offerPrice}
+                </TableCell>
+                {/* <TableCell className="text-sm">Discount</TableCell> */}
               </TableRow>
             ))
           ) : (
@@ -246,7 +253,7 @@ const ProductsList: React.FC = () => {
 
       {/* Pagination Component */}
       {totalPages > 1 && (
-        <div className="mt-4 flex justify-center">
+        <div className="mt-4 flex justify-center border-t-2 border-b-2 py-3">
           <Pagination>
             <PaginationContent>
               <PaginationItem>
