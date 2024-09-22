@@ -11,6 +11,7 @@ import useTabsStore from "@/stores/campaign-tabs";
 import ProductsList from "@/components/offers/products-list";
 import { Button } from "@/components/ui/button";
 import useCampaignStore from "@/stores/create-campaign-form";
+import ProductsSelectedList from "@/components/offers/products-list-selected";
 
 const CreateOffer = () => {
   const { activeTab, setActiveTab, completeStep, moveToNextTab } =
@@ -36,11 +37,18 @@ const CreateOffer = () => {
             Add campaign details
           </TabsTrigger>
           <TabsTrigger
+            value="products"
+            className="flex gap-2 items-middle text-sm"
+          >
+            <Circle className="min-w-4 min-h-4 max-w-4 max-h-4" />
+            Add products
+          </TabsTrigger>
+          <TabsTrigger
             value="components"
             className="flex gap-2 items-middle text-sm"
           >
             <Circle className="min-w-4 min-h-4 max-w-4 max-h-4" />
-            Add products and components
+            Add components
           </TabsTrigger>
           <TabsTrigger
             value="theme"
@@ -65,8 +73,12 @@ const CreateOffer = () => {
               <CreateCampaignForm />
             </TabsContent>
 
-            <TabsContent value="components" className="w-full">
+            <TabsContent value="products" className="w-full">
               <ProductsList />
+            </TabsContent>
+
+            <TabsContent value="components" className="w-full">
+              <ProductsSelectedList />
             </TabsContent>
 
             <TabsContent value="theme">

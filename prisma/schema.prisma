@@ -18,6 +18,7 @@ model Organization {
   users        User[]
   businesses   Business[]
   offers       Offer[]
+  products       Product[] 
   subscription Subscription[]
   createdAt    DateTime       @default(now())
   updatedAt    DateTime       @updatedAt
@@ -66,6 +67,7 @@ model Business {
   organization   Organization        @relation(fields: [organizationId], references: [id])
   categories     BusinessCategory[]
   offers         Offer[]
+  products       Product[] 
   preferredBy    PreferredBusiness[] 
   createdAt      DateTime            @default(now())
   updatedAt      DateTime            @updatedAt
@@ -178,6 +180,23 @@ model Location {
   Business    Business[]
   isActive    Boolean       @default(true)
 }
+
+model Product {
+  id             String      @id @default(auto()) @map("_id") @db.ObjectId
+  name           String
+  category       String
+  mrp            Float
+  offerPrice     Float
+  quantity       Float
+  image          String
+  businessId     String      @db.ObjectId
+  business       Business    @relation(fields: [businessId], references: [id])
+  organizationId String      @db.ObjectId
+  organization   Organization @relation(fields: [organizationId], references: [id])
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
+}
+
 
 enum Role {
   CUSTOMER

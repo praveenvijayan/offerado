@@ -4,6 +4,7 @@ interface TabsState {
   activeTab: string;
   stepsCompleted: {
     details: boolean;
+    products: boolean;
     components: boolean;
     theme: boolean;
     preview: boolean;
@@ -15,7 +16,7 @@ interface TabsState {
   reset: () => void;
 }
 
-const tabsOrder = ["details", "components", "theme", "preview"];
+const tabsOrder = ["details", "products", "components", "theme", "preview"];
 
 const getNextTab = (currentTab: string): string => {
   const currentIndex = tabsOrder.indexOf(currentTab);
@@ -55,6 +56,7 @@ const useTabsStore = create<TabsState>((set) => ({
       activeTab: "details",
       stepsCompleted: {
         details: false,
+        products: false,
         components: false,
         theme: false,
         preview: false,
