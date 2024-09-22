@@ -48,7 +48,8 @@ const CreateCampaignForm = () => {
         console.log(data);
       })}
     >
-      <div className="grid grid-cols-2 gap-4 align-middle">
+      <div className="grid grid-cols-2 gap-2 align-middle px-4">
+        <h3 className="mb-2">Create a new campaign</h3>
         <div className="col-span-2">
           <Label htmlFor="title">Campaign Name</Label>
           <Input
@@ -127,10 +128,10 @@ const CreateCampaignForm = () => {
             </Popover>
           </div>
         </div>
+        <Button type="submit" className="mt-4 w-fit bg-green-500 rounded-2xl">
+          Continue
+        </Button>
       </div>
-      <Button type="submit" className="mt-4">
-        Continue
-      </Button>
     </form>
   );
 };

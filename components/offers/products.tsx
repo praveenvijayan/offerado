@@ -21,6 +21,7 @@ import { Plus } from "lucide-react";
 import { useComponentStore } from "@/stores/use-component-store";
 import products from "@/data/products.json";
 import { useProductSheetStore } from "@/stores/offer-creation-component-selection";
+import Campaigns from "../../app/(authentication)/(dashboard)/campaigns/page";
 
 const ProductSelection = () => {
   const { selectedItems, addSelectedItem, removeSelectedItem } =
@@ -39,7 +40,10 @@ const ProductSelection = () => {
       <Sheet open={isSheetOpen} onOpenChange={closeSheet}>
         <SheetContent>
           <SheetHeader>
-            <SheetTitle>Select Products</SheetTitle>
+            <SheetTitle>
+              Add Products to your campaigns{" "}
+              <div>You have {products.length} in your list</div>
+            </SheetTitle>
             <SheetDescription>
               Select one or more products from the list.
             </SheetDescription>

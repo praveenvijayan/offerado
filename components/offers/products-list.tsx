@@ -22,7 +22,18 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import useProductsStore from "@/stores/use-product-store";
-import { ArrowLeft } from "lucide-react";
+import {
+  ArrowLeft,
+  CircleAlert,
+  Cross,
+  CrossIcon,
+  Delete,
+  DeleteIcon,
+  Import,
+  LucideDelete,
+  Search,
+  X,
+} from "lucide-react";
 import useTabsStore from "@/stores/campaign-tabs";
 
 type SortOrder = "asc" | "desc";
@@ -41,6 +52,7 @@ const ProductsList: React.FC = () => {
     setSortColumn,
     setSortOrder,
     toggleProductSelection,
+    reset,
   } = useProductsStore();
 
   const itemsPerPage = 6;
@@ -102,35 +114,65 @@ const ProductsList: React.FC = () => {
   };
 
   return (
-    <div className="products-list">
-      <h2 className="flex justify-between items-center bg-muted py-2 px-4 rounded-lg mb-4">
-        Products List{" "}
+    <div className="products-list px-4">
+      <div className="flex justify-between items-center w-full mb-6">
+        <h3 className="font-semibold text-xl">
+          {" "}
+          Add Products to your campaigns{" "}
+          <h4 className="text-sm font-normal">
+            You have {products.length} products in your list
+          </h4>
+        </h3>
+        <div className="">
+          <Button variant={"ghost"} className="flex gap-2">
+            <Import />
+          </Button>
+        </div>
+      </div>
+      <div className="w-full flex rounded-md bg-white text-sm items-center text-slate-800 relative">
+        <Search className="stroke-gray-600 mx-2 absolute" />
+        <input
+          type="text"
+          placeholder="Search products"
+          value={searchQuery}
+          onChange={handleSearchChange}
+          className="w-full bg-transparent p-2 px-10"
+        />
+      </div>
+      <h2 className="flex justify-end items-end w-full mb-2 gap-4">
         {viewSelected ? (
           <Button
-            variant={"ghost"}
-            className="text-xs underline"
+            variant={"link"}
+            className="text-xs underline p-0"
             onClick={() => setViewSelected(false)}
           >
             Clear selection and view all products
           </Button>
         ) : (
           <Button
-            variant={"ghost"}
-            className="text-xs underline"
+            variant={"link"}
+            className="text-xs underline p-0"
             onClick={() => setViewSelected(true)}
           >
-            You have selected {selectedProducts.length} products
+            You have selected
+            <span className="font-semibold text-sm px-2">
+              {selectedProducts.length}
+            </span>
+            products
           </Button>
         )}
-        <input
-          type="text"
-          placeholder="Search products"
-          value={searchQuery}
-          onChange={handleSearchChange}
-          className="p-1 px-4 text-sm rounded-md"
-        />
+        {selectedProducts.length ? (
+          <Button
+            variant={"link"}
+            className="text-xs p-0 text-red-500 no-underline"
+            onClick={() => reset()}
+          >
+            <X className="w-4 h-4 stroke-red-500" /> Clear All
+          </Button>
+        ) : (
+          " "
+        )}
       </h2>
-
       <Table>
         <TableHeader>
           <TableRow>
@@ -182,6 +224,7 @@ const ProductsList: React.FC = () => {
                     alt={product.name}
                     width={64}
                     height={64}
+                    className="rounded-md"
                   />
                 </TableCell>
                 <TableCell className="text-sm">{product.name}</TableCell>
@@ -280,7 +323,7 @@ const ProductsList: React.FC = () => {
           </Pagination>
         </div>
       )}
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-4 w-full justify-between">
         <Button
           type="button"
           className="mt-4"
@@ -289,7 +332,11 @@ const ProductsList: React.FC = () => {
         >
           <ArrowLeft className="mr-2 w-4 h-4" /> Back
         </Button>
-        <Button type="submit" className="mt-4" onClick={moveToNextTab}>
+        <Button
+          type="submit"
+          className="mt-4 bg-green-500 rounded-2xl"
+          onClick={moveToNextTab}
+        >
           Continue
         </Button>
       </div>

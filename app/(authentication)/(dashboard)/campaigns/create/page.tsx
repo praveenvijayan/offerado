@@ -59,24 +59,13 @@ const CreateOffer = () => {
         </TabsList>
 
         {/* Tabs Content (Right Side) */}
-        <div className="w-full px-6 border-l-2">
+        <div className="w-full border-l-2">
           <ScrollArea className="max-h-[85vh] overflow-y-auto rounded-md">
             <TabsContent value="details">
-              <h3 className="mb-4">
-                Create a new {Campaigns.campaignType} campaign
-              </h3>
               <CreateCampaignForm />
             </TabsContent>
 
             <TabsContent value="components" className="w-full">
-              <div className="flex justify-between items-center w-full mb-6">
-                <h3 className="font-semibold text-xl">Select Products</h3>
-                <div className="">
-                  <Button variant={"ghost"} className="flex gap-2">
-                    <Import /> Import products
-                  </Button>
-                </div>
-              </div>
               <ProductsList />
             </TabsContent>
 
