@@ -22,11 +22,14 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import useProductsStore from "@/stores/use-product-store";
+import { ArrowLeft } from "lucide-react";
+import useTabsStore from "@/stores/campaign-tabs";
 
 type SortOrder = "asc" | "desc";
 
 const ProductsList: React.FC = () => {
-  const [viewSelected, setViewSelected] = useState(false); // Toggle between selected/all products
+  const [viewSelected, setViewSelected] = useState(false);
+  const { moveToNextTab, moveToPreviousTab } = useTabsStore();
   const {
     currentPage,
     searchQuery,
@@ -40,7 +43,7 @@ const ProductsList: React.FC = () => {
     toggleProductSelection,
   } = useProductsStore();
 
-  const itemsPerPage = 8;
+  const itemsPerPage = 6;
 
   // Handle the search input change
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -277,10 +280,19 @@ const ProductsList: React.FC = () => {
           </Pagination>
         </div>
       )}
-
-      <Button type="submit" className="mt-4">
-        Continue
-      </Button>
+      <div className="flex items-center gap-4">
+        <Button
+          type="button"
+          className="mt-4"
+          variant={"ghost"}
+          onClick={moveToPreviousTab}
+        >
+          <ArrowLeft className="mr-2 w-4 h-4" /> Back
+        </Button>
+        <Button type="submit" className="mt-4" onClick={moveToNextTab}>
+          Continue
+        </Button>
+      </div>
     </div>
   );
 };

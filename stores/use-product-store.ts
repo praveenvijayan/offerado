@@ -15,6 +15,7 @@ interface ProductsState {
   selectProduct: (productId: number) => void;
   deselectProduct: (productId: number) => void;
   toggleProductSelection: (productId: number) => void;
+  reset: () => void;
 }
 
 const useProductsStore = create<ProductsState>((set) => ({
@@ -40,6 +41,14 @@ const useProductsStore = create<ProductsState>((set) => ({
       selectedProducts: state.selectedProducts.includes(productId)
         ? state.selectedProducts.filter((id) => id !== productId)
         : [...state.selectedProducts, productId],
+    })),
+  reset: () =>
+    set(() => ({
+      currentPage: 1,
+      searchQuery: "",
+      sortColumn: "name",
+      sortOrder: "asc",
+      selectedProducts: [],
     })),
 }));
 

@@ -21,6 +21,7 @@ interface CampaignState {
     isActive: boolean;
     campaignType: string;
   };
+  reset: () => void;
 }
 
 const useCampaignStore = create<CampaignState>((set, get) => ({
@@ -44,6 +45,15 @@ const useCampaignStore = create<CampaignState>((set, get) => ({
     isActive: get().isActive,
     campaignType: get().campaignType,
   }),
+  reset: () =>
+    set({
+      title: "",
+      description: "",
+      start: "",
+      expiry: "",
+      isActive: false,
+      campaignType: "",
+    }),
 }));
 
 export default useCampaignStore;

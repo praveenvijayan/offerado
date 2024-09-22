@@ -10,10 +10,22 @@ import {
   SquareLibrary,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import useTabsStore from "@/stores/campaign-tabs";
+import { useEffect } from "react";
+import useProductsStore from "@/stores/use-product-store";
 
 export default function Campaigns() {
   const router = useRouter();
-  const setCampaignType = useCampaignStore((state) => state.setCampaignType);
+  const { reset: resetCampaignForm, setCampaignType } = useCampaignStore();
+  const { reset: resetTabs } = useTabsStore();
+  const { reset: resetProducts } = useProductsStore();
+
+  // Reset campaign form and tab state on component mount
+  useEffect(() => {
+    resetCampaignForm();
+    resetTabs();
+    resetProducts();
+  }, [resetCampaignForm, resetTabs]);
 
   const handleCampaignSelection = (type: string) => {
     setCampaignType(type);

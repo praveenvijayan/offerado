@@ -1,27 +1,28 @@
 "use client";
+import { useEffect } from "react";
 import OfferSummaryCard from "@/components/offers/offer-summary-card";
 import CreateCampaignForm from "@/components/offers/campaign-form";
 import TemplateSelection from "@/components/offers/template-selection";
 import ShareCampaign from "@/components/offers/share-campaign";
-import ComponentSelection from "@/components/offers/component-selection";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import SelectedComponents from "@/components/offers/selected-components";
 import { ScrollArea } from "@radix-ui/react-scroll-area";
-import ComponentAccordion from "@/components/offers/components-accordion";
-import ComponentCollection from "@/components/offers/component-collection";
 import { Circle, Import } from "lucide-react";
-import useCampaignStore from "@/stores/create-campaign-form";
-import Campaigns from "../page";
-import { Button } from "@/components/ui/button";
+import useTabsStore from "@/stores/campaign-tabs";
 import ProductsList from "@/components/offers/products-list";
+import { Button } from "@/components/ui/button";
+import useCampaignStore from "@/stores/create-campaign-form";
 
 const CreateOffer = () => {
+  const { activeTab, setActiveTab, completeStep, moveToNextTab } =
+    useTabsStore();
+
   const Campaigns = useCampaignStore();
+
   return (
     <div className="flex h-[85vh] w-full">
       {/* Left Sidebar */}
       <Tabs
-        defaultValue="details"
+        value={activeTab}
         orientation="vertical"
         className="flex bg-transparent w-full"
       >
@@ -58,7 +59,7 @@ const CreateOffer = () => {
         </TabsList>
 
         {/* Tabs Content (Right Side) */}
-        <div className=" w-full px-6 border-l-2">
+        <div className="w-full px-6 border-l-2">
           <ScrollArea className="max-h-[85vh] overflow-y-auto rounded-md">
             <TabsContent value="details">
               <h3 className="mb-4">
@@ -77,8 +78,6 @@ const CreateOffer = () => {
                 </div>
               </div>
               <ProductsList />
-              {/* <ComponentAccordion /> */}
-              {/* <ComponentCollection /> */}
             </TabsContent>
 
             <TabsContent value="theme">
@@ -87,7 +86,6 @@ const CreateOffer = () => {
 
             <TabsContent value="preview">
               <OfferSummaryCard />
-              <SelectedComponents />
               <ShareCampaign />
             </TabsContent>
           </ScrollArea>
