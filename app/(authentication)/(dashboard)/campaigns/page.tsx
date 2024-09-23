@@ -6,6 +6,7 @@ import {
   CircleDot,
   FileQuestion,
   FormInputIcon,
+  Plus,
   ShipWheel,
   SquareLibrary,
 } from "lucide-react";
@@ -13,75 +14,20 @@ import { Button } from "@/components/ui/button";
 import useTabsStore from "@/stores/campaign-tabs";
 import { useEffect } from "react";
 import useProductsStore from "@/stores/use-product-store";
+import Link from "next/link";
 
 export default function Campaigns() {
-  const router = useRouter();
-  const { reset: resetCampaignForm, setCampaignType } = useCampaignStore();
-  const { reset: resetTabs } = useTabsStore();
-  const { reset: resetProducts } = useProductsStore();
-
-  // Reset campaign form and tab state on component mount
-  useEffect(() => {
-    resetCampaignForm();
-    resetTabs();
-    resetProducts();
-  }, [resetCampaignForm, resetTabs]);
-
-  const handleCampaignSelection = (type: string) => {
-    setCampaignType(type);
-    router.push("/campaigns/create");
-  };
-
   return (
-    <div className="flex flex-col p-6 gap-y-6">
-      <h3 className="text-xl">Create a new campaign</h3>
-      <div className="grid gap-4 grid-cols-4">
-        <Button
-          onClick={() => handleCampaignSelection("Single Product")}
-          className="rounded-xl p-6 flex flex-col justify-center text-center items-center gap-4 h-auto w-auto"
+    <div className="flex flex-col ">
+      <div className="flex justify-between w-full items-center">
+        <h3>Campaigns</h3>
+        <Link
+          href={"/campaigns/create"}
+          className="ml-2 bg-green-600 text-white flex gap-1 rounded-xl p-2 items-center text-sm hover:bg-green-700"
         >
-          <BoxIcon className="w-14 h-14 stroke-black fill-orange-200 stroke-1" />
-          <p>Single product campaign</p>
-        </Button>
-        <Button
-          onClick={() => handleCampaignSelection("Multi Product")}
-          className="rounded-xl p-6 flex flex-col justify-center text-center items-center gap-4 h-auto w-auto"
-        >
-          <SquareLibrary className="w-16 h-16 stroke-black fill-red-400 stroke-1" />
-          <p>Multi product campaign</p>
-        </Button>
-      </div>
-
-      <h3 className="text-xl">Create a customer engaging campaign</h3>
-      <div className="grid gap-4 grid-cols-4">
-        <Button
-          onClick={() => handleCampaignSelection("Quizzes")}
-          className="rounded-xl p-6 flex flex-col justify-center text-center items-center gap-4 h-auto w-auto"
-        >
-          <FileQuestion className="w-14 h-14 stroke-black fill-emerald-200 stroke-1" />
-          <p>Quizzes</p>
-        </Button>
-        <Button
-          onClick={() => handleCampaignSelection("Contest")}
-          className="rounded-xl p-6 flex flex-col justify-center text-center items-center gap-4 h-auto w-auto"
-        >
-          <ShipWheel className="w-16 h-16 stroke-black fill-blue-400 stroke-1" />
-          <p>Create contest</p>
-        </Button>
-        <Button
-          onClick={() => handleCampaignSelection("Feedback Form")}
-          className="rounded-xl p-6 flex flex-col justify-center text-center items-center gap-4 h-auto w-auto"
-        >
-          <FormInputIcon className="w-16 h-16 stroke-black fill-purple-400 stroke-1" />
-          <p>Feedback form</p>
-        </Button>
-        <Button
-          onClick={() => handleCampaignSelection("Poll")}
-          className="rounded-xl p-6 flex flex-col justify-center text-center items-center gap-4 h-auto w-auto"
-        >
-          <CircleDot className="w-16 h-16 stroke-black fill-yellow-400 stroke-1" />
-          <p>Poll</p>
-        </Button>
+          <Plus className="w-4 h-4" />
+          Add new campaign
+        </Link>
       </div>
     </div>
   );

@@ -81,8 +81,6 @@ model Offer {
   description     String
   businessId      String           @db.ObjectId
   business        Business         @relation(fields: [businessId], references: [id])
-  discountId      String           @db.ObjectId
-  discount        Discount         @relation(fields: [discountId], references: [id])
   startAt         DateTime
   endAt           DateTime
   isActive        Boolean          @default(true)
@@ -153,14 +151,6 @@ model PreferredCategory {
   category      Category    @relation(fields: [categoryId], references: [id])
 }
 
-model Discount {
-  id       String       @id @default(auto()) @map("_id") @db.ObjectId
-  type     DiscountType
-  value    Float
-  offers   Offer[] // One-to-many relation with offers
-  isActive Boolean      @default(true)
-}
-
 model Subscription {
   id             String           @id @default(auto()) @map("_id") @db.ObjectId
   tier           SubscriptionTier
@@ -183,12 +173,14 @@ model Location {
 
 model Product {
   id             String      @id @default(auto()) @map("_id") @db.ObjectId
+  sku            String      @unique
   name           String
   category       String
   mrp            Float
   offerPrice     Float
   quantity       Float
   image          String
+  discountType   DiscountType
   businessId     String      @db.ObjectId
   business       Business    @relation(fields: [businessId], references: [id])
   organizationId String      @db.ObjectId
@@ -206,7 +198,9 @@ enum Role {
 
 enum DiscountType {
   PERCENTAGE
+  BUYONEGETONE
   FLAT
+  NONE
 }
 
 enum InteractiveType {
