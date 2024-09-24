@@ -18,7 +18,7 @@ model Organization {
   users        User[]
   businesses   Business[]
   offers       Offer[]
-  products       Product[] 
+  products     Product[] 
   subscription Subscription[]
   createdAt    DateTime       @default(now())
   updatedAt    DateTime       @updatedAt
@@ -79,6 +79,8 @@ model Offer {
   id              String           @id @default(auto()) @map("_id") @db.ObjectId
   title           String
   description     String
+  offerType       String
+  offerJSON       Json
   businessId      String           @db.ObjectId
   business        Business         @relation(fields: [businessId], references: [id])
   startAt         DateTime

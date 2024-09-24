@@ -1,22 +1,23 @@
 "use client";
-import { useRouter } from "next/navigation";
 import useCampaignStore from "@/stores/create-campaign-form";
-import {
-  BoxIcon,
-  CircleDot,
-  FileQuestion,
-  FormInputIcon,
-  Plus,
-  ShipWheel,
-  SquareLibrary,
-} from "lucide-react";
-import { Button } from "@/components/ui/button";
-import useTabsStore from "@/stores/campaign-tabs";
 import { useEffect } from "react";
-import useProductsStore from "@/stores/use-product-store";
+import CampaignTypeStore from "@/stores/campaign-type";
+import useProductStore from "@/stores/single-product-store";
 import Link from "next/link";
+import { Plus } from "lucide-react";
 
 export default function Campaigns() {
+  const { reset } = useCampaignStore();
+  const { resetCampaignType, resetIsProductSelected } = CampaignTypeStore();
+  const { resetSelectedProduct } = useProductStore();
+
+  useEffect(() => {
+    reset();
+    resetSelectedProduct();
+    resetCampaignType();
+    resetIsProductSelected();
+  }, [reset, resetCampaignType, resetIsProductSelected, resetSelectedProduct]);
+
   return (
     <div className="flex flex-col ">
       <div className="flex justify-between w-full items-center">

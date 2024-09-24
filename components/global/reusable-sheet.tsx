@@ -27,7 +27,7 @@ const ReusableSheet: React.FC<ReusableSheetProps> = ({
 }) => {
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
-      <SheetContent className="xl:w-[1000px] xl:max-w-none sm:w-[400px] sm:max-w-[540px]">
+      <SheetContent className="xl:w-[800px] xl:max-w-none sm:w-[400px] sm:max-w-[540px]">
         <SheetHeader>
           <SheetTitle>{title}</SheetTitle>
           {description && <SheetDescription>{description}</SheetDescription>}

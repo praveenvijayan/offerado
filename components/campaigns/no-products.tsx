@@ -14,6 +14,8 @@ import ReusableSheet from "@/components/global/reusable-sheet";
 import useSheetStore from "@/stores/sheet-store";
 import { useRouter } from "next/navigation";
 import SingleProduct from "@/components/campaigns/single-product/single-product";
+import useCampaignStore from "@/stores/campaign-type";
+import CampaignTypeStore from "@/stores/campaign-type";
 // Helper data structure to define campaign types
 const campaignTypes = [
   {
@@ -83,12 +85,16 @@ const RenderCampaign = ({
   actionText,
 }: any) => {
   const { openSheet, open, close } = useSheetStore();
+  const { setCampaignType, campaignType } = CampaignTypeStore();
 
   return (
     <>
       {/* Campaign Button */}
       <Button
-        onClick={() => open(id)}
+        onClick={() => {
+          open(id);
+          setCampaignType(id);
+        }}
         className={`rounded-xl p-6 flex flex-col justify-center text-center items-center gap-4 h-auto w-auto text-wrap`}
       >
         <Icon

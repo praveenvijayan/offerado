@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
+import React, { useMemo } from "react";
 import {
   Table,
   TableBody,
@@ -25,16 +25,27 @@ import { Arrow } from "@radix-ui/react-dropdown-menu";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
+import CampaignTypeStore from "@/stores/campaign-type";
+import useSheetStore from "@/stores/sheet-store";
+import { useState } from "react";
+import SelectButton from "./select-button";
+import useProductSingleStore from "@/stores/single-product-store";
+
+function timeout(delay: number) {
+  return new Promise((res) => setTimeout(res, delay));
+}
 
 const SingleProduct = () => {
   const { data, isLoading, error } = useProducts();
-  const [globalFilter, setGlobalFilter] = useState(""); // For search input
+  const [globalFilter, setGlobalFilter] = useState("");
   const [sorting, setSorting] = useState([]);
   const [pagination, setPagination] = useState({
     pageIndex: 0,
     pageSize: 10,
   });
-
+  const { setIsProductSelected } = CampaignTypeStore();
+  const { openSheet, open, close } = useSheetStore();
+  const { setSelectedProduct } = useProductSingleStore();
   // Define columns for TanStack Table
   const columns = useMemo(
     () => [
@@ -58,7 +69,15 @@ const SingleProduct = () => {
         accessorKey: "action",
         header: "Action",
         cell: ({ row }: any) => (
-          <Button onClick={() => console.log(row)}>Select</Button>
+          <SelectButton
+            onSelect={async () => {
+              await timeout(800);
+              setSelectedProduct(row.original);
+              close();
+              await timeout(400);
+              setIsProductSelected();
+            }}
+          />
         ),
       },
     ],
