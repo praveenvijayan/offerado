@@ -45,7 +45,7 @@ export default function CreateCampaignPage() {
     mutationFn: createCampaign,
     onSuccess: (data) => {
       toast.success("Campaign created successfully!");
-      router.push("/campaigns");
+      router.push(`/campaigns/preview?id=${data.id}`);
     },
     onError: (error) => {
       toast.error("Failed to create campaign");

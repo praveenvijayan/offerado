@@ -26,6 +26,7 @@ type DynamicComponentProps = {
 export default function PreviewAndSelectTemplate() {
   const [view, setView] = useState("desktop");
   const [isSheetOpen, setSheetOpen] = useState(false);
+  const [currentTemplate, setCurrentTemplate] = useState("");
   const [SelectedComponent, setSelectedComponent] =
     useState<React.ComponentType<DynamicComponentProps> | null>(null);
   const offerIdParam = useSearchParams();
@@ -56,6 +57,7 @@ export default function PreviewAndSelectTemplate() {
   useEffect(() => {
     if (!SelectedComponent && filteredTemplates.length > 0) {
       loadComponent(filteredTemplates[0].component);
+      setCurrentTemplate(filteredTemplates[0].name);
     }
   }, [SelectedComponent, filteredTemplates]);
 
@@ -126,8 +128,15 @@ export default function PreviewAndSelectTemplate() {
                 <Button
                   variant={"ghost"}
                   key={template.id}
-                  onClick={() => loadComponent(template.component)}
-                  className="flex flex-col border rounded-md p-4 h-auto w-auto"
+                  onClick={() => {
+                    setCurrentTemplate(template.name);
+                    loadComponent(template.component);
+                  }}
+                  className={`flex flex-col border rounded-md p-4 h-auto w-auto ${
+                    SelectedComponent && template.name === currentTemplate
+                      ? "border-green-600"
+                      : ""
+                  }`}
                 >
                   <h3 className="text-sm ml-0">{template.name}</h3>
                   <div className="mt-2">
