@@ -63,3 +63,23 @@ export async function POST(req: Request) {
     );
   }
 }
+
+export async function GET() {
+  try {
+    // Fetch all campaigns from the database
+    const campaigns = await prisma.offer.findMany({
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
+
+    // Return the campaigns in the response
+    return NextResponse.json(campaigns);
+  } catch (error) {
+    console.error("Error fetching campaigns:", error);
+    return NextResponse.json(
+      { message: "Failed to fetch campaigns", error: String(error) },
+      { status: 500 }
+    );
+  }
+}

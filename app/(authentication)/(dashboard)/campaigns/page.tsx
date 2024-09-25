@@ -5,6 +5,7 @@ import CampaignTypeStore from "@/stores/campaign-type";
 import useProductStore from "@/stores/single-product-store";
 import Link from "next/link";
 import { Plus } from "lucide-react";
+import CampaignTable from "@/components/campaigns/campaign-listing";
 
 export default function Campaigns() {
   const { reset } = useCampaignStore();
@@ -19,10 +20,9 @@ export default function Campaigns() {
   }, [reset, resetCampaignType, resetIsProductSelected, resetSelectedProduct]);
 
   return (
-    <div className="flex flex-col ">
-      <div className="flex justify-between w-full items-center">
-        <h3>Campaigns</h3>
-      </div>
+    <div className="flex flex-col gap-4">
+      <h3>Campaigns</h3>
+      <CampaignTable />
     </div>
   );
 }

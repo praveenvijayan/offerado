@@ -14,3 +14,18 @@ export const createCampaign = async (newCampaign: any) => {
 
   return response.json();
 };
+
+export const fetchAllCampaigns = async () => {
+  const response = await fetch("/api/campaigns", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch campaigns");
+  }
+
+  return response.json();
+};
