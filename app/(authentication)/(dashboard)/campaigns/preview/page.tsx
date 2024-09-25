@@ -2,7 +2,16 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { MonitorDot, TabletSmartphoneIcon } from "lucide-react";
+import {
+  Clock,
+  File,
+  FileBadge,
+  MonitorDot,
+  QrCode,
+  Share,
+  Share2,
+  TabletSmartphoneIcon,
+} from "lucide-react";
 import {
   Sheet,
   SheetTrigger,
@@ -18,6 +27,8 @@ import template from "@/data/template.json";
 import Image from "next/image";
 import { Separator } from "@/components/ui/separator";
 import type { Offer } from "@prisma/client";
+import PublishDialog from "@/components/campaigns/publish";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 type DynamicComponentProps = {
   offer: Offer | null;
@@ -31,6 +42,7 @@ export default function PreviewAndSelectTemplate() {
     useState<React.ComponentType<DynamicComponentProps> | null>(null);
   const offerIdParam = useSearchParams();
   const offerId = offerIdParam.get("id");
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   const handleResize = (size: string) => {
     setView(size);
@@ -72,49 +84,85 @@ export default function PreviewAndSelectTemplate() {
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="flex justify-between">
+      <div className="flex justify-between items-center">
         <h3>Customize campaign</h3>
-        <div className="flex justify-center align-middle gap-1">
-          <Button
-            size="icon"
-            variant="ghost"
-            onClick={() => handleResize("desktop")}
-            className={
-              view === "desktop" ? "bg-green-600 hover:bg-green-600" : ""
-            }
-          >
-            <MonitorDot className="cursor-pointer" />
-          </Button>
-          <Button
-            size="icon"
-            variant="ghost"
-            onClick={() => handleResize("mobile")}
-            className={
-              view === "mobile" ? "bg-green-600 hover:bg-green-600" : ""
-            }
-          >
-            <TabletSmartphoneIcon className="cursor-pointer" />
-          </Button>
-        </div>
         <div className="flex gap-4">
           <Button size="sm" onClick={handleSheetToggle}>
-            Select template
+            Template
+          </Button>
+          <Separator orientation="vertical" className="h-8" />
+          <Button
+            size="icon"
+            className="w-8 h-8"
+            variant={"secondary"}
+            title="Download PDF"
+          >
+            <QrCode className="w-5 h-5" />
+          </Button>
+          <Button
+            size="icon"
+            className="w-8 h-8"
+            variant={"secondary"}
+            title="Download PDF"
+          >
+            <FileBadge className="w-5 h-5" />
+          </Button>
+          <Button
+            size="icon"
+            className="w-8 h-8"
+            variant={"secondary"}
+            title="Schedule"
+          >
+            <Clock className="w-5 h-5" />
+          </Button>
+          <Button
+            size="icon"
+            className="w-8 h-8"
+            onClick={() => setIsDialogOpen(true)}
+          >
+            <Share2 className="w-5 h-5" />
+          </Button>
+          <Separator orientation="vertical" className="h-8" />
+          <Button size="sm" variant={"secondary"}>
+            Save draft
+          </Button>
+          <Button size="sm" className="bg-green-500">
+            Publish
           </Button>
         </div>
       </div>
-      <div
-        className={`container mx-auto flex flex-col gap-4 bg-muted rounded-md transition-all duration-300 ${
-          view === "desktop"
-            ? "w-full min-h-[80vh] h-auto"
-            : "w-[375px] h-[667px]"
+      <Separator />
+      <div className="flex justify-center  align-middle gap-1">
+        <Button
+          size="icon"
+          variant="ghost"
+          onClick={() => handleResize("desktop")}
+          className={
+            view === "desktop" ? "bg-green-600 hover:bg-green-600" : ""
+          }
+        >
+          <MonitorDot className="cursor-pointer" />
+        </Button>
+        <Button
+          size="icon"
+          variant="ghost"
+          onClick={() => handleResize("mobile")}
+          className={view === "mobile" ? "bg-green-600 hover:bg-green-600" : ""}
+        >
+          <TabletSmartphoneIcon className="cursor-pointer" />
+        </Button>
+      </div>
+      <ScrollArea
+        className={`container mx-auto flex flex-col gap-4 bg-muted rounded-md transition-all duration-300 overflow-auto ${
+          view === "desktop" ? "w-full h-[75vh]" : "w-[375px] h-[75vh]"
         }`}
       >
         {SelectedComponent ? (
           <SelectedComponent offer={offer} />
         ) : (
-          <p>Select a template to load</p>
+          <p>Template loading....</p>
         )}
-      </div>
+      </ScrollArea>
 
       {/* Sheet component triggered externally */}
       <Sheet open={isSheetOpen} onOpenChange={setSheetOpen}>
@@ -156,6 +204,7 @@ export default function PreviewAndSelectTemplate() {
           </div>
         </SheetContent>
       </Sheet>
+      <PublishDialog isOpen={isDialogOpen} setIsOpen={setIsDialogOpen} />
     </div>
   );
 }
