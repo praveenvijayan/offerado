@@ -104,7 +104,7 @@ export default function CreateCampaignPage() {
           <ArrowLeft />
         </Button>
         <CampaignHeader />
-        <div className="ml-auto justify-self-end gap-2 flex">
+        <div className="ml-auto justify-self-end gap-2 flex hidden">
           <Button size={"sm"} onClick={handleClick}>
             Add Products
           </Button>

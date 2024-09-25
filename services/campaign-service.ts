@@ -29,3 +29,13 @@ export const fetchAllCampaigns = async () => {
 
   return response.json();
 };
+
+export const fetchOfferById = async (id: string) => {
+  const response = await fetch(`/api/campaigns/byid?id=${id}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  return response.json();
+};

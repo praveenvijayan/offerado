@@ -1,0 +1,37 @@
+[
+  {
+    "id": "1",
+    "name": "Default",
+    "image": "http://dummyimage.com/120x100.png/cc0000/ffffff",
+    "type": "singleProduct",
+    "component": "templates/single/default-template"
+  },
+  {
+    "id": "2",
+    "name": "Two Column",
+    "image": "http://dummyimage.com/120x100.png/00cc00/ffffff",
+    "type": "multiProduct",
+    "component": "templates/multi/two-column"
+  },
+  {
+    "id": "3",
+    "name": "Gallery",
+    "image": "http://dummyimage.com/120x100.png/0000cc/ffffff",
+    "type": "singleProduct",
+    "component": "templates/single/gallery"
+  },
+  {
+    "id": "4",
+    "name": "Hero Banner",
+    "image": "http://dummyimage.com/120x100.png/ffcc00/000000",
+    "type": "multiProduct",
+    "component": "templates/multi/hero-banner"
+  },
+  {
+    "id": "4",
+    "name": "Light",
+    "image": "http://dummyimage.com/120x100.png/ffcc00/000000",
+    "type": "singleProduct",
+    "component": "templates/single/light"
+  }
+]
