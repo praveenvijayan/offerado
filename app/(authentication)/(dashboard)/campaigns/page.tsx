@@ -22,13 +22,6 @@ export default function Campaigns() {
     <div className="flex flex-col ">
       <div className="flex justify-between w-full items-center">
         <h3>Campaigns</h3>
-        <Link
-          href={"/campaigns/create"}
-          className="ml-2 bg-green-600 text-white flex gap-1 rounded-xl p-2 items-center text-sm hover:bg-green-700"
-        >
-          <Plus className="w-4 h-4" />
-          Add new campaign
-        </Link>
       </div>
     </div>
   );

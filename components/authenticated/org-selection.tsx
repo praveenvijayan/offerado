@@ -10,8 +10,11 @@ import {
 import { Building2, ChevronDown, ChevronUp, PlusCircle } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Link from "next/link";
+import useSidebarStore from "@/stores/store";
 
 export function BusinessSelection() {
+  const { isCollapsed, toggleSidebar } = useSidebarStore();
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -21,10 +24,14 @@ export function BusinessSelection() {
               <AvatarImage src="https://github.com/shadcn.png" />
               <AvatarFallback>CN</AvatarFallback>
             </Avatar>
-            <div>
-              <p className="font-medium">Business Name</p>
-              <p className="text-xs text-gray-500">Business Admin</p>
-            </div>
+            {isCollapsed ? (
+              ""
+            ) : (
+              <div>
+                <p className="font-medium">Business Name</p>
+                <p className="text-xs text-gray-500">Business Admin</p>
+              </div>
+            )}
           </div>
           <ChevronUp />
         </div>

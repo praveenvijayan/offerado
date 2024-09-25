@@ -17,7 +17,10 @@ const SelectButton = ({ onSelect }: { onSelect: () => void }) => {
     <Button
       size="sm"
       onClick={handleSelect}
-      className={isSelected ? "bg-green-500" : ""}
+      className={`text-green-600 border-green-800 ${
+        isSelected ? "bg-green-800" : ""
+      }`}
+      variant={"outline"}
     >
       {isSelected ? "Selected" : "Select"}
     </Button>

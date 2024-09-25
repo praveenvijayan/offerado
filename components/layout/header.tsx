@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Bell, CircleUser, Search, Menu, Sidebar } from "lucide-react";
+import { Bell, CircleUser, Search, Menu, Sidebar, Plus } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import {
@@ -20,11 +20,19 @@ import {
   UserButton,
 } from "@clerk/nextjs";
 import Help from "../global/help";
+import Link from "next/link";
 
 export const Header = () => (
   <header className="flex h-14 items-center gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6">
     <MobileMenu />
     <SearchBar />
+    <Link
+      href={"/campaigns/create"}
+      className=" bg-green-600 text-white flex gap-1 rounded-2xl p-2 items-center text-xs hover:bg-green-700"
+    >
+      <Plus className="w-4 h-4" />
+      New campaign
+    </Link>
     <ModeToggle />
     <NotificationButton />
     <Help />

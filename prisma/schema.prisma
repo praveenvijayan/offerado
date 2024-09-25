@@ -200,7 +200,9 @@ enum Role {
 
 enum DiscountType {
   PERCENTAGE
-  BUYONEGETONE
+  BOGO
+  SPECIAL
+  COMBO
   FLAT
   NONE
 }

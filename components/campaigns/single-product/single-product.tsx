@@ -22,7 +22,7 @@ import {
   flexRender,
 } from "@tanstack/react-table";
 import { Arrow } from "@radix-ui/react-dropdown-menu";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, Filter, Plus, PlusCircle } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import CampaignTypeStore from "@/stores/campaign-type";
@@ -50,6 +50,10 @@ const SingleProduct = () => {
   const columns = useMemo(
     () => [
       {
+        accessorKey: "discountType",
+        header: "Type",
+      },
+      {
         accessorKey: "name",
         header: "Product Name",
       },
@@ -57,14 +61,10 @@ const SingleProduct = () => {
         accessorKey: "category",
         header: "Category",
       },
-      {
-        accessorKey: "mrp",
-        header: "MRP",
-      },
-      {
-        accessorKey: "offerPrice",
-        header: "Offer Price",
-      },
+      // {
+      //   accessorKey: "offerPrice",
+      //   header: "Offer Price",
+      // },
       {
         accessorKey: "action",
         header: "Action",
@@ -116,6 +116,14 @@ const SingleProduct = () => {
           onChange={(e) => setGlobalFilter(e.target.value)}
           className=""
         />
+        <div className="flex items-center gap-2">
+          {/* <Button variant="ghost" size="icon" className="rounded-xl">
+            <Filter className="w-5 h-5" />
+          </Button> */}
+          <Button size="icon" className="rounded-xl">
+            <PlusCircle className="w-6 h-6" />
+          </Button>
+        </div>
         {/* <div className="flex items-center gap-2">
           <Switch id="airplane-mode" />
           <Label htmlFor="airplane-mode">Group</Label>
