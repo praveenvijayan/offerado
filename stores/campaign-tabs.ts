@@ -4,7 +4,7 @@ interface TabsState {
   activeTab: string;
   stepsCompleted: {
     details: boolean;
-    products: boolean;
+    // products: boolean;
     components: boolean;
     theme: boolean;
     preview: boolean;
@@ -56,7 +56,7 @@ const useTabsStore = create<TabsState>((set) => ({
       activeTab: "details",
       stepsCompleted: {
         details: false,
-        products: false,
+        // products: false,
         components: false,
         theme: false,
         preview: false,
