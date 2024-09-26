@@ -41,6 +41,7 @@ import {
   DialogTitle,
   DialogFooter,
 } from "@/components/ui/dialog";
+import { Badge } from "../ui/badge";
 
 const CampaignTable = () => {
   const [globalFilter, setGlobalFilter] = useState("");
@@ -79,6 +80,21 @@ const CampaignTable = () => {
       accessorKey: "offerType",
       header: "TYPE",
       cell: (info: CellContext<any, any>) => info.getValue(),
+    },
+    {
+      accessorKey: "isActive",
+      header: "Published",
+      cell: (info: CellContext<any, any>) => (
+        <Badge
+          variant="outline"
+          className={`flex justify-center items-center h-full w-fit mx-auto ${
+            info.getValue() ? "border-green-600" : ""
+          }`}
+        >
+          {info.getValue() ? "Yes" : "No"}
+        </Badge>
+      ),
+      className: "text-center",
     },
     {
       accessorKey: "startAt",
