@@ -117,7 +117,7 @@ export default function PreviewAndSelectTemplate() {
   // Filter templates based on offer type
   const filteredTemplates =
     templates?.filter(
-      (tmpl) => tmpl.type.toLowerCase() === offer?.offerType?.toLowerCase()
+      (tmpl: any) => tmpl.type.toLowerCase() === offer?.offerType?.toLowerCase()
     ) || [];
 
   useEffect(() => {
