@@ -18,7 +18,7 @@ model Organization {
   users        User[]
   businesses   Business[]
   offers       Offer[]
-  products     Product[] 
+  products     Product[]
   subscription Subscription[]
   createdAt    DateTime       @default(now())
   updatedAt    DateTime       @updatedAt
@@ -67,12 +67,12 @@ model Business {
   organization   Organization        @relation(fields: [organizationId], references: [id])
   categories     BusinessCategory[]
   offers         Offer[]
-  products       Product[] 
-  preferredBy    PreferredBusiness[] 
+  products       Product[]
+  preferredBy    PreferredBusiness[]
   createdAt      DateTime            @default(now())
   updatedAt      DateTime            @updatedAt
   isActive       Boolean             @default(true)
-  locationId     String?              @db.ObjectId
+  locationId     String?             @db.ObjectId
 }
 
 model Offer {
@@ -85,14 +85,28 @@ model Offer {
   business        Business         @relation(fields: [businessId], references: [id])
   startAt         DateTime
   endAt           DateTime
-  isActive        Boolean          @default(true)
+  isActive        Boolean          @default(false)
   qrCode          String?
   organizationId  String           @db.ObjectId // Link to organization
   organization    Organization     @relation(fields: [organizationId], references: [id])
-  participants    OfferRedeem[] // One-to-many relation with OfferRedeem
+  participants    OfferRedeem[]
   interactiveType InteractiveType?
+  templateId      String?          @db.ObjectId
+  template        Template?        @relation(fields: [templateId], references: [id])
   createdAt       DateTime         @default(now())
   updatedAt       DateTime         @updatedAt
+}
+
+model Template {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  image     String
+  type      String
+  component String
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  Offer     Offer[]
 }
 
 model OfferRedeem {
@@ -174,8 +188,8 @@ model Location {
 }
 
 model Product {
-  id             String      @id @default(auto()) @map("_id") @db.ObjectId
-  sku            String      @unique
+  id             String       @id @default(auto()) @map("_id") @db.ObjectId
+  sku            String       @unique
   name           String
   category       String
   mrp            Float
@@ -183,14 +197,13 @@ model Product {
   quantity       Float
   image          String
   discountType   DiscountType
-  businessId     String      @db.ObjectId
-  business       Business    @relation(fields: [businessId], references: [id])
-  organizationId String      @db.ObjectId
+  businessId     String       @db.ObjectId
+  business       Business     @relation(fields: [businessId], references: [id])
+  organizationId String       @db.ObjectId
   organization   Organization @relation(fields: [organizationId], references: [id])
-  createdAt      DateTime    @default(now())
-  updatedAt      DateTime    @updatedAt
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
 }
-
 
 enum Role {
   CUSTOMER

@@ -39,3 +39,19 @@ export const fetchOfferById = async (id: string) => {
   });
   return response.json();
 };
+
+export const updateOffer = async ({ offerId, templateId, isActive }: any) => {
+  const response = await fetch("/api/campaigns/update", {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ offerId, templateId, isActive }),
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to update offer");
+  }
+
+  return response.json();
+};

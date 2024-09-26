@@ -4,34 +4,39 @@
     "name": "Default",
     "image": "http://dummyimage.com/120x100.png/cc0000/ffffff",
     "type": "singleProduct",
-    "component": "templates/single/default-template"
+    "component": "templates/single/default-template",
+    "isActive": true
   },
   {
     "id": "2",
     "name": "Two Column",
     "image": "http://dummyimage.com/120x100.png/00cc00/ffffff",
     "type": "multiProduct",
-    "component": "templates/multi/two-column"
+    "component": "templates/multi/two-column",
+    "isActive": true
   },
   {
     "id": "3",
     "name": "Gallery",
     "image": "http://dummyimage.com/120x100.png/0000cc/ffffff",
     "type": "singleProduct",
-    "component": "templates/single/gallery"
+    "component": "templates/single/gallery",
+    "isActive": true
   },
   {
     "id": "4",
     "name": "Hero Banner",
     "image": "http://dummyimage.com/120x100.png/ffcc00/000000",
     "type": "multiProduct",
-    "component": "templates/multi/hero-banner"
+    "component": "templates/multi/hero-banner",
+    "isActive": true
   },
   {
     "id": "4",
     "name": "Light",
     "image": "http://dummyimage.com/120x100.png/ffcc00/000000",
     "type": "singleProduct",
-    "component": "templates/single/light"
+    "component": "templates/single/light",
+    "isActive": true
   }
 ]

@@ -1,48 +1,85 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import {
   Clock,
-  File,
   FileBadge,
   MonitorDot,
   QrCode,
-  Share,
   Share2,
   TabletSmartphoneIcon,
 } from "lucide-react";
 import {
   Sheet,
-  SheetTrigger,
   SheetContent,
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet";
 import { useSearchParams } from "next/navigation";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import dynamic from "next/dynamic";
 import { fetchOfferById } from "@/services/campaign-service";
-import template from "@/data/template.json";
+import { fetchAllTemplates } from "@/services/template-service";
 import Image from "next/image";
 import { Separator } from "@/components/ui/separator";
 import type { Offer } from "@prisma/client";
 import PublishDialog from "@/components/campaigns/publish";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { useRouter } from "next/navigation";
 
 type DynamicComponentProps = {
   offer: Offer | null;
 };
+import { useMutation } from "@tanstack/react-query";
+import { updateOffer } from "@/services/campaign-service";
+import { toast } from "sonner";
+import template from "@/data/template.json";
 
 export default function PreviewAndSelectTemplate() {
   const [view, setView] = useState("desktop");
   const [isSheetOpen, setSheetOpen] = useState(false);
   const [currentTemplate, setCurrentTemplate] = useState("");
+  const [currentTemplateId, setCurrentTemplateId] = useState("");
   const [SelectedComponent, setSelectedComponent] =
     useState<React.ComponentType<DynamicComponentProps> | null>(null);
   const offerIdParam = useSearchParams();
   const offerId = offerIdParam.get("id");
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const router = useRouter();
+  const queryClient = useQueryClient();
+
+  const { mutate, isError, isSuccess } = useMutation({
+    mutationFn: updateOffer,
+    onSuccess: (data) => {
+      console.log("Campaign updated successfully:", data);
+      toast.success("Campaign updated successfully");
+
+      if (offerId) {
+        queryClient.invalidateQueries({ queryKey: ["offer", offerId] });
+      }
+    },
+    onError: (error) => {
+      toast.error(`Error updating offer: ${error}`);
+    },
+  });
+
+  const handleUpdateOffer = () => {
+    const offerData = {
+      offerId: offerId,
+      templateId: currentTemplateId,
+      isActive: !offer.isActive,
+    };
+    mutate(offerData);
+  };
+
+  const handleDraft = () => {
+    const offerData = {
+      offerId: offerId,
+      templateId: currentTemplateId,
+      isActive: false,
+    };
+    mutate(offerData);
+  };
 
   const handleResize = (size: string) => {
     setView(size);
@@ -52,6 +89,7 @@ export default function PreviewAndSelectTemplate() {
     setSheetOpen(!isSheetOpen);
   };
 
+  // Fetch offer by ID using React Query
   const useOfferById = (id: string) => {
     return useQuery({
       queryKey: ["offer", id],
@@ -60,16 +98,33 @@ export default function PreviewAndSelectTemplate() {
     });
   };
 
-  const { data: offer, isLoading, error } = useOfferById(offerId || "");
+  const {
+    data: offer,
+    isLoading: isOfferLoading,
+    error: offerError,
+  } = useOfferById(offerId || "");
 
-  const filteredTemplates = template.filter(
-    (tmpl) => tmpl.type.toLowerCase() === offer?.offerType?.toLowerCase()
-  );
+  // Fetch templates using React Query
+  const {
+    data: templates,
+    isLoading: isTemplatesLoading,
+    error: templatesError,
+  } = useQuery({
+    queryKey: ["templates"],
+    queryFn: fetchAllTemplates,
+  });
+
+  // Filter templates based on offer type
+  const filteredTemplates =
+    templates?.filter(
+      (tmpl) => tmpl.type.toLowerCase() === offer?.offerType?.toLowerCase()
+    ) || [];
 
   useEffect(() => {
     if (!SelectedComponent && filteredTemplates.length > 0) {
       loadComponent(filteredTemplates[0].component);
       setCurrentTemplate(filteredTemplates[0].name);
+      setCurrentTemplateId(filteredTemplates[0].id);
     }
   }, [SelectedComponent, filteredTemplates]);
 
@@ -90,49 +145,67 @@ export default function PreviewAndSelectTemplate() {
           <Button size="sm" onClick={handleSheetToggle}>
             Template
           </Button>
+          {offer?.isActive && (
+            <>
+              <Separator orientation="vertical" className="h-8" />
+              <Button
+                size="icon"
+                className="w-8 h-8"
+                variant={"secondary"}
+                title="Show QR Code"
+              >
+                <QrCode className="w-5 h-5" />
+              </Button>
+              <Button
+                size="icon"
+                className="w-8 h-8"
+                variant={"secondary"}
+                title="Download PDF"
+              >
+                <FileBadge className="w-5 h-5" />
+              </Button>
+
+              <Button
+                size="icon"
+                className="w-8 h-8"
+                onClick={() => setIsDialogOpen(true)}
+              >
+                <Share2 className="w-5 h-5" />
+              </Button>
+            </>
+          )}
+
           <Separator orientation="vertical" className="h-8" />
-          <Button
-            size="icon"
-            className="w-8 h-8"
-            variant={"secondary"}
-            title="Download PDF"
-          >
-            <QrCode className="w-5 h-5" />
-          </Button>
-          <Button
-            size="icon"
-            className="w-8 h-8"
-            variant={"secondary"}
-            title="Download PDF"
-          >
-            <FileBadge className="w-5 h-5" />
-          </Button>
+
           <Button
             size="icon"
             className="w-8 h-8"
             variant={"secondary"}
             title="Schedule"
+            disabled={offer?.isActive}
           >
             <Clock className="w-5 h-5" />
           </Button>
+
+          <Button size="sm" variant={"secondary"} onClick={handleDraft}>
+            Save as draft {offer?.templateId == currentTemplateId ? " " : "*"}
+          </Button>
+
           <Button
-            size="icon"
-            className="w-8 h-8"
-            onClick={() => setIsDialogOpen(true)}
+            size="sm"
+            className={
+              offer?.isActive
+                ? "bg-yellow-600 hover:bg-yellow-400"
+                : "bg-green-600 hover:bg-green-400"
+            }
+            onClick={handleUpdateOffer}
           >
-            <Share2 className="w-5 h-5" />
-          </Button>
-          <Separator orientation="vertical" className="h-8" />
-          <Button size="sm" variant={"secondary"}>
-            Save draft
-          </Button>
-          <Button size="sm" className="bg-green-500">
-            Publish
+            {offer?.isActive ? "Unpublish" : "Publish"}
           </Button>
         </div>
       </div>
       <Separator />
-      <div className="flex justify-center  align-middle gap-1">
+      <div className="flex justify-center align-middle gap-1">
         <Button
           size="icon"
           variant="ghost"
@@ -171,13 +244,18 @@ export default function PreviewAndSelectTemplate() {
             <SheetTitle>Select Template</SheetTitle>
           </SheetHeader>
           <div className="grid grid-cols-2 gap-2">
-            {filteredTemplates.length > 0 ? (
-              filteredTemplates.map((template) => (
+            {isTemplatesLoading ? (
+              <p>Loading templates...</p>
+            ) : templatesError ? (
+              <p>Error loading templates.</p>
+            ) : filteredTemplates.length > 0 ? (
+              filteredTemplates.map((template: any) => (
                 <Button
                   variant={"ghost"}
                   key={template.id}
                   onClick={() => {
                     setCurrentTemplate(template.name);
+                    setCurrentTemplateId(template.id);
                     loadComponent(template.component);
                   }}
                   className={`flex flex-col border rounded-md p-4 h-auto w-auto ${

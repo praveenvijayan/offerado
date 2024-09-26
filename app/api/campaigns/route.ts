@@ -51,6 +51,7 @@ export async function POST(req: Request) {
         organizationId,
         interactiveType: interactiveType ?? null,
         offerJSON: offerJSON || {},
+        isActive: false,
       },
     });
 
