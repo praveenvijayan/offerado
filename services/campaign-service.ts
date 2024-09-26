@@ -55,3 +55,19 @@ export const updateOffer = async ({ offerId, templateId, isActive }: any) => {
 
   return response.json();
 };
+
+export const deleteCampaign = async (offerId: string) => {
+  const response = await fetch("/api/campaigns/delete", {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ offerId }),
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to delete offer");
+  }
+
+  return response.json();
+};

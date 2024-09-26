@@ -38,7 +38,7 @@ const PublishDialog = ({
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Publish Changes</DialogTitle>
+          <DialogTitle>Share your campaign</DialogTitle>
           <DialogDescription>
             Share your awesome campaign with the world!
           </DialogDescription>

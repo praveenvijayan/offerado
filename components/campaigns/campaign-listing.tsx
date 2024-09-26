@@ -8,8 +8,8 @@ import {
   getFilteredRowModel,
   flexRender,
 } from "@tanstack/react-table";
-import { useQuery } from "@tanstack/react-query";
-import { fetchAllCampaigns } from "@/services/campaign-service";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { deleteCampaign, fetchAllCampaigns } from "@/services/campaign-service";
 import {
   Table,
   TableBody,
@@ -27,44 +27,99 @@ import {
   ArrowRight,
   ArrowUp,
   ArrowUpDown,
+  Edit,
+  Trash,
 } from "lucide-react";
 import { CellContext, SortingState } from "@tanstack/react-table";
-
-// Define columns for the table
-const columns = [
-  {
-    accessorKey: "title",
-    header: "TITLE",
-    cell: (info: CellContext<any, any>) => info.getValue(),
-  },
-  {
-    accessorKey: "description",
-    header: "DESCRIPTION",
-    cell: (info: CellContext<any, any>) => info.getValue(),
-  },
-  {
-    accessorKey: "offerType",
-    header: "TYPE",
-    cell: (info: CellContext<any, any>) => info.getValue(),
-  },
-  {
-    accessorKey: "startAt",
-    header: "START DATE",
-    cell: (info: CellContext<any, any>) =>
-      new Date(info.getValue()).toLocaleDateString(),
-  },
-  {
-    accessorKey: "endAt",
-    header: "END DATE",
-    cell: (info: CellContext<any, any>) =>
-      new Date(info.getValue()).toLocaleDateString(),
-  },
-];
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
+import {
+  Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+} from "@/components/ui/dialog";
 
 const CampaignTable = () => {
   const [globalFilter, setGlobalFilter] = useState("");
   const [sorting, setSorting] = useState<SortingState>([]);
   const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 5 });
+  const router = useRouter();
+  const queryClient = useQueryClient();
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [selectedCampaign, setSelectedCampaign] = useState<any>(null);
+
+  const { mutate: deleteOffer } = useMutation({
+    mutationFn: deleteCampaign,
+    onSuccess: () => {
+      toast.success("Campaign deleted successfully");
+      // Invalidate or refetch offers to reflect the deletion
+      queryClient.invalidateQueries({ queryKey: ["campaigns"] });
+    },
+    onError: (error) => {
+      console.error("Error deleting offer:", error);
+    },
+  });
+
+  // Define columns for the table
+  const columns = [
+    {
+      accessorKey: "title",
+      header: "TITLE",
+      cell: (info: CellContext<any, any>) => info.getValue(),
+    },
+    {
+      accessorKey: "description",
+      header: "DESCRIPTION",
+      cell: (info: CellContext<any, any>) => info.getValue(),
+    },
+    {
+      accessorKey: "offerType",
+      header: "TYPE",
+      cell: (info: CellContext<any, any>) => info.getValue(),
+    },
+    {
+      accessorKey: "startAt",
+      header: "START DATE",
+      cell: (info: CellContext<any, any>) =>
+        new Date(info.getValue()).toLocaleDateString(),
+    },
+    {
+      accessorKey: "endAt",
+      header: "END DATE",
+      cell: (info: CellContext<any, any>) =>
+        new Date(info.getValue()).toLocaleDateString(),
+    },
+    {
+      accessorKey: "actions",
+      header: "ACTIONS",
+      cell: ({ row }: any) => {
+        // Get the row's data
+        const rowData = row.original;
+
+        return (
+          <div className="flex gap-2">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => handleEdit(rowData)}
+            >
+              <Edit className="w-4 h-4" />
+            </Button>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => handleDelete(rowData)}
+            >
+              <Trash className="w-4 h-4 stroke-red-500" />
+            </Button>
+          </div>
+        );
+      },
+    },
+  ];
 
   // Fetch campaigns from the API using React Query
   const {
@@ -76,6 +131,17 @@ const CampaignTable = () => {
     queryKey: ["campaigns"],
     queryFn: fetchAllCampaigns,
   });
+
+  const handleEdit = (rowData: any) => {
+    router.push(`/campaigns/preview?id=${rowData.id}`);
+    console.log("Edit clicked for:", rowData);
+  };
+
+  const handleDelete = (rowData: any) => {
+    // deleteOffer(rowData.id);
+    setSelectedCampaign(rowData);
+    setIsDialogOpen(true);
+  };
 
   // Initialize the table instance with TanStack Table hooks
   const table = useReactTable({
@@ -194,6 +260,35 @@ const CampaignTable = () => {
           ))}
         </select>
       </div>
+      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Confirm Deletion</DialogTitle>
+          </DialogHeader>
+          <h3 className="text-sm ">
+            Are you sure you want to delete the campaign:{" "}
+            <h4 className="text-md font-semibold inline ">
+              {selectedCampaign?.title} ?
+            </h4>
+          </h3>
+          <DialogFooter>
+            <Button
+              variant="destructive"
+              onClick={() => {
+                if (selectedCampaign) {
+                  deleteOffer(selectedCampaign.id);
+                }
+                setIsDialogOpen(false);
+              }}
+            >
+              Confirm
+            </Button>
+            <Button variant="ghost" onClick={() => setIsDialogOpen(false)}>
+              Cancel
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };

@@ -122,11 +122,26 @@ export default function PreviewAndSelectTemplate() {
 
   useEffect(() => {
     if (!SelectedComponent && filteredTemplates.length > 0) {
-      loadComponent(filteredTemplates[0].component);
-      setCurrentTemplate(filteredTemplates[0].name);
-      setCurrentTemplateId(filteredTemplates[0].id);
+      let selectedTemplate;
+
+      // Check if a templateId exists in the offer and find the corresponding template
+      if (offer?.templateId) {
+        selectedTemplate = filteredTemplates.find(
+          (template: any) => template.id === offer.templateId
+        );
+      }
+
+      // If no template is found using the templateId, fall back to the default template
+      if (!selectedTemplate) {
+        selectedTemplate = filteredTemplates[0];
+      }
+
+      // Load the selected template
+      loadComponent(selectedTemplate.component);
+      setCurrentTemplate(selectedTemplate.name);
+      setCurrentTemplateId(selectedTemplate.id);
     }
-  }, [SelectedComponent, filteredTemplates]);
+  }, [SelectedComponent, filteredTemplates, offer]);
 
   // Function to dynamically load and set the component
   const loadComponent = (componentPath: string) => {
