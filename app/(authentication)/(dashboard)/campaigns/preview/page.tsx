@@ -56,6 +56,7 @@ export default function PreviewAndSelectTemplate() {
 
       if (offerId) {
         queryClient.invalidateQueries({ queryKey: ["offer", offerId] });
+        queryClient.invalidateQueries({ queryKey: ["campaigns"] });
       }
     },
     onError: (error) => {
