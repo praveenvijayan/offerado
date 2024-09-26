@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo, useCallback } from "react";
+import React, { useEffect, useState, useMemo, CSSProperties } from "react";
 import { useProducts } from "@/services/product-services";
 import {
   useReactTable,
@@ -16,63 +16,90 @@ import {
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import { X } from "lucide-react";
+import { Edit, X } from "lucide-react";
 import { useProductSelectionStore } from "@/stores/multiple-product-selection";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { debounce } from "lodash";
 import type { Product } from "@prisma/client";
 import { Separator } from "@/components/ui/separator";
-type EditingProductsState = {
-  [key: string]: Product;
+import {
+  DndContext,
+  closestCenter,
+  MouseSensor,
+  TouchSensor,
+  KeyboardSensor,
+  useSensor,
+  useSensors,
+  DragEndEvent,
+} from "@dnd-kit/core";
+import {
+  SortableContext,
+  useSortable,
+  verticalListSortingStrategy,
+  arrayMove,
+} from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
+
+interface DraggableRowProps {
+  row: Row<Product>;
+}
+
+// Draggable row component using @dnd-kit
+const DraggableRow: React.FC<DraggableRowProps> = ({ row }) => {
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({
+    id: row.original.id,
+  });
+
+  const style: CSSProperties = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+    opacity: isDragging ? 0.8 : 1,
+    zIndex: isDragging ? 1 : 0,
+    position: "relative",
+  };
+
+  return (
+    <tr ref={setNodeRef} style={style}>
+      {/* Render the drag handle cell */}
+      <TableCell
+        {...attributes}
+        {...listeners}
+        style={{ cursor: "grab", width: "60px" }}
+      >
+        🟰
+      </TableCell>
+
+      {/* Render other cells */}
+      {row.getVisibleCells().map((cell) => (
+        <TableCell key={cell.id}>
+          {flexRender(cell.column.columnDef.cell, cell.getContext())}
+        </TableCell>
+      ))}
+    </tr>
+  );
 };
+
 const MultiProductDisplay = () => {
-  const { data, isLoading, error } = useProducts();
+  const { data } = useProducts();
   const { selectedProducts, resetProducts, toggleProductSelection } =
     useProductSelectionStore();
 
-  const [editingProducts, setEditingProducts] = useState<EditingProductsState>(
-    {}
-  );
+  const [tableData, setTableData] = useState<Product[]>([]);
 
-  // Initialize the editing state only when selectedProducts or data changes
   useEffect(() => {
     if (!data) return;
-    const initialEditingState = selectedProducts.reduce(
-      (acc: any, productId) => {
-        const product = data.find((p) => p.id === productId);
-        if (product) {
-          acc[productId] = {
-            name: product.name,
-            offerPrice: product.offerPrice,
-          };
-        }
-        return acc;
-      },
-      {}
+
+    setTableData(
+      data.filter((product) => selectedProducts.includes(product.id))
     );
-    setEditingProducts(initialEditingState);
   }, [selectedProducts, data]);
 
-  // Debounced handleSave to optimize performance
-  const handleSave = useCallback(
-    debounce((productId: any) => {
-      const product = data?.find((p) => p.id === productId);
-      if (!product) return;
-
-      const updatedProduct = {
-        ...product,
-        name: editingProducts[productId]?.name || product.name,
-        offerPrice:
-          editingProducts[productId]?.offerPrice || product.offerPrice,
-        updatedAt: new Date(),
-      };
-
-      console.log("Saved product:", updatedProduct);
-    }, 300),
-    [data, editingProducts]
-  );
-
-  // Memorize the columns to prevent unnecessary re-renders
   const columns = useMemo(
     () => [
       {
@@ -95,86 +122,71 @@ const MultiProductDisplay = () => {
       {
         accessorKey: "name",
         header: "NAME",
-        cell: ({ row }) => (
-          <input
-            type="text"
-            value={editingProducts[row.original.id]?.name || row.original.name}
-            onChange={(e) =>
-              setEditingProducts((prev) => ({
-                ...prev,
-                [row.original.id]: {
-                  ...prev[row.original.id],
-                  name: e.target.value,
-                },
-              }))
-            }
-            onBlur={() => handleSave(row.original.id)}
-            className="border rounded-md p-1 w-auto"
-          />
-        ),
+        cell: ({ row }) => row.original.name,
       },
       {
         accessorKey: "category",
         header: "CATEGORY",
+        cell: ({ row }) => row.original.category,
       },
       {
         accessorKey: "offerPrice",
         header: "OFFER PRICE",
-        cell: ({ row }) => (
-          <input
-            type="number"
-            value={
-              editingProducts[row.original.id]?.offerPrice ||
-              row.original.offerPrice
-            }
-            onChange={(e) =>
-              setEditingProducts((prev) => ({
-                ...prev,
-                [row.original.id]: {
-                  ...prev[row.original.id],
-                  offerPrice: parseFloat(e.target.value),
-                },
-              }))
-            }
-            onBlur={() => handleSave(row.original.id)}
-            className="border rounded-md p-1 max-w-16"
-          />
-        ),
+        cell: ({ row }) => `${row.original.offerPrice.toFixed(2)} ₹`,
       },
       {
         accessorKey: "mrp",
         header: "MRP",
         cell: ({ row }) => `${row.original.mrp.toFixed(2)} ₹`,
       },
-
       {
         accessorKey: "actions",
         header: "ACTIONS",
         cell: ({ row }) => (
-          <Button
-            variant="destructive"
-            onClick={() => toggleProductSelection(row.original.id)}
-            className="w-5 h-5 p-0 self-center flex mx-auto"
-          >
-            <X className="w-3 h-3" />
-          </Button>
+          <div className="flex gap-2">
+            <Button
+              variant="ghost"
+              // onClick={() => toggleProductSelection(row.original.id)}
+              className="w-5 h-5 p-0 self-center flex mx-auto"
+            >
+              <Edit className="w-3 h-3" />
+            </Button>
+            <Button
+              variant="destructive"
+              onClick={() => toggleProductSelection(row.original.id)}
+              className="w-5 h-5 p-0 self-center flex mx-auto"
+            >
+              <X className="w-3 h-3" />
+            </Button>
+          </div>
         ),
       },
     ],
-    [editingProducts, handleSave, toggleProductSelection]
+    [toggleProductSelection]
   );
 
-  // Memorize table data to prevent unnecessary re-renders
-  const tableData = useMemo(
-    () =>
-      data?.filter((product) => selectedProducts.includes(product.id)) || [],
-    [data, selectedProducts]
+  const sensors = useSensors(
+    useSensor(MouseSensor, {}),
+    useSensor(TouchSensor, {}),
+    useSensor(KeyboardSensor, {})
   );
+
+  function handleDragEnd(event: DragEndEvent) {
+    const { active, over } = event;
+    if (active && over && active.id !== over.id) {
+      setTableData((items) => {
+        const oldIndex = items.findIndex((item) => item.id === active.id);
+        const newIndex = items.findIndex((item) => item.id === over.id);
+        return arrayMove(items, oldIndex, newIndex);
+      });
+    }
+  }
 
   const table = useReactTable({
     data: tableData,
     columns,
     getCoreRowModel: getCoreRowModel(),
+    getRowId: (row) => row.id,
   });
 
   if (!selectedProducts.length) {
@@ -182,25 +194,37 @@ const MultiProductDisplay = () => {
   }
 
   return (
-    <ScrollArea className="h-[70vh] w-full">
-      <div className="multi-product-display w-full mx-auto">
-        {/* Clear All Selections Button */}
-        <div className="flex justify-end ">
-          <Button
-            size="sm"
-            variant="destructive"
-            onClick={resetProducts}
-            className="w-auto p-2 mb-2 mr-2"
-          >
-            Clear All
-          </Button>
-        </div>
-        <Separator />
-        <Table>
-          <TableHeader>
-            {table.getHeaderGroups().map((headerGroup) => (
-              <TableRow key={headerGroup.id}>
-                {headerGroup.headers.map((header) => (
+    <DndContext
+      collisionDetection={closestCenter}
+      onDragEnd={handleDragEnd}
+      sensors={sensors}
+    >
+      <ScrollArea className="h-[70vh] w-full">
+        <div className="multi-product-display w-full mx-auto">
+          <div className="flex justify-between items-center">
+            <p className="text-xs">
+              You have{" "}
+              <span className="font-semibold text-green-500">
+                {selectedProducts.length}
+              </span>{" "}
+              items in the list.
+            </p>
+            <Button
+              size="sm"
+              variant="destructive"
+              onClick={resetProducts}
+              className="w-auto p-2 mb-2 mr-2"
+            >
+              Clear All
+            </Button>
+          </div>
+          <Separator />
+          <Table>
+            <TableHeader>
+              <TableRow>
+                {/* Render the drag handle header */}
+                <TableHead style={{ width: "60px" }}>Move</TableHead>
+                {table.getHeaderGroups()[0].headers.map((header) => (
                   <TableHead key={header.id}>
                     {header.isPlaceholder
                       ? null
@@ -211,22 +235,21 @@ const MultiProductDisplay = () => {
                   </TableHead>
                 ))}
               </TableRow>
-            ))}
-          </TableHeader>
-          <TableBody>
-            {table.getRowModel().rows.map((row) => (
-              <TableRow key={row.id}>
-                {row.getVisibleCells().map((cell) => (
-                  <TableCell key={cell.id}>
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                  </TableCell>
+            </TableHeader>
+            <TableBody>
+              <SortableContext
+                items={tableData}
+                strategy={verticalListSortingStrategy}
+              >
+                {table.getRowModel().rows.map((row) => (
+                  <DraggableRow key={row.id} row={row} />
                 ))}
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </div>
-    </ScrollArea>
+              </SortableContext>
+            </TableBody>
+          </Table>
+        </div>
+      </ScrollArea>
+    </DndContext>
   );
 };
 
