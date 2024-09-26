@@ -22,11 +22,11 @@ const SingleProductDisplay = () => {
   const router = useRouter();
   const { resetIsProductSelected } = CampaignTypeStore();
 
-  const [isEditing, setIsEditing] = useState(false); // Toggle edit mode
-  const [editedName, setEditedName] = useState(selectedProduct?.name || ""); // Store edited name
+  const [isEditing, setIsEditing] = useState(false);
+  const [editedName, setEditedName] = useState(selectedProduct?.name || "");
   const [editedOfferPrice, setEditedOfferPrice] = useState(
     selectedProduct?.offerPrice || 0
-  ); // Store edited offer price
+  );
 
   useEffect(() => {
     setEditedName(selectedProduct?.name || "");

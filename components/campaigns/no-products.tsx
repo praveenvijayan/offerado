@@ -16,63 +16,9 @@ import { useRouter } from "next/navigation";
 import SingleProduct from "@/components/campaigns/single-product/single-product";
 import useCampaignStore from "@/stores/campaign-type";
 import CampaignTypeStore from "@/stores/campaign-type";
-// Helper data structure to define campaign types
-const campaignTypes = [
-  {
-    id: "SingleProduct",
-    icon: BoxIcon,
-    title: "Single Product Campaign",
-    description: "Manage a single product campaign.",
-    buttonText: "Single product campaign",
-    buttonColor: "orange-200",
-    actionText: "Single product action",
-  },
-  {
-    id: "MultiProduct",
-    icon: SquareLibrary,
-    title: "Multi Product Campaign",
-    description: "Manage a multi-product campaign.",
-    buttonText: "Multi product campaign",
-    buttonColor: "red-400",
-    actionText: "Multi product action",
-  },
-  {
-    id: "Quizzes",
-    icon: FileQuestion,
-    title: "Quizzes Campaign",
-    description: "Create a customer engaging quizzes campaign.",
-    buttonText: "Quizzes",
-    buttonColor: "emerald-200",
-    actionText: "Quiz action",
-  },
-  {
-    id: "Contest",
-    icon: ShipWheel,
-    title: "Contest Campaign",
-    description: "Create a customer engaging contest campaign.",
-    buttonText: "Contest",
-    buttonColor: "blue-400",
-    actionText: "Contest action",
-  },
-  {
-    id: "FeedbackForm",
-    icon: FormInputIcon,
-    title: "Feedback Form Campaign",
-    description: "Create a feedback form campaign.",
-    buttonText: "Feedback Form",
-    buttonColor: "purple-400",
-    actionText: "Feedback form action",
-  },
-  {
-    id: "Poll",
-    icon: CircleDot,
-    title: "Poll Campaign",
-    description: "Create a customer engaging poll campaign.",
-    buttonText: "Poll",
-    buttonColor: "yellow-400",
-    actionText: "Poll action",
-  },
-];
+import MultiProductDisplay from "./multi-product/multi-product-display";
+import MultiProduct from "./multi-product/multi-product";
+import campaignTypes from "@/data/campaign-types.json";
 
 // Reusable function to render campaign buttons and sheets
 const RenderCampaign = ({
@@ -89,7 +35,6 @@ const RenderCampaign = ({
 
   return (
     <>
-      {/* Campaign Button */}
       <Button
         onClick={() => {
           open(id);
@@ -102,17 +47,6 @@ const RenderCampaign = ({
         />
         <p>{buttonText}</p>
       </Button>
-
-      {/* Campaign Sheet */}
-      <ReusableSheet
-        open={openSheet === id}
-        onOpenChange={close}
-        title={title}
-        description={description}
-      >
-        {id == "SingleProduct" && <SingleProduct />}
-        {/* <p>{`This is the content for the ${buttonText.toLowerCase()}.`}</p> */}
-      </ReusableSheet>
     </>
   );
 };
@@ -122,7 +56,7 @@ const NoProducts = () => {
     <div className="flex flex-col py-2 gap-y-6">
       <h3 className="text-sm flex items-center gap-2">Select campaign type</h3>
       <div className="grid gap-4 grid-cols-6">
-        {campaignTypes.slice(0, 2).map((campaign) => (
+        {campaignTypes.slice(0, 2).map((campaign: any) => (
           <RenderCampaign key={campaign.id} {...campaign} />
         ))}
       </div>
@@ -131,7 +65,7 @@ const NoProducts = () => {
         Or select a customer engaging campaign
       </h3>
       <div className="grid gap-4 grid-cols-6">
-        {campaignTypes.slice(2).map((campaign) => (
+        {campaignTypes.slice(2).map((campaign: any) => (
           <RenderCampaign key={campaign.id} {...campaign} />
         ))}
       </div>

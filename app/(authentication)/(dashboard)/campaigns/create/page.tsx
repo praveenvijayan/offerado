@@ -14,6 +14,12 @@ import { toast } from "sonner";
 import { createCampaign } from "@/services/campaign-service";
 import useCampaignStore from "@/stores/create-campaign-form";
 import CampaignDialogForm from "@/components/campaigns/campaign-dialog-form";
+import MultiProductDisplay from "@/components/campaigns/multi-product/multi-product-display";
+import ReusableSheet from "@/components/global/reusable-sheet";
+import SingleProduct from "@/components/campaigns/single-product/single-product";
+import useSheetStore from "@/stores/sheet-store";
+import CampaignSheet from "@/components/campaigns/campaign-sheet";
+import campaignTypes from "@/data/campaign-types.json";
 
 export default function CreateCampaignPage() {
   const router = useRouter();
@@ -22,6 +28,8 @@ export default function CreateCampaignPage() {
   const isProductSelected = CampaignTypeStore(
     (state) => state.isProductSelected
   );
+  const { openSheet, open: openReusableSheet, close } = useSheetStore();
+  const campaign = campaignTypes.find((c) => c.id === campaignType);
 
   const selectedProduct = useProductStore((state) => state.selectedProduct);
 
@@ -38,7 +46,9 @@ export default function CreateCampaignPage() {
     reset,
   } = useCampaignStore();
 
-  useEffect(() => {}, [campaignType, isProductSelected]);
+  useEffect(() => {
+    console.log(campaignType);
+  }, [campaignType, isProductSelected]);
   const [open, setOpen] = useState(false);
 
   const mutation = useMutation({
@@ -104,14 +114,19 @@ export default function CreateCampaignPage() {
           <ArrowLeft />
         </Button>
         <CampaignHeader />
-        <div className="ml-auto justify-self-end gap-2 flex hidden">
-          <Button size={"sm"} onClick={handleClick}>
-            Add Products
-          </Button>
-          <Button size={"sm"} onClick={handleClick}>
-            Add Components
-          </Button>
-        </div>
+        {campaignType == "MultiProduct" && (
+          <div className="ml-auto justify-self-end gap-2 flex">
+            <Button
+              size={"sm"}
+              onClick={() => openReusableSheet("MultiProduct")}
+            >
+              Add Products
+            </Button>
+            <Button size={"sm"} onClick={handleClick}>
+              Add Components
+            </Button>
+          </div>
+        )}
       </div>
       <Separator />
       {!isProductSelected && <NoProducts />}
@@ -120,7 +135,7 @@ export default function CreateCampaignPage() {
         <SingleProductDisplay />
       )}
       {campaignType == "MultiProduct" && isProductSelected && (
-        <div>Multiple Product</div>
+        <MultiProductDisplay />
       )}
       {campaignType == "Quizzes" && isProductSelected && <div>Quizzes</div>}
       {campaignType == "Contest" && isProductSelected && <div>Contest</div>}
@@ -139,6 +154,13 @@ export default function CreateCampaignPage() {
         </div>
       )}
       <CampaignDialogForm open={open} setOpen={setOpen} />
+      {campaignType && (
+        <CampaignSheet
+          id={campaignType}
+          title={campaign?.title}
+          description={campaign?.description}
+        />
+      )}
     </div>
   );
 }

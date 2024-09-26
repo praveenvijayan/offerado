@@ -1,0 +1,56 @@
+[
+  {
+    "id": "SingleProduct",
+    "icon": "BoxIcon",
+    "title": "Single Product Campaign",
+    "description": "Manage a single product campaign.",
+    "buttonText": "Single product campaign",
+    "buttonColor": "orange-200",
+    "actionText": "Single product action"
+  },
+  {
+    "id": "MultiProduct",
+    "icon": "SquareLibrary",
+    "title": "Multi Product Campaign",
+    "description": "Manage a multi-product campaign.",
+    "buttonText": "Multi product campaign",
+    "buttonColor": "red-400",
+    "actionText": "Multi product action"
+  },
+  {
+    "id": "Quizzes",
+    "icon": "FileQuestion",
+    "title": "Quizzes Campaign",
+    "description": "Create a customer engaging quizzes campaign.",
+    "buttonText": "Quizzes",
+    "buttonColor": "emerald-200",
+    "actionText": "Quiz action"
+  },
+  {
+    "id": "Contest",
+    "icon": "ShipWheel",
+    "title": "Contest Campaign",
+    "description": "Create a customer engaging contest campaign.",
+    "buttonText": "Contest",
+    "buttonColor": "blue-400",
+    "actionText": "Contest action"
+  },
+  {
+    "id": "FeedbackForm",
+    "icon": "FormInputIcon",
+    "title": "Feedback Form Campaign",
+    "description": "Create a feedback form campaign.",
+    "buttonText": "Feedback Form",
+    "buttonColor": "purple-400",
+    "actionText": "Feedback form action"
+  },
+  {
+    "id": "Poll",
+    "icon": "CircleDot",
+    "title": "Poll Campaign",
+    "description": "Create a customer engaging poll campaign.",
+    "buttonText": "Poll",
+    "buttonColor": "yellow-400",
+    "actionText": "Poll action"
+  }
+]
