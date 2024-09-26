@@ -3,7 +3,9 @@ import { useProducts } from "@/services/product-services";
 import {
   useReactTable,
   getCoreRowModel,
+  getSortedRowModel,
   flexRender,
+  SortingState,
   Row,
 } from "@tanstack/react-table";
 import {
@@ -16,7 +18,7 @@ import {
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import { Edit, X } from "lucide-react";
+import { ArrowDown, ArrowUp, Edit, X } from "lucide-react";
 import { useProductSelectionStore } from "@/stores/multiple-product-selection";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import type { Product } from "@prisma/client";
@@ -38,12 +40,12 @@ import {
   arrayMove,
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+import { Arrow } from "@radix-ui/react-dropdown-menu";
 
 interface DraggableRowProps {
   row: Row<Product>;
 }
 
-// Draggable row component using @dnd-kit
 const DraggableRow: React.FC<DraggableRowProps> = ({ row }) => {
   const {
     attributes,
@@ -66,7 +68,6 @@ const DraggableRow: React.FC<DraggableRowProps> = ({ row }) => {
 
   return (
     <tr ref={setNodeRef} style={style}>
-      {/* Render the drag handle cell */}
       <TableCell
         {...attributes}
         {...listeners}
@@ -75,7 +76,6 @@ const DraggableRow: React.FC<DraggableRowProps> = ({ row }) => {
         🟰
       </TableCell>
 
-      {/* Render other cells */}
       {row.getVisibleCells().map((cell) => (
         <TableCell key={cell.id}>
           {flexRender(cell.column.columnDef.cell, cell.getContext())}
@@ -91,6 +91,7 @@ const MultiProductDisplay = () => {
     useProductSelectionStore();
 
   const [tableData, setTableData] = useState<Product[]>([]);
+  const [sorting, setSorting] = useState<SortingState>([]); // State for sorting
 
   useEffect(() => {
     if (!data) return;
@@ -102,6 +103,12 @@ const MultiProductDisplay = () => {
 
   const columns = useMemo(
     () => [
+      {
+        accessorKey: "index",
+        header: "#",
+        cell: ({ row }: { row: Row<Product> }) => row.index + 1,
+        size: 50,
+      },
       {
         accessorKey: "image",
         header: "IMAGE",
@@ -122,31 +129,33 @@ const MultiProductDisplay = () => {
       {
         accessorKey: "name",
         header: "NAME",
-        cell: ({ row }) => row.original.name,
+        cell: ({ row }: { row: Row<Product> }) => row.original.name,
       },
       {
         accessorKey: "category",
         header: "CATEGORY",
-        cell: ({ row }) => row.original.category,
+        cell: ({ row }: { row: Row<Product> }) => row.original.category,
       },
       {
         accessorKey: "offerPrice",
         header: "OFFER PRICE",
-        cell: ({ row }) => `${row.original.offerPrice.toFixed(2)} ₹`,
+        cell: ({ row }: { row: Row<Product> }) =>
+          `${row.original.offerPrice.toFixed(2)} ₹`,
       },
       {
         accessorKey: "mrp",
         header: "MRP",
-        cell: ({ row }) => `${row.original.mrp.toFixed(2)} ₹`,
+        cell: ({ row }: { row: Row<Product> }) =>
+          `${row.original.mrp.toFixed(2)} ₹`,
       },
       {
         accessorKey: "actions",
         header: "ACTIONS",
-        cell: ({ row }) => (
+        enableSorting: false,
+        cell: ({ row }: { row: Row<Product> }) => (
           <div className="flex gap-2">
             <Button
               variant="ghost"
-              // onClick={() => toggleProductSelection(row.original.id)}
               className="w-5 h-5 p-0 self-center flex mx-auto"
             >
               <Edit className="w-3 h-3" />
@@ -185,7 +194,10 @@ const MultiProductDisplay = () => {
   const table = useReactTable({
     data: tableData,
     columns,
+    state: { sorting }, // Add sorting state to the table
+    onSortingChange: setSorting, // Set sorting change handler
     getCoreRowModel: getCoreRowModel(),
+    getSortedRowModel: getSortedRowModel(), // Add sorting model
     getRowId: (row) => row.id,
   });
 
@@ -222,16 +234,25 @@ const MultiProductDisplay = () => {
           <Table>
             <TableHeader>
               <TableRow>
-                {/* Render the drag handle header */}
                 <TableHead style={{ width: "60px" }}>Move</TableHead>
                 {table.getHeaderGroups()[0].headers.map((header) => (
-                  <TableHead key={header.id}>
+                  <TableHead
+                    key={header.id}
+                    onClick={header.column.getToggleSortingHandler()} // Add sorting handler
+                    className="cursor-pointer"
+                  >
                     {header.isPlaceholder
                       ? null
                       : flexRender(
                           header.column.columnDef.header,
                           header.getContext()
                         )}
+                    {header.column.getIsSorted() === "asc" && (
+                      <ArrowUp className="inline-block ml-2 w-4 h-4" />
+                    )}
+                    {header.column.getIsSorted() === "desc" && (
+                      <ArrowDown className="inline-block ml-2 w-4 h-4" />
+                    )}
                   </TableHead>
                 ))}
               </TableRow>
