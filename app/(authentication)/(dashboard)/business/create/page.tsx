@@ -98,7 +98,6 @@ export default function BusinessCreateForm() {
       console.error(isOrgError, "Organization data is not ready");
       return;
     }
-    console.log("Org ID data:", organization);
     const businessData = {
       name: data.name,
       organizationId: organization?.id,

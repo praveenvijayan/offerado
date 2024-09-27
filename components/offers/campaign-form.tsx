@@ -45,7 +45,6 @@ const CreateCampaignForm = () => {
         setDescription(data.description);
         setCampaignType(data.campaignType);
         moveToNextTab();
-        console.log(data);
       })}
     >
       <div className="grid grid-cols-2 gap-2 align-middle px-4">

@@ -53,7 +53,6 @@ const CampaignDialogForm = ({
     setTitle(data.title);
     setDescription(data.description);
     setCampaignType(data.campaignType);
-    console.log(data);
     setOpen(false); // Close the dialog after saving
   };
 

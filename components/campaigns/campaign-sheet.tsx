@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ReusableSheet from "@/components/global/reusable-sheet";
 import useSheetStore from "@/stores/sheet-store";
 import CampaignTypeStore from "@/stores/campaign-type";
@@ -17,6 +17,7 @@ const CampaignSheet = ({ id, title, description }: any) => {
     >
       {id === "SingleProduct" && <SingleProduct />}
       {id === "MultiProduct" && <MultiProduct />}
+      {id === "Quizzes" && <div>Quizzes</div>}
     </ReusableSheet>
   );
 };

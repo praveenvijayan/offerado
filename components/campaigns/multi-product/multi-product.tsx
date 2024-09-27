@@ -53,8 +53,6 @@ const MultiProduct = () => {
   );
   const isSelected = useProductSelectionStore((state) => state.isSelected);
 
-  console.log(selectedProducts.length);
-
   useEffect(() => {
     if (selectedProducts.length > 0) {
       setIsProductSelected();

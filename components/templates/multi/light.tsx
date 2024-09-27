@@ -3,7 +3,7 @@ import Image from "next/image";
 import { format } from "date-fns";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
-const LightSingleTemplate = ({ offer }: { offer: any }) => {
+const LightMultiTemplate = ({ offer }: { offer: any }) => {
   const offerData = offer?.offerJSON?.data;
 
   return (
@@ -91,4 +91,4 @@ const LightSingleTemplate = ({ offer }: { offer: any }) => {
   );
 };
 
-export default LightSingleTemplate;
+export default LightMultiTemplate;

@@ -150,7 +150,6 @@ const CampaignTable = () => {
 
   const handleEdit = (rowData: any) => {
     router.push(`/campaigns/preview?id=${rowData.id}`);
-    console.log("Edit clicked for:", rowData);
   };
 
   const handleDelete = (rowData: any) => {

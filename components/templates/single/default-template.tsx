@@ -32,18 +32,18 @@ const DefaultSingleTemplate = ({ offer }: { offer: any }) => {
         {/* Chicken Image and Offer Price Section */}
         <div className="flex flex-col justify-center items-center mt-4">
           <Image
-            src={offerData?.image}
-            alt={offerData?.name}
+            src={offerData[0]?.image}
+            alt={offerData[0]?.name}
             width={150}
             height={150}
             className="rounded-md shadow-md mx-auto my-[2rem]"
           />
           <div className="text-center">
             <div className="bg-red-600 text-white px-4 py-2 rounded-md text-xl font-bold inline-block">
-              Market Price: ${offerData?.mrp?.toFixed(2)}
+              Market Price: ${offerData[0]?.mrp?.toFixed(2)}
             </div>
             <div className="bg-yellow-400 text-red-800 px-4 py-2 rounded-md text-2xl font-extrabold mt-2">
-              Offer Price: {offerData?.offerPrice?.toFixed(2)}
+              Offer Price: {offerData[0]?.offerPrice?.toFixed(2)}
             </div>
             <p className="text-red-700 font-bold mt-2 text-2xl text-wrap max-w-sm">
               {offerData?.name}

@@ -10,9 +10,6 @@ export async function POST(req: Request) {
       return new NextResponse("Unauthorized", { status: 401 });
     }
 
-    // Log the received data
-    console.log("Received data:", { name, email, image });
-
     // Ensure the required fields are provided
     if (!name || !email) {
       return new NextResponse("Name and Email are required", { status: 400 });

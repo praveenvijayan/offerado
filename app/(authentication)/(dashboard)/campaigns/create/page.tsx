@@ -20,9 +20,27 @@ import SingleProduct from "@/components/campaigns/single-product/single-product"
 import useSheetStore from "@/stores/sheet-store";
 import CampaignSheet from "@/components/campaigns/campaign-sheet";
 import campaignTypes from "@/data/campaign-types.json";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuPortal,
+  DropdownMenuSeparator,
+  DropdownMenuShortcut,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { DotsVerticalIcon } from "@radix-ui/react-icons";
+import { useProductSelectionStore } from "@/stores/multiple-product-selection";
+import { useProducts } from "@/services/product-services";
 
 export default function CreateCampaignPage() {
   const router = useRouter();
+  const { data } = useProducts();
   const handleClick = () => router.push("/campaigns");
   const campaignType = CampaignTypeStore((state) => state.campaignType);
   const isProductSelected = CampaignTypeStore(
@@ -32,7 +50,9 @@ export default function CreateCampaignPage() {
   const campaign = campaignTypes.find((c) => c.id === campaignType);
 
   const selectedProduct = useProductStore((state) => state.selectedProduct);
-
+  const selectedProducts = useProductSelectionStore(
+    (state) => state.selectedProducts
+  );
   const {
     title,
     description,
@@ -46,9 +66,7 @@ export default function CreateCampaignPage() {
     reset,
   } = useCampaignStore();
 
-  useEffect(() => {
-    console.log(campaignType);
-  }, [campaignType, isProductSelected]);
+  useEffect(() => {}, [campaignType, isProductSelected]);
   const [open, setOpen] = useState(false);
 
   const mutation = useMutation({
@@ -69,32 +87,68 @@ export default function CreateCampaignPage() {
       return;
     }
 
+    // Helper function to build offerJSON based on campaign type
+    const buildOfferJSON = () => {
+      switch (campaignType) {
+        case "SingleProduct":
+          return selectedProduct ? [selectedProduct] : [];
+        case "MultiProduct":
+          return (
+            data?.filter((product) => selectedProducts.includes(product.id)) ||
+            []
+          );
+        // Extend here for future campaign types
+        case "Quizzes":
+        case "Contest":
+        case "FeedbackForm":
+          return []; // Adjust based on specific requirements for new types
+        default:
+          return [];
+      }
+    };
+
+    // Get the products based on the campaign type
+    const products = buildOfferJSON();
+
+    // Return early if no products are selected for product-based campaigns
+    if (
+      (campaignType === "SingleProduct" || campaignType === "MultiProduct") &&
+      products.length === 0
+    ) {
+      toast.error("No products selected for the campaign.");
+      return;
+    }
+
+    // Construct the offerJSON using the selected products (if applicable)
+    const offerJSON = {
+      data: products.map((product) => ({
+        id: product.id,
+        sku: product.sku,
+        name: product.name,
+        category: product.category,
+        mrp: product.mrp,
+        offerPrice: product.offerPrice,
+        quantity: product.quantity,
+        image: product.image,
+        discountType: product.discountType,
+        businessId: product.businessId,
+        organizationId: product.organizationId,
+        createdAt: product.createdAt,
+        updatedAt: product.updatedAt,
+      })),
+    };
+
+    // Prepare the campaign payload
     const newCampaign = {
-      title: title,
-      description: description,
+      title,
+      description,
       offerType: campaignType,
-      businessId: selectedProduct?.businessId,
+      businessId: products[0]?.businessId, // Adjust as needed for future types
       startAt: new Date(start),
       endAt: new Date(expiry),
       qrCode: "QRCODE123",
-      organizationId: selectedProduct?.organizationId,
-      offerJSON: {
-        data: {
-          id: selectedProduct?.id,
-          sku: selectedProduct?.sku,
-          name: selectedProduct?.name,
-          category: selectedProduct?.category,
-          mrp: selectedProduct?.mrp,
-          offerPrice: selectedProduct?.offerPrice,
-          quantity: selectedProduct?.quantity,
-          image: selectedProduct?.image,
-          discountType: selectedProduct?.discountType,
-          businessId: selectedProduct?.businessId,
-          organizationId: selectedProduct?.organizationId,
-          createdAt: selectedProduct?.createdAt,
-          updatedAt: selectedProduct?.updatedAt,
-        },
-      },
+      organizationId: products[0]?.organizationId, // Adjust as needed for future types
+      offerJSON: offerJSON,
       interactiveType: null,
     };
 
@@ -122,9 +176,38 @@ export default function CreateCampaignPage() {
             >
               Add Products
             </Button>
-            <Button size={"sm"} onClick={handleClick}>
-              Add Components
-            </Button>
+
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button size={"sm"} className="flex gap-1 pr-1">
+                  Add Components <DotsVerticalIcon />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-56">
+                <DropdownMenuLabel>Components</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuGroup>
+                  <DropdownMenuItem
+                    onClick={() => openReusableSheet("Quizzes")}
+                  >
+                    Quizzes
+                  </DropdownMenuItem>
+                  <DropdownMenuItem
+                    onClick={() => openReusableSheet("Contest")}
+                  >
+                    Contest
+                  </DropdownMenuItem>
+                  <DropdownMenuItem
+                    onClick={() => openReusableSheet("FeedbackForm")}
+                  >
+                    Feedback Form
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => openReusableSheet("Poll")}>
+                    Poll
+                  </DropdownMenuItem>
+                </DropdownMenuGroup>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         )}
       </div>

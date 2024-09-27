@@ -10,8 +10,6 @@ export async function GET() {
     // Return the products as a JSON response
     return NextResponse.json(products);
   } catch (error) {
-    // Handle any errors
-    console.log(error);
     return NextResponse.json(
       { error: "Error fetching products" },
       { status: 500 }
