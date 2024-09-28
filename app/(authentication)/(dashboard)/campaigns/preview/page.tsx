@@ -33,7 +33,6 @@ type DynamicComponentProps = {
 import { useMutation } from "@tanstack/react-query";
 import { updateOffer } from "@/services/campaign-service";
 import { toast } from "sonner";
-import template from "@/data/template.json";
 
 export default function PreviewAndSelectTemplate() {
   const [view, setView] = useState("desktop");
@@ -54,8 +53,8 @@ export default function PreviewAndSelectTemplate() {
       console.log("Campaign updated successfully:", data);
       toast.success("Campaign updated successfully");
 
-      if (offerId) {
-        queryClient.invalidateQueries({ queryKey: ["offer", offerId] });
+      if (data.id) {
+        queryClient.invalidateQueries({ queryKey: ["offer", data.id] });
         queryClient.invalidateQueries({ queryKey: ["campaigns"] });
       }
     },
@@ -65,21 +64,27 @@ export default function PreviewAndSelectTemplate() {
   });
 
   const handleUpdateOffer = () => {
-    const offerData = {
-      offerId: offerId,
+    if (!offer) return;
+
+    const updatedOffer = {
+      ...offer,
       templateId: currentTemplateId,
       isActive: !offer.isActive,
     };
-    mutate(offerData);
+
+    mutate(updatedOffer);
   };
 
   const handleDraft = () => {
-    const offerData = {
-      offerId: offerId,
+    if (!offer) return;
+
+    const updatedOffer = {
+      ...offer,
       templateId: currentTemplateId,
       isActive: false,
     };
-    mutate(offerData);
+
+    mutate(updatedOffer);
   };
 
   const handleResize = (size: string) => {
@@ -88,6 +93,10 @@ export default function PreviewAndSelectTemplate() {
 
   const handleSheetToggle = () => {
     setSheetOpen(!isSheetOpen);
+  };
+
+  const handleEdit = () => {
+    router.push(`/campaigns/edit/${offerId}`);
   };
 
   // Fetch offer by ID using React Query
@@ -202,7 +211,9 @@ export default function PreviewAndSelectTemplate() {
           >
             <Clock className="w-5 h-5" />
           </Button>
-
+          <Button size="sm" variant={"secondary"} onClick={handleEdit}>
+            Edit
+          </Button>
           <Button size="sm" variant={"secondary"} onClick={handleDraft}>
             Save as draft {offer?.templateId == currentTemplateId ? " " : "*"}
           </Button>

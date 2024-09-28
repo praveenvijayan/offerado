@@ -27,6 +27,7 @@ const LightSingleTemplate = ({ offer }: { offer: any }) => {
 
         {/* Product Image and Offer Price Section */}
         <div className="flex flex-col justify-center items-center mt-8">
+          <h3 className="text-xl font-semibold">{offerData[0]?.name}</h3>
           <Image
             src={offerData[0]?.image}
             alt={offerData[0]?.name}

@@ -143,7 +143,7 @@ const SingleProductDisplay = () => {
                 variant="destructive"
                 onClick={() => {
                   resetSelectedProduct();
-                  resetIsProductSelected();
+                  // resetIsProductSelected();
                 }}
                 className="w-8 h-8 p-0 self-center"
               >

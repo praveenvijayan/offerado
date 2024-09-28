@@ -1,58 +1,79 @@
 "use client";
+import React, { useEffect, useState } from "react";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { useRouter } from "next/navigation";
+import { useRouter, useParams } from "next/navigation";
 import NoProducts from "@/components/campaigns/no-products";
 import CampaignHeader from "@/components/campaigns/campaign-header";
 import CampaignTypeStore from "@/stores/campaign-type";
-import { useEffect, useState } from "react";
-import SingleProductDisplay from "@/components/campaigns/single-product/single-product-display";
-import useProductStore from "@/stores/single-product-store";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
-import { createCampaign } from "@/services/campaign-service";
+import { fetchOfferById, updateOffer } from "@/services/campaign-service";
 import useCampaignStore from "@/stores/create-campaign-form";
 import CampaignDialogForm from "@/components/campaigns/campaign-dialog-form";
+import SingleProductDisplay from "@/components/campaigns/single-product/single-product-display";
 import MultiProductDisplay from "@/components/campaigns/multi-product/multi-product-display";
+import useProductStore from "@/stores/single-product-store";
+import { useProductSelectionStore } from "@/stores/multiple-product-selection";
+import { useProducts } from "@/services/product-services";
+import campaignTypes from "@/data/campaign-types.json";
 import useSheetStore from "@/stores/sheet-store";
 import CampaignSheet from "@/components/campaigns/campaign-sheet";
-import campaignTypes from "@/data/campaign-types.json";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuPortal,
   DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { DotsVerticalIcon } from "@radix-ui/react-icons";
-import { useProductSelectionStore } from "@/stores/multiple-product-selection";
-import { useProducts } from "@/services/product-services";
+import useResetAllStores from "@/hooks/reset-all-create-stores";
 import useProductSingleStore from "@/stores/single-product-store";
 
-export default function CreateCampaignPage() {
+export default function EditCampaignPage({ params }: any) {
   const router = useRouter();
-  const { data } = useProducts();
-  const handleClick = () => router.push("/campaigns");
-  const campaignType = CampaignTypeStore((state) => state.campaignType);
+  //   const params = useParams();
+  const id = params.id;
+  const queryClient = useQueryClient();
+  const resetAllStores = useResetAllStores();
+
+  const { data: campaign, isLoading: isCampaignLoading } = useQuery({
+    queryKey: ["campaign", id],
+    queryFn: () => fetchOfferById(Array.isArray(id) ? id[0] : id),
+    enabled: !!id,
+    staleTime: 0,
+    refetchOnMount: true,
+    refetchOnWindowFocus: true,
+  });
+
+  const { data: productsData } = useProducts();
+  //   const campaignType = CampaignTypeStore((state) => state.campaignType);
   const isProductSelected = CampaignTypeStore(
     (state) => state.isProductSelected
   );
+
   const { selectedProduct: selectedSingleProduct } = useProductSingleStore();
+
+  const { setCampaignType, campaignType } = CampaignTypeStore();
+
   const { openSheet, open: openReusableSheet, close } = useSheetStore();
-  const campaign = campaignTypes.find((c) => c.id === campaignType);
+  const campaignTypeData = campaignTypes.find((c) => c.id === campaignType);
 
   const selectedProduct = useProductStore((state) => state.selectedProduct);
+  const setSelectedProduct = useProductStore(
+    (state) => state.setSelectedProduct
+  );
+
   const selectedProducts = useProductSelectionStore(
     (state) => state.selectedProducts
   );
+  const setSelectedProducts = useProductSelectionStore(
+    (state) => state.setSelectedProducts
+  );
+
   const {
     title,
     description,
@@ -62,25 +83,50 @@ export default function CreateCampaignPage() {
     setDescription,
     setStart,
     setExpiry,
-    setCampaignType,
-    reset,
   } = useCampaignStore();
+
+  const { setIsProductSelected } = CampaignTypeStore();
 
   const [open, setOpen] = useState(false);
 
+  useEffect(() => {
+    if (campaign) {
+      setTitle(campaign?.title);
+      setDescription(campaign?.description);
+      setStart(campaign?.startAt);
+      setExpiry(campaign?.endAt);
+      setCampaignType(campaign?.offerType);
+
+      if (campaign.offerType === "SingleProduct") {
+        const productData = campaign?.offerJSON.data[0];
+        setSelectedProduct(productData);
+      } else if (campaign?.offerType === "MultiProduct") {
+        const productDataArray = campaign?.offerJSON.data;
+        setSelectedProducts(productDataArray.map((product: any) => product.id));
+      }
+      // Handle other campaign types as needed
+    }
+    setIsProductSelected();
+    queryClient.invalidateQueries({ queryKey: ["offer", campaign?.id] });
+    queryClient.invalidateQueries({ queryKey: ["campaigns"] });
+  }, [campaign]);
+
   const mutation = useMutation({
-    mutationFn: createCampaign,
+    mutationFn: updateOffer,
     onSuccess: (data) => {
-      toast.success("Campaign created successfully!");
+      toast.success("Campaign updated successfully!");
+      queryClient.invalidateQueries({ queryKey: ["campaigns"] });
+      resetAllStores();
+      console.log(data);
       router.push(`/campaigns/preview?id=${data.id}`);
     },
     onError: (error) => {
-      toast.error("Failed to create campaign");
-      console.error("Error creating campaign:", error);
+      toast.error("Failed to update campaign");
+      console.error("Error updating campaign:", error);
     },
   });
 
-  const handleCampaignCreation = () => {
+  const handleCampaignUpdate = () => {
     if (!title || !description || !start || !expiry || !campaignType) {
       setOpen(true);
       return;
@@ -93,14 +139,15 @@ export default function CreateCampaignPage() {
           return selectedProduct ? [selectedProduct] : [];
         case "MultiProduct":
           return (
-            data?.filter((product) => selectedProducts.includes(product.id)) ||
-            []
+            productsData?.filter((product) =>
+              selectedProducts.includes(product.id)
+            ) || []
           );
         // Extend here for future campaign types
         case "Quizzes":
         case "Contest":
         case "FeedbackForm":
-          return []; // Adjust based on specific requirements for new types
+          return [];
         default:
           return [];
       }
@@ -137,35 +184,28 @@ export default function CreateCampaignPage() {
       })),
     };
 
-    // Prepare the campaign payload
-    const newCampaign = {
+    // Prepare the updated campaign payload
+    const updatedCampaign = {
+      id: campaign.id,
       title,
       description,
       offerType: campaignType,
-      businessId: products[0]?.businessId, // Adjust as needed for future types
+      businessId: products[0]?.businessId || campaign.businessId,
       startAt: new Date(start),
       endAt: new Date(expiry),
-      qrCode: "QRCODE123",
-      organizationId: products[0]?.organizationId, // Adjust as needed for future types
+      qrCode: campaign.qrCode,
+      organizationId: products[0]?.organizationId || campaign.organizationId,
       offerJSON: offerJSON,
       interactiveType: null,
     };
 
-    // Trigger the mutation to create the campaign
-    mutation.mutate(newCampaign);
+    // Trigger the mutation to update the campaign
+    mutation.mutate(updatedCampaign);
   };
 
   return (
     <div className="flex flex-col gap-4 h-[88vh] w-full">
       <div className="flex w-full items-center h-fit gap-2">
-        <Button
-          variant={"ghost"}
-          size={"sm"}
-          onClick={handleClick}
-          className="hidden"
-        >
-          <ArrowLeft />
-        </Button>
         <CampaignHeader />
         {campaignType === "SingleProduct" && !selectedSingleProduct && (
           <div className="ml-auto justify-self-end gap-2 flex">
@@ -223,8 +263,7 @@ export default function CreateCampaignPage() {
         )}
       </div>
       <Separator />
-      {!isProductSelected && <NoProducts />}
-      {/* <NoProducts /> */}
+      {/* Display components based on campaign type and isProductSelected */}
       {campaignType == "SingleProduct" && isProductSelected && (
         <SingleProductDisplay />
       )}
@@ -241,18 +280,18 @@ export default function CreateCampaignPage() {
         <div className="flex justify-end gap-2 ">
           <Button
             className="bg-green-500 rounded-2xl"
-            onClick={handleCampaignCreation}
+            onClick={handleCampaignUpdate}
           >
-            Continue
+            Update Campaign
           </Button>
         </div>
       )}
       <CampaignDialogForm open={open} setOpen={setOpen} />
       {campaignType && (
         <CampaignSheet
-          id={campaign?.id}
-          title={campaign?.title}
-          description={campaign?.description}
+          id={campaignTypeData?.id}
+          title={campaignTypeData?.title}
+          description={campaignTypeData?.description}
         />
       )}
     </div>

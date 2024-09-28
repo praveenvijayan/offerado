@@ -6,6 +6,7 @@ type ProductSelectionState = {
   isSelected: (productId: string) => boolean;
   resetProducts: () => void;
   getSelectedProducts: () => string[];
+  setSelectedProducts: (products: string[]) => void; // New function to set selected products
 };
 
 export const useProductSelectionStore = create<ProductSelectionState>(
@@ -42,5 +43,11 @@ export const useProductSelectionStore = create<ProductSelectionState>(
     getSelectedProducts: () => {
       return get().selectedProducts;
     },
+
+    // New function to set selected products
+    setSelectedProducts: (products) =>
+      set(() => ({
+        selectedProducts: products,
+      })),
   })
 );

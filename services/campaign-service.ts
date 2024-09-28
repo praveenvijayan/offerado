@@ -40,13 +40,13 @@ export const fetchOfferById = async (id: string) => {
   return response.json();
 };
 
-export const updateOffer = async ({ offerId, templateId, isActive }: any) => {
+export const updateOffer = async (updatedCampaign: any) => {
   const response = await fetch("/api/campaigns/update", {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ offerId, templateId, isActive }),
+    body: JSON.stringify(updatedCampaign),
   });
 
   if (!response.ok) {

@@ -1,26 +1,37 @@
 import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
+import template from "@/data/template.json";
 
-// Define the route handler for PUT requests
-export async function PUT(request: Request) {
+export async function PUT(request: any) {
   try {
-    // Parse the request body to get the updated data
-    const { offerId, templateId, isActive } = await request.json();
+    // Parse the request body to get the updated campaign data
+    const updatedCampaign = await request.json();
+    const { id } = updatedCampaign;
 
-    // Validate if offerId is provided
-    if (!offerId) {
+    // Validate if id (offerId) is provided
+    if (!id) {
       return NextResponse.json(
-        { error: "offerId is required" },
+        { error: "Campaign ID is required" },
         { status: 400 }
       );
     }
 
-    // Update the offer with the specified offerId
+    // Update the offer with the specified id
     const updatedOffer = await prisma.offer.update({
-      where: { id: offerId },
+      where: { id },
       data: {
-        templateId,
-        isActive,
+        title: updatedCampaign.title,
+        description: updatedCampaign.description,
+        offerType: updatedCampaign.offerType,
+        businessId: updatedCampaign.businessId,
+        startAt: updatedCampaign.startAt,
+        endAt: updatedCampaign.endAt,
+        qrCode: updatedCampaign.qrCode,
+        organizationId: updatedCampaign.organizationId,
+        offerJSON: updatedCampaign.offerJSON,
+        interactiveType: updatedCampaign.interactiveType || null,
+        isActive: updatedCampaign.isActive || false,
+        templateId: updatedCampaign.templateId || null,
       },
     });
 

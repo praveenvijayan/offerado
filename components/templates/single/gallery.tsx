@@ -28,6 +28,7 @@ const GallerySingleTemplate = ({ offer }: { offer: any }) => {
 
         {/* Chicken Image and Offer Price Section */}
         <div className="p-6 flex flex-col md:flex-row items-center">
+          <h3 className="text-xl font-semibold">{offerData[0]?.name}</h3>
           <Image
             src={offerData[0]?.image}
             alt={offerData[0]?.name}
