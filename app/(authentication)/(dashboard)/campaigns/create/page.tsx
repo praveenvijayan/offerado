@@ -15,8 +15,6 @@ import { createCampaign } from "@/services/campaign-service";
 import useCampaignStore from "@/stores/create-campaign-form";
 import CampaignDialogForm from "@/components/campaigns/campaign-dialog-form";
 import MultiProductDisplay from "@/components/campaigns/multi-product/multi-product-display";
-import ReusableSheet from "@/components/global/reusable-sheet";
-import SingleProduct from "@/components/campaigns/single-product/single-product";
 import useSheetStore from "@/stores/sheet-store";
 import CampaignSheet from "@/components/campaigns/campaign-sheet";
 import campaignTypes from "@/data/campaign-types.json";
@@ -66,7 +64,6 @@ export default function CreateCampaignPage() {
     reset,
   } = useCampaignStore();
 
-  useEffect(() => {}, [campaignType, isProductSelected]);
   const [open, setOpen] = useState(false);
 
   const mutation = useMutation({
@@ -168,7 +165,7 @@ export default function CreateCampaignPage() {
           <ArrowLeft />
         </Button>
         <CampaignHeader />
-        {campaignType == "MultiProduct" && (
+        {campaignType == "MultiProduct" && isProductSelected && (
           <div className="ml-auto justify-self-end gap-2 flex">
             <Button
               size={"sm"}
@@ -188,7 +185,9 @@ export default function CreateCampaignPage() {
                 <DropdownMenuSeparator />
                 <DropdownMenuGroup>
                   <DropdownMenuItem
-                    onClick={() => openReusableSheet("Quizzes")}
+                    onClick={() => {
+                      openReusableSheet("Quizzes");
+                    }}
                   >
                     Quizzes
                   </DropdownMenuItem>
@@ -239,7 +238,7 @@ export default function CreateCampaignPage() {
       <CampaignDialogForm open={open} setOpen={setOpen} />
       {campaignType && (
         <CampaignSheet
-          id={campaignType}
+          id={campaign?.id}
           title={campaign?.title}
           description={campaign?.description}
         />

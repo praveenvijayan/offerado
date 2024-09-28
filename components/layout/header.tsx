@@ -21,18 +21,13 @@ import {
 } from "@clerk/nextjs";
 import Help from "../global/help";
 import Link from "next/link";
+import { CampaignCreateButton } from "../campaigns/campaign-create-button";
 
 export const Header = () => (
   <header className="flex h-14 items-center gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6">
     <MobileMenu />
     <SearchBar />
-    <Link
-      href={"/campaigns/create"}
-      className=" bg-green-600 text-white flex gap-1 rounded-2xl p-2 items-center text-xs hover:bg-green-700"
-    >
-      <Plus className="w-4 h-4" />
-      New campaign
-    </Link>
+    <CampaignCreateButton />
     <ModeToggle />
     <NotificationButton />
     <Help />

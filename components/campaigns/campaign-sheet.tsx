@@ -7,17 +7,28 @@ import MultiProduct from "@/components/campaigns/multi-product/multi-product";
 
 const CampaignSheet = ({ id, title, description }: any) => {
   const { openSheet, close } = useSheetStore();
+  const multiProductComponents = ["Quizzes", "Contest", "FeedbackForm", "Poll"];
 
   return (
     <ReusableSheet
-      open={openSheet === id}
+      open={
+        !!(
+          openSheet === id ||
+          (openSheet &&
+            multiProductComponents.includes(openSheet) &&
+            id === "MultiProduct")
+        )
+      }
       onOpenChange={close}
       title={title}
       description={description}
     >
-      {id === "SingleProduct" && <SingleProduct />}
-      {id === "MultiProduct" && <MultiProduct />}
-      {id === "Quizzes" && <div>Quizzes</div>}
+      {openSheet === "SingleProduct" && <SingleProduct />}
+      {openSheet === "MultiProduct" && <MultiProduct />}
+      {openSheet === "Quizzes" && <div>Quizzes</div>}
+      {openSheet === "Contest" && <div>Contest</div>}
+      {openSheet === "FeedbackForm" && <div>FeedbackForm</div>}
+      {openSheet === "Poll" && <div>Poll</div>}
     </ReusableSheet>
   );
 };

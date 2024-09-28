@@ -23,7 +23,7 @@ import campaignTypes from "@/data/campaign-types.json";
 // Reusable function to render campaign buttons and sheets
 const RenderCampaign = ({
   id,
-  icon: Icon,
+  icon,
   title,
   description,
   buttonText,
@@ -32,6 +32,17 @@ const RenderCampaign = ({
 }: any) => {
   const { openSheet, open, close } = useSheetStore();
   const { setCampaignType, campaignType } = CampaignTypeStore();
+
+  const iconComponents = {
+    BoxIcon,
+    SquareLibrary,
+    FileQuestion,
+    FormInputIcon,
+    ShipWheel,
+    CircleDot,
+  } as any;
+
+  const IconComponent = iconComponents[icon];
 
   return (
     <>
@@ -42,9 +53,11 @@ const RenderCampaign = ({
         }}
         className={`rounded-xl p-6 flex flex-col justify-center text-center items-center gap-4 h-auto w-auto text-wrap`}
       >
-        <Icon
-          className={`w-14 h-14 stroke-black fill-${buttonColor} stroke-1`}
-        />
+        {IconComponent && (
+          <IconComponent
+            className={`w-14 h-14 stroke-black fill-${buttonColor} stroke-1`}
+          />
+        )}
         <p>{buttonText}</p>
       </Button>
     </>

@@ -41,6 +41,7 @@ import {
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { Arrow } from "@radix-ui/react-dropdown-menu";
+import CampaignTypeStore from "@/stores/campaign-type";
 
 interface DraggableRowProps {
   row: Row<Product>;
@@ -92,13 +93,17 @@ const MultiProductDisplay = () => {
 
   const [tableData, setTableData] = useState<Product[]>([]);
   const [sorting, setSorting] = useState<SortingState>([]); // State for sorting
-
+  const { setIsProductSelected, resetIsProductSelected } = CampaignTypeStore();
   useEffect(() => {
     if (!data) return;
 
     setTableData(
       data.filter((product) => selectedProducts.includes(product.id))
     );
+
+    if (!selectedProducts.length) {
+      resetIsProductSelected();
+    }
   }, [selectedProducts, data]);
 
   const columns = useMemo(
@@ -224,7 +229,10 @@ const MultiProductDisplay = () => {
             <Button
               size="sm"
               variant="destructive"
-              onClick={resetProducts}
+              onClick={() => {
+                resetIsProductSelected();
+                resetProducts();
+              }}
               className="w-auto p-2 mb-2 mr-2"
             >
               Clear All
