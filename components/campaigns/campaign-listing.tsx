@@ -111,6 +111,7 @@ const CampaignTable = () => {
     {
       accessorKey: "actions",
       header: "ACTIONS",
+      enableSorting: false,
       cell: ({ row }: any) => {
         // Get the row's data
         const rowData = row.original;
@@ -208,15 +209,17 @@ const CampaignTable = () => {
                       header.column.columnDef.header,
                       header.getContext()
                     )}
-                    {header.column.getIsSorted() ? (
-                      header.column.getIsSorted() === "desc" ? (
-                        <ArrowDown className="ml-2 h-4 w-4 inline" />
+                    {header.column.getCanSort() ? (
+                      header.column.getIsSorted() ? (
+                        header.column.getIsSorted() === "desc" ? (
+                          <ArrowDown className="ml-2 h-4 w-4 inline" />
+                        ) : (
+                          <ArrowUp className="ml-2 h-4 w-4 inline" />
+                        )
                       ) : (
-                        <ArrowUp className="ml-2 h-4 w-4 inline" />
+                        <ArrowUpDown className="ml-2 h-4 w-4 inline" />
                       )
-                    ) : (
-                      <ArrowUpDown className="ml-2 h-4 w-4 inline" />
-                    )}
+                    ) : null}
                   </TableHead>
                 ))}
               </TableRow>

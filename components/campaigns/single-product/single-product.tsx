@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import {
   Table,
   TableBody,
@@ -12,7 +12,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { useProducts } from "@/services/product-services";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Input } from "@/components/ui/input"; // Add input for search
+import { Input } from "@/components/ui/input";
 import {
   useReactTable,
   getCoreRowModel,
@@ -20,19 +20,23 @@ import {
   getSortedRowModel,
   getFilteredRowModel,
   flexRender,
+  Row,
 } from "@tanstack/react-table";
-import { Arrow } from "@radix-ui/react-dropdown-menu";
-import { ArrowLeft, ArrowRight, Filter, Plus, PlusCircle } from "lucide-react";
-import { Switch } from "@/components/ui/switch";
-import { Label } from "@/components/ui/label";
+import { ArrowLeft, ArrowRight, PlusCircle } from "lucide-react";
 import CampaignTypeStore from "@/stores/campaign-type";
 import useSheetStore from "@/stores/sheet-store";
-import { useState } from "react";
-import SelectButton from "./select-button";
 import useProductSingleStore from "@/stores/single-product-store";
+import { Separator } from "@/components/ui/separator";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Label } from "@/components/ui/label";
+import type { Product } from "@prisma/client";
 
 function timeout(delay: number) {
   return new Promise((res) => setTimeout(res, delay));
+}
+
+interface DraggableRowProps {
+  row: Row<Product>;
 }
 
 const SingleProduct = () => {
@@ -44,11 +48,29 @@ const SingleProduct = () => {
     pageSize: 10,
   });
   const { setIsProductSelected } = CampaignTypeStore();
-  const { openSheet, open, close } = useSheetStore();
+  const { close } = useSheetStore();
   const { setSelectedProduct } = useProductSingleStore();
+
+  const [selectedProductId, setSelectedProductId] = useState("");
+
   // Define columns for TanStack Table
   const columns = useMemo(
     () => [
+      {
+        accessorKey: "action",
+        header: "Action",
+        cell: ({ row }: { row: Row<Product> }) => (
+          <div className="flex items-center">
+            <RadioGroupItem
+              value={row.original.id.toString()}
+              id={`radio-${row.original.id}`}
+            />
+            <Label htmlFor={`radio-${row.original.id}`} className="sr-only">
+              Select {row.original.name}
+            </Label>
+          </div>
+        ),
+      },
       {
         accessorKey: "discountType",
         header: "Type",
@@ -60,25 +82,6 @@ const SingleProduct = () => {
       {
         accessorKey: "category",
         header: "Category",
-      },
-      // {
-      //   accessorKey: "offerPrice",
-      //   header: "Offer Price",
-      // },
-      {
-        accessorKey: "action",
-        header: "Action",
-        cell: ({ row }: any) => (
-          <SelectButton
-            onSelect={async () => {
-              await timeout(800);
-              setSelectedProduct(row.original);
-              close();
-              await timeout(400);
-              setIsProductSelected();
-            }}
-          />
-        ),
       },
     ],
     []
@@ -106,7 +109,12 @@ const SingleProduct = () => {
   if (error) return <div>Error loading products: {error.message}</div>;
 
   return (
-    <div className="single-product">
+    <div className="single-product relative">
+      <div className="flex items-center gap-2 absolute -top-12 right-0">
+        <Button size="sm" className="rounded-xl flex gap-2">
+          <PlusCircle className="w-4 h-4" /> New Product
+        </Button>
+      </div>
       {/* Search Input */}
       <div className="flex justify-between items-center gap-4 mb-4">
         <Input
@@ -116,95 +124,123 @@ const SingleProduct = () => {
           onChange={(e) => setGlobalFilter(e.target.value)}
           className=""
         />
-        <div className="flex items-center gap-2">
-          {/* <Button variant="ghost" size="icon" className="rounded-xl">
-            <Filter className="w-5 h-5" />
-          </Button> */}
-          <Button size="icon" className="rounded-xl">
-            <PlusCircle className="w-6 h-6" />
-          </Button>
-        </div>
-        {/* <div className="flex items-center gap-2">
-          <Switch id="airplane-mode" />
-          <Label htmlFor="airplane-mode">Group</Label>
-        </div> */}
       </div>
-      <ScrollArea className="h-[84vh] w-full">
-        <Table>
-          <TableHeader>
-            {table.getHeaderGroups().map((headerGroup) => (
-              <TableRow key={headerGroup.id}>
-                {headerGroup.headers.map((header) => (
-                  <TableHead
-                    key={header.id}
-                    onClick={header.column.getToggleSortingHandler()}
-                    className="cursor-pointer"
-                  >
-                    {flexRender(
-                      header.column.columnDef.header,
-                      header.getContext()
-                    )}
-                    {header.column.getIsSorted()
-                      ? header.column.getIsSorted() === "desc"
-                        ? " 🔽"
-                        : " 🔼"
-                      : null}
-                  </TableHead>
-                ))}
-              </TableRow>
-            ))}
-          </TableHeader>
-          <TableBody>
-            {table.getRowModel().rows.map((row) => (
-              <TableRow key={row.id}>
-                {row.getVisibleCells().map((cell) => (
-                  <TableCell key={cell.id}>
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                  </TableCell>
-                ))}
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-        {/* Pagination Controls */}
-
-        <div className="pagination-controls mt-4 flex items-center justify-between gap-4 border-t border-b py-4">
-          <div className="flex items-center">
-            <select
-              value={table.getState().pagination.pageSize}
-              onChange={(e) => {
-                table.setPageSize(Number(e.target.value));
-              }}
-              className="ml-4 text-xs px-4 py-2 border rounded-md"
-            >
-              {[10, 20, 30, 40, 50].map((size) => (
-                <option key={size} value={size}>
-                  Show {size}
-                </option>
+      <ScrollArea className="h-[80vh] w-full pb-[8rem]">
+        <RadioGroup
+          value={selectedProductId}
+          onValueChange={(value) => {
+            setSelectedProductId(value);
+            const selectedProduct = data?.find(
+              (product) => product.id.toString() === value
+            ) as any;
+            setSelectedProduct(selectedProduct);
+          }}
+        >
+          <Table>
+            <TableHeader>
+              {table.getHeaderGroups().map((headerGroup) => (
+                <TableRow key={headerGroup.id}>
+                  {headerGroup.headers.map((header) => (
+                    <TableHead
+                      key={header.id}
+                      onClick={header.column.getToggleSortingHandler()}
+                      className="cursor-pointer"
+                    >
+                      {flexRender(
+                        header.column.columnDef.header,
+                        header.getContext()
+                      )}
+                      {header.column.getIsSorted()
+                        ? header.column.getIsSorted() === "desc"
+                          ? " 🔽"
+                          : " 🔼"
+                        : null}
+                    </TableHead>
+                  ))}
+                </TableRow>
               ))}
-            </select>
+            </TableHeader>
+            <TableBody>
+              {table.getRowModel().rows.map((row) => (
+                <TableRow key={row.id}>
+                  {row.getVisibleCells().map((cell) => (
+                    <TableCell key={cell.id}>
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext()
+                      )}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </RadioGroup>
+        {/* Pagination Controls */}
+        <div className="absolute bottom-0 left-0 bg-muted/20 rounded-md w-full">
+          <div className="pagination-controls mt-4 flex items-center justify-between gap-4">
+            <div className="flex items-center">
+              <select
+                value={table.getState().pagination.pageSize}
+                onChange={(e) => {
+                  table.setPageSize(Number(e.target.value));
+                }}
+                className="ml-4 text-xs px-4 py-2 border rounded-md"
+              >
+                {[10, 20, 30, 40, 50].map((size) => (
+                  <option key={size} value={size}>
+                    Show {size}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="flex-1 flex justify-between items-center">
+              <Button
+                variant={"link"}
+                size={"sm"}
+                onClick={() => table.previousPage()}
+                disabled={!table.getCanPreviousPage()}
+              >
+                <ArrowLeft className="mr-2 h-4 w-4" />
+                Previous
+              </Button>
+              <span className="text-sm">
+                Page {table.getState().pagination.pageIndex + 1} of{" "}
+                {table.getPageCount()}
+              </span>
+              <Button
+                variant={"link"}
+                size={"sm"}
+                onClick={() => table.nextPage()}
+                disabled={!table.getCanNextPage()}
+              >
+                Next <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </div>
           </div>
-          <div className="flex-1 flex justify-between items-center">
+          <Separator className="border-slate-600 border-t mt-[1rem]" />
+          <div className="flex justify-end gap-4 p-2">
             <Button
-              variant={"link"}
-              size={"sm"}
-              onClick={() => table.previousPage()}
-              disabled={!table.getCanPreviousPage()}
+              size="sm"
+              variant="secondary"
+              onClick={() => {
+                close();
+              }}
             >
-              <ArrowLeft className="mr-2 h-4 w-4" />
-              Previous
+              Cancel
             </Button>
-            <span className="text-sm">
-              Page {table.getState().pagination.pageIndex + 1} of{" "}
-              {table.getPageCount()}
-            </span>
             <Button
-              variant={"link"}
-              size={"sm"}
-              onClick={() => table.nextPage()}
-              disabled={!table.getCanNextPage()}
+              size="sm"
+              variant="outline"
+              className="bg-green-500"
+              onClick={async () => {
+                await timeout(800);
+                setIsProductSelected();
+                close();
+              }}
+              disabled={!selectedProductId}
             >
-              Next <ArrowRight className="ml-2 h-4 w-4" />
+              Add to campaign
             </Button>
           </div>
         </div>

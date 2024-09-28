@@ -26,6 +26,8 @@ import { useState } from "react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useProductSelectionStore } from "@/stores/multiple-product-selection";
 import CampaignTypeStore from "@/stores/campaign-type";
+import { Separator } from "@/components/ui/separator";
+import useSheetStore from "@/stores/sheet-store";
 
 function timeout(delay: number) {
   return new Promise((res) => setTimeout(res, delay));
@@ -41,7 +43,7 @@ const MultiProduct = () => {
   });
 
   const { setIsProductSelected, resetIsProductSelected } = CampaignTypeStore();
-
+  const { openSheet, open, close } = useSheetStore();
   const selectedProducts = useProductSelectionStore(
     (state) => state.selectedProducts
   );
@@ -64,6 +66,16 @@ const MultiProduct = () => {
   const columns = useMemo(
     () => [
       {
+        accessorKey: "action",
+        header: "Select",
+        cell: ({ row }: any) => (
+          <Checkbox
+            checked={isSelected(row.original.id)}
+            onCheckedChange={() => toggleProductSelection(row.original.id)}
+          />
+        ),
+      },
+      {
         accessorKey: "discountType",
         header: "Type",
       },
@@ -74,16 +86,6 @@ const MultiProduct = () => {
       {
         accessorKey: "category",
         header: "Category",
-      },
-      {
-        accessorKey: "action",
-        header: "Action",
-        cell: ({ row }: any) => (
-          <Checkbox
-            checked={isSelected(row.original.id)}
-            onCheckedChange={() => toggleProductSelection(row.original.id)}
-          />
-        ),
       },
     ],
     []
@@ -111,7 +113,12 @@ const MultiProduct = () => {
   if (error) return <div>Error loading products: {error.message}</div>;
 
   return (
-    <div className="multi-product">
+    <div className="multi-product relative">
+      <div className="flex items-center absolute top-0 right-0">
+        <Button size="sm" className="rounded-xl flex items-center gap-2">
+          <PlusCircle className="w-6 h-6" /> New Product
+        </Button>
+      </div>
       <p className="text-sm mb-4 flex items-center gap-4">
         You have total <span className="font-semibold"> {data?.length} </span>{" "}
         product(s), and you have selected{" "}
@@ -143,13 +150,8 @@ const MultiProduct = () => {
           onChange={(e) => setGlobalFilter(e.target.value)}
           className=""
         />
-        <div className="flex items-center gap-2">
-          <Button size="icon" className="rounded-xl">
-            <PlusCircle className="w-6 h-6" />
-          </Button>
-        </div>
       </div>
-      <ScrollArea className="h-[80vh] w-full">
+      <ScrollArea className="h-[75vh] w-full pb-[8rem]">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
@@ -187,44 +189,69 @@ const MultiProduct = () => {
           </TableBody>
         </Table>
         {/* Pagination Controls */}
-
-        <div className="pagination-controls mt-4 flex items-center justify-between gap-4 border-t border-b py-4">
-          <div className="flex items-center">
-            <select
-              value={table.getState().pagination.pageSize}
-              onChange={(e) => {
-                table.setPageSize(Number(e.target.value));
-              }}
-              className="ml-4 text-xs px-4 py-2 border rounded-md"
-            >
-              {[10, 20, 30, 40, 50].map((size) => (
-                <option key={size} value={size}>
-                  Show {size}
-                </option>
-              ))}
-            </select>
+        <div className="absolute bottom-0 left-0 bg-muted/20 rounded-md w-full">
+          <div className="pagination-controls mt-4 flex items-center justify-between">
+            <div className="flex items-center">
+              <select
+                value={table.getState().pagination.pageSize}
+                onChange={(e) => {
+                  table.setPageSize(Number(e.target.value));
+                }}
+                className="ml-4 text-xs px-4 py-2 border rounded-md"
+              >
+                {[10, 20, 30, 40, 50].map((size) => (
+                  <option key={size} value={size}>
+                    Show {size}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="flex-1 flex justify-between items-center">
+              <Button
+                variant={"link"}
+                size={"sm"}
+                onClick={() => table.previousPage()}
+                disabled={!table.getCanPreviousPage()}
+              >
+                <ArrowLeft className="mr-2 h-4 w-4" />
+                Previous
+              </Button>
+              <span className="text-sm">
+                Page {table.getState().pagination.pageIndex + 1} of{" "}
+                {table.getPageCount()}
+              </span>
+              <Button
+                variant={"link"}
+                size={"sm"}
+                onClick={() => table.nextPage()}
+                disabled={!table.getCanNextPage()}
+              >
+                Next <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </div>
           </div>
-          <div className="flex-1 flex justify-between items-center">
+          <Separator className="border-slate-600 border-t mt-[1rem]" />
+          <div className="flex justify-end gap-4 p-2">
             <Button
-              variant={"link"}
-              size={"sm"}
-              onClick={() => table.previousPage()}
-              disabled={!table.getCanPreviousPage()}
+              size="sm"
+              variant="secondary"
+              onClick={() => {
+                // resetProducts();
+                // setIsProductSelected();
+                close();
+              }}
             >
-              <ArrowLeft className="mr-2 h-4 w-4" />
-              Previous
+              Cancel
             </Button>
-            <span className="text-sm">
-              Page {table.getState().pagination.pageIndex + 1} of{" "}
-              {table.getPageCount()}
-            </span>
             <Button
-              variant={"link"}
-              size={"sm"}
-              onClick={() => table.nextPage()}
-              disabled={!table.getCanNextPage()}
+              size="sm"
+              variant="outline"
+              className="bg-green-500"
+              onClick={() => {
+                close();
+              }}
             >
-              Next <ArrowRight className="ml-2 h-4 w-4" />
+              Add to campaign
             </Button>
           </div>
         </div>
