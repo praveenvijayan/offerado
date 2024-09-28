@@ -30,6 +30,7 @@ import { Separator } from "@/components/ui/separator";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import type { Product } from "@prisma/client";
+import Image from "next/image";
 
 function timeout(delay: number) {
   return new Promise((res) => setTimeout(res, delay));
@@ -60,7 +61,7 @@ const SingleProduct = () => {
         accessorKey: "action",
         header: "Action",
         cell: ({ row }: { row: Row<Product> }) => (
-          <div className="flex items-center">
+          <div className="flex items-center justify-center">
             <RadioGroupItem
               value={row.original.id.toString()}
               id={`radio-${row.original.id}`}
@@ -69,6 +70,19 @@ const SingleProduct = () => {
               Select {row.original.name}
             </Label>
           </div>
+        ),
+      },
+      {
+        accessorKey: "image",
+        header: "Image",
+        cell: ({ row }: { row: Row<Product> }) => (
+          <Image
+            src={row.original.image}
+            alt={row.original.name}
+            className="w-10 h-10 rounded-md"
+            width={24}
+            height={24}
+          />
         ),
       },
       {

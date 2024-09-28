@@ -20,6 +20,7 @@ import {
   getSortedRowModel,
   getFilteredRowModel,
   flexRender,
+  Row,
 } from "@tanstack/react-table";
 import { ArrowLeft, ArrowRight, PlusCircle, XCircle } from "lucide-react";
 import { useState } from "react";
@@ -28,9 +29,15 @@ import { useProductSelectionStore } from "@/stores/multiple-product-selection";
 import CampaignTypeStore from "@/stores/campaign-type";
 import { Separator } from "@/components/ui/separator";
 import useSheetStore from "@/stores/sheet-store";
+import Image from "next/image";
+import type { Product } from "@prisma/client";
 
 function timeout(delay: number) {
   return new Promise((res) => setTimeout(res, delay));
+}
+
+interface DraggableRowProps {
+  row: Row<Product>;
 }
 
 const MultiProduct = () => {
@@ -69,9 +76,24 @@ const MultiProduct = () => {
         accessorKey: "action",
         header: "Select",
         cell: ({ row }: any) => (
-          <Checkbox
-            checked={isSelected(row.original.id)}
-            onCheckedChange={() => toggleProductSelection(row.original.id)}
+          <div className="flex items-center justify-center">
+            <Checkbox
+              checked={isSelected(row.original.id)}
+              onCheckedChange={() => toggleProductSelection(row.original.id)}
+            />
+          </div>
+        ),
+      },
+      {
+        accessorKey: "image",
+        header: "Image",
+        cell: ({ row }: { row: Row<Product> }) => (
+          <Image
+            src={row.original.image}
+            alt={row.original.name}
+            className="w-10 h-10 rounded-md"
+            width={24}
+            height={24}
           />
         ),
       },
