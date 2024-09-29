@@ -29,19 +29,21 @@ import {
   ArrowUpDown,
   Edit,
   Trash,
+  PlusCircle,
 } from "lucide-react";
 import { CellContext, SortingState } from "@tanstack/react-table";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import {
   Dialog,
-  DialogTrigger,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogFooter,
 } from "@/components/ui/dialog";
 import { Badge } from "../ui/badge";
+import { CampaignCreateButton } from "./campaign-create-button";
+import Image from "next/image";
 
 const CampaignTable = () => {
   const [globalFilter, setGlobalFilter] = useState("");
@@ -154,7 +156,6 @@ const CampaignTable = () => {
   };
 
   const handleDelete = (rowData: any) => {
-    // deleteOffer(rowData.id);
     setSelectedCampaign(rowData);
     setIsDialogOpen(true);
   };
@@ -183,101 +184,120 @@ const CampaignTable = () => {
 
   return (
     <div>
-      {/* Search Input */}
-      <div className="flex justify-between items-center mb-4">
-        <Input
-          type="text"
-          placeholder="Search campaigns..."
-          value={globalFilter ?? ""}
-          onChange={(e) => setGlobalFilter(e.target.value)}
-        />
-      </div>
-
-      {/* Campaigns Table */}
-      <ScrollArea className="h-[70vh]">
-        <Table>
-          <TableHeader>
-            {table.getHeaderGroups().map((headerGroup) => (
-              <TableRow key={headerGroup.id}>
-                {headerGroup.headers.map((header) => (
-                  <TableHead
-                    key={header.id}
-                    onClick={header.column.getToggleSortingHandler()}
-                    className="cursor-pointer"
-                  >
-                    {flexRender(
-                      header.column.columnDef.header,
-                      header.getContext()
-                    )}
-                    {header.column.getCanSort() ? (
-                      header.column.getIsSorted() ? (
-                        header.column.getIsSorted() === "desc" ? (
-                          <ArrowDown className="ml-2 h-4 w-4 inline" />
-                        ) : (
-                          <ArrowUp className="ml-2 h-4 w-4 inline" />
-                        )
-                      ) : (
-                        <ArrowUpDown className="ml-2 h-4 w-4 inline" />
-                      )
-                    ) : null}
-                  </TableHead>
+      {campaigns.length === 0 ? (
+        // No campaigns message and button
+        <div className="flex flex-col items-center justify-center my-auto h-[70vh]">
+          <p className="text-lg">You haven't created any campaign yet.</p>
+          <Image
+            src={"/empty-campaigns.png"}
+            alt="Empty Campaigns"
+            width={546 / 1.5}
+            height={457 / 1.5}
+          />
+          <CampaignCreateButton />
+        </div>
+      ) : (
+        <>
+          {/* Campaigns Table */}
+          <div className="flex justify-between items-center mb-4">
+            <Input
+              type="text"
+              placeholder="Search campaigns..."
+              value={globalFilter ?? ""}
+              onChange={(e) => setGlobalFilter(e.target.value)}
+            />
+          </div>
+          <ScrollArea className="h-[70vh]">
+            <Table>
+              <TableHeader>
+                {table.getHeaderGroups().map((headerGroup) => (
+                  <TableRow key={headerGroup.id}>
+                    {headerGroup.headers.map((header) => (
+                      <TableHead
+                        key={header.id}
+                        onClick={header.column.getToggleSortingHandler()}
+                        className="cursor-pointer"
+                      >
+                        {flexRender(
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
+                        {header.column.getCanSort() ? (
+                          header.column.getIsSorted() ? (
+                            header.column.getIsSorted() === "desc" ? (
+                              <ArrowDown className="ml-2 h-4 w-4 inline" />
+                            ) : (
+                              <ArrowUp className="ml-2 h-4 w-4 inline" />
+                            )
+                          ) : (
+                            <ArrowUpDown className="ml-2 h-4 w-4 inline" />
+                          )
+                        ) : null}
+                      </TableHead>
+                    ))}
+                  </TableRow>
                 ))}
-              </TableRow>
-            ))}
-          </TableHeader>
-          <TableBody>
-            {table.getRowModel().rows.map((row) => (
-              <TableRow key={row.id}>
-                {row.getVisibleCells().map((cell) => (
-                  <TableCell key={cell.id}>
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                  </TableCell>
+              </TableHeader>
+              <TableBody>
+                {table.getRowModel().rows.map((row) => (
+                  <TableRow key={row.id}>
+                    {row.getVisibleCells().map((cell) => (
+                      <TableCell key={cell.id}>
+                        {flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext()
+                        )}
+                      </TableCell>
+                    ))}
+                  </TableRow>
                 ))}
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </ScrollArea>
+              </TableBody>
+            </Table>
+          </ScrollArea>
 
-      {/* Pagination Controls */}
-      <div className="mt-4 flex items-center justify-between">
-        <Button
-          size="sm"
-          variant="ghost"
-          onClick={() => table.previousPage()}
-          disabled={!table.getCanPreviousPage()}
-        >
-          <ArrowLeft className="mr-1 h-4 w-4 inline" /> Previous
-        </Button>
-        <span className="text-sm">
-          Page {table.getState().pagination.pageIndex + 1} of{" "}
-          {table.getPageCount()}
-        </span>
-        <Button
-          size="sm"
-          variant="ghost"
-          onClick={() => table.nextPage()}
-          disabled={!table.getCanNextPage()}
-        >
-          Next <ArrowRight className="ml-1 h-4 w-4 inline" />
-        </Button>
-        <select
-          value={pagination.pageSize}
-          onChange={(e) => {
-            setPagination((prev) => ({
-              ...prev,
-              pageSize: Number(e.target.value),
-            }));
-          }}
-          className="text-sm p-1"
-        >
-          {[5, 10, 20].map((size) => (
-            <option key={size} value={size}>
-              Show {size}
-            </option>
-          ))}
-        </select>
-      </div>
+          {/* Pagination Controls */}
+          <div className="mt-4 flex items-center justify-between">
+            <Button
+              size="sm"
+              variant="ghost"
+              onClick={() => table.previousPage()}
+              disabled={!table.getCanPreviousPage()}
+            >
+              <ArrowLeft className="mr-1 h-4 w-4 inline" /> Previous
+            </Button>
+            <span className="text-sm">
+              Page {table.getState().pagination.pageIndex + 1} of{" "}
+              {table.getPageCount()}
+            </span>
+            <Button
+              size="sm"
+              variant="ghost"
+              onClick={() => table.nextPage()}
+              disabled={!table.getCanNextPage()}
+            >
+              Next <ArrowRight className="ml-1 h-4 w-4 inline" />
+            </Button>
+            <select
+              value={pagination.pageSize}
+              onChange={(e) => {
+                setPagination((prev) => ({
+                  ...prev,
+                  pageSize: Number(e.target.value),
+                }));
+              }}
+              className="text-sm p-1"
+            >
+              {[5, 10, 25, 50, 100].map((size) => (
+                <option key={size} value={size}>
+                  Show {size}
+                </option>
+              ))}
+            </select>
+          </div>
+        </>
+      )}
+
+      {/* Delete Confirmation Dialog */}
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <DialogContent>
           <DialogHeader>
@@ -285,9 +305,9 @@ const CampaignTable = () => {
           </DialogHeader>
           <h3 className="text-sm ">
             Are you sure you want to delete the campaign:{" "}
-            <h4 className="text-md font-semibold inline ">
-              {selectedCampaign?.title} ?
-            </h4>
+            <span className="text-md font-semibold inline ">
+              {selectedCampaign?.title}?
+            </span>
           </h3>
           <DialogFooter>
             <Button

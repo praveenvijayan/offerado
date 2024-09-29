@@ -124,8 +124,8 @@ const SingleProduct = () => {
 
   return (
     <div className="single-product relative">
-      <div className="flex items-center gap-2 absolute -top-12 right-0">
-        <Button size="sm" className="rounded-xl flex gap-2">
+      <div className="flex items-center gap-2 lg:absolute lg:-top-12 lg:right-0">
+        <Button size="sm" className="rounded-xl flex gap-2 ml-auto mb-3">
           <PlusCircle className="w-4 h-4" /> New Product
         </Button>
       </div>
@@ -208,7 +208,7 @@ const SingleProduct = () => {
                 ))}
               </select>
             </div>
-            <div className="flex-1 flex justify-between items-center">
+            <div className="flex justify-between items-center">
               <Button
                 variant={"link"}
                 size={"sm"}

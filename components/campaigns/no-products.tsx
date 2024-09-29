@@ -68,7 +68,7 @@ const NoProducts = () => {
   return (
     <div className="flex flex-col py-2 gap-y-6">
       <h3 className="text-sm flex items-center gap-2">Select campaign type</h3>
-      <div className="grid gap-4 grid-cols-6">
+      <div className="grid gap-4 grid-cols-2 lg:grid-cols-6">
         {campaignTypes.slice(0, 2).map((campaign: any) => (
           <RenderCampaign key={campaign.id} {...campaign} />
         ))}
@@ -77,7 +77,7 @@ const NoProducts = () => {
       <h3 className="text-sm flex items-center gap-2">
         Or select a customer engaging campaign
       </h3>
-      <div className="grid gap-4 grid-cols-6">
+      <div className="grid gap-4 grid-cols-2 lg:grid-cols-6">
         {campaignTypes.slice(2).map((campaign: any) => (
           <RenderCampaign key={campaign.id} {...campaign} />
         ))}
