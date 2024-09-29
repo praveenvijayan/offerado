@@ -10,7 +10,7 @@
       },
       {
         "label": "Poll",
-        "href": "/poll",
+        "href": "/polls",
         "icon": "ChartColumn",
         "indent": true
       },
