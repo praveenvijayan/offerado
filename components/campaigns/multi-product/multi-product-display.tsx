@@ -91,6 +91,7 @@ const DraggableRow: React.FC<DraggableRowProps> = React.memo(
     );
   }
 );
+DraggableRow.displayName = "DraggableRow";
 
 interface EditableCellProps {
   cell: any;
@@ -151,6 +152,8 @@ const EditableCell: React.FC<EditableCellProps> = React.memo(
     );
   }
 );
+
+EditableCell.displayName = "EditableCell";
 
 const MultiProductDisplay = () => {
   const {
