@@ -187,7 +187,7 @@ const CampaignTable = () => {
       {campaigns.length === 0 ? (
         // No campaigns message and button
         <div className="flex flex-col items-center justify-center my-auto h-[70vh]">
-          <p className="text-lg">You haven't created any campaign yet.</p>
+          <p className="text-lg">You haven&apos;t created any campaign yet.</p>
           <Image
             src={"/empty-campaigns.png"}
             alt="Empty Campaigns"
