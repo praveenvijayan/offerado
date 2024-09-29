@@ -197,7 +197,7 @@ const CampaignTable = () => {
           <CampaignCreateButton />
         </div>
       ) : (
-        <>
+        <div>
           {/* Campaigns Table */}
           <div className="flex justify-between items-center mb-4">
             <Input
@@ -294,7 +294,7 @@ const CampaignTable = () => {
               ))}
             </select>
           </div>
-        </>
+        </div>
       )}
 
       {/* Delete Confirmation Dialog */}
