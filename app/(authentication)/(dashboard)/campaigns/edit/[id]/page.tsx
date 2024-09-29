@@ -102,7 +102,8 @@ export default function EditCampaignPage({ params }: any) {
         setSelectedProduct(productData);
       } else if (campaign?.offerType === "MultiProduct") {
         const productDataArray = campaign?.offerJSON.data;
-        setSelectedProducts(productDataArray.map((product: any) => product.id));
+        // setSelectedProducts(productDataArray.map((product: any) => product.id));
+        setSelectedProducts(productDataArray);
       }
       // Handle other campaign types as needed
     }
@@ -117,7 +118,6 @@ export default function EditCampaignPage({ params }: any) {
       toast.success("Campaign updated successfully!");
       queryClient.invalidateQueries({ queryKey: ["campaigns"] });
       resetAllStores();
-      console.log(data);
       router.push(`/campaigns/preview?id=${data.id}`);
     },
     onError: (error) => {
@@ -139,9 +139,11 @@ export default function EditCampaignPage({ params }: any) {
           return selectedProduct ? [selectedProduct] : [];
         case "MultiProduct":
           return (
-            productsData?.filter((product) =>
-              selectedProducts.includes(product.id)
-            ) || []
+            // productsData?.filter((product) =>
+            //   selectedProducts.includes(product.id)
+            // )
+
+            selectedProducts || []
           );
         // Extend here for future campaign types
         case "Quizzes":

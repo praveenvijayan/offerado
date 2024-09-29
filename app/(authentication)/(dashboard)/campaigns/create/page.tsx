@@ -92,10 +92,7 @@ export default function CreateCampaignPage() {
         case "SingleProduct":
           return selectedProduct ? [selectedProduct] : [];
         case "MultiProduct":
-          return (
-            data?.filter((product) => selectedProducts.includes(product.id)) ||
-            []
-          );
+          return selectedProducts || [];
         // Extend here for future campaign types
         case "Quizzes":
         case "Contest":

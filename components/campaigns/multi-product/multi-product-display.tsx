@@ -18,7 +18,7 @@ import {
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import { ArrowDown, ArrowUp, Edit, X } from "lucide-react";
+import { ArrowDown, ArrowUp, X } from "lucide-react";
 import { useProductSelectionStore } from "@/stores/multiple-product-selection";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import type { Product } from "@prisma/client";
@@ -40,71 +40,145 @@ import {
   arrayMove,
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { Arrow } from "@radix-ui/react-dropdown-menu";
 import CampaignTypeStore from "@/stores/campaign-type";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 interface DraggableRowProps {
   row: Row<Product>;
+  updateData: (rowIndex: number, columnId: string, value: any) => void;
 }
 
-const DraggableRow: React.FC<DraggableRowProps> = ({ row }) => {
-  const {
-    attributes,
-    listeners,
-    setNodeRef,
-    transform,
-    transition,
-    isDragging,
-  } = useSortable({
-    id: row.original.id,
-  });
+const DraggableRow: React.FC<DraggableRowProps> = React.memo(
+  ({ row, updateData }) => {
+    const {
+      attributes,
+      listeners,
+      setNodeRef,
+      transform,
+      transition,
+      isDragging,
+    } = useSortable({
+      id: row.original.id,
+    });
 
-  const style: CSSProperties = {
-    transform: CSS.Transform.toString(transform),
-    transition,
-    opacity: isDragging ? 0.8 : 1,
-    zIndex: isDragging ? 1 : 0,
-    position: "relative",
-  };
+    const style: CSSProperties = {
+      transform: CSS.Transform.toString(transform),
+      transition,
+      opacity: isDragging ? 0.8 : 1,
+      zIndex: isDragging ? 1 : 0,
+      position: "relative",
+    };
 
-  return (
-    <tr ref={setNodeRef} style={style}>
-      <TableCell
-        {...attributes}
-        {...listeners}
-        style={{ cursor: "grab", width: "60px" }}
-      >
-        🟰
-      </TableCell>
-
-      {row.getVisibleCells().map((cell) => (
-        <TableCell key={cell.id}>
-          {flexRender(cell.column.columnDef.cell, cell.getContext())}
+    return (
+      <tr ref={setNodeRef} style={style}>
+        <TableCell
+          {...attributes}
+          {...listeners}
+          style={{ cursor: "grab", width: "60px" }}
+        >
+          🟰
         </TableCell>
-      ))}
-    </tr>
-  );
-};
+
+        {row.getVisibleCells().map((cell) => (
+          <EditableCell
+            key={cell.id}
+            cell={cell}
+            rowIndex={row.index}
+            updateData={updateData}
+          />
+        ))}
+      </tr>
+    );
+  }
+);
+
+interface EditableCellProps {
+  cell: any;
+  rowIndex: number;
+  updateData: (rowIndex: number, columnId: string, value: any) => void;
+}
+
+const EditableCell: React.FC<EditableCellProps> = React.memo(
+  ({ cell, rowIndex, updateData }) => {
+    const initialValue = cell.getValue();
+    const columnId = cell.column.id;
+
+    const [value, setValue] = useState(initialValue);
+    const [isEditing, setIsEditing] = useState(false);
+
+    useEffect(() => {
+      setValue(initialValue);
+    }, [initialValue]);
+
+    const onBlur = () => {
+      setIsEditing(false);
+      updateData(rowIndex, columnId, value);
+    };
+
+    if (columnId === "name" || columnId === "offerPrice") {
+      return (
+        <TableCell
+          onClick={() => setIsEditing(true)}
+          style={{ cursor: "pointer" }}
+        >
+          {isEditing ? (
+            <input
+              type={columnId === "offerPrice" ? "number" : "text"}
+              value={value}
+              onChange={(e) => setValue(e.target.value)}
+              onBlur={onBlur}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  onBlur();
+                }
+              }}
+              autoFocus
+              className={`border rounded px-2 py-1 ${
+                columnId === "name" ? "w-full" : "w-[4.5rem]"
+              }`}
+            />
+          ) : (
+            value
+          )}
+        </TableCell>
+      );
+    }
+
+    return (
+      <TableCell>
+        {flexRender(cell.column.columnDef.cell, cell.getContext())}
+      </TableCell>
+    );
+  }
+);
 
 const MultiProductDisplay = () => {
-  const { data } = useProducts();
-  const { selectedProducts, resetProducts, toggleProductSelection } =
-    useProductSelectionStore();
-
-  const [tableData, setTableData] = useState<Product[]>([]);
-  const [sorting, setSorting] = useState<SortingState>([]); // State for sorting
-  const { setIsProductSelected, resetIsProductSelected } = CampaignTypeStore();
+  const {
+    selectedProducts,
+    resetProducts,
+    toggleProductSelection,
+    updateProducts,
+  } = useProductSelectionStore();
+  const [sorting, setSorting] = useState<SortingState>([]);
+  const { resetIsProductSelected } = CampaignTypeStore();
+  const queryClient = useQueryClient();
   useEffect(() => {
-    if (!data) return;
-
-    setTableData(
-      data.filter((product) => selectedProducts.includes(product.id))
-    );
-
     if (!selectedProducts.length) {
       resetIsProductSelected();
     }
-  }, [selectedProducts, data]);
+    queryClient.invalidateQueries({ queryKey: ["campaigns"] });
+  }, [selectedProducts]);
+
+  const updateData = (rowIndex: number, columnId: string, value: any) => {
+    const newData = [...selectedProducts];
+    newData[rowIndex] = {
+      ...newData[rowIndex],
+      [columnId]: columnId === "offerPrice" ? parseFloat(value) : value,
+    };
+
+    // Update the store
+    updateProducts(newData);
+  };
 
   const columns = useMemo(
     () => [
@@ -160,14 +234,10 @@ const MultiProductDisplay = () => {
         cell: ({ row }: { row: Row<Product> }) => (
           <div className="flex gap-2">
             <Button
-              variant="ghost"
-              className="w-5 h-5 p-0 self-center flex mx-auto"
-            >
-              <Edit className="w-3 h-3" />
-            </Button>
-            <Button
               variant="destructive"
-              onClick={() => toggleProductSelection(row.original.id)}
+              onClick={() => {
+                toggleProductSelection(row.original);
+              }}
               className="w-5 h-5 p-0 self-center flex mx-auto"
             >
               <X className="w-3 h-3" />
@@ -188,21 +258,26 @@ const MultiProductDisplay = () => {
   function handleDragEnd(event: DragEndEvent) {
     const { active, over } = event;
     if (active && over && active.id !== over.id) {
-      setTableData((items) => {
-        const oldIndex = items.findIndex((item) => item.id === active.id);
-        const newIndex = items.findIndex((item) => item.id === over.id);
-        return arrayMove(items, oldIndex, newIndex);
-      });
+      const oldIndex = selectedProducts.findIndex(
+        (item) => item.id === active.id
+      );
+      const newIndex = selectedProducts.findIndex(
+        (item) => item.id === over.id
+      );
+      const newItems = arrayMove(selectedProducts, oldIndex, newIndex);
+
+      // Update the store
+      updateProducts(newItems);
     }
   }
 
   const table = useReactTable({
-    data: tableData,
+    data: selectedProducts,
     columns,
-    state: { sorting }, // Add sorting state to the table
-    onSortingChange: setSorting, // Set sorting change handler
+    state: { sorting },
+    onSortingChange: setSorting,
     getCoreRowModel: getCoreRowModel(),
-    getSortedRowModel: getSortedRowModel(), // Add sorting model
+    getSortedRowModel: getSortedRowModel(),
     getRowId: (row) => row.id,
   });
 
@@ -242,11 +317,11 @@ const MultiProductDisplay = () => {
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead style={{ width: "60px" }}>Move</TableHead>
+                <TableHead style={{ width: "60px" }}>Drag</TableHead>
                 {table.getHeaderGroups()[0].headers.map((header) => (
                   <TableHead
                     key={header.id}
-                    onClick={header.column.getToggleSortingHandler()} // Add sorting handler
+                    onClick={header.column.getToggleSortingHandler()}
                     className="cursor-pointer"
                   >
                     {header.isPlaceholder
@@ -267,11 +342,15 @@ const MultiProductDisplay = () => {
             </TableHeader>
             <TableBody>
               <SortableContext
-                items={tableData}
+                items={selectedProducts}
                 strategy={verticalListSortingStrategy}
               >
                 {table.getRowModel().rows.map((row) => (
-                  <DraggableRow key={row.id} row={row} />
+                  <DraggableRow
+                    key={row.id}
+                    row={row}
+                    updateData={updateData}
+                  />
                 ))}
               </SortableContext>
             </TableBody>

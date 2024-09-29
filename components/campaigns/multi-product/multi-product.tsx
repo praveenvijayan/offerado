@@ -50,7 +50,9 @@ const MultiProduct = () => {
   });
 
   const { setIsProductSelected, resetIsProductSelected } = CampaignTypeStore();
-  const { openSheet, open, close } = useSheetStore();
+  const { close } = useSheetStore();
+
+  // Updated store usage
   const selectedProducts = useProductSelectionStore(
     (state) => state.selectedProducts
   );
@@ -79,7 +81,7 @@ const MultiProduct = () => {
           <div className="flex items-center justify-center">
             <Checkbox
               checked={isSelected(row.original.id)}
-              onCheckedChange={() => toggleProductSelection(row.original.id)}
+              onCheckedChange={() => toggleProductSelection(row.original)}
             />
           </div>
         ),
@@ -92,8 +94,8 @@ const MultiProduct = () => {
             src={row.original.image}
             alt={row.original.name}
             className="w-10 h-10 rounded-md"
-            width={24}
-            height={24}
+            width={40}
+            height={40}
           />
         ),
       },
@@ -110,7 +112,7 @@ const MultiProduct = () => {
         header: "Category",
       },
     ],
-    []
+    [isSelected, toggleProductSelection]
   );
 
   // Create table instance with TanStack Table
@@ -156,7 +158,10 @@ const MultiProduct = () => {
           variant="ghost"
           size="icon"
           className="rounded-xl text-red-600"
-          onClick={resetProducts}
+          onClick={() => {
+            resetProducts();
+            resetIsProductSelected();
+          }}
           disabled={selectedProducts.length === 0}
         >
           <XCircle className="w-5 h-5" />
@@ -258,8 +263,6 @@ const MultiProduct = () => {
               size="sm"
               variant="secondary"
               onClick={() => {
-                // resetProducts();
-                // setIsProductSelected();
                 close();
               }}
             >
