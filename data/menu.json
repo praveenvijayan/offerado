@@ -22,7 +22,7 @@
       },
       {
         "label": "Contest",
-        "href": "/quiz",
+        "href": "/contest",
         "icon": "LoaderPinwheel",
         "indent": true
       },
