@@ -105,7 +105,8 @@ const SidebarNavigation = () => {
   useEffect(() => {
     menuItems.forEach((menuItem: any, index: number) => {
       menuItem.links.forEach((link: any) => {
-        if (pathname === link.href) {
+        // Highlight if the pathname starts with the link's href
+        if (pathname.startsWith(link.href)) {
           setOpenItem(`item-${index}`);
         }
       });
@@ -138,8 +139,8 @@ const SidebarNavigation = () => {
                       {menuItem.links.map((link: any, linkIndex: number) => {
                         const LinkIcon = iconMap[link.icon];
 
-                        // Highlight the active link
-                        const isActive = pathname === link.href;
+                        // Highlight the active link if the pathname starts with the link's href
+                        const isActive = pathname.startsWith(link.href);
 
                         return (
                           <DropdownMenuItem
@@ -191,7 +192,8 @@ const SidebarNavigation = () => {
                   <ul className="pl-4 flex flex-col gap-y-4">
                     {menuItem.links.map((link: any, linkIndex: number) => {
                       const LinkIcon = iconMap[link.icon];
-                      const isActive = pathname === link.href;
+                      // Highlight the active link if the pathname starts with the link's href
+                      const isActive = pathname.startsWith(link.href);
 
                       return (
                         <li
