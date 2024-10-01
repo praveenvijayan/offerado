@@ -1,7 +1,8 @@
 import React from "react";
 import { Metadata } from "next";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import Message from "@/components/feedback/message";
+import Message from "@/components/feedback/feedback-form";
+import CreateFeedbackForm from "@/components/feedback/feedback-form";
 
 export const metadata: Metadata = {
   title: "Create Feedback",
@@ -19,7 +20,7 @@ export default function CreateFeedbackPage() {
           <TabsTrigger value="password">Rating</TabsTrigger>
         </TabsList>
         <TabsContent value="account">
-          <Message />
+          <CreateFeedbackForm />
         </TabsContent>
         <TabsContent value="password">Rating component coming soon</TabsContent>
       </Tabs>

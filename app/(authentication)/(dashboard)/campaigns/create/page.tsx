@@ -24,47 +24,61 @@ import {
   DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuPortal,
   DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { DotsVerticalIcon } from "@radix-ui/react-icons";
 import { useProductSelectionStore } from "@/stores/multiple-product-selection";
-import { useProducts } from "@/services/product-services";
-import useProductSingleStore from "@/stores/single-product-store";
+import PollDisplay from "@/components/campaigns/poll/poll-display";
+import usePollStore from "@/stores/poll";
+import type { Offer, Product, Poll, PollOption } from "@prisma/client";
+
+// 1. Define enums and interfaces
+enum CampaignType {
+  SingleProduct = "SingleProduct",
+  MultiProduct = "MultiProduct",
+  Poll = "Poll",
+  Feedback = "Feedback",
+  // Add other campaign types as needed
+}
+
+interface PollData extends Poll {
+  options: PollOption[];
+  businessId: string;
+  organizationId: string;
+}
+
+type OfferData = Product[] | PollData[];
+
+interface NewCampaign {
+  title: string;
+  description: string;
+  offerType: CampaignType;
+  startAt: Date;
+  endAt: Date;
+  qrCode: string;
+  interactiveType: null | string;
+  businessId: string;
+  organizationId: string;
+  offerJSON: { data: any };
+}
 
 export default function CreateCampaignPage() {
   const router = useRouter();
-  const { data } = useProducts();
   const handleClick = () => router.push("/campaigns");
   const campaignType = CampaignTypeStore((state) => state.campaignType);
   const isProductSelected = CampaignTypeStore(
     (state) => state.isProductSelected
   );
-  const { selectedProduct: selectedSingleProduct } = useProductSingleStore();
-  const { openSheet, open: openReusableSheet, close } = useSheetStore();
+  const { selectedProduct: selectedSingleProduct } = useProductStore();
+  const { openSheet, open: openReusableSheet } = useSheetStore();
   const campaign = campaignTypes.find((c) => c.id === campaignType);
-
+  const { selectedPollData } = usePollStore();
   const selectedProduct = useProductStore((state) => state.selectedProduct);
   const selectedProducts = useProductSelectionStore(
     (state) => state.selectedProducts
   );
-  const {
-    title,
-    description,
-    start,
-    expiry,
-    setTitle,
-    setDescription,
-    setStart,
-    setExpiry,
-    setCampaignType,
-    reset,
-  } = useCampaignStore();
+  const { title, description, start, expiry, reset } = useCampaignStore();
 
   const [open, setOpen] = useState(false);
 
@@ -80,73 +94,87 @@ export default function CreateCampaignPage() {
     },
   });
 
+  // 2. Adjust buildOfferJSON function with explicit return types
+  const buildOfferJSON = (): OfferData => {
+    switch (campaignType) {
+      case CampaignType.SingleProduct:
+        return selectedProduct ? [selectedProduct] : [];
+      case CampaignType.MultiProduct:
+        return selectedProducts || [];
+      case CampaignType.Poll:
+        return selectedPollData ? [selectedPollData as PollData] : [];
+      default:
+        return [];
+    }
+  };
+
+  // 2. Implement type guards
+  function isProductArray(data: OfferData): data is Product[] {
+    return data.length > 0 && "sku" in data[0];
+  }
+
+  function isPollDataArray(data: OfferData): data is PollData[] {
+    return data.length > 0 && "title" in data[0] && "options" in data[0];
+  }
+
   const handleCampaignCreation = () => {
     if (!title || !description || !start || !expiry || !campaignType) {
       setOpen(true);
       return;
     }
 
-    // Helper function to build offerJSON based on campaign type
-    const buildOfferJSON = () => {
-      switch (campaignType) {
-        case "SingleProduct":
-          return selectedProduct ? [selectedProduct] : [];
-        case "MultiProduct":
-          return selectedProducts || [];
-        // Extend here for future campaign types
-        case "Quizzes":
-        case "Contest":
-        case "FeedbackForm":
-          return []; // Adjust based on specific requirements for new types
-        default:
-          return [];
-      }
-    };
+    const productsOrData = buildOfferJSON();
 
-    // Get the products based on the campaign type
-    const products = buildOfferJSON();
-
-    // Return early if no products are selected for product-based campaigns
-    if (
-      (campaignType === "SingleProduct" || campaignType === "MultiProduct") &&
-      products.length === 0
-    ) {
-      toast.error("No products selected for the campaign.");
-      return;
-    }
-
-    // Construct the offerJSON using the selected products (if applicable)
-    const offerJSON = {
-      data: products.map((product) => ({
-        id: product.id,
-        sku: product.sku,
-        name: product.name,
-        category: product.category,
-        mrp: product.mrp,
-        offerPrice: product.offerPrice,
-        quantity: product.quantity,
-        image: product.image,
-        discountType: product.discountType,
-        businessId: product.businessId,
-        organizationId: product.organizationId,
-        createdAt: product.createdAt,
-        updatedAt: product.updatedAt,
-      })),
-    };
-
-    // Prepare the campaign payload
-    const newCampaign = {
+    let newCampaign: NewCampaign = {
       title,
       description,
-      offerType: campaignType,
-      businessId: products[0]?.businessId, // Adjust as needed for future types
+      offerType: campaignType as CampaignType,
       startAt: new Date(start),
       endAt: new Date(expiry),
       qrCode: "QRCODE123",
-      organizationId: products[0]?.organizationId, // Adjust as needed for future types
-      offerJSON: offerJSON,
       interactiveType: null,
+      businessId: "",
+      organizationId: "",
+      offerJSON: { data: [] },
     };
+
+    if (isProductArray(productsOrData)) {
+      const products = productsOrData;
+
+      if (products.length === 0) {
+        toast.error("No products selected for the campaign.");
+        return;
+      }
+
+      newCampaign.businessId = products[0].businessId;
+      newCampaign.organizationId = products[0].organizationId;
+      newCampaign.offerJSON = {
+        data: products.map((product) => ({
+          // Include necessary product fields
+          ...product,
+        })),
+      };
+    } else if (isPollDataArray(productsOrData)) {
+      const pollData = productsOrData[0];
+
+      if (!pollData) {
+        toast.error("No poll data selected for the campaign.");
+        return;
+      }
+
+      newCampaign.businessId = pollData.businessId;
+      newCampaign.organizationId = pollData.organizationId;
+      newCampaign.offerJSON = {
+        data: {
+          title: pollData.title,
+          options: pollData.options,
+          // Include other poll-specific fields if necessary
+        },
+      };
+    } else {
+      // Handle other campaign types here
+      newCampaign.offerJSON = { data: [] };
+    }
 
     // Trigger the mutation to create the campaign
     mutation.mutate(newCampaign);
@@ -164,17 +192,25 @@ export default function CreateCampaignPage() {
           <ArrowLeft />
         </Button>
         <CampaignHeader />
-        {campaignType === "SingleProduct" && !selectedSingleProduct && (
+        {campaignType === CampaignType.Poll && !selectedPollData && (
           <div className="ml-auto justify-self-end gap-2 flex">
-            <Button
-              size={"sm"}
-              onClick={() => openReusableSheet("SingleProduct")}
-            >
-              Add Product
+            <Button size={"sm"} onClick={() => openReusableSheet("Poll")}>
+              Add Poll
             </Button>
           </div>
         )}
-        {campaignType == "MultiProduct" && isProductSelected && (
+        {campaignType === CampaignType.SingleProduct &&
+          !selectedSingleProduct && (
+            <div className="ml-auto justify-self-end gap-2 flex">
+              <Button
+                size={"sm"}
+                onClick={() => openReusableSheet("SingleProduct")}
+              >
+                Add Product
+              </Button>
+            </div>
+          )}
+        {campaignType === CampaignType.MultiProduct && isProductSelected && (
           <div className="ml-auto justify-self-end gap-2 flex">
             <Button
               size={"sm"}
@@ -221,19 +257,15 @@ export default function CreateCampaignPage() {
       </div>
       <Separator />
       {!isProductSelected && <NoProducts />}
-      {/* <NoProducts /> */}
-      {campaignType == "SingleProduct" && isProductSelected && (
+      {campaignType === CampaignType.SingleProduct && isProductSelected && (
         <SingleProductDisplay />
       )}
-      {campaignType == "MultiProduct" && isProductSelected && (
+      {campaignType === CampaignType.MultiProduct && isProductSelected && (
         <MultiProductDisplay />
       )}
-      {campaignType == "Quizzes" && isProductSelected && <div>Quizzes</div>}
-      {campaignType == "Contest" && isProductSelected && <div>Contest</div>}
-      {campaignType == "FeedbackForm" && isProductSelected && (
-        <div>FeedbackForm</div>
+      {campaignType === CampaignType.Poll && isProductSelected && (
+        <PollDisplay />
       )}
-      {campaignType == "Poll" && isProductSelected && <div>Poll</div>}
       {isProductSelected && (
         <div className="flex justify-end gap-2 ">
           <Button

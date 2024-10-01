@@ -37,6 +37,7 @@ model User {
   notifications  Notification[]
   offersRedeemed OfferRedeem[]
   pollVotes      PollVote[]
+  feedbackResponses  FeedbackResponse[]
   createdAt      DateTime       @default(now())
   updatedAt      DateTime       @updatedAt
 }
@@ -72,6 +73,7 @@ model Business {
   products       Product[]
   polls          Poll[] 
   preferredBy    PreferredBusiness[]
+  feedbackForms FeedbackForm[]
   createdAt      DateTime            @default(now())
   updatedAt      DateTime            @updatedAt
   isActive       Boolean             @default(true)
@@ -242,6 +244,27 @@ model PollVote {
   userId     String?    @db.ObjectId
   user       User?      @relation(fields: [userId], references: [id])
   createdAt  DateTime   @default(now())
+}
+
+model FeedbackForm {
+  id             String            @id @default(auto()) @map("_id") @db.ObjectId
+  title          String
+  description    String?
+  businessId     String
+  business       Business          @relation(fields: [businessId], references: [id])
+  responses      FeedbackResponse[]
+  createdAt      DateTime          @default(now())
+  updatedAt      DateTime          @updatedAt
+}
+
+model FeedbackResponse {
+  id             String        @id @default(auto()) @map("_id") @db.ObjectId
+  content        String
+  feedbackFormId String
+  feedbackForm   FeedbackForm  @relation(fields: [feedbackFormId], references: [id])
+  userId         String
+  user           User          @relation(fields: [userId], references: [id])
+  createdAt      DateTime      @default(now())
 }
 
 enum Role {
