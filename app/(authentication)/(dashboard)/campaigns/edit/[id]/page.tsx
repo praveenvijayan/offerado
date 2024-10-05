@@ -50,7 +50,6 @@ export default function EditCampaignPage({ params }: any) {
   });
 
   const { data: productsData } = useProducts();
-  //   const campaignType = CampaignTypeStore((state) => state.campaignType);
   const isProductSelected = CampaignTypeStore(
     (state) => state.isProductSelected
   );
@@ -138,13 +137,7 @@ export default function EditCampaignPage({ params }: any) {
         case "SingleProduct":
           return selectedProduct ? [selectedProduct] : [];
         case "MultiProduct":
-          return (
-            // productsData?.filter((product) =>
-            //   selectedProducts.includes(product.id)
-            // )
-
-            selectedProducts || []
-          );
+          return selectedProducts || [];
         // Extend here for future campaign types
         case "Quizzes":
         case "Contest":

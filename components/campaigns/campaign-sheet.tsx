@@ -5,6 +5,7 @@ import CampaignTypeStore from "@/stores/campaign-type";
 import SingleProduct from "@/components/campaigns/single-product/single-product";
 import MultiProduct from "@/components/campaigns/multi-product/multi-product";
 import Poll from "./poll/poll";
+import Feedback from "@/components/campaigns/feedback/feedback";
 
 const CampaignSheet = ({ id, title, description }: any) => {
   const { openSheet, close } = useSheetStore();
@@ -28,7 +29,7 @@ const CampaignSheet = ({ id, title, description }: any) => {
       {openSheet === "MultiProduct" && <MultiProduct />}
       {openSheet === "Quizzes" && <div>Quizzes</div>}
       {openSheet === "Contest" && <div>Contest</div>}
-      {openSheet === "FeedbackForm" && <div>FeedbackForm</div>}
+      {openSheet === "FeedbackForm" && <Feedback />}
       {openSheet === "Poll" && <Poll />}
     </ReusableSheet>
   );

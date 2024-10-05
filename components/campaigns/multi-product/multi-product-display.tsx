@@ -42,6 +42,7 @@ import {
 import { CSS } from "@dnd-kit/utilities";
 import CampaignTypeStore from "@/stores/campaign-type";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import usePollStore from "@/stores/poll";
 
 interface DraggableRowProps {
   row: Row<Product>;
@@ -165,10 +166,14 @@ const MultiProductDisplay = () => {
   const [sorting, setSorting] = useState<SortingState>([]);
   const { resetIsProductSelected } = CampaignTypeStore();
   const queryClient = useQueryClient();
+  const { selectedPollData, resetSelectedPollData } = usePollStore();
+
   useEffect(() => {
     if (!selectedProducts.length) {
       resetIsProductSelected();
     }
+    console.log(selectedPollData);
+
     queryClient.invalidateQueries({ queryKey: ["campaigns"] });
   }, [selectedProducts]);
 

@@ -23,23 +23,24 @@ model Organization {
   polls        Poll[]
   createdAt    DateTime       @default(now())
   updatedAt    DateTime       @updatedAt
+  FeedbackForm FeedbackForm[]
 }
 
 model User {
-  id             String         @id @default(auto()) @map("_id") @db.ObjectId
-  clerkUserId    String         @unique // Clerk's user ID for authentication
-  role           Role           @default(CUSTOMER)
-  isActive       Boolean        @default(true)
-  organizationId String         @db.ObjectId
-  organization   Organization   @relation(fields: [organizationId], references: [id])
-  profileId      String?        @db.ObjectId
-  profile        UserProfile?   @relation(fields: [profileId], references: [id])
-  notifications  Notification[]
-  offersRedeemed OfferRedeem[]
-  pollVotes      PollVote[]
-  feedbackResponses  FeedbackResponse[]
-  createdAt      DateTime       @default(now())
-  updatedAt      DateTime       @updatedAt
+  id                String             @id @default(auto()) @map("_id") @db.ObjectId
+  clerkUserId       String             @unique // Clerk's user ID for authentication
+  role              Role               @default(CUSTOMER)
+  isActive          Boolean            @default(true)
+  organizationId    String             @db.ObjectId
+  organization      Organization       @relation(fields: [organizationId], references: [id])
+  profileId         String?            @db.ObjectId
+  profile           UserProfile?       @relation(fields: [profileId], references: [id])
+  notifications     Notification[]
+  offersRedeemed    OfferRedeem[]
+  pollVotes         PollVote[]
+  feedbackResponses FeedbackResponse[]
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
 }
 
 model UserProfile {
@@ -71,9 +72,9 @@ model Business {
   categories     BusinessCategory[]
   offers         Offer[]
   products       Product[]
-  polls          Poll[] 
+  polls          Poll[]
   preferredBy    PreferredBusiness[]
-  feedbackForms FeedbackForm[]
+  feedbackForms  FeedbackForm[]
   createdAt      DateTime            @default(now())
   updatedAt      DateTime            @updatedAt
   isActive       Boolean             @default(true)
@@ -212,59 +213,61 @@ model Product {
 }
 
 model Poll {
-  id             String        @id @default(auto()) @map("_id") @db.ObjectId
+  id             String       @id @default(auto()) @map("_id") @db.ObjectId
   title          String
   description    String?
   options        PollOption[]
-  votes          PollVote[]    // Added this field
-  organizationId String        @db.ObjectId
-  organization   Organization  @relation(fields: [organizationId], references: [id])
-  businessId     String        @db.ObjectId
-  business       Business      @relation(fields: [businessId], references: [id])
-  isActive       Boolean       @default(true)
-  createdAt      DateTime      @default(now())
-  updatedAt      DateTime      @updatedAt
+  votes          PollVote[] // Added this field
+  organizationId String       @db.ObjectId
+  organization   Organization @relation(fields: [organizationId], references: [id])
+  businessId     String       @db.ObjectId
+  business       Business     @relation(fields: [businessId], references: [id])
+  isActive       Boolean      @default(true)
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
 }
 
 model PollOption {
-  id       String      @id @default(auto()) @map("_id") @db.ObjectId
-  text     String
-  pollId   String      @db.ObjectId
-  poll     Poll        @relation(fields: [pollId], references: [id])
-  votes    PollVote[]
-  order    Int
+  id     String     @id @default(auto()) @map("_id") @db.ObjectId
+  text   String
+  pollId String     @db.ObjectId
+  poll   Poll       @relation(fields: [pollId], references: [id])
+  votes  PollVote[]
+  order  Int
 }
 
 model PollVote {
-  id         String     @id @default(auto()) @map("_id") @db.ObjectId
-  pollId     String     @db.ObjectId
-  poll       Poll       @relation(fields: [pollId], references: [id], onDelete: Cascade)
-  optionId   String     @db.ObjectId
-  option     PollOption @relation(fields: [optionId], references: [id], onDelete: Cascade)
-  userId     String?    @db.ObjectId
-  user       User?      @relation(fields: [userId], references: [id])
-  createdAt  DateTime   @default(now())
+  id        String     @id @default(auto()) @map("_id") @db.ObjectId
+  pollId    String     @db.ObjectId
+  poll      Poll       @relation(fields: [pollId], references: [id], onDelete: Cascade)
+  optionId  String     @db.ObjectId
+  option    PollOption @relation(fields: [optionId], references: [id], onDelete: Cascade)
+  userId    String?    @db.ObjectId
+  user      User?      @relation(fields: [userId], references: [id])
+  createdAt DateTime   @default(now())
 }
 
 model FeedbackForm {
-  id             String            @id @default(auto()) @map("_id") @db.ObjectId
+  id             String             @id @default(auto()) @map("_id") @db.ObjectId
   title          String
   description    String?
   businessId     String
-  business       Business          @relation(fields: [businessId], references: [id])
+  business       Business           @relation(fields: [businessId], references: [id])
+  organizationId String
+  organization   Organization       @relation(fields: [organizationId], references: [id])
   responses      FeedbackResponse[]
-  createdAt      DateTime          @default(now())
-  updatedAt      DateTime          @updatedAt
+  createdAt      DateTime           @default(now())
+  updatedAt      DateTime           @updatedAt
 }
 
 model FeedbackResponse {
-  id             String        @id @default(auto()) @map("_id") @db.ObjectId
+  id             String       @id @default(auto()) @map("_id") @db.ObjectId
   content        String
   feedbackFormId String
-  feedbackForm   FeedbackForm  @relation(fields: [feedbackFormId], references: [id])
+  feedbackForm   FeedbackForm @relation(fields: [feedbackFormId], references: [id])
   userId         String
-  user           User          @relation(fields: [userId], references: [id])
-  createdAt      DateTime      @default(now())
+  user           User         @relation(fields: [userId], references: [id])
+  createdAt      DateTime     @default(now())
 }
 
 enum Role {

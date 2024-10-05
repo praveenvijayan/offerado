@@ -31,14 +31,22 @@ import { DotsVerticalIcon } from "@radix-ui/react-icons";
 import { useProductSelectionStore } from "@/stores/multiple-product-selection";
 import PollDisplay from "@/components/campaigns/poll/poll-display";
 import usePollStore from "@/stores/poll";
-import type { Offer, Product, Poll, PollOption } from "@prisma/client";
+import type {
+  Offer,
+  Product,
+  Poll,
+  PollOption,
+  FeedbackForm,
+} from "@prisma/client";
+import FeedbackDisplay from "@/components/campaigns/feedback/feedback-display";
+import useFeedbackStore from "@/stores/feedback";
 
 // 1. Define enums and interfaces
 enum CampaignType {
   SingleProduct = "SingleProduct",
   MultiProduct = "MultiProduct",
   Poll = "Poll",
-  Feedback = "Feedback",
+  Feedback = "FeedbackForm",
   // Add other campaign types as needed
 }
 
@@ -48,7 +56,7 @@ interface PollData extends Poll {
   organizationId: string;
 }
 
-type OfferData = Product[] | PollData[];
+type OfferData = Product[] | PollData[] | FeedbackForm[];
 
 interface NewCampaign {
   title: string;
@@ -74,6 +82,7 @@ export default function CreateCampaignPage() {
   const { openSheet, open: openReusableSheet } = useSheetStore();
   const campaign = campaignTypes.find((c) => c.id === campaignType);
   const { selectedPollData } = usePollStore();
+  const { selectedFeedbackData } = useFeedbackStore();
   const selectedProduct = useProductStore((state) => state.selectedProduct);
   const selectedProducts = useProductSelectionStore(
     (state) => state.selectedProducts
@@ -103,6 +112,10 @@ export default function CreateCampaignPage() {
         return selectedProducts || [];
       case CampaignType.Poll:
         return selectedPollData ? [selectedPollData as PollData] : [];
+      case CampaignType.Feedback:
+        return selectedFeedbackData
+          ? [selectedFeedbackData as FeedbackForm]
+          : [];
       default:
         return [];
     }
@@ -115,6 +128,10 @@ export default function CreateCampaignPage() {
 
   function isPollDataArray(data: OfferData): data is PollData[] {
     return data.length > 0 && "title" in data[0] && "options" in data[0];
+  }
+
+  function isFeedbackFormArray(data: OfferData): data is FeedbackForm[] {
+    return data.length > 0 && "title" in data[0] && "description" in data[0];
   }
 
   const handleCampaignCreation = () => {
@@ -171,6 +188,22 @@ export default function CreateCampaignPage() {
           // Include other poll-specific fields if necessary
         },
       };
+    } else if (isFeedbackFormArray(productsOrData)) {
+      const feedbackForm = productsOrData[0];
+
+      if (!feedbackForm) {
+        toast.error("No feedback form selected for the campaign.");
+        return;
+      }
+
+      newCampaign.businessId = feedbackForm.businessId;
+      newCampaign.organizationId = feedbackForm.organizationId;
+      newCampaign.offerJSON = {
+        data: {
+          title: feedbackForm.title,
+          description: feedbackForm.description,
+        },
+      };
     } else {
       // Handle other campaign types here
       newCampaign.offerJSON = { data: [] };
@@ -192,6 +225,16 @@ export default function CreateCampaignPage() {
           <ArrowLeft />
         </Button>
         <CampaignHeader />
+        {campaignType === CampaignType.Feedback && !selectedFeedbackData && (
+          <div className="ml-auto justify-self-end gap-2 flex">
+            <Button
+              size={"sm"}
+              onClick={() => openReusableSheet("FeedbackForm")}
+            >
+              Add Feedback
+            </Button>
+          </div>
+        )}
         {campaignType === CampaignType.Poll && !selectedPollData && (
           <div className="ml-auto justify-self-end gap-2 flex">
             <Button size={"sm"} onClick={() => openReusableSheet("Poll")}>
@@ -265,6 +308,9 @@ export default function CreateCampaignPage() {
       )}
       {campaignType === CampaignType.Poll && isProductSelected && (
         <PollDisplay />
+      )}
+      {campaignType === CampaignType.Feedback && isProductSelected && (
+        <FeedbackDisplay />
       )}
       {isProductSelected && (
         <div className="flex justify-end gap-2 ">
