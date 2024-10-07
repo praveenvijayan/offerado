@@ -32,6 +32,7 @@ export async function PUT(request: any) {
         interactiveType: updatedCampaign.interactiveType || null,
         isActive: updatedCampaign.isActive || false,
         templateId: updatedCampaign.templateId || null,
+        templateLiteral: updatedCampaign.templateLiteral || {},
       },
     });
 

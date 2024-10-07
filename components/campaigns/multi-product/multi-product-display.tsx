@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useMemo, CSSProperties } from "react";
-import { useProducts } from "@/services/product-services";
 import {
   useReactTable,
   getCoreRowModel,
@@ -21,7 +20,6 @@ import Image from "next/image";
 import { ArrowDown, ArrowUp, X } from "lucide-react";
 import { useProductSelectionStore } from "@/stores/multiple-product-selection";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import type { Product } from "@prisma/client";
 import { Separator } from "@/components/ui/separator";
 import {
   DndContext,
@@ -41,12 +39,19 @@ import {
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import CampaignTypeStore from "@/stores/campaign-type";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQueryClient } from "@tanstack/react-query";
 import usePollStore from "@/stores/poll";
+import useFeedbackStore from "@/stores/feedback";
+import { useCombinedItemsStore } from "@/stores/combined-items-store";
 
 interface DraggableRowProps {
-  row: Row<Product>;
-  updateData: (rowIndex: number, columnId: string, value: any) => void;
+  row: Row<any>;
+  updateData: (
+    rowIndex: number,
+    columnId: string,
+    value: any,
+    fieldToUpdate?: string
+  ) => void;
 }
 
 const DraggableRow: React.FC<DraggableRowProps> = React.memo(
@@ -79,13 +84,13 @@ const DraggableRow: React.FC<DraggableRowProps> = React.memo(
         >
           🟰
         </TableCell>
-
         {row.getVisibleCells().map((cell) => (
           <EditableCell
             key={cell.id}
             cell={cell}
             rowIndex={row.index}
             updateData={updateData}
+            row={row.original}
           />
         ))}
       </tr>
@@ -97,11 +102,17 @@ DraggableRow.displayName = "DraggableRow";
 interface EditableCellProps {
   cell: any;
   rowIndex: number;
-  updateData: (rowIndex: number, columnId: string, value: any) => void;
+  updateData: (
+    rowIndex: number,
+    columnId: string,
+    value: any,
+    fieldToUpdate?: string
+  ) => void;
+  row: any;
 }
 
 const EditableCell: React.FC<EditableCellProps> = React.memo(
-  ({ cell, rowIndex, updateData }) => {
+  ({ cell, rowIndex, updateData, row }) => {
     const initialValue = cell.getValue();
     const columnId = cell.column.id;
 
@@ -114,10 +125,16 @@ const EditableCell: React.FC<EditableCellProps> = React.memo(
 
     const onBlur = () => {
       setIsEditing(false);
-      updateData(rowIndex, columnId, value);
+      if (columnId === "nameOrTitle") {
+        // Determine the actual field to update ('name' or 'title')
+        const fieldToUpdate = row.name !== undefined ? "name" : "title";
+        updateData(rowIndex, columnId, value, fieldToUpdate);
+      } else {
+        updateData(rowIndex, columnId, value);
+      }
     };
 
-    if (columnId === "name" || columnId === "offerPrice") {
+    if (columnId === "nameOrTitle" || columnId === "offerPrice") {
       return (
         <TableCell
           onClick={() => setIsEditing(true)}
@@ -136,7 +153,7 @@ const EditableCell: React.FC<EditableCellProps> = React.memo(
               }}
               autoFocus
               className={`border rounded px-2 py-1 ${
-                columnId === "name" ? "w-full" : "w-[4.5rem]"
+                columnId === "nameOrTitle" ? "w-full" : "w-[4.5rem]"
               }`}
             />
           ) : (
@@ -156,36 +173,86 @@ const EditableCell: React.FC<EditableCellProps> = React.memo(
 
 EditableCell.displayName = "EditableCell";
 
-const MultiProductDisplay = () => {
+const MultiItemDisplay = () => {
   const {
     selectedProducts,
     resetProducts,
     toggleProductSelection,
     updateProducts,
   } = useProductSelectionStore();
+  const { selectedPollData, resetSelectedPollData } = usePollStore();
+  const { selectedFeedbackData, resetSelectedFeedbackData } =
+    useFeedbackStore();
   const [sorting, setSorting] = useState<SortingState>([]);
   const { resetIsProductSelected } = CampaignTypeStore();
   const queryClient = useQueryClient();
-  const { selectedPollData, resetSelectedPollData } = usePollStore();
+
+  const {
+    combinedItems,
+    setCombinedItems,
+    addItem,
+    removeItem,
+    resetCombinedItems,
+  } = useCombinedItemsStore();
+
+  // State variable for combinedItems
+  // const [combinedItems, setCombinedItems] = useState<any[]>([]);
+
+  // Update combinedItems whenever the selected items change
+  useEffect(() => {
+    const items = [
+      ...selectedProducts.map((item) => ({ ...item, itemType: "product" })),
+      ...(selectedPollData ? [{ ...selectedPollData, itemType: "poll" }] : []),
+      ...(selectedFeedbackData
+        ? [{ ...selectedFeedbackData, itemType: "feedback" }]
+        : []),
+    ];
+    setCombinedItems(items);
+  }, [
+    selectedProducts,
+    selectedPollData,
+    selectedFeedbackData,
+    setCombinedItems,
+  ]);
 
   useEffect(() => {
-    if (!selectedProducts.length) {
+    if (
+      !selectedProducts.length &&
+      !selectedPollData &&
+      !selectedFeedbackData
+    ) {
       resetIsProductSelected();
     }
-    console.log(selectedPollData);
-
     queryClient.invalidateQueries({ queryKey: ["campaigns"] });
-  }, [selectedProducts]);
+  }, [
+    selectedProducts,
+    selectedPollData,
+    selectedFeedbackData,
+    resetIsProductSelected,
+    queryClient,
+  ]);
 
-  const updateData = (rowIndex: number, columnId: string, value: any) => {
-    const newData = [...selectedProducts];
-    newData[rowIndex] = {
-      ...newData[rowIndex],
-      [columnId]: columnId === "offerPrice" ? parseFloat(value) : value,
-    };
+  console.log("combinedItems:", combinedItems);
 
-    // Update the store
-    updateProducts(newData);
+  const updateData = (
+    rowIndex: number,
+    columnId: string,
+    value: any,
+    fieldToUpdate?: string
+  ) => {
+    console.log("Updating data:", rowIndex, columnId, value);
+
+    const newData = [...combinedItems];
+    if (newData[rowIndex] && typeof newData[rowIndex] === "object") {
+      if (columnId === "nameOrTitle" && fieldToUpdate) {
+        newData[rowIndex][fieldToUpdate] = value;
+      } else {
+        newData[rowIndex][columnId] =
+          columnId === "offerPrice" ? parseFloat(value) : value;
+      }
+    }
+    setCombinedItems(newData);
+    // Optionally, update individual stores if needed
   };
 
   const columns = useMemo(
@@ -193,58 +260,69 @@ const MultiProductDisplay = () => {
       {
         accessorKey: "index",
         header: "#",
-        cell: ({ row }: { row: Row<Product> }) => row.index + 1,
+        cell: ({ row }: { row: Row<any> }) => row.index + 1,
         size: 50,
       },
       {
         accessorKey: "image",
         header: "IMAGE",
-        cell: ({ row }: { row: Row<Product> }) => (
-          <Image
-            src={row.original.image}
-            alt={row.original.name}
-            className="object-cover rounded-md"
-            width={32}
-            height={32}
-          />
-        ),
+        cell: ({ row }: { row: Row<any> }) =>
+          row.original.image ? (
+            <Image
+              src={row.original.image}
+              alt={row.original.name || row.original.title}
+              className="object-cover rounded-md"
+              width={32}
+              height={32}
+            />
+          ) : (
+            <span className="text-xs">
+              {row.original.itemType.toUpperCase() || "No Image"}
+            </span>
+          ),
       },
       {
-        accessorKey: "sku",
-        header: "SKU",
+        id: "nameOrTitle",
+        header: "NAME/TITLE",
+        accessorFn: (row: any) => row.name || row.title || "-",
+        cell: ({ getValue }: any) => getValue(),
       },
       {
-        accessorKey: "name",
-        header: "NAME",
-        cell: ({ row }: { row: Row<Product> }) => row.original.name,
-      },
-      {
-        accessorKey: "category",
-        header: "CATEGORY",
-        cell: ({ row }: { row: Row<Product> }) => row.original.category,
+        id: "categoryOrDescription",
+        header: "CATEGORY/DESCRIPTION",
+        accessorFn: (row) => row.category || row.description || "-",
+        cell: ({ getValue }) => getValue(),
       },
       {
         accessorKey: "offerPrice",
         header: "OFFER PRICE",
-        cell: ({ row }: { row: Row<Product> }) =>
-          `${row.original.offerPrice.toFixed(2)} ₹`,
-      },
-      {
-        accessorKey: "mrp",
-        header: "MRP",
-        cell: ({ row }: { row: Row<Product> }) =>
-          `${row.original.mrp.toFixed(2)} ₹`,
+        cell: ({ row }: { row: Row<any> }) =>
+          row.original.offerPrice
+            ? `${row.original.offerPrice.toFixed(2)} ₹`
+            : "-",
       },
       {
         accessorKey: "actions",
         header: "ACTIONS",
         enableSorting: false,
-        cell: ({ row }: { row: Row<Product> }) => (
+        cell: ({ row }: { row: Row<any> }) => (
           <div className="flex gap-2">
             <Button
               variant="destructive"
               onClick={() => {
-                toggleProductSelection(row.original);
+                // Remove the item from combinedItems
+                const newItems = combinedItems.filter(
+                  (item) => item.id !== row.original.id
+                );
+                setCombinedItems(newItems);
+                // Optionally, update individual stores if needed
+                if (row.original.itemType === "product") {
+                  toggleProductSelection(row.original);
+                } else if (row.original.itemType === "poll") {
+                  resetSelectedPollData();
+                } else if (row.original.itemType === "feedback") {
+                  resetSelectedFeedbackData();
+                }
               }}
               className="w-5 h-5 p-0 self-center flex mx-auto"
             >
@@ -254,7 +332,12 @@ const MultiProductDisplay = () => {
         ),
       },
     ],
-    [toggleProductSelection]
+    [
+      combinedItems,
+      toggleProductSelection,
+      resetSelectedPollData,
+      resetSelectedFeedbackData,
+    ]
   );
 
   const sensors = useSensors(
@@ -263,24 +346,19 @@ const MultiProductDisplay = () => {
     useSensor(KeyboardSensor, {})
   );
 
-  function handleDragEnd(event: DragEndEvent) {
+  const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
     if (active && over && active.id !== over.id) {
-      const oldIndex = selectedProducts.findIndex(
-        (item) => item.id === active.id
-      );
-      const newIndex = selectedProducts.findIndex(
-        (item) => item.id === over.id
-      );
-      const newItems = arrayMove(selectedProducts, oldIndex, newIndex);
-
-      // Update the store
-      updateProducts(newItems);
+      const oldIndex = combinedItems.findIndex((item) => item.id === active.id);
+      const newIndex = combinedItems.findIndex((item) => item.id === over.id);
+      const newItems = arrayMove(combinedItems, oldIndex, newIndex);
+      setCombinedItems(newItems);
+      // Optionally, update individual stores if needed
     }
-  }
+  };
 
   const table = useReactTable({
-    data: selectedProducts,
+    data: combinedItems,
     columns,
     state: { sorting },
     onSortingChange: setSorting,
@@ -289,8 +367,8 @@ const MultiProductDisplay = () => {
     getRowId: (row) => row.id,
   });
 
-  if (!selectedProducts.length) {
-    return <div>No products selected</div>;
+  if (!combinedItems.length) {
+    return <div>No items selected</div>;
   }
 
   return (
@@ -300,12 +378,12 @@ const MultiProductDisplay = () => {
       sensors={sensors}
     >
       <ScrollArea className="h-[70vh] w-full">
-        <div className="multi-product-display w-full mx-auto">
+        <div className="multi-item-display w-full mx-auto">
           <div className="flex justify-between items-center">
             <p className="text-xs">
               You have{" "}
               <span className="font-semibold text-green-500">
-                {selectedProducts.length}
+                {combinedItems.length}
               </span>{" "}
               items in the list.
             </p>
@@ -315,6 +393,9 @@ const MultiProductDisplay = () => {
               onClick={() => {
                 resetIsProductSelected();
                 resetProducts();
+                resetSelectedPollData();
+                resetSelectedFeedbackData();
+                setCombinedItems([]);
               }}
               className="w-auto p-2 mb-2 mr-2"
             >
@@ -338,19 +419,17 @@ const MultiProductDisplay = () => {
                           header.column.columnDef.header,
                           header.getContext()
                         )}
-                    {header.column.getIsSorted() === "asc" && (
-                      <ArrowUp className="inline-block ml-2 w-4 h-4" />
-                    )}
-                    {header.column.getIsSorted() === "desc" && (
-                      <ArrowDown className="inline-block ml-2 w-4 h-4" />
-                    )}
+                    {{
+                      asc: <ArrowUp className="inline-block ml-2 w-4 h-4" />,
+                      desc: <ArrowDown className="inline-block ml-2 w-4 h-4" />,
+                    }[header.column.getIsSorted() as string] ?? null}
                   </TableHead>
                 ))}
               </TableRow>
             </TableHeader>
             <TableBody>
               <SortableContext
-                items={selectedProducts}
+                items={combinedItems}
                 strategy={verticalListSortingStrategy}
               >
                 {table.getRowModel().rows.map((row) => (
@@ -369,4 +448,4 @@ const MultiProductDisplay = () => {
   );
 };
 
-export default MultiProductDisplay;
+export default MultiItemDisplay;

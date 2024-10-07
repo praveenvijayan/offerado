@@ -87,6 +87,7 @@ model Offer {
   description     String
   offerType       String
   offerJSON       Json
+  templateLiteral Json?
   businessId      String           @db.ObjectId
   business        Business         @relation(fields: [businessId], references: [id])
   startAt         DateTime

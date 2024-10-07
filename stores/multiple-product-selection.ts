@@ -8,7 +8,7 @@ type ProductSelectionState = {
   resetProducts: () => void;
   getSelectedProducts: () => Product[];
   setSelectedProducts: (products: Product[]) => void;
-  updateProducts: (products: Product[]) => void; // Added for updating the products
+  updateProducts: (products: Product[]) => void;
 };
 
 export const useProductSelectionStore = create<ProductSelectionState>(

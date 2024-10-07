@@ -40,6 +40,7 @@ import type {
 } from "@prisma/client";
 import FeedbackDisplay from "@/components/campaigns/feedback/feedback-display";
 import useFeedbackStore from "@/stores/feedback";
+import { useCombinedItemsStore } from "@/stores/combined-items-store";
 
 // 1. Define enums and interfaces
 enum CampaignType {
@@ -56,7 +57,7 @@ interface PollData extends Poll {
   organizationId: string;
 }
 
-type OfferData = Product[] | PollData[] | FeedbackForm[];
+type OfferData = (Product | PollData | FeedbackForm)[];
 
 interface NewCampaign {
   title: string;
@@ -69,6 +70,7 @@ interface NewCampaign {
   businessId: string;
   organizationId: string;
   offerJSON: { data: any };
+  templateLiteral: {};
 }
 
 export default function CreateCampaignPage() {
@@ -91,6 +93,8 @@ export default function CreateCampaignPage() {
 
   const [open, setOpen] = useState(false);
 
+  const { combinedItems } = useCombinedItemsStore();
+
   const mutation = useMutation({
     mutationFn: createCampaign,
     onSuccess: (data) => {
@@ -109,7 +113,7 @@ export default function CreateCampaignPage() {
       case CampaignType.SingleProduct:
         return selectedProduct ? [selectedProduct] : [];
       case CampaignType.MultiProduct:
-        return selectedProducts || [];
+        return combinedItems;
       case CampaignType.Poll:
         return selectedPollData ? [selectedPollData as PollData] : [];
       case CampaignType.Feedback:
@@ -122,16 +126,16 @@ export default function CreateCampaignPage() {
   };
 
   // 2. Implement type guards
-  function isProductArray(data: OfferData): data is Product[] {
-    return data.length > 0 && "sku" in data[0];
+  function isProduct(item: any): item is Product {
+    return item && "sku" in item;
   }
 
-  function isPollDataArray(data: OfferData): data is PollData[] {
-    return data.length > 0 && "title" in data[0] && "options" in data[0];
+  function isPollData(item: any): item is PollData {
+    return item && "options" in item;
   }
 
-  function isFeedbackFormArray(data: OfferData): data is FeedbackForm[] {
-    return data.length > 0 && "title" in data[0] && "description" in data[0];
+  function isFeedbackForm(item: any): item is FeedbackForm {
+    return item && "description" in item;
   }
 
   const handleCampaignCreation = () => {
@@ -140,9 +144,16 @@ export default function CreateCampaignPage() {
       return;
     }
 
-    const productsOrData = buildOfferJSON();
+    const offers = buildOfferJSON();
 
-    let newCampaign: NewCampaign = {
+    if (offers.length === 0) {
+      toast.error("No items selected for the campaign.");
+      return;
+    }
+
+    // Assume the first item's businessId and organizationId apply to all
+    const firstItem = offers[0];
+    const newCampaign: NewCampaign = {
       title,
       description,
       offerType: campaignType as CampaignType,
@@ -150,64 +161,34 @@ export default function CreateCampaignPage() {
       endAt: new Date(expiry),
       qrCode: "QRCODE123",
       interactiveType: null,
-      businessId: "",
-      organizationId: "",
+      businessId: firstItem.businessId,
+      organizationId: firstItem.organizationId,
       offerJSON: { data: [] },
+      templateLiteral: {},
     };
 
-    if (isProductArray(productsOrData)) {
-      const products = productsOrData;
-
-      if (products.length === 0) {
-        toast.error("No products selected for the campaign.");
-        return;
+    newCampaign.offerJSON.data = offers.map((item) => {
+      if (isProduct(item)) {
+        return {
+          ...item,
+          itemType: "product",
+          // Include additional product-specific fields if necessary
+        };
+      } else if (isPollData(item)) {
+        return {
+          ...item,
+          itemType: "poll",
+          // Include additional poll-specific fields if necessary
+        };
+      } else if (isFeedbackForm(item)) {
+        return {
+          ...item,
+          itemType: "feedback",
+          // Include additional feedback-specific fields if necessary
+        };
       }
-
-      newCampaign.businessId = products[0].businessId;
-      newCampaign.organizationId = products[0].organizationId;
-      newCampaign.offerJSON = {
-        data: products.map((product) => ({
-          // Include necessary product fields
-          ...product,
-        })),
-      };
-    } else if (isPollDataArray(productsOrData)) {
-      const pollData = productsOrData[0];
-
-      if (!pollData) {
-        toast.error("No poll data selected for the campaign.");
-        return;
-      }
-
-      newCampaign.businessId = pollData.businessId;
-      newCampaign.organizationId = pollData.organizationId;
-      newCampaign.offerJSON = {
-        data: {
-          title: pollData.title,
-          options: pollData.options,
-          // Include other poll-specific fields if necessary
-        },
-      };
-    } else if (isFeedbackFormArray(productsOrData)) {
-      const feedbackForm = productsOrData[0];
-
-      if (!feedbackForm) {
-        toast.error("No feedback form selected for the campaign.");
-        return;
-      }
-
-      newCampaign.businessId = feedbackForm.businessId;
-      newCampaign.organizationId = feedbackForm.organizationId;
-      newCampaign.offerJSON = {
-        data: {
-          title: feedbackForm.title,
-          description: feedbackForm.description,
-        },
-      };
-    } else {
-      // Handle other campaign types here
-      newCampaign.offerJSON = { data: [] };
-    }
+      return item;
+    });
 
     // Trigger the mutation to create the campaign
     mutation.mutate(newCampaign);

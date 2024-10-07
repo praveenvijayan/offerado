@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Clock,
+  Edit,
   FileBadge,
   MonitorDot,
   QrCode,
@@ -33,6 +34,8 @@ type DynamicComponentProps = {
 import { useMutation } from "@tanstack/react-query";
 import { updateOffer } from "@/services/campaign-service";
 import { toast } from "sonner";
+import TemplateLiterals from "@/components/campaigns/template-literal";
+import useTemplateLiteralsStore from "@/stores/template-literals";
 
 export default function PreviewAndSelectTemplate() {
   const [view, setView] = useState("desktop");
@@ -46,6 +49,7 @@ export default function PreviewAndSelectTemplate() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const router = useRouter();
   const queryClient = useQueryClient();
+  const { templateLiterals, setTemplateLiteral } = useTemplateLiteralsStore();
 
   const { mutate, isError, isSuccess } = useMutation({
     mutationFn: updateOffer,
@@ -70,6 +74,7 @@ export default function PreviewAndSelectTemplate() {
       ...offer,
       templateId: currentTemplateId,
       isActive: !offer.isActive,
+      templateLiteral: templateLiterals || {},
     };
 
     mutate(updatedOffer);
@@ -82,6 +87,7 @@ export default function PreviewAndSelectTemplate() {
       ...offer,
       templateId: currentTemplateId,
       isActive: false,
+      templateLiteral: templateLiterals || {},
     };
 
     mutate(updatedOffer);
@@ -251,6 +257,7 @@ export default function PreviewAndSelectTemplate() {
         >
           <TabletSmartphoneIcon className="cursor-pointer" />
         </Button>
+        <TemplateLiterals offer={offer} />
       </div>
       <ScrollArea
         className={`container mx-auto flex flex-col gap-4 bg-muted rounded-md transition-all duration-300 overflow-auto ${

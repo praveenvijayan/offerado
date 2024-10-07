@@ -19,6 +19,7 @@ export async function POST(req: Request) {
       organizationId,
       interactiveType,
       offerJSON,
+      templateLiteral,
     } = body;
 
     // Validate required fields
@@ -30,7 +31,8 @@ export async function POST(req: Request) {
       !startAt ||
       !endAt ||
       !organizationId ||
-      !offerJSON
+      !offerJSON ||
+      !templateLiteral
     ) {
       return NextResponse.json(
         { error: "Missing required fields" },
@@ -52,6 +54,7 @@ export async function POST(req: Request) {
         interactiveType: interactiveType ?? null,
         offerJSON: offerJSON || {},
         isActive: false,
+        templateLiteral: templateLiteral || {},
       },
     });
 
