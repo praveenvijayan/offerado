@@ -232,22 +232,18 @@ const MultiItemDisplay = () => {
     queryClient,
   ]);
 
-  console.log("combinedItems:", combinedItems);
-
   const updateData = (
     rowIndex: number,
     columnId: string,
     value: any,
     fieldToUpdate?: string
   ) => {
-    console.log("Updating data:", rowIndex, columnId, value);
-
     const newData = [...combinedItems];
     if (newData[rowIndex] && typeof newData[rowIndex] === "object") {
       if (columnId === "nameOrTitle" && fieldToUpdate) {
-        newData[rowIndex][fieldToUpdate] = value;
+        (newData[rowIndex] as Record<string, any>)[fieldToUpdate] = value;
       } else {
-        newData[rowIndex][columnId] =
+        (newData[rowIndex] as Record<string, any>)[columnId] =
           columnId === "offerPrice" ? parseFloat(value) : value;
       }
     }
