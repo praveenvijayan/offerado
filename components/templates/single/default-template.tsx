@@ -1,99 +1,140 @@
-import React from "react";
+import React, { useMemo } from "react";
 import Image from "next/image";
 import { format } from "date-fns";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import useTemplateLiteralsStore from "@/stores/template-literals";
+import { protest, pacifico, ubuntu } from "@/app/fonts";
+import { cn } from "../../../lib/utils";
+import { Radar } from "lucide-react";
+import { Separator } from "@/components/ui/separator";
 
 const DefaultSingleTemplate = ({ offer }: { offer: any }) => {
   const offerData = offer?.offerJSON?.data;
+  const { templateLiterals, setTemplateLiteral } = useTemplateLiteralsStore();
+
+  // Memoize the default template variables
+  const defaultTplVars = useMemo(
+    () => ({
+      companyName: "Your Company Name",
+      offertext: "Offer!",
+      description:
+        "Enjoy your unforgettable experience. Evening, mega discount!",
+      priceTitle: "Save!",
+      footer: "12th Avenue Street 12345, New York, USA | +2134535677823",
+    }),
+    []
+  );
+  // Get the templateId from the offer
+  const templateId = offer?.templateId;
+
+  // Check if there's a template literal for this templateId in the offer response or use the default one
+  const offerTemplateLiteral =
+    offer?.templateLiteral?.[templateId] || defaultTplVars;
+
+  // Set the template literal in the Zustand store if it doesn't exist
+  if (!templateLiterals[templateId]) {
+    setTemplateLiteral(templateId, offerTemplateLiteral);
+  }
+
+  // Get the current template literals from the Zustand store
+  const currentTemplate = templateLiterals[templateId] || {};
 
   return (
-    <div className="single-template bg-white h-full text-center">
-      <div className="bg-yellow-500 p-4 text-center">
-        {/* Deal of the Day Header */}
-        <div className="bg-red-700 text-white text-4xl font-bold py-2 px-4 rounded-md inline-block">
-          {offer?.title}
-        </div>
+    <div className="bg-[url(/bg-home-desktop.jpg)] bg-[#FEFCF3] bg-no-repeat bg-center w-[100%] min-h-screen py-8 @container">
+      <h3
+        className={cn(
+          "font-semibold text-sm text-red-700 text-center",
+          ubuntu.className
+        )}
+      >
+        <Radar className="stroke-red-400 w-4 h-4 inline-block mx-4" />
+        {templateLiterals[templateId].companyName}{" "}
+        <Radar className="stroke-red-400 w-4 h-4 inline-block mx-4" />
+      </h3>
+      <h2
+        className={cn(
+          "font-semibold text-7xl text-red-800 uppercase text-center p-4",
+          protest.className
+        )}
+      >
+        {offer?.title}
+      </h2>
+      <h3
+        className={cn(
+          "font-semibold text-7xl text-amber-500 text-center -m-10 mb-10",
+          "[text-shadow:_3px_0px_0_rgb(255_255_255)]",
+          pacifico.className
+        )}
+      >
+        {templateLiterals[templateId].offertext}{" "}
+      </h3>
+      <p
+        className={cn(
+          "text-center text-lg font-semibold bg-red-700 w-fit mx-auto px-6 py-2 block mb-[3rem] @lg:mb-[6rem]",
+          "relative w-[280px] bg-[#D95B43] [--p:50px] [clip-path:polygon(var(--p)_0,100%_0,calc(100%-var(--p))_100%,0_100%)]",
+          ubuntu.className
+        )}
+      >
+        <span className="">{format(new Date(offer?.startAt), "do MMM")}</span>{" "}
+        to <span className="">{format(new Date(offer?.endAt), "do MMM")}</span>
+      </p>
+      <div
+        className={cn(
+          "text-left text-sm font-semibold text-red-800 max-w-[16rem] @lg:max-w-[24rem] mx-auto",
+          ubuntu.className
+        )}
+      >
+        {templateLiterals[templateId].description}
+      </div>
+      <div className="flex mx-auto flex-col gap-4 py-[4rem] max-w-xl relative bg-[url(/bg-product.png)] bg-no-repeat bg-center w-[100%]">
+        <Image
+          src={offerData[0]?.image}
+          alt={offerData[0]?.name}
+          width={150}
+          height={150}
+          className="rounded-xl mx-auto shadow-xl"
+        />
+        <h3
+          className={cn(
+            "font-semibold text-3xl text-amber-700 text-center max-w-[12rem] mx-auto",
+            pacifico.className
+          )}
+        >
+          {offerData[0]?.name}
+        </h3>
 
-        {/* Offer Date Section */}
-        <div className="mt-2">
-          <p className="font-bold text-white text-xl">OFFER VALID ONLY ON</p>
-
-          <p className="font-extrabold text-red-800 text-3xl">
-            <span className="font-semibold">
-              {format(new Date(offer?.startAt), "do MMM")}
-            </span>{" "}
-            to{" "}
-            <span className="font-semibold">
-              {format(new Date(offer?.endAt), "do MMM")}
-            </span>
-          </p>
-        </div>
-
-        {/* Chicken Image and Offer Price Section */}
-        <div className="flex flex-col justify-center items-center mt-4">
-          <h3 className="text-xl font-semibold">{offerData[0]?.name}</h3>
-          <Image
-            src={offerData[0]?.image}
-            alt={offerData[0]?.name}
-            width={150}
-            height={150}
-            className="rounded-md shadow-md mx-auto my-[2rem]"
-          />
-          <div className="text-center">
-            <div className="bg-red-600 text-white px-4 py-2 rounded-md text-xl font-bold inline-block">
-              Market Price: ${offerData[0]?.mrp?.toFixed(2)}
-            </div>
-            <div className="bg-yellow-400 text-red-800 px-4 py-2 rounded-md text-2xl font-extrabold mt-2">
-              Offer Price: {offerData[0]?.offerPrice?.toFixed(2)}
-            </div>
-            <p className="text-red-700 font-bold mt-2 text-2xl text-wrap max-w-sm">
-              {offerData?.name}
-            </p>
-          </div>
-        </div>
-
-        {/* Best Price Label */}
-        <div className="mt-4">
-          <span className="bg-green-500 text-white font-bold py-2 px-4 rounded-full text-lg inline-block">
-            {offer?.description}
+        <div
+          className={cn(
+            "absolute flex flex-col top-[2rem] right-0 w-[8rem] h-[8rem] bg-red-700 rounded-full text-center text-white font-semibold text-xl items-center justify-center border-white border-4",
+            protest.className
+          )}
+        >
+          <span className={cn("", protest.className)}>
+            {templateLiterals[templateId].priceTitle}
           </span>
+          <span className="line-through text-amber-500">
+            {offerData[0]?.mrp?.toFixed(2)} ₹
+          </span>
+          {offerData[0]?.offerPrice?.toFixed(2)} ₹
         </div>
-
-        {/* Store Information Section */}
-        <div className="mt-6 bg-white py-4 rounded-md shadow-lg text-center">
-          <h2 className="text-red-700 font-extrabold text-2xl">
-            Centreal Bazaar
-          </h2>
-          <p className="text-gray-700 font-bold">
-            Fastest Growing Supermarket Chain in India
-          </p>
-          <div className="grid grid-cols-2 gap-4 mt-4">
-            <div>
-              <p className="text-gray-800 font-bold">Thrikkakara</p>
-              <p className="text-red-600 font-extrabold">75928 99991</p>
-            </div>
-            <div>
-              <p className="text-gray-800 font-bold">Kakkanad</p>
-              <p className="text-red-600 font-extrabold">75938 12544</p>
-            </div>
-            <div>
-              <p className="text-gray-800 font-bold">Seaport-Airport Road</p>
-              <p className="text-red-600 font-extrabold">75929 79979</p>
-            </div>
-            <div>
-              <p className="text-gray-800 font-bold">Thrippunithura</p>
-              <p className="text-red-600 font-extrabold">92077 701 835</p>
-            </div>
-          </div>
-        </div>
-
-        {/* Footer Section for Home Delivery */}
-        <div className="mt-4">
-          <p className="text-red-800 font-bold">
-            Home delivery available @ DLF & Trinity Store
-          </p>
+        <div
+          className={cn(
+            "absolute flex flex-col bottom-[8rem] @lg:bottom-[2rem] left-0 w-[7rem] h-[7rem] p-4 bg-red-700 rounded-full text-center text-white font-semibold text-sm items-center justify-center border-white border-4",
+            protest.className
+          )}
+        >
+          {offer?.description}
         </div>
       </div>
+      <Separator className="my-[2rem] border-red-600" />
+      <footer
+        className={cn(
+          "text-sm text-center text-red-900 font-semibold",
+          ubuntu.className
+        )}
+      >
+        {templateLiterals[templateId].footer}
+      </footer>
     </div>
   );
 };

@@ -2,13 +2,16 @@ import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
+  SheetClose,
   SheetContent,
+  SheetFooter,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Edit } from "lucide-react";
 import useTemplateLiteralsStore from "@/stores/template-literals";
+import { ScrollArea } from "../ui/scroll-area";
 
 const TemplateLiterals = ({ offer }: { offer: any }) => {
   const { templateLiterals, setTemplateLiteral } = useTemplateLiteralsStore();
@@ -30,7 +33,15 @@ const TemplateLiterals = ({ offer }: { offer: any }) => {
   };
 
   // Handle save
-  const handleSave = (key: string) => {
+  // const handleSave = (key: string) => {
+  //   setTemplateLiteral(offer?.templateId, {
+  //     ...currentTemplateLiterals,
+  //     [key]: editValue,
+  //   });
+  //   setEditingKey(null);
+  // };
+
+  const handleBlur = (key: string) => {
     setTemplateLiteral(offer?.templateId, {
       ...currentTemplateLiterals,
       [key]: editValue,
@@ -50,11 +61,16 @@ const TemplateLiterals = ({ offer }: { offer: any }) => {
             <Edit className="w-8 h-8 stroke-white" />
           </Button>
         </SheetTrigger>
-        <SheetContent>
+        <SheetContent className="xl:w-[800px] xl:max-w-none sm:w-[400px] sm:max-w-[540px]">
           <SheetHeader>
-            <SheetTitle>Customize template content</SheetTitle>
+            <SheetTitle>
+              Customize template content
+              <span className="text-xs text-muted-foreground block mt-1">
+                Edit the content of the template.
+              </span>
+            </SheetTitle>
           </SheetHeader>
-          <div className="flex flex-col mt-4">
+          <ScrollArea className="flex flex-col mt-4 h-[80vh]">
             {/* Display all template literals for the current template */}
             {Object.entries(currentTemplateLiterals).length > 0 ? (
               <ul className="space-y-4">
@@ -67,11 +83,9 @@ const TemplateLiterals = ({ offer }: { offer: any }) => {
                             type="text"
                             value={editValue}
                             onChange={handleInputChange}
+                            onBlur={() => handleBlur(key)}
                             className="border rounded px-2 py-1"
                           />
-                          <Button size="sm" onClick={() => handleSave(key)}>
-                            Save
-                          </Button>
                         </div>
                       ) : (
                         <span
@@ -88,7 +102,12 @@ const TemplateLiterals = ({ offer }: { offer: any }) => {
             ) : (
               <p>No template literals found for this template.</p>
             )}
-          </div>
+          </ScrollArea>
+          <SheetClose asChild>
+            <Button className="flex items-end ml-auto rounded-2xl bg-green-500 hover:bg-green-600">
+              Update content
+            </Button>
+          </SheetClose>
         </SheetContent>
       </Sheet>
     </div>
