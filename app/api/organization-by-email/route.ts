@@ -15,7 +15,10 @@ export async function POST(req: Request) {
     // Fetch the organization by email
     const organization = await prisma.organization.findUnique({
       where: {
-        email, // Use the email to find the organization
+        email,
+      },
+      include: {
+        businesses: true,
       },
     });
 

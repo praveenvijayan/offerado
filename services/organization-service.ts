@@ -8,7 +8,7 @@ export async function createOrganization({
   email: string;
   ownerId: string;
 }) {
-  const response = await fetch("/api/organization-create", {
+  const response = await fetch("/api/organization/create", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -42,5 +42,5 @@ export async function getOrganizationByEmail(email: string) {
     throw new Error("Failed to fetch organization");
   }
 
-  return response.json();
+  return await response.json();
 }
