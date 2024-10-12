@@ -21,10 +21,11 @@ import { useMutation } from "@tanstack/react-query";
 import { setBusinessAsDefault } from "@/services/business-services";
 import { toast } from "sonner";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useSetBusinessAsDefault } from "@/hooks/use-set-business-as-default";
 
 const BusinessPage: React.FC = () => {
   const { organization } = useOrganizationStore();
-  const queryClient = useQueryClient();
+  const { handleSetAsDefault, isPending } = useSetBusinessAsDefault();
 
   const businesses = organization?.businesses || [];
 
@@ -55,10 +56,7 @@ const BusinessPage: React.FC = () => {
             variant="outline"
             className={row.original.isDefault ? "bg-green-500" : ""}
             onClick={() =>
-              handleSetAsDefault({
-                id: row.original.id,
-                organizationId: organization?.id,
-              })
+              handleSetAsDefault(row.original.id, organization?.id as string)
             }
           >
             {row.original.isDefault ? "Default" : "Set as Default"}
@@ -73,34 +71,6 @@ const BusinessPage: React.FC = () => {
       ),
     },
   ];
-
-  const mutation = useMutation({
-    mutationFn: ({
-      businessId,
-      organizationId,
-    }: {
-      businessId: string;
-      organizationId: string;
-    }) => setBusinessAsDefault(businessId, organizationId),
-    onSuccess: (data) => {
-      // Success callback, e.g., display a toast or refresh the data
-      queryClient.invalidateQueries({
-        queryKey: ["organization", organization?.email],
-      });
-      toast.success("Business set as default successfully");
-    },
-    onError: (error: Error) => {
-      // Error callback, e.g., display an error message
-      toast.error(`Error: ${error.message}`);
-    },
-  });
-
-  const handleSetAsDefault = (business: any) => {
-    mutation.mutate({
-      businessId: business.id,
-      organizationId: business.organizationId,
-    });
-  };
 
   // Create the table instance using TanStack Table
   const table = useReactTable({

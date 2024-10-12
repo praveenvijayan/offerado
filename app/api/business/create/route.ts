@@ -29,7 +29,7 @@ export async function POST(request: Request) {
         organization: {
           connect: { id: businessData.organizationId },
         },
-        // Add other fields here as needed
+        isDefault: businessData.isDefault || false,
       },
       include: {
         organization: true,

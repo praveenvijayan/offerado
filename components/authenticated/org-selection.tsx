@@ -5,7 +5,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { ChevronUp, PlusCircle } from "lucide-react";
+import { Check, ChevronUp, CircleCheck, PlusCircle } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Link from "next/link";
 import useSidebarStore from "@/stores/store";
@@ -16,6 +16,8 @@ import { useUser } from "@clerk/nextjs";
 import useOrganizationStore from "@/stores/organization";
 import NoBusiness from "./no-business";
 import type { Business } from "@prisma/client";
+import NewBusiness from "./new-business";
+import { useSetBusinessAsDefault } from "@/hooks/use-set-business-as-default";
 
 // BusinessSelection Component
 export function BusinessSelection() {
@@ -23,7 +25,7 @@ export function BusinessSelection() {
   const { user } = useUser();
   const { organization, setOrganization } = useOrganizationStore();
   const [isNoBusinessDialogOpen, setNoBusinessDialogOpen] = useState(false);
-
+  const { handleSetAsDefault, isPending } = useSetBusinessAsDefault();
   const email = user?.primaryEmailAddress?.emailAddress;
 
   // Fetch organization by email using React Query
@@ -34,16 +36,21 @@ export function BusinessSelection() {
   } = useQuery({
     queryKey: ["organization", email],
     queryFn: () => getOrganizationByEmail(email as string),
-    enabled: !!email, // Only fetch if email is available
+    enabled: !!email,
   });
 
   // Set organization in Zustand store and handle no businesses scenario
   useEffect(() => {
     if (fetchedOrganization) {
-      setOrganization(fetchedOrganization); // Store fetched organization in Zustand
+      setOrganization(fetchedOrganization);
       setNoBusinessDialogOpen(fetchedOrganization.businesses?.length === 0);
     }
   }, [fetchedOrganization, setOrganization]);
+
+  // Get the default or first business to display in the trigger
+  const currentBusiness =
+    organization?.businesses?.find((business) => business.isDefault) ||
+    organization?.businesses?.[0];
 
   // Handle loading and error states
   if (isLoading) return <p>Loading...</p>;
@@ -51,66 +58,81 @@ export function BusinessSelection() {
 
   return (
     <>
-      {organization?.businesses?.length ? (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <div className="flex items-center justify-between p-4">
-              <div className="flex items-center gap-4">
-                <Avatar>
-                  <AvatarImage src="https://github.com/shadcn.png" />
-                  <AvatarFallback>CN</AvatarFallback>
-                </Avatar>
-                {!isCollapsed && (
-                  <div>
-                    <p className="font-medium">
-                      {organization?.name || "Business Name"}
-                    </p>
-                  </div>
-                )}
-              </div>
-              <ChevronUp />
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <div className="flex items-center justify-between p-4">
+            <div className="flex items-center gap-4">
+              <Avatar>
+                <AvatarImage
+                  src={currentBusiness?.logo || "https://github.com/shadcn.png"}
+                />
+                <AvatarFallback>{currentBusiness?.name[0]}</AvatarFallback>
+              </Avatar>
+              {!isCollapsed && (
+                <div>
+                  <p className="font-medium">
+                    {currentBusiness?.name || "Business Name"}
+                  </p>
+                  <p className="font-normal text-muted-foreground text-xs">
+                    {organization?.name || "Business Name"}
+                  </p>
+                </div>
+              )}
             </div>
-          </DropdownMenuTrigger>
+            <ChevronUp />
+          </div>
+        </DropdownMenuTrigger>
 
-          <DropdownMenuContent className="w-64">
-            <DropdownMenuGroup>
-              {organization.businesses.map((business: Business) => (
+        <DropdownMenuContent className="w-64">
+          <DropdownMenuGroup>
+            {organization?.businesses?.length &&
+              organization.businesses.map((business: Business) => (
                 <DropdownMenuItem
                   key={business.id}
                   className="flex justify-between items-center"
+                  onClick={() =>
+                    handleSetAsDefault(business.id, organization?.id)
+                  }
                 >
-                  <div className="flex items-center gap-4 py-4">
-                    <Avatar>
+                  <div className="flex items-center gap-4 py-4 relative">
+                    {business.isDefault ? (
+                      <CircleCheck className="w-4 h-4 inline-block fill-green-600 mr-2 absolute left-6 top-4 z-10" />
+                    ) : (
+                      ""
+                    )}
+                    <Avatar className="">
                       <AvatarImage
                         src={business.logo || "https://github.com/shadcn.png"}
                       />
                       <AvatarFallback>{business.name[0]}</AvatarFallback>
                     </Avatar>
                     <div>
-                      <p className="font-medium">{business.name}</p>
+                      <p className="font-medium">{business.name} </p>
                       <p className="text-xs text-gray-500">Business Admin</p>
                     </div>
                   </div>
                 </DropdownMenuItem>
               ))}
-            </DropdownMenuGroup>
+          </DropdownMenuGroup>
 
-            <DropdownMenuGroup>
-              <Link href="/business/create">
-                <DropdownMenuItem className="flex items-center space-x-2 py-4">
-                  <PlusCircle className="mr-2" />
-                  Create a business
-                </DropdownMenuItem>
-              </Link>
-            </DropdownMenuGroup>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      ) : (
-        <NoBusiness
-          open={isNoBusinessDialogOpen}
-          setOpen={setNoBusinessDialogOpen}
-        />
-      )}
+          <DropdownMenuGroup>
+            <DropdownMenuItem
+              className="flex items-center space-x-2 py-4"
+              onClick={() => {
+                setNoBusinessDialogOpen(true);
+              }}
+            >
+              <PlusCircle className="mr-2" />
+              Create a business
+            </DropdownMenuItem>
+          </DropdownMenuGroup>
+        </DropdownMenuContent>
+      </DropdownMenu>
+
+      <NewBusiness
+        open={isNoBusinessDialogOpen}
+        setOpen={setNoBusinessDialogOpen}
+      />
     </>
   );
 }
