@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { Button } from "@/components/ui/button";
-import { Building2, Delete, Edit, PlusCircle } from "lucide-react";
+import { Building2, Delete, Edit, PlusCircle, Trash } from "lucide-react";
 import Link from "next/link";
 import useOrganizationStore from "@/stores/organization";
 import {
@@ -50,7 +50,7 @@ const BusinessPage: React.FC = () => {
       id: "actions",
       header: "Actions",
       cell: ({ row }) => (
-        <div className="flex gap-2">
+        <div className="flex gap-2 items-center justify-end ml-auto">
           <Button
             size={"sm"}
             variant="outline"
@@ -65,7 +65,7 @@ const BusinessPage: React.FC = () => {
             <Edit className="h-4 w-4" />
           </Button>
           <Button size={"icon"} variant="destructive" className="p-0">
-            <Delete className="h-4 w-4" />
+            <Trash className="h-4 w-4" />
           </Button>
         </div>
       ),
@@ -124,7 +124,6 @@ const BusinessPage: React.FC = () => {
                 <TableRow key={row.id}>
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
-                      {/* Pass the whole cell context here */}
                       {typeof cell.column.columnDef.cell === "function"
                         ? cell.column.columnDef.cell(cell.getContext())
                         : cell.getValue()?.toString() ?? ""}

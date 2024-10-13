@@ -4,7 +4,7 @@ import prisma from "@/lib/prisma";
 export async function POST(req: Request) {
   try {
     // Read the body once
-    const { role, ownerId, name, email, image } = await req.json();
+    const { ownerId, name, email, image } = await req.json();
 
     if (!ownerId) {
       return new NextResponse("Unauthorized", { status: 401 });

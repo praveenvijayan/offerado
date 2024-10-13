@@ -54,7 +54,6 @@ export default function PreviewAndSelectTemplate() {
   const { mutate, isError, isSuccess } = useMutation({
     mutationFn: updateOffer,
     onSuccess: (data) => {
-      console.log("Campaign updated successfully:", data);
       toast.success("Campaign updated successfully");
 
       if (data.id) {

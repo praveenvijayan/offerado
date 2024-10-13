@@ -32,9 +32,6 @@ const DefaultPollTemplate = ({ offer }: { offer: any }) => {
       alert("Please select an option.");
       return;
     }
-    // Handle submission logic here
-    console.log(`Selected option ID: ${selectedOption}`);
-    // You can send this data to your API
   };
 
   if (!offerData) {

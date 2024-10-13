@@ -53,7 +53,6 @@ const Feedback: React.FC = () => {
   useEffect(() => {
     if (selectedFeedbackData) {
       setIsProductSelected();
-      //   console.log("Selected Feedback Data:", isProductSelected);
     }
   }, [setIsProductSelected, selectedFeedbackData]);
 

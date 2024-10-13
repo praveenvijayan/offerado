@@ -4,45 +4,68 @@ import Lottie from "lottie-react";
 import userAnimation from "@/animation/user-setup.json";
 import { useUser } from "@clerk/nextjs";
 import { useUserRoleStore } from "@/stores/use-user-role-store";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
-import { updateUserRole } from "@/services/user-role-service";
-import { createOrganization } from "@/services/organization-service"; // Import organization service
+import { createOrganization } from "@/services/organization-service";
 
 export default function OnboardingPage() {
   const { isSignedIn, isLoaded, user } = useUser();
   const { role, resetRole } = useUserRoleStore();
   const router = useRouter();
 
+  // Corrected useState syntax
+  const [orgId, setOrgId] = useState("");
+
   // Helper function to extract the email's first part
   const getOrganizationName = (email: string) => {
     return email.split("@")[0] + "_org";
   };
 
-  // React Query mutation for creating an organization and updating the user role
+  // Mutation to handle the onboarding process
   const mutation = useMutation({
     mutationFn: async () => {
+      let organizationId = null;
+
       if (role === "Business") {
         // Create organization first
         const organizationName = getOrganizationName(
           user?.primaryEmailAddress?.emailAddress || ""
         );
+
         const organization = await createOrganization({
           name: organizationName,
           email: user?.primaryEmailAddress?.emailAddress || "",
           ownerId: user?.id as string,
         });
 
-        // If organization is created successfully, update user role
-        if (organization) {
-          return await updateUserRole(role, user?.id as string);
+        if (!organization) {
+          throw new Error("Organization creation failed");
         }
-        throw new Error("Organization creation failed");
-      } else {
-        // If not "Business", just update the user role
-        return await updateUserRole(role, user?.id as string);
+
+        organizationId = organization.id;
+        setOrgId(organizationId);
       }
+
+      // Create the user in your database
+      const response = await fetch("/api/users", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include", // Include cookies for authentication
+        body: JSON.stringify({
+          organizationId: organizationId, // May be null if not "Business"
+          role: role,
+        }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Failed to create user");
+      }
+
+      return response.json();
     },
     onSuccess: () => {
       resetRole();
@@ -51,8 +74,6 @@ export default function OnboardingPage() {
           router.push("/landing");
           break;
         case "Admin":
-          router.push("/dashboard");
-          break;
         case "Business":
           router.push("/dashboard");
           break;
@@ -61,7 +82,7 @@ export default function OnboardingPage() {
       }
     },
     onError: (error) => {
-      console.error("Error creating organization or updating role:", error);
+      console.error("Error during onboarding:", error);
     },
   });
 
@@ -78,7 +99,7 @@ export default function OnboardingPage() {
         <h1 className="text-md mb-4">
           {role === "Business"
             ? "Setting up your business profile."
-            : `Setting up the ${role} profile.`}
+            : `Setting up your ${role.toLowerCase()} profile.`}
         </h1>
         <Lottie animationData={userAnimation} loop={true} />
       </div>

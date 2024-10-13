@@ -47,11 +47,6 @@ const NewBusiness: React.FC<NewBusinessProps> = ({ open, setOpen }) => {
   });
 
   const onSubmit = (formData: any) => {
-    // Include the organization ID in the data
-    console.log(
-      "organization?.businesses?.length :",
-      organization?.businesses?.length
-    );
     const data = {
       ...formData,
       organizationId: organization?.id,

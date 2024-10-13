@@ -79,8 +79,6 @@ export default function BusinessCreateForm() {
       return await createBusiness(businessData);
     },
     onSuccess: () => {
-      console.log("Business created successfully!");
-      // Optionally refetch queries or perform any additional actions
       toast.success("Business created successfully!");
     },
     onError: (error) => {

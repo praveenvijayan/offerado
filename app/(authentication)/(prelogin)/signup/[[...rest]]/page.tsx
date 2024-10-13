@@ -3,9 +3,23 @@ import { SignUp } from "@clerk/nextjs";
 import RoleSelection from "@/components/authenticated/role-selection";
 import { useUserRoleStore } from "@/stores/use-user-role-store";
 import { useEffect } from "react";
+import { useUser } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
 
 export default function SignUpPage() {
   const { step, role } = useUserRoleStore();
+  const { user, isLoaded } = useUser();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (isLoaded && user) {
+      router.push("/login");
+    }
+  }, [isLoaded, user, router]);
+
+  if (!isLoaded || user) {
+    return <>Loading...</>;
+  }
 
   return (
     <div>

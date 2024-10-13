@@ -8,13 +8,9 @@ const FeedbackDisplay: React.FC = () => {
   const { selectedFeedbackData, resetSelectedFeedbackData } =
     useFeedbackStore();
 
-  console.log("Feedback display");
-
   if (!selectedFeedbackData) {
     return <p>No Feedback selected.</p>;
   }
-
-  console.log(selectedFeedbackData);
 
   return (
     <div className="flex justify-between gap-4 w-full">

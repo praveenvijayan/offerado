@@ -75,6 +75,10 @@ export async function GET() {
       orderBy: {
         createdAt: "desc",
       },
+      // where: {
+      //   businessId: "66ea8ee3357952b9fdbcc612",
+      //   organizationId: "6707c318bf2a84f88a601129",
+      // },
     });
 
     // Return the campaigns in the response

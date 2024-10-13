@@ -58,7 +58,6 @@ const Poll: React.FC = () => {
 
   useEffect(() => {
     if (selectedPoll && selectedPollData) {
-      console.log("Selected Poll Data:", selectedPollData);
       setIsProductSelected();
     }
   }, [selectedPoll, setIsProductSelected, selectedPollData]);

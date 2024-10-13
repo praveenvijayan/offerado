@@ -54,20 +54,7 @@ const Contests = () => {
               ))}
             </div>
           </div>
-          <SheetFooter>
-            {/* <Button
-              onClick={() =>
-                console.log(
-                  "Selected Contests:",
-                  selectedItems.contests.map(
-                    (id) => contests.find((c) => c.id === id)?.title
-                  )
-                )
-              }
-            >
-              Add Selected Contests
-            </Button> */}
-          </SheetFooter>
+          <SheetFooter></SheetFooter>
         </SheetContent>
       </Sheet>
     </div>

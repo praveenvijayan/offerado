@@ -107,18 +107,7 @@ const ProductSelection = () => {
               </TableBody>
             </Table>
           </div>
-          <SheetFooter>
-            {/* <Button
-              onClick={() =>
-                console.log("Selected Products:", selectedProducts)
-              }
-            >
-              Add Selected Products
-            </Button>
-            <Button variant="destructive" onClick={clearSelectedProducts}>
-              Clear
-            </Button> */}
-          </SheetFooter>
+          <SheetFooter></SheetFooter>
         </SheetContent>
       </Sheet>
     </div>

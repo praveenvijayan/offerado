@@ -50,15 +50,7 @@ const Quiz = () => {
               ))}
             </div>
           </div>
-          <SheetFooter>
-            {/* <Button
-              onClick={() =>
-                console.log("Selected Quizzes:", selectedItems.quizzes)
-              }
-            >
-              Add Selected Quizzes
-            </Button> */}
-          </SheetFooter>
+          <SheetFooter></SheetFooter>
         </SheetContent>
       </Sheet>
     </div>

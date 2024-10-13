@@ -1,25 +1,19 @@
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 import { NextRequest, NextResponse } from "next/server";
 
-// Define the SessionClaims type with optional metadata properties
-type SessionClaims = {
-  metadata?: {
-    role?: "Business" | "Admin" | string;
-  };
-};
-
 // Create a public route matcher
 const isPublicRoute = createRouteMatcher([
   "/",
   "/landing",
   "/login(.*)",
   "/afterlogin(.*)",
+  "/onboarding(.*)",
   "/signup(.*)",
   "/api/(.*)",
 ]);
 
 // Middleware logic with proper type checks
-export default clerkMiddleware((auth, request: NextRequest) => {
+export default clerkMiddleware(async (auth, request: NextRequest) => {
   // If the route is public, don't apply any auth protection
   if (isPublicRoute(request)) {
     return;
@@ -28,18 +22,27 @@ export default clerkMiddleware((auth, request: NextRequest) => {
   // Protect non-public routes
   auth().protect();
 
-  // Retrieve session claims
-  const { sessionClaims }: { sessionClaims: SessionClaims | null } = auth();
+  const url = new URL(request.url);
+  url.pathname = "/api/users/get-role";
 
-  // Check user role and return a 401 response if unauthorized
-  if (
-    sessionClaims?.metadata?.role === "Business" ||
-    sessionClaims?.metadata?.role === "Admin"
-  ) {
-    return;
+  const roleResponse = await fetch(url.toString(), {
+    headers: {
+      Cookie: request.headers.get("cookie") || "",
+    },
+  });
+
+  if (!roleResponse.ok) {
+    return NextResponse.redirect(new URL("/login", request.url));
   }
 
-  return new NextResponse("Unauthorized", { status: 401 });
+  const { role } = await roleResponse.json();
+
+  // Check user role and return a 401 response if unauthorized
+  if (role === "Business" || role === "Admin") {
+    return NextResponse.next();
+  }
+
+  return new NextResponse("Forbidden", { status: 403 });
 });
 
 // Export matcher configuration

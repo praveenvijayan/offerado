@@ -5,14 +5,26 @@ import { useRouter } from "next/navigation";
 import { SignIn, useUser } from "@clerk/nextjs";
 import Lottie from "lottie-react";
 import userAnimation from "@/animation/login-setup.json";
-
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { fetchUserRole } from "@/services/user-role-service";
 export default function AfterLogin() {
   const router = useRouter();
   const { user, isLoaded } = useUser();
+  const queryClient = useQueryClient();
+
+  const {
+    data: role,
+    error,
+    isLoading,
+  } = useQuery({
+    queryKey: ["userRole"],
+    queryFn: fetchUserRole,
+    staleTime: 0,
+  });
 
   useEffect(() => {
-    if (isLoaded && user) {
-      const role = user.publicMetadata?.role;
+    if (isLoaded && user && !isLoading && !error && role) {
+      // Redirect based on user role once loading is complete and no error
       if (role === "User") {
         router.push("/landing");
       } else if (role === "Admin") {
@@ -23,7 +35,7 @@ export default function AfterLogin() {
         router.push("/default-page");
       }
     }
-  }, [isLoaded, user, router]);
+  }, [isLoaded, user, router, role, isLoading, error]);
 
   return (
     <div className="container mx-auto px-4 py-8 text-center">

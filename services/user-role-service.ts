@@ -16,3 +16,19 @@ export async function updateUserRole(role: string, userId: string) {
 
   return response.json();
 }
+
+export const fetchUserRole = async () => {
+  const response = await fetch("/api/users/get-role", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch user role");
+  }
+
+  const data = await response.json();
+  return data.role;
+};

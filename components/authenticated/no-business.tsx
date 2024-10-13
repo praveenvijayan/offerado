@@ -87,7 +87,6 @@ const NoBusiness: React.FC<NoBusinessProps> = ({ open, setOpen }) => {
   });
 
   const onSubmit = (data: any) => {
-    console.log("Form data:", data, isOrgLoading);
     if (isOrgLoading || isOrgError) {
       toast.error("Organization data is not ready or failed to load.");
       return;

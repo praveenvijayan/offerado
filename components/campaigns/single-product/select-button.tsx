@@ -6,8 +6,6 @@ function timeout(delay: number) {
 const SelectButton = ({ onSelect }: { onSelect: () => void }) => {
   const [isSelected, setIsSelected] = useState(false);
 
-  console.log("isSelected", isSelected);
-
   const handleSelect = async () => {
     setIsSelected(true);
     onSelect();
