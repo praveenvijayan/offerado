@@ -1,5 +1,5 @@
 "use client";
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 import { Sidebar } from "@/components/layout/sidebar";
 import { Header } from "@/components/layout/header";
 import { MainContent } from "@/components/layout/main-content";
@@ -7,12 +7,14 @@ import useSidebarStore from "@/stores/store";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { fetchUserRole } from "@/services/user-role-service";
 import { useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useUser } from "@clerk/nextjs";
 
 export default function LoginLayout({ children }: { children: ReactNode }) {
   const { isCollapsed } = useSidebarStore();
   const router = useRouter();
+  const pathname = usePathname();
+  const [history, setHistory] = useState<string[]>([]);
   const { user, isLoaded, isSignedIn } = useUser();
   const queryClient = useQueryClient();
   const {
@@ -27,13 +29,29 @@ export default function LoginLayout({ children }: { children: ReactNode }) {
   });
 
   useEffect(() => {
+    // Update the history state with the current path
+    setHistory((prev) => {
+      if (prev[prev.length - 1] !== pathname) {
+        return [...prev, pathname];
+      }
+      return prev;
+    });
+  }, [pathname]);
+
+  useEffect(() => {
     // Only proceed if the user is signed in and the role is successfully fetched
     if (isLoaded && isSignedIn && user && !isLoading && !error && role) {
       // Redirect based on the user's role
       if (role === "User") {
         router.push("/landing");
       } else if (role === "Admin" || role === "Business") {
-        router.push("/dashboard");
+        // router.push("/dashboard");
+        if (history.length > 1) {
+          const lastVisitedRoute = history[history.length - 2];
+          if (lastVisitedRoute) {
+            router.replace(lastVisitedRoute); // Redirect to the previous route
+          }
+        }
       } else {
         router.push("/default-page");
       }

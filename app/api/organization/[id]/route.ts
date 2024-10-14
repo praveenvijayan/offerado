@@ -1,5 +1,3 @@
-// app/api/organization/[id]/route.ts
-
 import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma"; // Adjust the import path to your Prisma client
 import { NextRequest } from "next/server";

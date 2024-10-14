@@ -186,14 +186,6 @@ export default function PreviewAndSelectTemplate() {
               >
                 <QrCode className="w-5 h-5" />
               </Button>
-              <Button
-                size="icon"
-                className="w-8 h-8"
-                variant={"secondary"}
-                title="Download PDF"
-              >
-                <FileBadge className="w-5 h-5" />
-              </Button>
 
               <Button
                 size="icon"
@@ -206,6 +198,15 @@ export default function PreviewAndSelectTemplate() {
           )}
 
           <Separator orientation="vertical" className="h-8" />
+
+          <Button
+            size="icon"
+            className="w-8 h-8"
+            variant={"secondary"}
+            title="Download PDF"
+          >
+            <FileBadge className="w-5 h-5" />
+          </Button>
 
           <Button
             size="icon"

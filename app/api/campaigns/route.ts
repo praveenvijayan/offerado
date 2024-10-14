@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
+import { auth } from "@clerk/nextjs/server";
 
 const prisma = new PrismaClient();
 
@@ -70,15 +71,54 @@ export async function POST(req: Request) {
 
 export async function GET() {
   try {
+    const { userId } = auth();
+
+    if (!userId) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    // Fetch the organization and default business for the user
+    const userWithOrganizationAndBusiness = await prisma.user.findUnique({
+      where: { clerkUserId: userId },
+      include: {
+        organization: {
+          include: {
+            businesses: {
+              where: { isDefault: true },
+            },
+          },
+        },
+      },
+    });
+
+    // Ensure we got an organization and a business
+    if (
+      !userWithOrganizationAndBusiness ||
+      !userWithOrganizationAndBusiness.organization ||
+      userWithOrganizationAndBusiness.organization.businesses.length === 0
+    ) {
+      return NextResponse.json(
+        { error: "No organization or default business found" },
+        { status: 404 }
+      );
+    }
+
+    // Extract organizationId and default businessId
+    const { id: organizationId } = userWithOrganizationAndBusiness.organization;
+    const { id: businessId } =
+      userWithOrganizationAndBusiness.organization.businesses[0];
+
+    console.log("organizationId:", organizationId, "businessId:", businessId);
+
     // Fetch all campaigns from the database
     const campaigns = await prisma.offer.findMany({
       orderBy: {
         createdAt: "desc",
       },
-      // where: {
-      //   businessId: "66ea8ee3357952b9fdbcc612",
-      //   organizationId: "6707c318bf2a84f88a601129",
-      // },
+      where: {
+        businessId: businessId,
+        organizationId: organizationId,
+      },
     });
 
     // Return the campaigns in the response

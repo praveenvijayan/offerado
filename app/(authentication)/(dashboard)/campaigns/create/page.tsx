@@ -41,7 +41,7 @@ import type {
 import FeedbackDisplay from "@/components/campaigns/feedback/feedback-display";
 import useFeedbackStore from "@/stores/feedback";
 import { useCombinedItemsStore } from "@/stores/combined-items-store";
-
+import useOrganizationStore from "@/stores/organization";
 // 1. Define enums and interfaces
 enum CampaignType {
   SingleProduct = "SingleProduct",
@@ -90,6 +90,7 @@ export default function CreateCampaignPage() {
     (state) => state.selectedProducts
   );
   const { title, description, start, expiry, reset } = useCampaignStore();
+  const { organization, currentBusinessId } = useOrganizationStore();
 
   const [open, setOpen] = useState(false);
 
@@ -161,8 +162,8 @@ export default function CreateCampaignPage() {
       endAt: new Date(expiry),
       qrCode: "QRCODE123",
       interactiveType: null,
-      businessId: firstItem.businessId,
-      organizationId: firstItem.organizationId,
+      businessId: currentBusinessId as string,
+      organizationId: organization?.id as string,
       offerJSON: { data: [] },
       templateLiteral: {},
     };

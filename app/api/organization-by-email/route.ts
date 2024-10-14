@@ -5,7 +5,7 @@ import prisma from "@/lib/prisma"; // The Prisma client
 // Handler to get organization by email from the POST body
 export async function POST(req: Request) {
   try {
-    const body = await req.json(); // Parse the request body
+    const body = await req.json();
     const { email } = body;
 
     if (!email) {

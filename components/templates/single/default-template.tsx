@@ -48,7 +48,7 @@ const DefaultSingleTemplate = ({ offer }: { offer: any }) => {
         )}
       >
         <Radar className="stroke-red-400 w-4 h-4 inline-block mx-4" />
-        {templateLiterals[templateId].companyName}{" "}
+        {templateLiterals[templateId]?.companyName}{" "}
         <Radar className="stroke-red-400 w-4 h-4 inline-block mx-4" />
       </h3>
       <h2
@@ -66,7 +66,7 @@ const DefaultSingleTemplate = ({ offer }: { offer: any }) => {
           pacifico.className
         )}
       >
-        {templateLiterals[templateId].offertext}{" "}
+        {templateLiterals[templateId]?.offertext}{" "}
       </h3>
       <p
         className={cn(
@@ -84,7 +84,7 @@ const DefaultSingleTemplate = ({ offer }: { offer: any }) => {
           ubuntu.className
         )}
       >
-        {templateLiterals[templateId].description}
+        {templateLiterals[templateId]?.description}
       </div>
       <div className="flex mx-auto flex-col gap-4 py-[4rem] max-w-xl relative bg-[url(/bg-product.png)] bg-no-repeat bg-center w-[100%]">
         <Image
@@ -110,7 +110,7 @@ const DefaultSingleTemplate = ({ offer }: { offer: any }) => {
           )}
         >
           <span className={cn("", protest.className)}>
-            {templateLiterals[templateId].priceTitle}
+            {templateLiterals[templateId]?.priceTitle}
           </span>
           <span className="line-through text-amber-500">
             {offerData[0]?.mrp?.toFixed(2)} ₹
@@ -133,7 +133,7 @@ const DefaultSingleTemplate = ({ offer }: { offer: any }) => {
           ubuntu.className
         )}
       >
-        {templateLiterals[templateId].footer}
+        {templateLiterals[templateId]?.footer}
       </footer>
     </div>
   );
