@@ -1,4 +1,5 @@
 "use client";
+import { useState } from "react";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -6,7 +7,6 @@ import { useRouter } from "next/navigation";
 import NoProducts from "@/components/campaigns/no-products";
 import CampaignHeader from "@/components/campaigns/campaign-header";
 import CampaignTypeStore from "@/stores/campaign-type";
-import { useEffect, useState } from "react";
 import SingleProductDisplay from "@/components/campaigns/single-product/single-product-display";
 import useProductStore from "@/stores/single-product-store";
 import { useMutation } from "@tanstack/react-query";
@@ -28,27 +28,20 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { DotsVerticalIcon } from "@radix-ui/react-icons";
-import { useProductSelectionStore } from "@/stores/multiple-product-selection";
 import PollDisplay from "@/components/campaigns/poll/poll-display";
 import usePollStore from "@/stores/poll";
-import type {
-  Offer,
-  Product,
-  Poll,
-  PollOption,
-  FeedbackForm,
-} from "@prisma/client";
+import type { Product, Poll, PollOption, FeedbackForm } from "@prisma/client";
 import FeedbackDisplay from "@/components/campaigns/feedback/feedback-display";
 import useFeedbackStore from "@/stores/feedback";
 import { useCombinedItemsStore } from "@/stores/combined-items-store";
 import useOrganizationStore from "@/stores/organization";
-// 1. Define enums and interfaces
+
+// Enums and Interfaces
 enum CampaignType {
   SingleProduct = "SingleProduct",
   MultiProduct = "MultiProduct",
   Poll = "Poll",
   Feedback = "FeedbackForm",
-  // Add other campaign types as needed
 }
 
 interface PollData extends Poll {
@@ -73,6 +66,77 @@ interface NewCampaign {
   templateLiteral: {};
 }
 
+// Strategy Interface
+interface OfferStrategy {
+  buildOffer(): OfferData;
+}
+
+// Concrete Strategies
+class SingleProductStrategy implements OfferStrategy {
+  constructor(private selectedProduct: Product | null) {}
+
+  buildOffer(): OfferData {
+    return this.selectedProduct ? [this.selectedProduct] : [];
+  }
+}
+
+class MultiProductStrategy implements OfferStrategy {
+  constructor(private combinedItems: any[]) {}
+
+  buildOffer(): OfferData {
+    return this.combinedItems;
+  }
+}
+
+class PollStrategy implements OfferStrategy {
+  constructor(private selectedPollData: PollData | null) {}
+
+  buildOffer(): OfferData {
+    return this.selectedPollData ? [this.selectedPollData] : [];
+  }
+}
+
+class FeedbackStrategy implements OfferStrategy {
+  constructor(private selectedFeedbackData: FeedbackForm | null) {}
+
+  buildOffer(): OfferData {
+    return this.selectedFeedbackData ? [this.selectedFeedbackData] : [];
+  }
+}
+
+// Factory Class
+class CampaignFactory {
+  static createCampaign(
+    campaignData: Omit<
+      NewCampaign,
+      "qrCode" | "interactiveType" | "templateLiteral"
+    >,
+    qrCode: string = "QRCODE123",
+    interactiveType: null | string = null,
+    templateLiteral: {} = {}
+  ): NewCampaign {
+    return {
+      ...campaignData,
+      qrCode,
+      interactiveType,
+      templateLiteral,
+    };
+  }
+}
+
+// Type Guards
+function isProduct(item: any): item is Product {
+  return item && "sku" in item;
+}
+
+function isPollData(item: any): item is PollData {
+  return item && "options" in item;
+}
+
+function isFeedbackForm(item: any): item is FeedbackForm {
+  return item && "description" in item;
+}
+
 export default function CreateCampaignPage() {
   const router = useRouter();
   const handleClick = () => router.push("/campaigns");
@@ -80,16 +144,12 @@ export default function CreateCampaignPage() {
   const isProductSelected = CampaignTypeStore(
     (state) => state.isProductSelected
   );
-  const { selectedProduct: selectedSingleProduct } = useProductStore();
-  const { openSheet, open: openReusableSheet } = useSheetStore();
+  const { open: openReusableSheet } = useSheetStore();
   const campaign = campaignTypes.find((c) => c.id === campaignType);
   const { selectedPollData } = usePollStore();
   const { selectedFeedbackData } = useFeedbackStore();
-  const selectedProduct = useProductStore((state) => state.selectedProduct);
-  const selectedProducts = useProductSelectionStore(
-    (state) => state.selectedProducts
-  );
-  const { title, description, start, expiry, reset } = useCampaignStore();
+  const { selectedProduct } = useProductStore();
+  const { title, description, start, expiry } = useCampaignStore();
   const { organization, currentBusinessId } = useOrganizationStore();
 
   const [open, setOpen] = useState(false);
@@ -108,91 +168,75 @@ export default function CreateCampaignPage() {
     },
   });
 
-  // 2. Adjust buildOfferJSON function with explicit return types
-  const buildOfferJSON = (): OfferData => {
+  // Strategy Selector
+  const getOfferStrategy = (): OfferStrategy => {
     switch (campaignType) {
       case CampaignType.SingleProduct:
-        return selectedProduct ? [selectedProduct] : [];
+        return new SingleProductStrategy(selectedProduct);
       case CampaignType.MultiProduct:
-        return combinedItems;
+        return new MultiProductStrategy(combinedItems);
       case CampaignType.Poll:
-        return selectedPollData ? [selectedPollData as PollData] : [];
+        return new PollStrategy(selectedPollData);
       case CampaignType.Feedback:
-        return selectedFeedbackData
-          ? [selectedFeedbackData as FeedbackForm]
-          : [];
+        return new FeedbackStrategy(selectedFeedbackData);
       default:
-        return [];
+        throw new Error("Invalid campaign type");
     }
   };
 
-  // 2. Implement type guards
-  function isProduct(item: any): item is Product {
-    return item && "sku" in item;
-  }
-
-  function isPollData(item: any): item is PollData {
-    return item && "options" in item;
-  }
-
-  function isFeedbackForm(item: any): item is FeedbackForm {
-    return item && "description" in item;
-  }
-
+  // Handle Campaign Creation
   const handleCampaignCreation = () => {
     if (!title || !description || !start || !expiry || !campaignType) {
       setOpen(true);
       return;
     }
 
-    const offers = buildOfferJSON();
+    const offerStrategy = getOfferStrategy();
+    const offers = offerStrategy.buildOffer();
 
     if (offers.length === 0) {
       toast.error("No items selected for the campaign.");
       return;
     }
 
-    // Assume the first item's businessId and organizationId apply to all
-    const firstItem = offers[0];
-    const newCampaign: NewCampaign = {
+    const campaignData = {
       title,
       description,
       offerType: campaignType as CampaignType,
       startAt: new Date(start),
       endAt: new Date(expiry),
-      qrCode: "QRCODE123",
-      interactiveType: null,
       businessId: currentBusinessId as string,
       organizationId: organization?.id as string,
-      offerJSON: { data: [] },
-      templateLiteral: {},
+      offerJSON: { data: offers.map(mapOfferItem) },
     };
 
-    newCampaign.offerJSON.data = offers.map((item) => {
-      if (isProduct(item)) {
-        return {
-          ...item,
-          itemType: "product",
-          // Include additional product-specific fields if necessary
-        };
-      } else if (isPollData(item)) {
-        return {
-          ...item,
-          itemType: "poll",
-          // Include additional poll-specific fields if necessary
-        };
-      } else if (isFeedbackForm(item)) {
-        return {
-          ...item,
-          itemType: "feedback",
-          // Include additional feedback-specific fields if necessary
-        };
-      }
-      return item;
-    });
+    const newCampaign = CampaignFactory.createCampaign(campaignData);
 
-    // Trigger the mutation to create the campaign
     mutation.mutate(newCampaign);
+  };
+
+  // Helper Function
+  const mapOfferItem = (item: any) => {
+    if (isProduct(item)) {
+      return {
+        ...item,
+        itemType: "product",
+        // Additional product fields
+      };
+    } else if (isPollData(item)) {
+      return {
+        ...item,
+        itemType: "poll",
+        // Additional poll fields
+      };
+    } else if (isFeedbackForm(item)) {
+      return {
+        ...item,
+        itemType: "feedback",
+        // Additional feedback fields
+      };
+    }
+    return item;
   };
 
   return (
@@ -207,6 +251,7 @@ export default function CreateCampaignPage() {
           <ArrowLeft />
         </Button>
         <CampaignHeader />
+        {/* Conditional Rendering for Adding Components */}
         {campaignType === CampaignType.Feedback && !selectedFeedbackData && (
           <div className="ml-auto justify-self-end gap-2 flex">
             <Button
@@ -224,17 +269,16 @@ export default function CreateCampaignPage() {
             </Button>
           </div>
         )}
-        {campaignType === CampaignType.SingleProduct &&
-          !selectedSingleProduct && (
-            <div className="ml-auto justify-self-end gap-2 flex">
-              <Button
-                size={"sm"}
-                onClick={() => openReusableSheet("SingleProduct")}
-              >
-                Add Product
-              </Button>
-            </div>
-          )}
+        {campaignType === CampaignType.SingleProduct && !selectedProduct && (
+          <div className="ml-auto justify-self-end gap-2 flex">
+            <Button
+              size={"sm"}
+              onClick={() => openReusableSheet("SingleProduct")}
+            >
+              Add Product
+            </Button>
+          </div>
+        )}
         {campaignType === CampaignType.MultiProduct && isProductSelected && (
           <div className="ml-auto justify-self-end gap-2 flex">
             <Button

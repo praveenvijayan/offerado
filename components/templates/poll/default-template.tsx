@@ -23,7 +23,7 @@ interface PollData {
 }
 
 const DefaultPollTemplate = ({ offer }: { offer: any }) => {
-  const offerData: PollData = offer?.offerJSON?.data;
+  const offerData: PollData = offer?.offerJSON?.data[0];
 
   const [selectedOption, setSelectedOption] = useState<string>("");
 
