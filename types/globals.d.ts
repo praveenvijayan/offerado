@@ -8,3 +8,8 @@ declare global {
     };
   }
 }
+
+export interface NextRequestWithOrgAndBusiness extends NextRequest {
+  organizationId: string;
+  businessId: string;
+}

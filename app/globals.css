@@ -86,3 +86,14 @@
     @apply bg-background text-foreground;
   }
 }
+
+.uppy-size--md .uppy-Dashboard-inner {
+  width: 100% !important;
+  margin: 0 auto;
+  background: transparent;
+  border: 0;
+}
+
+div.uppy-Dashboard-AddFiles-title {
+  color: #fff;
+}

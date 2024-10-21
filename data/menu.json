@@ -118,8 +118,13 @@
       },
       {
         "label": "Import Products",
-        "href": "/custom-platform-integrations",
+        "href": "/products/import",
         "icon": "CloudDownload"
+      },
+      {
+        "label": "Image library",
+        "href": "/media",
+        "icon": "Image"
       },
       {
         "label": "AI-Powered Suggestions",

@@ -24,6 +24,7 @@ model Organization {
   createdAt    DateTime       @default(now())
   updatedAt    DateTime       @updatedAt
   FeedbackForm FeedbackForm[]
+  media        Media[]
 }
 
 model User {
@@ -81,6 +82,7 @@ model Business {
   updatedAt      DateTime            @updatedAt
   isActive       Boolean             @default(true)
   locationId     String?             @db.ObjectId
+  media          Media[]
 }
 
 model Offer {
@@ -207,12 +209,27 @@ model Product {
   image          String
   unit           String?
   discountType   DiscountType
+  isHidden       Boolean      @default(false)
   businessId     String       @db.ObjectId
   business       Business     @relation(fields: [businessId], references: [id])
   organizationId String       @db.ObjectId
   organization   Organization @relation(fields: [organizationId], references: [id])
   createdAt      DateTime     @default(now())
   updatedAt      DateTime     @updatedAt
+}
+
+model Media {
+  id             String        @id @default(auto()) @map("_id") @db.ObjectId
+  url            String
+  type           MediaType
+  name           String
+  organizationId String?       @db.ObjectId
+  organization   Organization? @relation(fields: [organizationId], references: [id])
+  businessId     String?       @db.ObjectId
+  business       Business?     @relation(fields: [businessId], references: [id])
+  isActive       Boolean       @default(true)
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
 }
 
 model Poll {
@@ -298,4 +315,10 @@ enum SubscriptionTier {
   FREE
   PREMIUM
   ENTERPRISE
+}
+
+enum MediaType {
+  IMAGE
+  VIDEO
+  FILE
 }
