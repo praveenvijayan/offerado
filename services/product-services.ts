@@ -1,22 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
-import type { Product } from "@prisma/client";
 
-// API endpoint for products
 const API_URL = "/api/products";
 
 // Fetch all products
-const fetchProducts = async (): Promise<Product[]> => {
-  const response = await fetch(API_URL);
+export const fetchProducts = async () => {
+  const response = await fetch("/api/products");
   if (!response.ok) {
-    throw new Error("Failed to fetch products");
+    throw new Error("Network response was not ok");
   }
   return response.json();
-};
-
-// Hook to fetch all products
-export const useProducts = () => {
-  return useQuery({
-    queryKey: ["products"],
-    queryFn: fetchProducts,
-  });
 };

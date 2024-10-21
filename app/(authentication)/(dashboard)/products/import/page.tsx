@@ -11,14 +11,14 @@ export default function ImportProductsPage() {
       // Create a FileReader to read the file
       const reader = new FileReader();
       reader.onload = (e) => {
-        const data = new Uint8Array(e?.target?.result);
+        // const data = new Uint8Array(e?.target?.result);
         // Parse the Excel file
         const workbook = XLSX.read(data, { type: "array" });
         // Get the first sheet
         const worksheet = workbook.Sheets[workbook.SheetNames[0]];
         // Convert the sheet to JSON
         const jsonData = XLSX.utils.sheet_to_json(worksheet);
-        setData(jsonData);
+        // setData(jsonData);
       };
       reader.readAsArrayBuffer(file);
     }

@@ -1,18 +1,30 @@
-// app/api/products/route.ts
-import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
+import { NextResponse } from "next/server";
+import { withOrganizationAndBusiness } from "@/lib/with-organization-and-business";
+import { NextRequestWithOrgAndBusiness } from "@/types/globals";
 
-export async function GET() {
+async function handler(request: NextRequestWithOrgAndBusiness) {
   try {
-    // Fetch all products from the database
-    const products = await prisma.product.findMany();
+    const { organizationId, businessId } = request;
 
-    // Return the products as a JSON response
+    const products = await prisma.product.findMany({
+      orderBy: {
+        createdAt: "desc",
+      },
+      where: {
+        businessId: businessId,
+        organizationId: organizationId,
+      },
+    });
+
     return NextResponse.json(products);
   } catch (error) {
+    console.error("Error fetching products:", error);
     return NextResponse.json(
-      { error: "Error fetching products" },
+      { error: "Failed to fetch products" },
       { status: 500 }
     );
   }
 }
+
+export const GET = withOrganizationAndBusiness(handler);
