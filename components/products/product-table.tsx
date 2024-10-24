@@ -1,13 +1,20 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { fetchProducts } from "@/services/product-services";
 import {
   useReactTable,
   getCoreRowModel,
   flexRender,
 } from "@tanstack/react-table";
-
 import { useQuery } from "@tanstack/react-query";
+import {
+  Table,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableHead,
+  TableCell,
+} from "@/components/ui/table";
 
 const columns = [
   {
@@ -60,32 +67,32 @@ export default function ProductTable() {
   if (isError) return <div>Error: {error.message}</div>;
 
   return (
-    <table>
-      <thead>
+    <Table>
+      <TableHeader>
         {table.getHeaderGroups().map((headerGroup) => (
-          <tr key={headerGroup.id}>
+          <TableRow key={headerGroup.id}>
             {headerGroup.headers.map((header) => (
-              <th key={header.id}>
+              <TableHead key={header.id}>
                 {flexRender(
                   header.column.columnDef.header,
                   header.getContext()
                 )}
-              </th>
+              </TableHead>
             ))}
-          </tr>
+          </TableRow>
         ))}
-      </thead>
-      <tbody>
+      </TableHeader>
+      <TableBody>
         {table.getRowModel().rows.map((row) => (
-          <tr key={row.id}>
+          <TableRow key={row.id}>
             {row.getVisibleCells().map((cell) => (
-              <td key={cell.id}>
+              <TableCell key={cell.id}>
                 {flexRender(cell.column.columnDef.cell, cell.getContext())}
-              </td>
+              </TableCell>
             ))}
-          </tr>
+          </TableRow>
         ))}
-      </tbody>
-    </table>
+      </TableBody>
+    </Table>
   );
 }

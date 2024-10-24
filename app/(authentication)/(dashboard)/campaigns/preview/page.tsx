@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Clock,
-  Edit,
   FileBadge,
   MonitorDot,
   QrCode,
@@ -51,7 +50,7 @@ export default function PreviewAndSelectTemplate() {
   const queryClient = useQueryClient();
   const { templateLiterals, setTemplateLiteral } = useTemplateLiteralsStore();
 
-  const { mutate, isError, isSuccess } = useMutation({
+  const { mutate } = useMutation({
     mutationFn: updateOffer,
     onSuccess: (data) => {
       toast.success("Campaign updated successfully");

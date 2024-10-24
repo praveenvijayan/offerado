@@ -1,22 +1,34 @@
 "use client";
 import { ReactNode, useState } from "react";
-import { Sidebar } from "@/components/layout/sidebar";
 import { Header } from "@/components/layout/header";
-import { MainContent } from "@/components/layout/main-content";
 import useSidebarStore from "@/stores/store";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { fetchUserRole } from "@/services/user-role-service";
 import { useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { useUser } from "@clerk/nextjs";
+import { AppSidebar } from "@/components/app-sidebar";
+import { GeistSans } from "geist/font/sans";
 
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
+import {
+  SidebarInset,
+  SidebarProvider,
+  SidebarTrigger,
+} from "@/components/ui/sidebar";
+import { cn } from "@/lib/utils";
 export default function LoginLayout({ children }: { children: ReactNode }) {
-  const { isCollapsed } = useSidebarStore();
   const router = useRouter();
   const pathname = usePathname();
   const [history, setHistory] = useState<string[]>([]);
   const { user, isLoaded, isSignedIn } = useUser();
-  const queryClient = useQueryClient();
   const {
     data: role,
     error,
@@ -39,24 +51,20 @@ export default function LoginLayout({ children }: { children: ReactNode }) {
   }, [pathname]);
 
   useEffect(() => {
-    // Only proceed if the user is signed in and the role is successfully fetched
     if (isLoaded && isSignedIn && user && !isLoading && !error && role) {
-      // Redirect based on the user's role
       if (role === "User") {
         router.push("/landing");
       } else if (role === "Admin" || role === "Business") {
-        // router.push("/dashboard");
         if (history.length > 1) {
           const lastVisitedRoute = history[history.length - 2];
           if (lastVisitedRoute) {
-            router.replace(lastVisitedRoute); // Redirect to the previous route
+            router.replace(lastVisitedRoute);
           }
         }
       } else {
         router.push("/default-page");
       }
     } else if (isLoaded && !isSignedIn) {
-      // Redirect to login if the user is not signed in
       router.push("/login");
     }
   }, [isLoaded, isSignedIn, user, role, isLoading, error, router]);
@@ -73,17 +81,36 @@ export default function LoginLayout({ children }: { children: ReactNode }) {
   return (
     <section>
       <div
-        className={`grid min-h-screen w-full ${
-          isCollapsed
-            ? "md:grid-cols-[80px_1fr]"
-            : "md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]"
-        }  transition-[width] duration-300`}
+        className={cn(
+          "min-h-screen font-geist antialiased",
+          GeistSans.variable
+        )}
       >
-        <Sidebar />
-        <div className="flex flex-col">
-          <Header />
-          <MainContent>{children}</MainContent>
-        </div>
+        <SidebarProvider>
+          <AppSidebar />
+          <SidebarInset>
+            <Header />
+            <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12">
+              <div className="flex items-center gap-2 px-4">
+                <SidebarTrigger className="-ml-1" />
+                <Breadcrumb>
+                  <BreadcrumbList>
+                    <BreadcrumbItem className="hidden md:block">
+                      <BreadcrumbLink href="#">
+                        Building Your Application
+                      </BreadcrumbLink>
+                    </BreadcrumbItem>
+                    <BreadcrumbSeparator className="hidden md:block" />
+                    <BreadcrumbItem>
+                      <BreadcrumbPage>Data Fetching</BreadcrumbPage>
+                    </BreadcrumbItem>
+                  </BreadcrumbList>
+                </Breadcrumb>
+              </div>
+            </header>
+            {children}
+          </SidebarInset>
+        </SidebarProvider>
       </div>
     </section>
   );

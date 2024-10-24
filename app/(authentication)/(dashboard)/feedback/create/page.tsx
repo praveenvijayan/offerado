@@ -1,7 +1,6 @@
 import React from "react";
 import { Metadata } from "next";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import Message from "@/components/feedback/feedback-form";
 import CreateFeedbackForm from "@/components/feedback/feedback-form";
 
 export const metadata: Metadata = {

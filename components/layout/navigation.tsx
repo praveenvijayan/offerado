@@ -54,7 +54,7 @@ import {
 
 import { usePathname } from "next/navigation";
 import useSidebarStore from "@/stores/store";
-import menuItems from "@/data/menu.json";
+import { menuItems } from "@/data/menu";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 

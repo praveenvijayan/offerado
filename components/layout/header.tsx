@@ -11,17 +11,10 @@ import {
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 import { ModeToggle } from "@/components/global/theme-comp";
-import SidebarNavigation from "./navigation";
-import {
-  ClerkProvider,
-  SignedIn,
-  SignedOut,
-  SignInButton,
-  UserButton,
-} from "@clerk/nextjs";
+import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 import Help from "../global/help";
-import Link from "next/link";
 import { CampaignCreateButton } from "../campaigns/campaign-create-button";
+import { useSidebar } from "@/components/ui/sidebar";
 
 export const Header = () => (
   <header className="flex h-14 items-center gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6">
@@ -84,15 +77,18 @@ const UserMenu = () => (
 );
 
 // Mobile Menu Component
-const MobileMenu = () => (
-  <Sheet>
-    <SheetTrigger asChild>
-      <Button variant="outline" size="icon" className="md:hidden">
-        <Menu className="h-5 w-5" />
-      </Button>
-    </SheetTrigger>
-    <SheetContent side="left">
-      <nav className="flex flex-col gap-2">{/* <SidebarNavigation /> */}</nav>
-    </SheetContent>
-  </Sheet>
-);
+const MobileMenu = () => {
+  const { setOpenMobile } = useSidebar();
+
+  return (
+    <Button
+      variant="outline"
+      size="icon"
+      className="md:hidden"
+      onClick={() => setOpenMobile(true)}
+    >
+      <Menu className="h-5 w-5" />
+      <span className="sr-only">Open mobile menu</span>
+    </Button>
+  );
+};

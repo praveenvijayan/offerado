@@ -19,7 +19,8 @@ import React from "react";
 import ClientProviders from "@/components/client-providers";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Toaster } from "@/components/ui/sonner";
-
+import { GeistSans } from "geist/font/sans";
+import { GeistMono } from "geist/font/mono";
 const fontSans = FontSans({
   subsets: ["latin"],
   variable: "--font-sans",
@@ -51,6 +52,8 @@ export default function RootLayout({
           className={cn(
             "min-h-screen font-poppins antialiased",
             // fontSans.variable,
+            GeistSans.variable,
+            GeistMono.variable,
             poppins.variable
           )}
         >

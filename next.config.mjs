@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   crossOrigin: "anonymous",
+  transpilePackages: ["geist"],
   images: {
     domains: ["offerado.in", "blob.vercel-storage.com", "vercel-storage.com"],
     remotePatterns: [

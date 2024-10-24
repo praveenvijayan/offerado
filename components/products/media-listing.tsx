@@ -157,11 +157,11 @@ const MediaListing = () => {
         </DropdownMenu>
       </div>
       <ScrollArea className="h-[65vh]">
-        <div className="grid grid-cols-6 gap-2">
+        <div className="grid grid-cols-1 gap-2">
           {filteredImages.map((image: any) => (
             <div
               key={image.id}
-              className="border bg-muted-foreground/20 p-4 rounded-lg"
+              className="border bg-muted-foreground/20 p-4 rounded-lg flex items-center gap-4 h-16 px-4"
             >
               <Checkbox
                 checked={!!selectedImages[image.id]}
@@ -176,10 +176,10 @@ const MediaListing = () => {
               <Image
                 src={image.url}
                 alt={`Image ${image.id}`}
-                width={120}
-                height={120}
+                width={64}
+                height={64}
               />
-              <h4 className="text-xs m-0 pt-2 text-pretty break-all">
+              <h4 className="text-xs m-0 pt-2 text-pretty break-all w-2/3">
                 {image.name}
               </h4>
             </div>
