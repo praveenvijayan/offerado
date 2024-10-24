@@ -12,7 +12,7 @@ export default function Campaigns() {
 
   return (
     <div className="flex flex-col gap-4">
-      <h3>Campaigns</h3>
+      <h3 className="text-xl font-semibold">Campaigns</h3>
       <CampaignTable />
     </div>
   );

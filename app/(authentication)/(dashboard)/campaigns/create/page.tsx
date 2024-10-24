@@ -240,7 +240,7 @@ export default function CreateCampaignPage() {
   };
 
   return (
-    <div className="flex flex-col gap-4 h-[88vh] w-full">
+    <div className="flex flex-col">
       <div className="flex w-full items-center h-fit gap-2">
         <Button
           variant={"ghost"}
@@ -324,7 +324,7 @@ export default function CreateCampaignPage() {
           </div>
         )}
       </div>
-      <Separator />
+      <Separator className="mb-4 mt-4" />
       {!isProductSelected && <NoProducts />}
       {campaignType === CampaignType.SingleProduct && isProductSelected && (
         <SingleProductDisplay />

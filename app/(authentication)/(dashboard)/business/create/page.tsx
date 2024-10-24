@@ -13,7 +13,6 @@ import {
   SelectContent,
   SelectItem,
 } from "@/components/ui/select";
-import LocationPicker from "@/components/global/location-picker";
 import { useBusinessFormStore } from "@/stores/use-business-form-store";
 import { createBusiness } from "@/services/business-services";
 import { useUser } from "@clerk/nextjs";
@@ -21,7 +20,6 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { getOrganizationByEmail } from "@/services/organization-service";
 import { toast } from "sonner";
 
-// Zod schema for validation
 const businessFormSchema = z.object({
   name: z.string().min(1, "Business name is required"),
   logo: z.string().optional(),
@@ -51,8 +49,7 @@ const businessFormSchema = z.object({
 
 export default function BusinessCreateForm() {
   const { businessForm, setBusinessForm } = useBusinessFormStore();
-  const { isSignedIn, isLoaded, user } = useUser();
-  // Use React Query to fetch the organization based on user's email
+  const { user } = useUser();
   const {
     data: organization,
     isLoading: isOrgLoading,
@@ -107,10 +104,10 @@ export default function BusinessCreateForm() {
   };
 
   return (
-    <>
+    <div>
       <h2 className="text-2xl font-bold">Business Details</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="flex md:flex-row flex-col gap-8 p-6">
+        <div className="flex md:flex-row flex-col gap-8 mb-6">
           <div className="max-w-2xl w-full flex flex-col gap-4">
             <div>
               <Label htmlFor="name">Business Name</Label>
@@ -266,14 +263,10 @@ export default function BusinessCreateForm() {
         </div>
 
         {/* Disable the button while loading */}
-        <Button
-          type="submit"
-          className="p-6 m-6 mt-0"
-          disabled={mutation.isPending}
-        >
+        <Button type="submit" className="" disabled={mutation.isPending}>
           {mutation.isPending ? "Saving..." : "Save Business"}
         </Button>
       </form>
-    </>
+    </div>
   );
 }

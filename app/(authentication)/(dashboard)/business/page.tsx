@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { Button } from "@/components/ui/button";
-import { Building2, Delete, Edit, PlusCircle, Trash } from "lucide-react";
+import { Building2, Edit, PlusCircle, Trash } from "lucide-react";
 import Link from "next/link";
 import useOrganizationStore from "@/stores/organization";
 import {
@@ -17,15 +17,12 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { useMutation } from "@tanstack/react-query";
-import { setBusinessAsDefault } from "@/services/business-services";
-import { toast } from "sonner";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+
 import { useSetBusinessAsDefault } from "@/hooks/use-set-business-as-default";
 
 const BusinessPage: React.FC = () => {
   const { organization } = useOrganizationStore();
-  const { handleSetAsDefault, isPending } = useSetBusinessAsDefault();
+  const { handleSetAsDefault } = useSetBusinessAsDefault();
 
   const businesses = organization?.businesses || [];
 
@@ -81,24 +78,22 @@ const BusinessPage: React.FC = () => {
 
   return (
     <>
-      <div className="p-4">
-        <h3 className="text-2xl font-semibold">Business</h3>
-        <p>
-          You can create multiple business units to manage the products and
-          campaigns.
-        </p>
-      </div>
+      <div className="flex justify-between items-start">
+        <div className="w-[100%]">
+          <h3 className="text-2xl font-semibold">Business</h3>
+          <p>
+            You can create multiple business units to manage the products and
+            campaigns.
+          </p>
+        </div>
 
-      {/* Add New Business Button */}
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 p-4">
         <Link
           href="/business/create"
-          className="flex space-2 gap-3 w-fit border-2 p-3 rounded-xl hover:bg-slate-800"
+          className="flex space-2 gap-3 border-2 p-3 rounded-xl hover:bg-slate-800  w-fit"
         >
           <PlusCircle /> Add new business
         </Link>
       </div>
-
       <div className="p-4">
         <h3 className="text-md font-semibold mb-4 flex gap-3">
           <Building2 className="w-6 h-6" /> Your Businesses
