@@ -10,6 +10,8 @@ import {
 } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
 const FeedbackFormsList: React.FC = () => {
   const { data: feedbackForms, isLoading, isError } = useFeedbackForms();
@@ -38,35 +40,34 @@ const FeedbackFormsList: React.FC = () => {
 
   return (
     <div className="w-full">
-      {feedbackForms && feedbackForms.length > 0 ? (
-        feedbackForms.map((form: any) => (
-          <Card key={form.id} className="mb-4">
-            <CardHeader>
-              <h3 className="text-lg font-semibold">{form.title}</h3>
-              {form.description && (
-                <p className="text-xs">{form.description}</p>
-              )}
-            </CardHeader>
-            <CardContent>
-              <Textarea
-                placeholder="Your response..."
-                value={responses[form.id] || ""}
-                onChange={(e) => handleResponseChange(form.id, e.target.value)}
-              />
-            </CardContent>
-            <CardFooter>
-              <Button
-                onClick={() => handleSubmitResponse(form.id)}
-                disabled={!responses[form.id]}
+      <ul className="space-y-2">
+        {feedbackForms && feedbackForms.length > 0 ? (
+          feedbackForms.map((form: any) => (
+            <li
+              key={form.id}
+              className="border-b p-2 rounded flex justify-between items-center"
+            >
+              <h2 className="text-md font-semibold">
+                {form.title}
+
+                <p className="text-sm font-normal text-gray-500">
+                  {form.description}
+                </p>
+              </h2>
+
+              <Link
+                href={`/feedback/${form.id}`}
+                className="text-sm text-blue-500 hover:underline"
               >
-                Submit Response
-              </Button>
-            </CardFooter>
-          </Card>
-        ))
-      ) : (
-        <p>No feedback forms available.</p>
-      )}
+                View Feedback{" "}
+                <ArrowRight className="inline-block ml-1 w-4 h-4" />
+              </Link>
+            </li>
+          ))
+        ) : (
+          <p>No feedback forms available.</p>
+        )}
+      </ul>
     </div>
   );
 };

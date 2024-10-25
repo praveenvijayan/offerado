@@ -88,10 +88,10 @@ export default function ImportProductsPage() {
   };
 
   return (
-    <div className="container mx-auto">
+    <div className="mx-auto">
       <div className="flex  items-start justify-between">
-        <h1 className="text-2xl font-bold mb-5">
-          Import Products{" "}
+        <h1 className="text-xl font-semibold mb-5">
+          Import Products
           <Popover>
             <PopoverTrigger asChild>
               <Button variant="ghost" size="icon">
@@ -161,10 +161,6 @@ export default function ImportProductsPage() {
           </ul>
         </div>
       )}
-
-      {/* {mutation.isError && (
-        <div className="text-red-500 mt-4">Error: {mutation.error.message}</div>
-      )} */}
     </div>
   );
 }

@@ -1,14 +1,12 @@
 "use client";
-import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { format } from "date-fns";
-import { Edit } from "lucide-react";
-import React, { useState } from "react";
-import CampaignDialogForm from "@/components/campaigns/campaign-dialog-form"; // Import the new dialog form component
+import React from "react";
+import CampaignDialogForm from "@/components/campaigns/campaign-dialog-form";
 import useCampaignStore from "@/stores/create-campaign-form";
 import { Badge } from "../ui/badge";
 import { useQueryClient } from "@tanstack/react-query";
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import type { Offer } from "@prisma/client";
 const CampaignHeader = () => {
   const { title, description, start, expiry } = useCampaignStore();

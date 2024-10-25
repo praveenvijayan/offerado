@@ -15,23 +15,20 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet";
-import { useSearchParams } from "next/navigation";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useSearchParams, useRouter } from "next/navigation";
+import { useQuery, useQueryClient, useMutation } from "@tanstack/react-query";
 import dynamic from "next/dynamic";
-import { fetchOfferById } from "@/services/campaign-service";
 import { fetchAllTemplates } from "@/services/template-service";
 import Image from "next/image";
 import { Separator } from "@/components/ui/separator";
 import type { Offer } from "@prisma/client";
 import PublishDialog from "@/components/campaigns/publish";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { useRouter } from "next/navigation";
 
 type DynamicComponentProps = {
   offer: Offer | null;
 };
-import { useMutation } from "@tanstack/react-query";
-import { updateOffer } from "@/services/campaign-service";
+import { updateOffer, fetchOfferById } from "@/services/campaign-service";
 import { toast } from "sonner";
 import TemplateLiterals from "@/components/campaigns/template-literal";
 import useTemplateLiteralsStore from "@/stores/template-literals";
@@ -48,7 +45,7 @@ export default function PreviewAndSelectTemplate() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const router = useRouter();
   const queryClient = useQueryClient();
-  const { templateLiterals, setTemplateLiteral } = useTemplateLiteralsStore();
+  const { templateLiterals } = useTemplateLiteralsStore();
 
   const { mutate } = useMutation({
     mutationFn: updateOffer,
@@ -112,11 +109,7 @@ export default function PreviewAndSelectTemplate() {
     });
   };
 
-  const {
-    data: offer,
-    isLoading: isOfferLoading,
-    error: offerError,
-  } = useOfferById(offerId || "");
+  const { data: offer } = useOfferById(offerId ?? "");
 
   // Fetch templates using React Query
   const {
@@ -174,6 +167,7 @@ export default function PreviewAndSelectTemplate() {
           <Button size="sm" onClick={handleSheetToggle}>
             Template
           </Button>
+
           {offer?.isActive && (
             <>
               <Separator orientation="vertical" className="h-8" />
@@ -220,7 +214,7 @@ export default function PreviewAndSelectTemplate() {
             Edit
           </Button>
           <Button size="sm" variant={"secondary"} onClick={handleDraft}>
-            Save as draft {offer?.templateId == currentTemplateId ? " " : "*"}
+            Save as draft {offer?.templateId === currentTemplateId ? "" : "*"}
           </Button>
 
           <Button
@@ -270,18 +264,17 @@ export default function PreviewAndSelectTemplate() {
         )}
       </ScrollArea>
 
-      {/* Sheet component triggered externally */}
       <Sheet open={isSheetOpen} onOpenChange={setSheetOpen}>
         <SheetContent>
           <SheetHeader className="mb-4">
             <SheetTitle>Select Template</SheetTitle>
           </SheetHeader>
           <div className="grid grid-cols-2 gap-2">
-            {isTemplatesLoading ? (
-              <p>Loading templates...</p>
-            ) : templatesError ? (
-              <p>Error loading templates.</p>
-            ) : filteredTemplates.length > 0 ? (
+            {isTemplatesLoading && <p>Loading templates...</p>}
+            {templatesError && <p>Error loading templates.</p>}
+            {!isTemplatesLoading &&
+              !templatesError &&
+              filteredTemplates.length > 0 &&
               filteredTemplates.map((template: any) => (
                 <Button
                   variant={"ghost"}
@@ -308,10 +301,12 @@ export default function PreviewAndSelectTemplate() {
                     />
                   </div>
                 </Button>
-              ))
-            ) : (
-              <p>No templates available for this offer type.</p>
-            )}
+              ))}
+            {!isTemplatesLoading &&
+              !templatesError &&
+              filteredTemplates.length === 0 && (
+                <p>No templates available for this offer type.</p>
+              )}
           </div>
         </SheetContent>
       </Sheet>

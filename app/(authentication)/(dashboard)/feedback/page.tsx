@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function FeedbackPage() {
   return (
-    <div className="container mx-auto flex flex-col gap-4">
+    <div className="mx-auto flex flex-col gap-4">
       <div className="flex items-center justify-between">
         <h1 className="text-xl font-semibold">Feedback</h1>
         <Link

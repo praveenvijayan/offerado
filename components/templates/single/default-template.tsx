@@ -1,7 +1,6 @@
 import React, { useMemo } from "react";
 import Image from "next/image";
 import { format } from "date-fns";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import useTemplateLiteralsStore from "@/stores/template-literals";
 import { protest, pacifico, ubuntu } from "@/app/fonts";
 import { cn } from "../../../lib/utils";
@@ -9,7 +8,7 @@ import { Radar } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 
 const DefaultSingleTemplate = ({ offer }: { offer: any }) => {
-  const offerData = offer?.offerJSON?.data;
+  const offerData = offer?.offerJSON?.data || {};
   const { templateLiterals, setTemplateLiteral } = useTemplateLiteralsStore();
 
   // Memoize the default template variables
@@ -92,7 +91,7 @@ const DefaultSingleTemplate = ({ offer }: { offer: any }) => {
           alt={offerData[0]?.name}
           width={150}
           height={150}
-          className="rounded-xl mx-auto shadow-xl"
+          className="rounded-xl mx-auto"
         />
         <h3
           className={cn(

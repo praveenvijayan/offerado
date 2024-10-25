@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
 import { Button } from "@/components/ui/button";
-import { Building2, Edit, PlusCircle, Trash } from "lucide-react";
-import Link from "next/link";
+import { Building2, Edit, Trash } from "lucide-react";
+import { useRouter } from "next/navigation";
 import useOrganizationStore from "@/stores/organization";
 import {
   ColumnDef,
@@ -23,8 +23,33 @@ import { useSetBusinessAsDefault } from "@/hooks/use-set-business-as-default";
 const BusinessPage: React.FC = () => {
   const { organization } = useOrganizationStore();
   const { handleSetAsDefault } = useSetBusinessAsDefault();
+  const router = useRouter();
 
   const businesses = organization?.businesses || [];
+
+  const RowComponent = ({ row }: any) => {
+    const business = row.original;
+    return (
+      <div className="flex gap-2 items-center justify-end ml-auto">
+        <Button
+          size={"sm"}
+          variant="outline"
+          className={business.isDefault ? "bg-green-500" : ""}
+          onClick={() =>
+            handleSetAsDefault(business.id, organization?.id as string)
+          }
+        >
+          {business.isDefault ? "Default" : "Set as Default"}
+        </Button>
+        <Button size={"icon"} variant="outline" className="p-0">
+          <Edit className="h-4 w-4" />
+        </Button>
+        <Button size={"icon"} variant="destructive" className="p-0">
+          <Trash className="h-4 w-4" />
+        </Button>
+      </div>
+    );
+  };
 
   const columns: ColumnDef<any>[] = [
     {
@@ -46,26 +71,7 @@ const BusinessPage: React.FC = () => {
     {
       id: "actions",
       header: "Actions",
-      cell: ({ row }) => (
-        <div className="flex gap-2 items-center justify-end ml-auto">
-          <Button
-            size={"sm"}
-            variant="outline"
-            className={row.original.isDefault ? "bg-green-500" : ""}
-            onClick={() =>
-              handleSetAsDefault(row.original.id, organization?.id as string)
-            }
-          >
-            {row.original.isDefault ? "Default" : "Set as Default"}
-          </Button>
-          <Button size={"icon"} variant="outline" className="p-0">
-            <Edit className="h-4 w-4" />
-          </Button>
-          <Button size={"icon"} variant="destructive" className="p-0">
-            <Trash className="h-4 w-4" />
-          </Button>
-        </div>
-      ),
+      cell: ({ row }) => <RowComponent row={row} />,
     },
   ];
 
@@ -75,6 +81,10 @@ const BusinessPage: React.FC = () => {
     columns,
     getCoreRowModel: getCoreRowModel(),
   });
+
+  const handleCreate = () => {
+    router.push("/business/create");
+  };
 
   return (
     <>
@@ -86,13 +96,21 @@ const BusinessPage: React.FC = () => {
             campaigns.
           </p>
         </div>
-
-        <Link
+        <Button
+          className="mt-4"
+          size={"sm"}
+          onClick={() => {
+            handleCreate();
+          }}
+        >
+          Add new business
+        </Button>
+        {/* <Link
           href="/business/create"
           className="flex space-2 gap-3 border-2 p-3 rounded-xl hover:bg-slate-800  w-fit"
         >
-          <PlusCircle /> Add new business
-        </Link>
+          <PlusCircle /> 
+        </Link> */}
       </div>
       <div className="p-4">
         <h3 className="text-md font-semibold mb-4 flex gap-3">

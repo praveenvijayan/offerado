@@ -1,8 +1,5 @@
 "use client";
-
 import { ChevronRight, Monitor, type LucideIcon } from "lucide-react";
-import { Dashboard } from "@uppy/react";
-
 import {
   Collapsible,
   CollapsibleContent,

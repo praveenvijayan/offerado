@@ -3,7 +3,6 @@
 import React from "react";
 import { usePolls } from "@/hooks/use-poll";
 import Link from "next/link";
-import { Arrow } from "@radix-ui/react-dropdown-menu";
 import { ArrowRight } from "lucide-react";
 
 export default function PollsPage() {
@@ -28,9 +27,9 @@ export default function PollsPage() {
   }
 
   return (
-    <div className="container mx-auto">
+    <div className="mx-auto">
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-xl font-bold">Your Polls</h1>
+        <h1 className="text-xl font-semibold">Your Polls</h1>
         <Link
           href="/polls/create"
           className="bg-green-500 hover:bg-green-700 text-white text-xs  py-2 px-4 rounded-2xl"
@@ -39,13 +38,13 @@ export default function PollsPage() {
         </Link>
       </div>
       {polls && polls.length > 0 ? (
-        <ul className="space-y-4">
+        <ul className="space-y-2">
           {polls.map((poll) => (
             <li
               key={poll.id}
-              className="border p-2 rounded flex justify-between items-center"
+              className="border-b p-2 rounded flex justify-between items-center"
             >
-              <h2 className="text-lg font-semibold">
+              <h2 className="text-md font-semibold">
                 {poll.title}
 
                 <p className="text-sm font-normal text-gray-500">
