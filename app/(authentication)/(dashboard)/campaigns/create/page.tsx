@@ -1,5 +1,4 @@
 "use client";
-import { useState } from "react";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -13,7 +12,6 @@ import { useMutation } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { createCampaign } from "@/services/campaign-service";
 import useCampaignStore from "@/stores/create-campaign-form";
-import CampaignDialogForm from "@/components/campaigns/campaign-dialog-form";
 import MultiProductDisplay from "@/components/campaigns/multi-product/multi-product-display";
 import useSheetStore from "@/stores/sheet-store";
 import CampaignSheet from "@/components/campaigns/campaign-sheet";
@@ -35,7 +33,6 @@ import FeedbackDisplay from "@/components/campaigns/feedback/feedback-display";
 import useFeedbackStore from "@/stores/feedback";
 import { useCombinedItemsStore } from "@/stores/combined-items-store";
 import useOrganizationStore from "@/stores/organization";
-import { Popover, PopoverContent } from "@/components/ui/popover";
 
 // Enums and Interfaces
 enum CampaignType {
@@ -152,8 +149,6 @@ export default function CreateCampaignPage() {
   const { selectedProduct } = useProductStore();
   const { title, description, start, expiry } = useCampaignStore();
   const { organization, currentBusinessId } = useOrganizationStore();
-
-  const [open, setOpen] = useState(false);
 
   const { combinedItems } = useCombinedItemsStore();
 

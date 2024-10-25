@@ -10,14 +10,8 @@ import { Badge } from "../ui/badge";
 import { useQueryClient } from "@tanstack/react-query";
 import { useParams, useRouter } from "next/navigation";
 import type { Offer } from "@prisma/client";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
 const CampaignHeader = () => {
-  const { title, description, start, expiry, isActive } = useCampaignStore();
-  const [open, setOpen] = useState(false);
+  const { title, description, start, expiry } = useCampaignStore();
   const queryClient = useQueryClient();
 
   const params = useParams();
@@ -45,16 +39,7 @@ const CampaignHeader = () => {
           </Badge>
         )}
 
-        <Popover>
-          <PopoverTrigger asChild>
-            <Button variant="ghost" size={"icon"}>
-              <Edit className="h-4 w-4 stroke-green-500" />
-            </Button>
-          </PopoverTrigger>
-          <PopoverContent className="w-80">
-            <CampaignDialogForm />
-          </PopoverContent>
-        </Popover>
+        <CampaignDialogForm />
       </div>
       <div className="flex gap-2 items-center">
         <h4 className="text-sm">{description || "Campaign description"}</h4>

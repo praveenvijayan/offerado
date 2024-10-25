@@ -1,36 +1,14 @@
 "use client";
-import { ReactNode, useState } from "react";
+import { ReactNode, useState, useEffect } from "react";
 import { Header } from "@/components/layout/header";
-import useSidebarStore from "@/stores/store";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { fetchUserRole } from "@/services/user-role-service";
-import { useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { useUser } from "@clerk/nextjs";
 import { AppSidebar } from "@/components/app-sidebar";
 import { GeistSans } from "geist/font/sans";
-
-import {
-  Breadcrumb,
-  BreadcrumbEllipsis,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
-import {
-  SidebarInset,
-  SidebarProvider,
-  SidebarTrigger,
-} from "@/components/ui/sidebar";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { cn } from "@/lib/utils";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 export default function LoginLayout({ children }: { children: ReactNode }) {
   const router = useRouter();
   const pathname = usePathname();
@@ -44,11 +22,10 @@ export default function LoginLayout({ children }: { children: ReactNode }) {
     queryKey: ["userRole"],
     queryFn: fetchUserRole,
     staleTime: 0,
-    enabled: !!user && isLoaded && isSignedIn, // Only fetch role when user is authenticated and loaded
+    enabled: !!user && isLoaded && isSignedIn,
   });
 
   useEffect(() => {
-    // Update the history state with the current path
     setHistory((prev) => {
       if (prev[prev.length - 1] !== pathname) {
         return [...prev, pathname];
