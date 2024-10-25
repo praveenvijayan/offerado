@@ -13,7 +13,7 @@ export default function ClientProviders({
       new QueryClient({
         defaultOptions: {
           queries: {
-            staleTime: 60 * 1000, // Set stale time to avoid frequent refetching
+            staleTime: 60 * 1000,
           },
         },
       })

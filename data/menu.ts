@@ -93,7 +93,7 @@ export const menuItems = [
     ],
   },
   {
-    title: "Analytics and Reporting",
+    title: "Analytics",
     icon: BarChart2,
     items: [
       {
@@ -114,7 +114,7 @@ export const menuItems = [
     ],
   },
   {
-    title: "Marketing and Distribution",
+    title: "Marketing",
     icon: MessageCircleWarning,
     items: [
       {
@@ -135,7 +135,7 @@ export const menuItems = [
     ],
   },
   {
-    title: "Billing and Payments",
+    title: "Subscriptions",
     icon: DollarSign,
     items: [
       {
@@ -146,7 +146,7 @@ export const menuItems = [
     ],
   },
   {
-    title: "Products Management",
+    title: "Product Management",
     icon: Box,
     items: [
       {

@@ -1,15 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { Bell, CircleUser, Search, Menu, Sidebar, Plus } from "lucide-react";
+import { Bell, Search, Menu, PanelLeft } from "lucide-react";
 import { Input } from "@/components/ui/input";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import {
-  DropdownMenu,
-  DropdownMenuTrigger,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-} from "@/components/ui/dropdown-menu";
 import { ModeToggle } from "@/components/global/theme-comp";
 import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 import Help from "../global/help";
@@ -17,15 +8,14 @@ import { CampaignCreateButton } from "../campaigns/campaign-create-button";
 import { useSidebar } from "@/components/ui/sidebar";
 
 export const Header = () => (
-  <header className="flex h-14 items-center gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6">
+  <header className="flex h-14 items-center gap-4 py-8 lg:h-[64px] lg:pr-6 mb-4">
     <MobileMenu />
+    <TogglePanel />
     <SearchBar />
     <CampaignCreateButton />
     <ModeToggle />
     <NotificationButton />
     <Help />
-    {/* <UserMenu />
-     */}
     <SignedIn>
       <UserButton />
     </SignedIn>
@@ -59,23 +49,6 @@ const NotificationButton = () => (
   </Button>
 );
 
-// User Menu Component
-const UserMenu = () => (
-  <DropdownMenu>
-    <DropdownMenuTrigger asChild>
-      <Button variant="secondary" size="icon" className="rounded-full">
-        <CircleUser className="h-5 w-5" />
-      </Button>
-    </DropdownMenuTrigger>
-    <DropdownMenuContent align="end">
-      <DropdownMenuLabel>My Account</DropdownMenuLabel>
-      <DropdownMenuSeparator />
-      <DropdownMenuItem>Settings</DropdownMenuItem>
-      <DropdownMenuItem>Logout</DropdownMenuItem>
-    </DropdownMenuContent>
-  </DropdownMenu>
-);
-
 // Mobile Menu Component
 const MobileMenu = () => {
   const { setOpenMobile } = useSidebar();
@@ -90,5 +63,15 @@ const MobileMenu = () => {
       <Menu className="h-5 w-5" />
       <span className="sr-only">Open mobile menu</span>
     </Button>
+  );
+};
+
+const TogglePanel = () => {
+  const { toggleSidebar } = useSidebar();
+  return (
+    <PanelLeft
+      className="h-6 w-6 cursor-pointer stroke-slate-500 hover:stroke-slate-200"
+      onClick={toggleSidebar}
+    />
   );
 };
