@@ -14,6 +14,12 @@ export const fetchProducts = async () => {
   return response.json();
 };
 
+export const useProducts = () =>
+  useQuery({
+    queryKey: ["products"],
+    queryFn: fetchProducts,
+  });
+
 const uploadProducts = async (products: Product[]) => {
   const response = await fetch("/api/products/upload", {
     method: "POST",

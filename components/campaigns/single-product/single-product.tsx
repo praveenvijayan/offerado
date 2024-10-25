@@ -145,8 +145,8 @@ const SingleProduct = () => {
           onValueChange={(value) => {
             setSelectedProductId(value);
             const selectedProduct = data?.find(
-              (product) => product.id.toString() === value
-            ) as any;
+              (product: any) => product.id.toString() === value
+            );
             setSelectedProduct(selectedProduct);
           }}
         >

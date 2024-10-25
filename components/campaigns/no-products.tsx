@@ -1,6 +1,5 @@
 "use client";
 import {
-  ArrowLeft,
   BoxIcon,
   CircleDot,
   FileQuestion,
@@ -9,15 +8,8 @@ import {
   SquareLibrary,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
-import ReusableSheet from "@/components/global/reusable-sheet";
 import useSheetStore from "@/stores/sheet-store";
-import { useRouter } from "next/navigation";
-import SingleProduct from "@/components/campaigns/single-product/single-product";
-import useCampaignStore from "@/stores/campaign-type";
 import CampaignTypeStore from "@/stores/campaign-type";
-import MultiProductDisplay from "./multi-product/multi-product-display";
-import MultiProduct from "./multi-product/multi-product";
 import campaignTypes from "@/data/campaign-types.json";
 
 // Reusable function to render campaign buttons and sheets
@@ -30,8 +22,8 @@ const RenderCampaign = ({
   buttonColor,
   actionText,
 }: any) => {
-  const { openSheet, open, close } = useSheetStore();
-  const { setCampaignType, campaignType } = CampaignTypeStore();
+  const { open } = useSheetStore();
+  const { setCampaignType } = CampaignTypeStore();
 
   const iconComponents = {
     BoxIcon,
@@ -45,22 +37,20 @@ const RenderCampaign = ({
   const IconComponent = iconComponents[icon];
 
   return (
-    <>
-      <Button
-        onClick={() => {
-          open(id);
-          setCampaignType(id);
-        }}
-        className={`rounded-xl p-6 flex flex-col justify-center text-center items-center gap-4 h-auto w-auto text-wrap`}
-      >
-        {IconComponent && (
-          <IconComponent
-            className={`w-14 h-14 stroke-black fill-${buttonColor} stroke-1`}
-          />
-        )}
-        <p>{buttonText}</p>
-      </Button>
-    </>
+    <Button
+      onClick={() => {
+        open(id);
+        setCampaignType(id);
+      }}
+      className={`bg-muted-foreground/90 rounded-xl p-6 flex flex-col justify-center text-center items-center gap-4 h-auto w-auto text-wrap`}
+    >
+      {IconComponent && (
+        <IconComponent
+          className={`w-14 h-14 dark:stroke-black fill-${buttonColor} stroke-1`}
+        />
+      )}
+      <p>{buttonText}</p>
+    </Button>
   );
 };
 
