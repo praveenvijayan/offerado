@@ -13,7 +13,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { Delete, Edit, X } from "lucide-react";
+import { X } from "lucide-react";
 
 const SingleProductDisplay = () => {
   const { selectedProduct, resetSelectedProduct, setSelectedProduct } =

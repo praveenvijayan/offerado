@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useEffect, useMemo } from "react";
 import {
   Table,
@@ -65,7 +64,7 @@ const MultiProduct = () => {
   const isSelected = useProductSelectionStore((state) => state.isSelected);
 
   useEffect(() => {
-    if (selectedProducts.length > 0) {
+    if (selectedProducts && selectedProducts.length > 0) {
       setIsProductSelected();
     } else {
       resetIsProductSelected();
@@ -148,10 +147,12 @@ const MultiProduct = () => {
         product(s), and you have selected{" "}
         <span
           className={`font-semibold ${
-            selectedProducts?.length > 0 ? "text-green-500" : "text-red-500"
+            selectedProducts && selectedProducts.length > 0
+              ? "text-green-500"
+              : "text-red-500"
           }`}
         >
-          {selectedProducts?.length}
+          {selectedProducts?.length || 0}
         </span>{" "}
         product(s).
         <Button
@@ -162,7 +163,7 @@ const MultiProduct = () => {
             resetProducts();
             resetIsProductSelected();
           }}
-          disabled={selectedProducts.length === 0}
+          disabled={!selectedProducts || selectedProducts.length === 0}
         >
           <XCircle className="w-5 h-5" />
         </Button>
@@ -284,5 +285,4 @@ const MultiProduct = () => {
     </div>
   );
 };
-
 export default MultiProduct;

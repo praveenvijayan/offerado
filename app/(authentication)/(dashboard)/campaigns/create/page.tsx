@@ -35,6 +35,7 @@ import FeedbackDisplay from "@/components/campaigns/feedback/feedback-display";
 import useFeedbackStore from "@/stores/feedback";
 import { useCombinedItemsStore } from "@/stores/combined-items-store";
 import useOrganizationStore from "@/stores/organization";
+import { Popover, PopoverContent } from "@/components/ui/popover";
 
 // Enums and Interfaces
 enum CampaignType {
@@ -187,7 +188,9 @@ export default function CreateCampaignPage() {
   // Handle Campaign Creation
   const handleCampaignCreation = () => {
     if (!title || !description || !start || !expiry || !campaignType) {
-      setOpen(true);
+      toast.error("Please fill the campaign title, description and dates.");
+      // console.error("Missing required fields");
+      // setOpen(true);
       return;
     }
 
@@ -348,7 +351,6 @@ export default function CreateCampaignPage() {
           </Button>
         </div>
       )}
-      <CampaignDialogForm open={open} setOpen={setOpen} />
       {campaignType && (
         <CampaignSheet
           id={campaign?.id}
